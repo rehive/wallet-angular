@@ -30,7 +30,7 @@ a.al-logo {
 
 .user-profile {
   float: right;
-  min-width: 230px;
+  min-width: 50px;
   margin-top: 10px;
 }
 
@@ -51,6 +51,8 @@ a.al-logo {
     width: 45px;
     height: 45px;
     border-radius: 50%;
+    background-color: white;
+    font-color: green;
   }
 }
 
@@ -138,6 +140,28 @@ a.collapse-menu-link {
     height: 27px;
   }
 }
+
+//css added by Aquibur Rahman Khan
+
+.user-currency{
+  float: right;
+  min-width: 50px;
+  margin-top: 25px;
+}
+
+.al-user-currency {
+  float: right;
+  margin-right: 40px;
+  a{
+    font-size: 26px;
+  i{
+    font-size: 17px;
+    color: white;
+  }
+  }
+}
+
+//css added by Aquibur Rahman Khan  end
 
 @media screen and (max-width: $resS) {
   .search {
