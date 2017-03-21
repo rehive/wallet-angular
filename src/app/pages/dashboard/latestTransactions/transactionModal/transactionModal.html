@@ -1,0 +1,24 @@
+<div class="modal-content">
+    <div class="modal-header">
+        <button type="button" class="close" ng-click="$dismiss()" aria-label="Close">
+            <em class="ion-ios-close-empty sn-link-close"></em>
+        </button>
+        <h4 class="modal-title" id="myModalLabel">Transaction Details</h4>
+    </div>
+    <div class="modal-body">
+            <b>From:</b> {{transaction.from || ''}}<br>
+            <b>To:</b> {{transaction.to || ''}}<br>
+            <b>Date:</b> {{transaction.date | date:'medium' || ''}}<br>
+            <b>Code:</b> {{transaction.code || ''}}<br>
+            <b>Type:</b> {{transaction.type || ''}}<br>
+            <b>Currency:</b> {{transaction.currency || ''}}<br>
+            <b>Account:</b> {{transaction.account || ''}}<br>
+            <b>Amount:</b> {{transaction.amount || ''}}<br>
+            <b>Fee:</b> {{transaction.fee || ''}}<br>
+            <b>Balance:</b> {{transaction.balance || ''}}<br>
+            <b>Metadata:</b> {{transaction.metadata || ''}}<br>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-primary" ng-click="$dismiss()">Close</button>
+    </div>
+</div>

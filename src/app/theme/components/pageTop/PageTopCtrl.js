@@ -7,7 +7,7 @@
     /** @ngInject */
     function PageTopCtrl($scope) {
 
-        $scope.name = '$XBR';
+        $scope.currencies = ['$XBR','$ZER','$EUR'];
     }
 
 })();

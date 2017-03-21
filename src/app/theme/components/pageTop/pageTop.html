@@ -19,9 +19,15 @@
       <a uib-dropdown-toggle class="profile-toggle-link text-center">
         $USD <i class="ion-arrow-down-b"></i>
       </a>
-      <ul  class="top-dropdown-menu profile-dropdown" uib-dropdown-menu>
-        <li><i class="dropdown-arr"></i></li>
-        <li><a href class="signout"><i class="fa fa-sign-out"></i>{{name}}</a></li>
+      <ul  class="top-dropdown-menu user-currency-dropdown" uib-dropdown-menu>
+        <li ><i class="dropdown-arr"></i></li>
+        <li class="user-currency-dropdown-label">Switch to a different currency</li>
+        <hr class="no-margin">
+        <li ng-repeat="currency in currencies">
+          <a href >{{currency}}</a>
+          <hr class="no-margin">
+        </li>
+        <a href class="user-currency-dropdown-last-item">Add Currency</a>
       </ul>
     </div>
   </div>
