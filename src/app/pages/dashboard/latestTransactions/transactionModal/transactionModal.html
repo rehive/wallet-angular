@@ -6,17 +6,94 @@
         <h4 class="modal-title" id="myModalLabel">Transaction Details</h4>
     </div>
     <div class="modal-body">
-            <b>From:</b> {{transaction.from || ''}}<br>
-            <b>To:</b> {{transaction.to || ''}}<br>
-            <b>Date:</b> {{transaction.date | date:'medium' || ''}}<br>
-            <b>Code:</b> {{transaction.code || ''}}<br>
-            <b>Type:</b> {{transaction.type || ''}}<br>
-            <b>Currency:</b> {{transaction.currency || ''}}<br>
-            <b>Account:</b> {{transaction.account || ''}}<br>
-            <b>Amount:</b> {{transaction.amount || ''}}<br>
-            <b>Fee:</b> {{transaction.fee || ''}}<br>
-            <b>Balance:</b> {{transaction.balance || ''}}<br>
-            <b>Metadata:</b> {{transaction.metadata || ''}}<br>
+        <div class="row">
+        <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+            <b>From: </b>
+        </div>
+        <div col-lg-8 col-md-8 col-sm-8 col-xs-8>
+            <p ng-bind="transaction.from">
+        </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                <b>To: </b>
+            </div>
+            <div col-lg-8 col-md-8 col-sm-8 col-xs-8>
+                <p ng-bind="transaction.to">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                <b>Type: </b>
+            </div>
+            <div col-lg-8 col-md-8 col-sm-8 col-xs-8>
+                <p ng-bind="transaction.type">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                <b>Currency: </b>
+            </div>
+            <div col-lg-8 col-md-8 col-sm-8 col-xs-8>
+                <p ng-bind="transaction.currency">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                <b>Account: </b>
+            </div>
+            <div col-lg-8 col-md-8 col-sm-8 col-xs-8>
+                <p ng-bind="transaction.account">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                <b>Amount: </b>
+            </div>
+            <div col-lg-8 col-md-8 col-sm-8 col-xs-8>
+                <p ng-bind="transaction.amount">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                <b>Fee: </b>
+            </div>
+            <div col-lg-8 col-md-8 col-sm-8 col-xs-8>
+                <p ng-bind="transaction.fee">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                <b>Code: </b>
+            </div>
+            <div col-lg-8 col-md-8 col-sm-8 col-xs-8>
+                <p ng-bind="transaction.code">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                <b>Balance: </b>
+            </div>
+            <div col-lg-8 col-md-8 col-sm-8 col-xs-8>
+                <p ng-bind="transaction.balance">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                <b>Metadata: </b>
+            </div>
+            <div col-lg-8 col-md-8 col-sm-8 col-xs-8>
+                <p ng-bind="transaction.metadata">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                <b>Date: </b>
+            </div>
+            <div col-lg-8 col-md-8 col-sm-8 col-xs-8>
+                <p ng-bind="transaction.date | date:'medium'">
+            </div>
+        </div>
     </div>
     <div class="modal-footer">
         <button type="button" class="btn btn-primary" ng-click="$dismiss()">Close</button>
