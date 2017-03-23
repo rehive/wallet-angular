@@ -11,7 +11,8 @@
     'BlurAdmin.pages.transactions',
     'BlurAdmin.pages.users',
     'BlurAdmin.pages.services',
-    'BlurAdmin.pages.login'
+    'BlurAdmin.pages.login',
+    'BlurAdmin.pages.register'
     //'BlurAdmin.pages.ui',
     //'BlurAdmin.pages.components',
     //'BlurAdmin.pages.form',

@@ -18,13 +18,22 @@ angular.module('BlurAdmin', [
   'BlurAdmin.pages'
 ])
 
+    //.constant('API', 'http://localhost:8080/api/3')
+    .constant('API', 'https://rehive.com/api/3')
+
     .run(function($cookies,$rootScope,$state,tokenManagement,$location){
 
-      var stateChangeStart = $rootScope.$on('$stateChangeStart', function (event) {
-        var token = tokenManagement.getToken();
+      var locationChangeStart = $rootScope.$on('$locationChangeStart', function (event,newUrl) {
+        var token = tokenManagement.getToken(),
+            newUrlArray = newUrl.split('/'),
+            newUrlLastElement = newUrlArray[newUrlArray.length - 1];
+
         console.log(token);
           if(token) {
+            console.log('should not be here');
             $rootScope.gotToken = true;
+          } else if(newUrlLastElement == 'register'){
+              // do nothing
           } else {
             $rootScope.gotToken = false;
             $location.path('/login');

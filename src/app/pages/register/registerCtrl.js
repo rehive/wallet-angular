@@ -1,13 +1,13 @@
 (function () {
     'use strict';
 
-    angular.module('BlurAdmin.pages.login')
-        .controller('LoginCtrl', LoginCtrl);
+    angular.module('BlurAdmin.pages.register')
+        .controller('RegisterCtrl', RegisterCtrl);
 
     /** @ngInject */
-    function LoginCtrl($scope,$http,toastr,tokenManagement) {
+    function RegisterCtrl($scope,$http,toastr,tokenManagement) {
 
-        $scope.login = function(identifier, company_id, password) {
+        $scope.register = function(identifier, company_id, password) {
             $http.post(API + '/auth/login/', {
                 identifier: identifier,
                 company_id: company_id,
@@ -18,9 +18,9 @@
                 //    $state.go('dashboard');
                 //  toastr.success('You have successfully logged in with the email address!');
                 //} else {
-               // }
+                // }
             }).catch(function (error) {
-           //     toastr
+                //     toastr
             });
         };
 
