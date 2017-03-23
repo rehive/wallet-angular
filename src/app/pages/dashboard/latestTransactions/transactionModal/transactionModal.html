@@ -11,7 +11,7 @@
             <b>From: </b>
         </div>
         <div col-lg-8 col-md-8 col-sm-8 col-xs-8>
-            <p ng-bind="transaction.from">
+            <p ng-bind="transaction.from_reference">
         </div>
         </div>
         <div class="row">
@@ -19,7 +19,7 @@
                 <b>To: </b>
             </div>
             <div col-lg-8 col-md-8 col-sm-8 col-xs-8>
-                <p ng-bind="transaction.to">
+                <p ng-bind="transaction.to_reference">
             </div>
         </div>
         <div class="row">
@@ -27,7 +27,7 @@
                 <b>Type: </b>
             </div>
             <div col-lg-8 col-md-8 col-sm-8 col-xs-8>
-                <p ng-bind="transaction.type">
+                <p ng-bind="transaction.tx_type">
             </div>
         </div>
         <div class="row">
@@ -35,7 +35,7 @@
                 <b>Currency: </b>
             </div>
             <div col-lg-8 col-md-8 col-sm-8 col-xs-8>
-                <p ng-bind="transaction.currency">
+                <p ng-bind="transaction.currency.code">
             </div>
         </div>
         <div class="row">
@@ -43,7 +43,7 @@
                 <b>Account: </b>
             </div>
             <div col-lg-8 col-md-8 col-sm-8 col-xs-8>
-                <p ng-bind="transaction.account">
+                <p ng-bind="transaction.from_account">
             </div>
         </div>
         <div class="row">
@@ -67,7 +67,7 @@
                 <b>Code: </b>
             </div>
             <div col-lg-8 col-md-8 col-sm-8 col-xs-8>
-                <p ng-bind="transaction.code">
+                <p ng-bind="transaction.tx_code">
             </div>
         </div>
         <div class="row">
@@ -75,7 +75,7 @@
                 <b>Balance: </b>
             </div>
             <div col-lg-8 col-md-8 col-sm-8 col-xs-8>
-                <p ng-bind="transaction.balance">
+                <p ng-bind="transaction.to_balance">
             </div>
         </div>
         <div class="row">
@@ -91,7 +91,7 @@
                 <b>Date: </b>
             </div>
             <div col-lg-8 col-md-8 col-sm-8 col-xs-8>
-                <p ng-bind="transaction.date | date:'medium'">
+                <p>{{transaction.created | date:'mediumDate'}} {{transaction.created | date:'shortTime'}}</p>
             </div>
         </div>
     </div>

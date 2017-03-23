@@ -19,7 +19,6 @@
                     'Authorization': 'JWT ' + vm.token
                 }
             }).then(function (res) {
-                console.log(res);
                 if (res.status === 200) {
                     vm.convertCurrenciesToViewableSymbols(res.data.data.results);
                 }

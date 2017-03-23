@@ -21,12 +21,12 @@ angular.module('BlurAdmin', [
     //.constant('API', 'http://localhost:8080/api/3')
     .constant('API', 'https://rehive.com/api/3')
 
-    .run(function($cookies,$rootScope,cookieManagement,$location){
+    .run(function($cookies,$rootScope,cookieManagement,$location,_){
 
       var locationChangeStart = $rootScope.$on('$locationChangeStart', function (event,newUrl) {
         var token = cookieManagement.getCookie('TOKEN'),
             newUrlArray = newUrl.split('/'),
-            newUrlLastElement = newUrlArray[newUrlArray.length - 1];
+            newUrlLastElement = _.last(newUrlArray);
 
           if(token) {
             $rootScope.gotToken = true;

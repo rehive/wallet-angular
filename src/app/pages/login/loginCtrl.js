@@ -16,7 +16,6 @@
                 password: password
             }).then(function (res) {
                 $rootScope.$pageFinishedLoading = true;
-                console.log(res);
                 if (res.status === 200) {
                     cookieManagement.setCookie('TOKEN',res.data.data.token);
                     cookieManagement.setCookie('COMPANY',res.data.data.user.company);

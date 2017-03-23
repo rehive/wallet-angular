@@ -5,7 +5,12 @@
         .controller('LatestTransactionsCtrl', LatestTransactionsCtrl);
 
     /** @ngInject */
-    function LatestTransactionsCtrl($scope,$uibModal) {
+    function LatestTransactionsCtrl($scope,$uibModal,$http,API,cookieManagement) {
+
+        var vm = this;
+        $scope.transactions = [];
+        $scope.transactionsStateMessage = 'Loading Transactions...';
+        vm.token = cookieManagement.getCookie('TOKEN');
 
         $scope.openModal = function (page, size,transaction) {
 
@@ -22,37 +27,26 @@
             });
         };
 
-        $scope.transactions = [{
-            from: 'admin',
-            to: 'ark.erwewf17@rmail.com',
-            type: 'Deposit',
-            currency: 'USD',
-            account: 'default',
-            amount: '1000.00',
-            fee: '200',
-            status: 'pending',
-            date: new Date()
-        },{
-            from: 'admin',
-            to: 'bark.erwewf17@rmail.com',
-            type: 'Withdraw',
-            currency: 'XBT',
-            account: 'default',
-            amount: '2000.00',
-            fee: '300',
-            status: 'complete',
-            date: new Date()
-        },{
-            from: 'admin',
-            to: 'cark.erwewf17@rmail.com',
-            type: 'Deposit',
-            currency: 'USD',
-            account: 'default',
-            amount: '1000.00',
-            fee: '500',
-            status: 'pending',
-            date: new Date()
-        }]
+        vm.getLatestTransactions = function(){
+            $http.get(API + '/admin/transactions/?page_size=3&orderby=-created', {
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': 'JWT ' + vm.token
+                }
+            }).then(function (res) {
+                if (res.status === 200) {
+                    if(res.data.data.results.length == 0){
+                        $scope.transactionsStateMessage = 'No Transactions Have Been Made';
+                    }
+                    $scope.transactions = res.data.data.results;
+                }
+            }).catch(function (error) {
+                $scope.transactionsStateMessage = 'Failed To Load Data';
+                console.log(error);
+            });
+        };
+        vm.getLatestTransactions();
+
     }
 
 })();
