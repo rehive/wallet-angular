@@ -5,22 +5,29 @@
         .controller('LoginCtrl', LoginCtrl);
 
     /** @ngInject */
-    function LoginCtrl($scope,$http,toastr,tokenManagement) {
+    function LoginCtrl($rootScope,$scope,$http,toastr,cookieManagement,API,$location) {
 
         $scope.login = function(identifier, company_id, password) {
+            $rootScope.$pageFinishedLoading = false;
+
             $http.post(API + '/auth/login/', {
                 identifier: identifier,
                 company_id: company_id,
                 password: password
             }).then(function (res) {
+                $rootScope.$pageFinishedLoading = true;
                 console.log(res);
-                //if (res.status === 200) {
-                //    $state.go('dashboard');
-                //  toastr.success('You have successfully logged in with the email address!');
-                //} else {
-               // }
+                if (res.status === 200) {
+                    cookieManagement.setCookie('TOKEN',res.data.data.token);
+                    cookieManagement.setCookie('COMPANY',res.data.data.user.company);
+                    toastr.success('You have successfully logged in with the email address ' + res.data.data.user.email +'!');
+                    $location.path('/dashboard');
+                }
             }).catch(function (error) {
-           //     toastr
+
+                console.log(error);
+                $rootScope.$pageFinishedLoading = true;
+                toastr.error(error.data.message);
             });
         };
 

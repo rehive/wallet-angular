@@ -12,7 +12,8 @@
     'BlurAdmin.pages.users',
     'BlurAdmin.pages.services',
     'BlurAdmin.pages.login',
-    'BlurAdmin.pages.register'
+    'BlurAdmin.pages.register',
+    'BlurAdmin.pages.resetPassword'
     //'BlurAdmin.pages.ui',
     //'BlurAdmin.pages.components',
     //'BlurAdmin.pages.form',

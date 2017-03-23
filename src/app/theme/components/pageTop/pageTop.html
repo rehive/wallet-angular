@@ -1,5 +1,5 @@
 <div class="page-top clearfix" scroll-position="scrolled" max-height="50" ng-class="{'scrolled': scrolled}">
-  <a href="#/dashboard" class="al-logo clearfix">BlurAdmin</a>
+  <a href="#/dashboard" class="al-logo clearfix" ng-bind="companyName"></a>
   <a href class="collapse-menu-link ion-navicon" ba-sidebar-toggle-menu></a>
 
   <div class="user-profile clearfix">
@@ -9,7 +9,7 @@
       </a>
       <ul  class="top-dropdown-menu profile-dropdown" uib-dropdown-menu>
         <li><i class="dropdown-arr"></i></li>
-        <li><a href class="signout"><i class="fa fa-sign-out"></i>Sign out</a></li>
+        <li ng-click="logout()"><a href class="signout"><i class="ion-log-out"></i><b>Sign out</b></a></li>
       </ul>
     </div>
   </div>

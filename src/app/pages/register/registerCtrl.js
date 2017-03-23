@@ -5,7 +5,7 @@
         .controller('RegisterCtrl', RegisterCtrl);
 
     /** @ngInject */
-    function RegisterCtrl($scope,$http,toastr,tokenManagement) {
+    function RegisterCtrl($scope,$http,toastr) {
 
         $scope.register = function(identifier, company_id, password) {
             $http.post(API + '/auth/login/', {
