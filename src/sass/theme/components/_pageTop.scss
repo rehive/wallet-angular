@@ -172,7 +172,10 @@ a.collapse-menu-link {
   float: right;
   margin-right: 20px;
   a{
-    font-size: 26px;
+    font-size: 18px;
+    span{
+      color: #5bc0de;
+    }
   i{
     font-size: 17px;
     color: white;
