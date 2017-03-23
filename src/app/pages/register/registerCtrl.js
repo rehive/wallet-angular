@@ -7,11 +7,12 @@
     /** @ngInject */
     function RegisterCtrl($scope,$http,toastr) {
 
-        $scope.register = function(identifier, company_id, password) {
-            $http.post(API + '/auth/login/', {
-                identifier: identifier,
+        $scope.register = function( email, company_id, password1, password2) {
+            $http.post(API + '/auth/register/', {
+                email: email,
                 company_id: company_id,
-                password: password
+                password1: password1,
+                password2: password2
             }).then(function (res) {
                 console.log(res);
                 //if (res.status === 200) {
