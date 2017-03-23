@@ -5,7 +5,7 @@
         .controller('PageTopCtrl', PageTopCtrl);
 
     /** @ngInject */
-    function PageTopCtrl($scope,$http,cookieManagement,API,$location) {
+    function PageTopCtrl($rootScope,$scope,$http,cookieManagement,API,$location) {
         var vm = this;
 
         $scope.companyName = cookieManagement.getCookie('COMPANY');
@@ -20,7 +20,8 @@
                 }
             }).then(function (res) {
                 if (res.status === 200) {
-                    vm.convertCurrenciesToViewableSymbols(res.data.data.results);
+                    $rootScope.selectedCurrency = res.data.data.results[0];
+                    $scope.currencies = res.data.data.results;
                 }
             }).catch(function (error) {
                 console.log(error);
@@ -28,10 +29,9 @@
         };
         vm.getCompanyCurrencies();
 
-        vm.convertCurrenciesToViewableSymbols = function(currenciesArray){
-            currenciesArray.forEach(function(obj,index){
-                $scope.currencies[index] = obj.symbol + ' ' +obj.code;
-            });
+        $scope.selectCurrency = function(selectedCurrency){
+            $rootScope.selectedCurrency = selectedCurrency;
+            console.log(selectedCurrency);
         };
 
         //vm.getActiveCurrencies = function(){

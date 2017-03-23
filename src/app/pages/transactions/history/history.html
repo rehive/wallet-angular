@@ -1,1 +1,33 @@
-Hello History
+<div ba-panel ba-panel-title="Transactions" ba-panel-class=" with-scroll" class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+    <div class="divider">
+        <table ng-show="transactions.length > 0" class="table table-condensed table-striped table-hover ">
+            <tr class="black-muted-bg">
+                <td><b>From</b></td>
+                <td><b>To</b></td>
+                <td><b>Type</b></td>
+                <td><b>Currency</b></td>
+                <td><b>Account</b></td>
+                <td><b>Amount</b></td>
+                <td><b>Fee</b></td>
+                <td><b>Status</b></td>
+                <td><b>Date</b></td>
+            </tr>
+            <tr ng-repeat="transaction in transactions " data-toggle="modal"
+                ng-click="openModal('app/pages/dashboard/latestTransactions/transactionModal/transactionModal.html', 'md',transaction)"
+                class="editable-row center pointer">
+                <td class="table-row-center" width="8%" ng-bind="transaction.from_reference"></td>
+                <td class="table-row-center" width="20%" ng-bind="transaction.to_reference"></td>
+                <td class="table-row-center" width="10%" ng-bind="transaction.tx_type"></td>
+                <td class="table-row-center" width="10%" ng-bind="transaction.currency.code"></td>
+                <td class="table-row-center" width="10%" ng-bind="transaction.from_account"></td>
+                <td class="table-row-center" width="10%" ng-bind="transaction.amount"></td>
+                <td class="table-row-center" width="10%" ng-bind="transaction.fee"></td>
+                <td class="table-row-center" width="10%" ng-bind="transaction.status"></td>
+                <td class="table-row-center" >{{transaction.created | date:'mediumDate'}} {{transaction.created | date:'shortTime'}}</td>
+            </tr>
+        </table>
+    </div>
+    <div ng-show="transactions.length == 0">
+        <h3 ng-bind="transactionsStateMessage"></h3>
+    </div>
+</div>
