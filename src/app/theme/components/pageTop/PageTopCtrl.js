@@ -34,24 +34,6 @@
             console.log(selectedCurrency);
         };
 
-        //vm.getActiveCurrencies = function(){
-        //    $http.get(API + '/company/currencies/', {
-        //        headers: {
-        //            'Content-Type': 'application/json',
-        //            'Authorization': 'JWT ' + vm.token
-        //        }
-        //    }).then(function (res) {
-        //        if (res.status === 200) {
-        //            vm.convertCurrenciesToViewableSymbols(res.data.data.results);
-        //        }
-        //    }).catch(function (error) {
-        //        console.log(error);
-        //    });
-        //};
-        //vm.getActiveCurrencies();
-
-
-
         $scope.logout = function(){
             cookieManagement.deleteCookie('TOKEN');
             cookieManagement.deleteCookie('COMPANY');
