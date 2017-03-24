@@ -8,12 +8,43 @@
     function HistoryCtrl($scope,API,$http,cookieManagement) {
 
         var vm = this;
-        $scope.transactions = [];
-        $scope.transactionsStateMessage = 'Loading Transactions...';
         vm.token = cookieManagement.getCookie('TOKEN');
 
+        $scope.searchType = 'Type';
+        $scope.typeOptions = ['Type','Deposit','Transfer','Withdraw'];
+
+        $scope.searchStatus = 'Status';
+        $scope.statusOptions = ['Status','Cancelled','Claimed','Complete','Denied','Expired','Failed','Incoming',
+                                'Incomplete','Pending','Processing','Reversed','Unclaimed','Uncredited','Waiting'];
+        $scope.transactions = [];
+        $scope.transactionsStateMessage = 'Loading Transactions...';
+
+        $scope.searchCurrency= {};
+        $scope.currencyOptions = [];
+
+        $scope.orderBy = 'Order By';
+        $scope.orderByOptions = ['Order By','Largest','Latest','Smallest'];
+
+
+        vm.getCompanyCurrencies = function(){
+            $http.get(API + '/company/currencies/', {
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': 'JWT ' + vm.token
+                }
+            }).then(function (res) {
+                if (res.status === 200) {
+                    $scope.searchCurrency.code = res.data.data.results[0].code;
+                    $scope.currencyOptions = res.data.data.results;
+                }
+            }).catch(function (error) {
+                console.log(error);
+            });
+        };
+        vm.getCompanyCurrencies();
+
         vm.getLatestTransactions = function(){
-            $http.get(API + '/admin/transactions/?orderby=-created', {
+            $http.get(API + '/admin/transactions/?orderby=-created&page_size=10', {
                 headers: {
                     'Content-Type': 'application/json',
                     'Authorization': 'JWT ' + vm.token
@@ -31,6 +62,8 @@
             });
         };
         vm.getLatestTransactions();
+
+
     }
 
 })();
