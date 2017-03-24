@@ -5,26 +5,32 @@
         .controller('HistoryCtrl', HistoryCtrl);
 
     /** @ngInject */
-    function HistoryCtrl($scope,API,$http,cookieManagement) {
+    function HistoryCtrl($scope,API,$http,cookieManagement,$uibModal) {
 
         var vm = this;
         vm.token = cookieManagement.getCookie('TOKEN');
+        vm.pageSize = 25;
+        vm.orderBy = '-created';
 
-        $scope.searchType = 'Type';
+        $scope.page = 1;
+        $scope.searchParams = {
+            searchUser:'',
+            date_from: '',
+            date_to: '',
+            searchType: 'Type',
+            searchStatus: 'Status',
+            searchCurrency: {},
+            orderBy: 'Latest'
+        };
+
+        $scope.transactions = [];
+        $scope.loadingTransactions = false;
+        $scope.transactionsStateMessage = 'Loading Transactions...';
         $scope.typeOptions = ['Type','Deposit','Transfer','Withdraw'];
-
-        $scope.searchStatus = 'Status';
         $scope.statusOptions = ['Status','Cancelled','Claimed','Complete','Denied','Expired','Failed','Incoming',
                                 'Incomplete','Pending','Processing','Reversed','Unclaimed','Uncredited','Waiting'];
-        $scope.transactions = [];
-        $scope.transactionsStateMessage = 'Loading Transactions...';
-
-        $scope.searchCurrency= {};
         $scope.currencyOptions = [];
-
-        $scope.orderBy = 'Order By';
-        $scope.orderByOptions = ['Order By','Largest','Latest','Smallest'];
-
+        $scope.orderByOptions = ['Largest','Latest','Smallest'];
 
         vm.getCompanyCurrencies = function(){
             $http.get(API + '/company/currencies/', {
@@ -34,7 +40,8 @@
                 }
             }).then(function (res) {
                 if (res.status === 200) {
-                    $scope.searchCurrency.code = res.data.data.results[0].code;
+                    res.data.data.results.splice(0,0,{code: 'Currency'});
+                    $scope.searchParams.searchCurrency.code = "Currency";
                     $scope.currencyOptions = res.data.data.results;
                 }
             }).catch(function (error) {
@@ -43,27 +50,50 @@
         };
         vm.getCompanyCurrencies();
 
-        vm.getLatestTransactions = function(){
-            $http.get(API + '/admin/transactions/?orderby=-created&page_size=10', {
+        $scope.getLatestTransactions = function(){
+            $scope.loadingTransactions = true;
+            $scope.transactions = [];
+
+            vm.filterParams = '?page=' + $scope.page + '&page_size=' + vm.pageSize + '&orderby=' + vm.orderBy ;  // all the params of the filtering
+
+            //console.log($scope.searchParams.searchUser);
+            //console.log(API + '/admin/transactions/' + vm.filterParams);
+
+            $http.get(API + '/admin/transactions/' + vm.filterParams, {
                 headers: {
                     'Content-Type': 'application/json',
                     'Authorization': 'JWT ' + vm.token
                 }
             }).then(function (res) {
+                $scope.loadingTransactions = false;
                 if (res.status === 200) {
                     if(res.data.data.results.length == 0){
                         $scope.transactionsStateMessage = 'No Transactions Have Been Made';
                     }
                     $scope.transactions = res.data.data.results;
+                    //console.log($scope.transactions);
                 }
             }).catch(function (error) {
+                $scope.loadingTransactions = false;
                 $scope.transactionsStateMessage = 'Failed To Load Data';
                 console.log(error);
             });
         };
-        vm.getLatestTransactions();
+        $scope.getLatestTransactions();
 
+        $scope.openModal = function (page, size,transaction) {
 
+            $uibModal.open({
+                animation: true,
+                templateUrl: page,
+                size: size,
+                controller: 'historyModalCtrl',
+                resolve: {
+                    transaction: function () {
+                        return transaction;
+                    }
+                }
+            });
+        };
     }
-
 })();
