@@ -31,7 +31,6 @@
 
         $scope.selectCurrency = function(selectedCurrency){
             $rootScope.selectedCurrency = selectedCurrency;
-            console.log(selectedCurrency);
         };
 
         $scope.logout = function(){

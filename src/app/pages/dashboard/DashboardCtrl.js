@@ -7,7 +7,6 @@
     /** @ngInject */
     function DashboardCtrl($scope) {
 
-        $scope.label = 'Add Currency';
     }
 
 })();

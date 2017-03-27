@@ -1,37 +1,38 @@
-<div class="page-top clearfix" scroll-position="scrolled" max-height="50" ng-class="{'scrolled': scrolled}">
-  <a href="#/dashboard" class="al-logo clearfix" ng-bind="companyName"></a>
-  <a href class="collapse-menu-link ion-navicon" ba-sidebar-toggle-menu></a>
+<div class="row">
+  <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+    <div class="page-top clearfix" scroll-position="scrolled" max-height="50" ng-class="{'scrolled': scrolled}">
+      <a href="#/dashboard" class="al-logo clearfix" ng-bind="companyName"></a>
+      <a href class="collapse-menu-link ion-navicon" ba-sidebar-toggle-menu></a>
 
-  <div class="user-profile clearfix">
-    <div class="al-user-profile" uib-dropdown>
-      <a uib-dropdown-toggle class="profile-toggle-link">
-        <img ng-src="{{::( 'StockUserImage' | profilePicture )}}">
-      </a>
-      <ul  class="top-dropdown-menu profile-dropdown" uib-dropdown-menu>
-        <li><i class="dropdown-arr"></i></li>
-        <li ng-click="logout()"><a href class="signout"><i class="ion-log-out"></i><b>Sign out</b></a></li>
-      </ul>
+      <div class="user-profile clearfix">
+        <div class="al-user-profile" uib-dropdown>
+          <a uib-dropdown-toggle class="profile-toggle-link">
+            <img ng-src="{{::( 'StockUserImage' | profilePicture )}}">
+          </a>
+          <ul  class="top-dropdown-menu profile-dropdown" uib-dropdown-menu>
+            <li><i class="dropdown-arr"></i></li>
+            <li ng-click="logout()"><a href class="signout"><i class="ion-log-out"></i><b>Sign out</b></a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="user-currency clearfix">
+        <div class="al-user-currency" uib-dropdown>
+          <a uib-dropdown-toggle class="profile-toggle-link text-center">
+            {{selectedCurrency.symbol}} {{selectedCurrency.code}} <i class="ion-arrow-down-b"></i>
+          </a>
+          <ul  class="top-dropdown-menu user-currency-dropdown" uib-dropdown-menu>
+            <li ><i class="dropdown-arr"></i></li>
+            <li class="user-currency-dropdown-label">Switch to a different currency</li>
+            <hr class="no-margin">
+            <li ng-repeat="currency in currencies">
+              <a ng-click="selectCurrency(currency)" ><span>{{currency.symbol}} {{currency.code}}</span></a>
+              <hr class="no-margin">
+            </li>
+            <a href class="user-currency-dropdown-last-item">Add Currency</a>
+          </ul>
+        </div>
+      </div>
     </div>
   </div>
-
-  <div class="user-currency clearfix">
-    <div class="al-user-currency" uib-dropdown>
-      <a uib-dropdown-toggle class="profile-toggle-link text-center">
-        {{selectedCurrency.symbol}} {{selectedCurrency.code}} <i class="ion-arrow-down-b"></i>
-      </a>
-      <ul  class="top-dropdown-menu user-currency-dropdown" uib-dropdown-menu>
-        <li ><i class="dropdown-arr"></i></li>
-        <li class="user-currency-dropdown-label">Switch to a different currency</li>
-        <hr class="no-margin">
-        <li ng-repeat="currency in currencies">
-          <a ng-click="selectCurrency(currency)" ><span>{{currency.symbol}} {{currency.code}}</span></a>
-          <hr class="no-margin">
-        </li>
-        <a href class="user-currency-dropdown-last-item">Add Currency</a>
-      </ul>
-    </div>
-  </div>
-
 </div>
-
-

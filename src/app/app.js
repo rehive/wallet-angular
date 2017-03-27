@@ -21,6 +21,8 @@ angular.module('BlurAdmin', [
     //.constant('API', 'http://localhost:8080/api/3')
     .constant('API', 'https://rehive.com/api/3')
 
+    .constant('IMAGEURL', 'https://storage.googleapis.com/rehive-static/dashboard/dist/img/tokens/')
+
     .run(function($cookies,$rootScope,cookieManagement,$location,_){
 
       var locationChangeStart = $rootScope.$on('$locationChangeStart', function (event,newUrl) {
