@@ -1,78 +1,11 @@
 <div class="row" >
     <div class="col-lg-3 col-md-4 col-sm-12 col-xs-12">
-        <div ba-panel class="depositsMenu" ba-panel-title="Manage Deposits ({{selectedCurrency.symbol}} {{selectedCurrency.code}})" ba-panel-class="light-text">
-            <img ng-src="{{currencyImageUrl}}" class="imageCenter" width="100" height="100" alt="token Image">
-            <hr>
-            <div class="pointer depositsMenuOptions">
-                <h3>Deposit <i class="pull-right ion-chevron-right"></i></h3>
-            </div>
-            <hr>
-            <div class="pointer depositsMenuOptions">
-                <h3>Pending <i class="pull-right ion-chevron-right"></i></h3>
-            </div>
-        </div>
+        <deposits-menu></deposits-menu>
     </div>
-
     <div ng-hide="confirmDeposit" class="col-lg-9 col-md-8 col-sm-12 col-xs-12">
-        <div ba-panel  ba-panel-title="Create Deposits" ba-panel-class="light-text">
-            <form name="depositForm" class="form-horizontal depositForm">
-                <div class="form-group">
-                    <label class="col-sm-2 control-label"><b>User</b><span class="requiredIcon">*</span></label>
-
-                    <div class="col-sm-10">
-                        <input type="email" ng-model="depositParams.user" class="form-control" placeholder="E.g email@domain.com" required>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label class="col-sm-2 control-label"><b>Amount</b><span class="requiredIcon">*</span></label>
-
-                    <div class="col-sm-10">
-                        <input type="number" ng-model="depositParams.amount" class="form-control"  placeholder="E.g 100000000" required>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label class="col-sm-2 control-label"><b>Reference</b></label>
-
-                    <div class="col-sm-10">
-                        <input type="text" ng-model="depositParams.reference" class="form-control"  placeholder="E.g # 1234">
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label class="col-sm-2 control-label"></label>
-                    <div class="col-sm-10">
-                        <div ng-show="showAdvancedOption">
-                        <a class="pointer" ng-click="showAdvancedOption = false">Advanced Option</a>
-                        </div>
-                        <div ng-hide="showAdvancedOption">
-                        <label  class="checkbox-inline custom-checkbox nowrap">
-                            <input type="checkbox"  ng-model="depositParams.confirm_on_create">
-                            <span><b><i>Confirm on create</i></b></span>
-                        </label>
-                            <i uib-tooltip-html="'<b>Complete deposit immediately after creation</b>'" class="ion-information-circled"></i>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <div class="col-sm-offset-2 col-sm-10">
-                        <button ng-disabled="!depositForm.$valid" ng-click="toggleConfirmDeposit(confirmDeposit)" class="btn btn-primary pull-right">Next</button>
-                    </div>
-                </div>
-            </form>
-        </div>
+        <create-deposit></create-deposit>
     </div>
     <div ng-show="confirmDeposit" class="col-lg-9 col-md-8 col-sm-12 col-xs-12">
-        <div ba-panel  ba-panel-title="Confirm Deposit" ba-panel-class="light-text">
-            <div>
-                <div class="col-sm-offset-2 col-sm-10">
-                    <p>You are about to deposit <b>{{selectedCurrency.symbol}} {{depositParams.amount}}</b></p>
-                </div>
-            </div>
-            <div >
-                <div class="col-sm-offset-2 col-sm-10">
-                    <button ng-click="createDeposit()" class="btn btn-primary pull-right">Confirm</button>
-                </div>
-            </div>
-        </div>
+        <confirm-deposit></confirm-deposit>
     </div>
 </div>
