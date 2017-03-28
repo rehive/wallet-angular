@@ -1,0 +1,96 @@
+<div class="modal-content">
+    <div class="modal-header">
+        <button type="button" class="close" ng-click="$dismiss()" aria-label="Close">
+            <em class="ion-ios-close-empty sn-link-close"></em>
+        </button>
+        <h4 class="modal-title" id="myModalLabel">Transaction Details</h4>
+    </div>
+    <div class="modal-body">
+        <div class="row">
+            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                <b>From: </b>
+            </div>
+            <div col-lg-8 col-md-8 col-sm-8 col-xs-8>
+                <p ng-bind="transaction.from_reference">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                <b>Date: </b>
+            </div>
+            <div col-lg-8 col-md-8 col-sm-8 col-xs-8>
+                <p>{{transaction.created | date:'mediumDate'}} {{transaction.created | date:'shortTime'}}</p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                <b>Code: </b>
+            </div>
+            <div col-lg-8 col-md-8 col-sm-8 col-xs-8>
+                <p ng-bind="transaction.tx_code">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                <b>Type: </b>
+            </div>
+            <div col-lg-8 col-md-8 col-sm-8 col-xs-8>
+                <p ng-bind="transaction.tx_type">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                <b>Currency: </b>
+            </div>
+            <div col-lg-8 col-md-8 col-sm-8 col-xs-8>
+                <p ng-bind="transaction.currency.code">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                <b>Account: </b>
+            </div>
+            <div col-lg-8 col-md-8 col-sm-8 col-xs-8>
+                <p ng-bind="transaction.from_account">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                <b>Amount: </b>
+            </div>
+            <div col-lg-8 col-md-8 col-sm-8 col-xs-8>
+                <p ng-bind="transaction.amount">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                <b>Fee: </b>
+            </div>
+            <div col-lg-8 col-md-8 col-sm-8 col-xs-8>
+                <p ng-bind="transaction.fee">
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                <b>Balance: </b>
+            </div>
+            <div col-lg-8 col-md-8 col-sm-8 col-xs-8>
+                <p ng-bind="transaction.to_balance">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                <b>Metadata: </b>
+            </div>
+            <div col-lg-8 col-md-8 col-sm-8 col-xs-8>
+                <p ng-bind="transaction.metadata">
+            </div>
+        </div>
+
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-danger pull-left" ng-click="updateTransaction('Failed')">Cancel Withdrawal</button>
+        <button type="button" class="btn btn-primary pull-right" ng-click="updateTransaction('Confirmed')">Complete Withdrawal</button>
+    </div>
+</div>

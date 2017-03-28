@@ -1,0 +1,26 @@
+<div ba-panel class="row" ba-panel-title="Pending Withdrawals" ba-panel-class=" with-scroll">
+
+    <table ng-show="transactions.length > 0" class="table table-condensed table-striped table-hover col-lg-12 col-md-12 col-sm-12 col-xs-12 ">
+        <tr class="black-muted-bg">
+            <td><b>Code</b></td>
+            <td><b>From</b></td>
+            <td><b>Currency</b></td>
+            <td><b>Amount</b></td>
+            <td><b>Date</b></td>
+            <td><b>Status</b></td>
+        </tr>
+        <tr ng-repeat="transaction in transactions " data-toggle="modal"
+            ng-click="openModal('app/pages/transactions/withdrawals/pendingWithdrawals/pendingWithdrawalsModal/pendingWithdrawalsModal.html', 'md',transaction)"
+            class="editable-row center pointer">
+            <td class="table-row-center" ng-bind="transaction.tx_code"></td>
+            <td class="table-row-center" ng-bind="transaction.from_reference"></td>
+            <td class="table-row-center" ng-bind="transaction.currency.code"></td>
+            <td class="table-row-center" ng-bind="transaction.amount"></td>
+            <td class="table-row-center" >{{transaction.created | date:'mediumDate'}} {{transaction.created | date:'shortTime'}}</td>
+            <td class="table-row-center" ng-bind="transaction.status"></td>
+        </tr>
+    </table>
+    <div ng-show="transactions.length == 0">
+        <h3 ng-bind="transactionsStateMessage"></h3>
+    </div>
+</div>

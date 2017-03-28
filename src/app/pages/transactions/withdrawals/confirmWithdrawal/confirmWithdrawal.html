@@ -1,0 +1,12 @@
+<div ba-panel  ba-panel-title="Confirm Withdrawal" ba-panel-class="light-text">
+    <div>
+        <div class="col-sm-offset-2 col-sm-10">
+            <p>You are about to withdraw <b>{{selectedCurrency.symbol}} {{withdrawalData.amount}}</b></p>
+        </div>
+    </div>
+    <div >
+        <div class="col-sm-offset-2 col-sm-10">
+            <button ng-click="createWithdrawal()" class="btn btn-primary pull-right">Confirm</button>
+        </div>
+    </div>
+</div>
