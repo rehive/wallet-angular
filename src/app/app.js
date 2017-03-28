@@ -18,8 +18,8 @@ angular.module('BlurAdmin', [
     'BlurAdmin.pages'
 ])
 
-    .constant('API', 'http://127.0.0.1:8000/api/3')
-    // .constant('API', 'https://rehive.com/api/3')
+    //.constant('API', 'http://127.0.0.1:8000/api/3')
+    .constant('API', 'https://rehive.com/api/3')
 
     .constant('IMAGEURL', 'https://storage.googleapis.com/rehive-static/dashboard/dist/img/tokens/')
 

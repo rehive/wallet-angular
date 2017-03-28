@@ -11,12 +11,13 @@
         vm.token = cookieManagement.getCookie('TOKEN');
 
         $scope.depositData = {
-            user: '',
-            amount: '',
-            reference: '',
+            user: null,
+            amount: 0,
+            reference: "",
             confirm_on_create: false,
             currency: $rootScope.selectedCurrency.code
         };
+        // need to find default value for reference
         $scope.showAdvancedOption = false;
         $scope.confirmDepositView = false;
         $scope.completeDepositView = false;
@@ -45,13 +46,12 @@
             $scope.confirmDepositView = false;
             $scope.completeDepositView = false;
             $scope.depositData = {
-                user: '',
-                amount: '',
-                reference: '',
+                user: null,
+                amount: 0,
+                reference: "",
                 confirm_on_create: false,
                 currency: $rootScope.selectedCurrency.code
             };
-
 
             if(view == 'deposit'){
                 $scope.pendingDepositView = false;
@@ -61,16 +61,17 @@
         };
 
         $scope.createDeposit = function () {
+            console.log($scope.depositData);
             // $http.post takes the params as follow post(url, data, {config})
             // https://docs.angularjs.org/api/ng/service/$http#post
-            $http.post(API + '/admin/transactions/deposit/', $scope.depositParams, {
+            $http.post(API + '/admin/transactions/deposit/', $scope.depositData, {
                 headers: {
                     'Content-Type': 'application/json',
                     'Authorization': 'JWT ' + vm.token
                 }
             }).then(function (res) {
                 console.log(res);
-                if (res.status === 200) {
+                if (res.status === 201) {
                     toastr.success('You have successfully deposited your money!');
                     $scope.toggleConfirmDepositView($scope.confirmDepositView);
                     $scope.toggleCompleteDepositView();
