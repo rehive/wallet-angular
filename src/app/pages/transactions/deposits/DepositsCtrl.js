@@ -12,7 +12,7 @@
 
         $scope.depositData = {
             user: null,
-            amount: 0,
+            amount: null,
             reference: "",
             confirm_on_create: false,
             currency: $rootScope.selectedCurrency.code
@@ -47,7 +47,7 @@
             $scope.completeDepositView = false;
             $scope.depositData = {
                 user: null,
-                amount: 0,
+                amount: null,
                 reference: "",
                 confirm_on_create: false,
                 currency: $rootScope.selectedCurrency.code
