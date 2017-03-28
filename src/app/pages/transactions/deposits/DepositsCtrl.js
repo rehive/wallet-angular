@@ -61,13 +61,13 @@
         };
 
         $scope.createDeposit = function () {
-            console.log($scope.depositData);
-            $http.post(API + '/admin/transactions/deposit/', {
+            // $http.post takes the params as follow post(url, data, {config})
+            // https://docs.angularjs.org/api/ng/service/$http#post
+            $http.post(API + '/admin/transactions/deposit/', $scope.depositParams, {
                 headers: {
                     'Content-Type': 'application/json',
                     'Authorization': 'JWT ' + vm.token
-                },
-                data: $scope.depositData
+                }
             }).then(function (res) {
                 console.log(res);
                 if (res.status === 200) {
