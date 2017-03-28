@@ -1,11 +1,11 @@
 <div ba-panel class="depositsMenu" ba-panel-title="Manage Deposits ({{selectedCurrency.symbol}} {{selectedCurrency.code}})" ba-panel-class="light-text">
     <img ng-src="{{currencyImageUrl}}" class="imageCenter" width="100" height="100" alt="token Image">
     <hr>
-    <div class="pointer depositsMenuOptions">
+    <div ng-click="toggleDepositView('deposit')" class="pointer depositsMenuOptions">
         <h3>Deposit <i class="pull-right ion-chevron-right"></i></h3>
     </div>
     <hr>
-    <div class="pointer depositsMenuOptions">
+    <div ng-click="toggleDepositView('pending')" class="pointer depositsMenuOptions">
         <h3>Pending <i class="pull-right ion-chevron-right"></i></h3>
     </div>
 </div>

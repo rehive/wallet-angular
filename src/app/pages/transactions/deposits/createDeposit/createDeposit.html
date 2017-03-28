@@ -4,32 +4,32 @@
             <label class="col-sm-2 control-label"><b>User</b><span class="requiredIcon">*</span></label>
 
             <div class="col-sm-10">
-                <input type="email" ng-model="depositParams.user" class="form-control" placeholder="E.g email@domain.com" required>
+                <input type="email" ng-model="depositData.user" class="form-control" placeholder="E.g email@domain.com" required>
             </div>
         </div>
         <div class="form-group">
             <label class="col-sm-2 control-label"><b>Amount</b><span class="requiredIcon">*</span></label>
 
             <div class="col-sm-10">
-                <input type="number" ng-model="depositParams.amount" class="form-control"  placeholder="E.g 100000000" required>
+                <input type="number" ng-model="depositData.amount" class="form-control"  placeholder="E.g 100000000" required>
             </div>
         </div>
         <div class="form-group">
             <label class="col-sm-2 control-label"><b>Reference</b></label>
 
             <div class="col-sm-10">
-                <input type="text" ng-model="depositParams.reference" class="form-control"  placeholder="E.g # 1234">
+                <input type="text" ng-model="depositData.reference" class="form-control"  placeholder="E.g # 1234">
             </div>
         </div>
         <div class="form-group">
             <label class="col-sm-2 control-label"></label>
             <div class="col-sm-10">
-                <div ng-show="showAdvancedOption">
-                    <a class="pointer" ng-click="showAdvancedOption = false">Advanced Option</a>
-                </div>
                 <div ng-hide="showAdvancedOption">
+                    <a class="pointer" ng-click="displayAdvancedOption()">Advanced Option</a>
+                </div>
+                <div ng-show="showAdvancedOption">
                     <label  class="checkbox-inline custom-checkbox nowrap">
-                        <input type="checkbox"  ng-model="depositParams.confirm_on_create">
+                        <input type="checkbox"  ng-model="depositData.confirm_on_create">
                         <span><b><i>Confirm on create</i></b></span>
                     </label>
                     <i uib-tooltip-html="'<b>Complete deposit immediately after creation</b>'" class="ion-information-circled"></i>
@@ -39,7 +39,7 @@
 
         <div class="form-group">
             <div class="col-sm-offset-2 col-sm-10">
-                <button ng-disabled="!depositForm.$valid" ng-click="toggleConfirmDeposit(confirmDeposit)" class="btn btn-primary pull-right">Next</button>
+                <button ng-disabled="!depositForm.$valid" ng-click="toggleConfirmDepositView(confirmDepositView)" class="btn btn-primary pull-right">Next</button>
             </div>
         </div>
     </form>
