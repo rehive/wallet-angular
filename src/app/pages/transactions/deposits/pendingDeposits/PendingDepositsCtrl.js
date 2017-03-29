@@ -36,7 +36,7 @@
 
         $scope.openModal = function (page, size,transaction) {
 
-            $uibModal.open({
+            vm.theModel = $uibModal.open({
                 animation: true,
                 templateUrl: page,
                 size: size,
@@ -48,5 +48,13 @@
                 }
             });
         };
+
+        //vm.theModal.result.finally(function(){
+        //    $scope.transactions = [];
+        //    $timeout(function(){
+        //        vm.getPendingTransactions();
+        //    },2000);
+        //});
+
     }
 })();
