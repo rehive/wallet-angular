@@ -17,7 +17,8 @@
             confirm_on_create: false,
             currency: $rootScope.selectedCurrency.code
         };
-        // need to find default value for reference
+
+        $scope.onGoingTransaction = false;
         $scope.showAdvancedOption = false;
         $scope.confirmDepositView = false;
         $scope.completeDepositView = false;
@@ -62,6 +63,7 @@
 
         $scope.createDeposit = function () {
             console.log($scope.depositData);
+            $scope.onGoingTransaction = true;
             // $http.post takes the params as follow post(url, data, {config})
             // https://docs.angularjs.org/api/ng/service/$http#post
             $http.post(API + '/admin/transactions/deposit/', $scope.depositData, {
@@ -71,6 +73,7 @@
                 }
             }).then(function (res) {
                 console.log(res);
+                $scope.onGoingTransaction = false;
                 if (res.status === 201) {
                     toastr.success('You have successfully deposited your money!');
                     $scope.toggleConfirmDepositView($scope.confirmDepositView);
@@ -78,6 +81,8 @@
                 }
             }).catch(function (error) {
                 console.log(error);
+                $scope.onGoingTransaction = false;
+                //ToDo:show toast message errors
             });
         }
 

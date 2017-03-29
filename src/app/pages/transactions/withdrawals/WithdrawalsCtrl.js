@@ -11,12 +11,14 @@
         vm.token = cookieManagement.getCookie('TOKEN');
 
         $scope.withdrawalData = {
-            user: '',
-            amount: '',
+            user: null,
+            amount: null,
             reference: '',
             confirm_on_create: false,
             currency: $rootScope.selectedCurrency.code
         };
+
+        $scope.onGoingTransaction = false;
         $scope.showAdvancedOption = false;
         $scope.confirmWithdrawalView = false;
         $scope.completeWithdrawalView = false;
@@ -45,13 +47,12 @@
             $scope.confirmWithdrawalView = false;
             $scope.completeWithdrawalView = false;
             $scope.withdrawalData = {
-                user: '',
-                amount: '',
+                user: null,
+                amount: null,
                 reference: '',
                 confirm_on_create: false,
                 currency: $rootScope.selectedCurrency.code
             };
-
 
             if(view == 'withdrawal'){
                 $scope.pendingWithdrawalView = false;
@@ -62,21 +63,24 @@
 
         $scope.createWithdrawal = function () {
             console.log($scope.withdrawalData);
-            $http.post(API + '/admin/transactions/withdraw/', {
+            $scope.onGoingTransaction = true;
+            $http.post(API + '/admin/transactions/withdraw/',$scope.withdrawalData, {
                 headers: {
                     'Content-Type': 'application/json',
                     'Authorization': 'JWT ' + vm.token
-                },
-                data: $scope.withdrawalData
+                }
             }).then(function (res) {
+                $scope.onGoingTransaction = false;
                 console.log(res);
-                if (res.status === 200) {
+                if (res.status === 201) {
                     toastr.success('You have successfully withdrawn the money!');
                     $scope.toggleConfirmWithdrawalView($scope.confirmWithdrawalView);
                     $scope.toggleCompleteWithdrawalView();
                 }
             }).catch(function (error) {
+                $scope.onGoingTransaction = false;
                 console.log(error);
+                //ToDo:show toast message errors
             });
         }
 
