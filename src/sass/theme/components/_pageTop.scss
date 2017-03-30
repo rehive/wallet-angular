@@ -143,10 +143,20 @@ a.collapse-menu-link {
 
 //css added by Aquibur Rahman Khan
 
+.user-currency-item-list .user-currency-item {
+  font-size: 16px;
+  padding: 8px 20px;
+}
+
 .user-currency-dropdown-label{
   font-size: 20px;
   text-align: center;
-  margin: 10px 0;
+  margin: 5px 0 11px 0;
+
+}
+
+.user-currency-dropdown-last-item{
+  margin: 4px 0 0 0;
 }
 
 .user-currency-dropdown-last-item:hover{
@@ -172,7 +182,7 @@ a.collapse-menu-link {
   float: right;
   margin-right: 20px;
   a{
-    font-size: 18px;
+    font-size: 16px;
     span{
       color: #5bc0de;
     }
