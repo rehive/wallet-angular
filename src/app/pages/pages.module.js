@@ -7,6 +7,8 @@
 
   angular.module('BlurAdmin.pages', [
     'ui.router',
+    'BlurAdmin.pages.settings',
+    'BlurAdmin.pages.currency',
     'BlurAdmin.pages.dashboard',
     'BlurAdmin.pages.transactions',
     'BlurAdmin.pages.users',
@@ -14,6 +16,7 @@
     'BlurAdmin.pages.login',
     'BlurAdmin.pages.register',
     'BlurAdmin.pages.resetPassword'
+
     //'BlurAdmin.pages.ui',
     //'BlurAdmin.pages.components',
     //'BlurAdmin.pages.form',

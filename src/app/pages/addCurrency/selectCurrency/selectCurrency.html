@@ -1,0 +1,7 @@
+<div ba-panel>
+    <label class="divider"><b>Select Currency</b></label>
+    <select class="form-control pointer divider" ng-model="changeCurrency.currencyChoice"
+            ng-options="currency.code for currency in currencyOptions track by currency.code">
+    </select>
+    <button class="btn btn-primary pull-right" ng-click="next()">Next</button>
+</div>

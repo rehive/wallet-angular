@@ -5,8 +5,10 @@ $hover: 24;
 }
 
 .btn {
-  border-radius: 5px;
+  width: 120px;
+  border-radius: 0px;
   transition: all 0.1s ease;
+  box-sizing: border-box;
 }
 
 .btn:hover {

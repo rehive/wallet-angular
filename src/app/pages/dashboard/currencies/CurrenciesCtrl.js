@@ -5,7 +5,7 @@
         .controller('CurrenciesCtrl', CurrenciesCtrl);
 
     /** @ngInject */
-    function CurrenciesCtrl($scope) {
+    function CurrenciesCtrl($scope,$location) {
 
         $scope.currencyDetails = [{
             logo: "https://storage.googleapis.com/rehive-static/dashboard/dist/img/tokens/USD.png",
@@ -24,6 +24,10 @@
             pendingWithdrawals: 20,
             volume: 30
         }];
-    }
 
+
+        $scope.goToAddCurrency = function(){
+            $location.path('/add_currency');
+        }
+    }
 })();

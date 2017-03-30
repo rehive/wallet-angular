@@ -1,6 +1,6 @@
 <div ba-panel ba-panel-title="Currencies" ba-panel-class=" with-scroll" class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
     <div class="add-row-editable-table">
-        <button class="btn btn-primary pull-right margin-bottom divider" ng-click="">Add Currency</button>
+        <button class="btn btn-success pull-right margin-bottom divider" ng-click="goToAddCurrency()">Add Currency</button>
     </div>
     <table class="table table-condensed">
         <tr class="black-muted-bg">
@@ -16,10 +16,10 @@
             <td class="table-row-center" width="15%" ng-bind="currency.pendingWithdrawals"></td>
             <td class="table-row-center" width="15%" ng-bind="currency.volume"></td>
             <td class="table-row-center" >
-                <a href class="btn btn-info pull-right currencies-buttons">Overview</a>
-                <a href class="btn btn-info pull-right currencies-buttons">Users</a>
-                <a href class="btn btn-info pull-right currencies-buttons">Deposits</a>
-                <a href class="btn btn-info pull-right currencies-buttons">Withdrawals</a>
+                <a href ><button class="btn btn-primary pull-right currencies-buttons">Overview</button></a>
+                <a href ><button class="btn btn-primary pull-right currencies-buttons">Users</button></a>
+                <a href ><button class="btn btn-primary pull-right currencies-buttons">Deposits</button></a>
+                <a href ><button class="btn btn-primary pull-right currencies-buttons">Withdrawals</button></a>
             </td>
         </tr>
     </table>
