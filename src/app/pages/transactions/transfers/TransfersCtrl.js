@@ -14,18 +14,19 @@
             user: null,
             amount: null,
             reference: null,
-            currency: $rootScope.selectedCurrency.code
+            currency: null
         };
 
         $scope.onGoingTransaction = false;
         $scope.showAdvancedOption = false;
         $scope.confirmTransferView = false;
         $scope.completeTransferView = false;
-        $scope.currencyImageUrl = IMAGEURL + $rootScope.selectedCurrency.code + '.png';
 
         $rootScope.$watch('selectedCurrency',function(){
-            $scope.currencyImageUrl = IMAGEURL + $rootScope.selectedCurrency.code + '.png';
-            $scope.transferData.currency = $rootScope.selectedCurrency.code;
+            if($rootScope.selectedCurrency && $rootScope.selectedCurrency.code){
+                $scope.currencyImageUrl = IMAGEURL + $rootScope.selectedCurrency.code + '.png';
+                $scope.transferData.currency = $rootScope.selectedCurrency.code;
+            }
         });
 
         $scope.toggleConfirmTransferView = function(confirmTransferView){

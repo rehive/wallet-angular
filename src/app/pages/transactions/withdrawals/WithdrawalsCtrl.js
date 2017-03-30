@@ -15,7 +15,7 @@
             amount: null,
             reference: '',
             confirm_on_create: false,
-            currency: $rootScope.selectedCurrency.code
+            currency: null
         };
 
         $scope.onGoingTransaction = false;
@@ -23,11 +23,12 @@
         $scope.confirmWithdrawalView = false;
         $scope.completeWithdrawalView = false;
         $scope.pendingWithdrawalView =false;
-        $scope.currencyImageUrl = IMAGEURL + $rootScope.selectedCurrency.code + '.png';
 
         $rootScope.$watch('selectedCurrency',function(){
-            $scope.currencyImageUrl = IMAGEURL + $rootScope.selectedCurrency.code + '.png';
-            $scope.withdrawalData.currency = $rootScope.selectedCurrency.code;
+            if($rootScope.selectedCurrency && $rootScope.selectedCurrency.code) {
+                $scope.currencyImageUrl = IMAGEURL + $rootScope.selectedCurrency.code + '.png';
+                $scope.withdrawalData.currency = $rootScope.selectedCurrency.code;
+            }
         });
 
         $scope.toggleConfirmWithdrawalView = function(confirmWithdrawalView){
