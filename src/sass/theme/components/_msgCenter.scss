@@ -195,7 +195,7 @@
     border-top: 1px solid $default;
     display: block;
     text-align: center;
-    padding: 8px;
+    padding: 7px;
     font-size: 12px;
     text-decoration: none;
     &:hover {
@@ -212,7 +212,7 @@
       border: none;
       text-decoration: none;
       color: $dropdown-text;
-      padding: 4px 16px 4px 20px;
+      padding: 5px 16px 5px 20px;
       &.signout {
         border-top: 1px solid $default;
       }
