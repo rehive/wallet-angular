@@ -25,7 +25,7 @@
 
         $scope.transactions = [];
         $scope.loadingTransactions = false;
-        $scope.transactionsStateMessage = 'Loading Transactions...';
+        $scope.transactionsStateMessage = '';
         $scope.typeOptions = ['Type','Deposit','Transfer','Withdraw'];
         $scope.statusOptions = ['Status','Cancelled','Claimed','Complete','Denied','Expired','Failed','Incoming',
                                 'Incomplete','Pending','Processing','Reversed','Unclaimed','Uncredited','Waiting'];
@@ -71,6 +71,7 @@
                         $scope.transactionsStateMessage = 'No Transactions Have Been Made';
                     }
                     $scope.transactions = res.data.data.results;
+                    $scope.transactionsStateMessage = '';
                     //console.log($scope.transactions);
                 }
             }).catch(function (error) {

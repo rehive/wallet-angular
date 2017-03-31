@@ -9,7 +9,7 @@
 
         var vm = this;
         $scope.transactions = [];
-        $scope.transactionsStateMessage = 'Loading Transactions...';
+        $scope.transactionsStateMessage = '';
         vm.token = cookieManagement.getCookie('TOKEN');
 
         $scope.openModal = function (page, size,transaction) {
@@ -39,6 +39,7 @@
                         $scope.transactionsStateMessage = 'No Transactions Have Been Made';
                     }
                     $scope.transactions = res.data.data.results;
+                    $scope.transactionsStateMessage = '';
                 }
             }).catch(function (error) {
                 $scope.transactionsStateMessage = 'Failed To Load Data';

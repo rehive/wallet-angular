@@ -1,11 +1,11 @@
 <div ba-panel  ba-panel-title="Create Deposits" ba-panel-class="light-text">
     <form name="depositForm" class="depositForm">
         <div class="form-group">
-            <label><b>User</b><span class="requiredIcon">*</span></label>
+            <label><b>User</b> <span class="requiredIcon">*</span></label>
             <input type="email" ng-model="depositData.user" class="form-control" placeholder="E.g email@domain.com" required>
         </div>
         <div class="form-group">
-            <label><b>Amount</b><span class="requiredIcon">*</span></label>
+            <label><b>Amount</b> <span class="requiredIcon">*</span></label>
             <input type="number" ng-model="depositData.amount" class="form-control"  placeholder="E.g 100000000" required>
         </div>
         <div class="form-group">
@@ -18,7 +18,8 @@
                 <a class="pointer" ng-click="displayAdvancedOption()">Advanced Option</a>
             </div>
             <div ng-show="showAdvancedOption">
-                    <input type="checkbox"  ng-model="depositData.confirm_on_create">
+                <label  class="checkbox-inline custom-checkbox nowrap">
+                    <input  type="checkbox"  ng-model="depositData.confirm_on_create">
                     <span>Confirm on create</span>
                 </label>
                 <i uib-tooltip-html="'<b>Complete deposit immediately after creation, it will override the normal behaviour of requiring an update or manual “completion” via the dashboard</b>'" class="ion-information-circled"></i>

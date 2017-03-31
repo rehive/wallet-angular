@@ -1,11 +1,11 @@
 <div ba-panel  ba-panel-title="Create Withdrawal" ba-panel-class="light-text">
     <form name="withdrawalForm" class="depositForm">
         <div class="form-group">
-            <label><b>User</b><span class="requiredIcon">*</span></label>
+            <label><b>User</b> <span class="requiredIcon">*</span></label>
             <input type="email" ng-model="withdrawalData.user" class="form-control" placeholder="E.g email@domain.com" required>
         </div>
         <div class="form-group">
-            <label><b>Amount</b><span class="requiredIcon">*</span></label>
+            <label><b>Amount</b> <span class="requiredIcon">*</span></label>
             <input type="number" ng-model="withdrawalData.amount" class="form-control"  placeholder="E.g 100000000" required>
 
         </div>
@@ -19,6 +19,7 @@
                 <a class="pointer" ng-click="displayAdvancedOption()">Advanced Option</a>
             </div>
             <div ng-show="showAdvancedOption">
+                <label  class="checkbox-inline custom-checkbox nowrap">
                     <input type="checkbox"  ng-model="withdrawalData.confirm_on_create">
                     <span>Confirm on create</span>
                 </label>

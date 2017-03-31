@@ -1,5 +1,5 @@
-<div class="divider">
-    <table ng-show="transactions.length > 0" class="table table-condensed table-striped table-hover ">
+<div ng-show="transactions.length > 0" class="divider">
+    <table class="table table-condensed table-striped table-hover ">
         <tr class="black-muted-bg">
             <td><b>Code</b></td>
             <td><b>From</b></td>
@@ -31,5 +31,6 @@
     </table>
 </div>
 <div ng-show="transactions.length == 0">
-    <h3 ng-bind="transactionsStateMessage"></h3>
+    <h4 ng-hide="transactionsStateMessage == ''" ng-bind="transactionsStateMessage"></h4>
+    <loading-image ng-show="transactionsStateMessage == ''"></loading-image>
 </div>

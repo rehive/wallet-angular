@@ -9,7 +9,7 @@
 
         var vm = this;
         $scope.transactions = [];
-        $scope.transactionsStateMessage = 'Loading Transactions...';
+        $scope.transactionsStateMessage = '';
         vm.token = cookieManagement.getCookie('TOKEN');
 
         vm.getPendingTransactions = function(){
@@ -26,6 +26,7 @@
                         $scope.transactionsStateMessage = 'No Pending Transactions';
                     }
                     $scope.transactions = res.data.data.results;
+                    $scope.transactionsStateMessage = '';
                 }
             }).catch(function (error) {
                 $scope.transactionsStateMessage = 'Failed To Load Data';

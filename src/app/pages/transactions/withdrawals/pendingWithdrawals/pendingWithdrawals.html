@@ -21,6 +21,7 @@
         </tr>
     </table>
     <div ng-show="transactions.length == 0">
-        <h3 ng-bind="transactionsStateMessage"></h3>
+        <h4 ng-hide="transactionsStateMessage == ''" ng-bind="transactionsStateMessage"></h4>
+        <loading-image ng-show="transactionsStateMessage == ''"></loading-image>
     </div>
 </div>
