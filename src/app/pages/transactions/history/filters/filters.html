@@ -1,48 +1,47 @@
 <div class="row">
-    <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 divider">
+    <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12 divider">
         <label><b>User</b></label>
         <input type="text"  class="form-control" id="user"  placeholder="Email,mobile,etc." ng-model="searchParams.searchUser" size="12">
     </div>
-    <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 divider">
+    <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12 divider">
         <label><b>From Date</b></label>
         <input type="date" ng-model="searchParams.date_from" class="form-control" id="date_from"  placeholder="Date From">
     </div>
-    <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 divider">
+    <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12 divider">
         <label><b>To Date</b></label>
         <input type="date" ng-model="searchParams.date_to" class="form-control" id="date_to"  placeholder="Date To">
     </div>
-    <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 divider">
+    <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12 divider">
         <label><b>Type</b></label>
         <br>
         <select class="form-control pointer" ng-model="searchParams.searchType" ng-options="type for type in typeOptions">
         </select>
     </div>
-</div>
-
-<div class="row">
-    <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 divider">
+    <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12 divider">
         <label><b>Status</b></label>
         <br>
         <select class="form-control pointer" ng-model="searchParams.searchStatus" ng-options="status for status in statusOptions">
         </select>
     </div>
-    <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 divider">
+    <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12 divider">
         <label><b>Currency</b></label>
         <br>
         <select class="form-control pointer" ng-model="searchParams.searchCurrency"
                 ng-options="currency.code for currency in currencyOptions track by currency.code">
         </select>
     </div>
+</div>
 
-    <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 divider">
+<div class="row">
+    <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12 divider">
         <label><b>Order By</b></label>
         <br>
         <select class="form-control pointer" ng-model="searchParams.orderBy" ng-options="orderBy for orderBy in orderByOptions">
         </select>
     </div>
-    <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12">
+    <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12 pull-right apply-button">
         <label>&nbsp;</label>
         <br>
-        <button ng-disabled="loadingTransactions" class="btn btn-primary pull-right btn-block" ng-click="getLatestTransactions()">Apply</button>
+        <button ng-disabled="loadingTransactions" class="btn btn-primary" ng-click="getLatestTransactions()">Apply</button>
     </div>
 </div>
