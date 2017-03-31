@@ -1,31 +1,19 @@
 <div ba-panel  ba-panel-title="Create Transfers" ba-panel-class="light-text">
-    <form name="transferForm" class="form-horizontal depositForm">
+    <form name="transferForm" class="depositForm">
         <div class="form-group">
-            <label class="col-sm-2 control-label"><b>User</b><span class="requiredIcon">*</span></label>
-
-            <div class="col-sm-10">
-                <input type="email" ng-model="transferData.user" class="form-control" placeholder="E.g email@domain.com" required>
-            </div>
+            <label><b>User</b><span class="requiredIcon">*</span></label>
+            <input type="email" ng-model="transferData.user" class="form-control" placeholder="E.g email@domain.com" required>
         </div>
         <div class="form-group">
-            <label class="col-sm-2 control-label"><b>Recipient</b><span class="requiredIcon">*</span></label>
-
-            <div class="col-sm-10">
-                <input type="email" ng-model="transferData.reference" class="form-control"  placeholder="E.g email@domain.com" required>
-            </div>
+            <label><b>Recipient</b><span class="requiredIcon">*</span></label>
+            <input type="email" ng-model="transferData.reference" class="form-control"  placeholder="E.g email@domain.com" required>
         </div>
         <div class="form-group">
-            <label class="col-sm-2 control-label"><b>Amount</b><span class="requiredIcon">*</span></label>
-
-            <div class="col-sm-10">
-                <input type="number" ng-model="transferData.amount" class="form-control"  placeholder="E.g 100000000" required>
-            </div>
+            <label><b>Amount</b><span class="requiredIcon">*</span></label>
+            <input type="number" ng-model="transferData.amount" class="form-control"  placeholder="E.g 100000000" required>
         </div>
-
         <div class="form-group">
-            <div class="col-sm-offset-2 col-sm-10">
-                <button ng-disabled="!transferForm.$valid" ng-click="toggleConfirmTransferView(confirmTransferView)" class="btn btn-primary pull-right">Next</button>
-            </div>
+            <button ng-disabled="!transferForm.$valid" ng-click="toggleConfirmTransferView(confirmTransferView)" class="btn btn-primary pull-right">Next</button>
         </div>
     </form>
 </div>

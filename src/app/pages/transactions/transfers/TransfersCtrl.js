@@ -21,6 +21,7 @@
         $scope.showAdvancedOption = false;
         $scope.confirmTransferView = false;
         $scope.completeTransferView = false;
+        $scope.currencyImageUrl = "https://storage.googleapis.com/rehive-static/dashboard/dist/img/default_company_icon.png";
 
         $rootScope.$watch('selectedCurrency',function(){
             if($rootScope.selectedCurrency && $rootScope.selectedCurrency.code){

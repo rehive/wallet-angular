@@ -23,6 +23,7 @@
         $scope.confirmWithdrawalView = false;
         $scope.completeWithdrawalView = false;
         $scope.pendingWithdrawalView =false;
+        $scope.currencyImageUrl = "https://storage.googleapis.com/rehive-static/dashboard/dist/img/default_company_icon.png";
 
         $rootScope.$watch('selectedCurrency',function(){
             if($rootScope.selectedCurrency && $rootScope.selectedCurrency.code) {

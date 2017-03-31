@@ -1,13 +1,13 @@
 <div ba-panel  ba-panel-title="Confirm Transfer" ba-panel-class="light-text">
     <div>
-        <div class="col-sm-offset-2 col-sm-10">
-            <p>You are about to transfer <b>{{selectedCurrency.symbol}} {{transferData.amount}}</b> from <b>{{transferData.user}}</b>
-                to <b>{{transferData.reference}}</b></p>
-        </div>
+        <p>You are about to transfer <b>{{selectedCurrency.symbol}} {{transferData.amount}}</b> from <b>{{transferData.user}}</b>
+            to <b>{{transferData.reference}}</b></p>
+
     </div>
     <div >
         <div class="col-sm-offset-2 col-sm-10">
             <button ng-disabled="onGoingTransaction" ng-click="createTransfer()" class="btn btn-primary pull-right">Confirm</button>
+            <button ng-disabled="onGoingTransaction" ng-click="toggleConfirmTransferView(confirmTransferView)" class="btn btn-info pull-right margin-right">Back</button>
         </div>
     </div>
 </div>

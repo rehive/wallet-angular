@@ -1,12 +1,11 @@
 <div ba-panel  ba-panel-title="Confirm Deposit" ba-panel-class="light-text">
     <div>
-        <div class="col-sm-offset-2 col-sm-10">
-            <p>You are about to deposit <b>{{selectedCurrency.symbol}} {{depositData.amount}}</b> to <b>{{depositData.user}}</b></p>
-        </div>
+        <p>You are about to deposit <b>{{selectedCurrency.symbol}} {{depositData.amount}}</b> to <b>{{depositData.user}}</b></p>
     </div>
-    <div >
+    <div>
         <div class="col-sm-offset-2 col-sm-10">
             <button ng-disabled="onGoingTransaction" ng-click="createDeposit()" class="btn btn-primary pull-right">Confirm</button>
+            <button ng-disabled="onGoingTransaction" ng-click="toggleConfirmDepositView(confirmDepositView)" class="btn btn-info pull-right margin-right">Back</button>
         </div>
     </div>
 </div>
