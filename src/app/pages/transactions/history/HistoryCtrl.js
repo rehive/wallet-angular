@@ -14,6 +14,7 @@
 
         $scope.page = 1;
         $scope.searchParams = {
+            txCode: '',
             searchUser:'',
             date_from: '',
             date_to: '',
@@ -54,7 +55,8 @@
             $scope.loadingTransactions = true;
             $scope.transactions = [];
 
-            vm.filterParams = '?page=' + $scope.page + '&page_size=' + vm.pageSize + '&orderby=' + vm.orderBy ;  // all the params of the filtering
+            vm.filterParams = '?page=' + $scope.page + '&page_size=' + vm.pageSize + '&orderby=' + vm.orderBy
+                + '&tx_code=' + $scope.searchParams.txCode; // all the params of the filtering
 
             //console.log($scope.searchParams.searchUser);
             //console.log(API + '/admin/transactions/' + vm.filterParams);
