@@ -10,7 +10,6 @@
         var vm = this;
         vm.token = cookieManagement.getCookie('TOKEN');
         vm.pageSize = 25;
-        vm.orderBy = '-created';
 
         $scope.page = 1;
         $scope.searchParams = {
@@ -18,18 +17,20 @@
             searchUser:'',
             date_from: '',
             date_to: '',
-            searchType: '',
-            searchStatus: '',
+            searchType: 'Type',
+            searchStatus: 'Status',
             searchCurrency: {},
-            orderBy: 'Latest'
+            orderBy: 'Latest',
+            searchSubType: ''
         };
 
         //used rootscope to communicate between directives
         $rootScope.transactions = [];
         $rootScope.transactionsStateMessage = '';
+        $rootScope.transactionsData = {};
         $scope.loadingTransactions = false;
-        $scope.typeOptions = ['','deposit','transfer','withdraw'];
-        $scope.statusOptions = ['','Cancelled','Claimed','Complete','Denied','Expired','Failed','Incoming',
+        $scope.typeOptions = ['Type','Deposit','Transfer','Withdraw'];
+        $scope.statusOptions = ['Status','Cancelled','Claimed','Complete','Denied','Expired','Failed','Incoming',
                                 'Incomplete','Pending','Processing','Reversed','Unclaimed','Uncredited','Waiting'];
         $scope.currencyOptions = [];
         $scope.orderByOptions = ['Largest','Latest','Smallest'];
@@ -37,6 +38,7 @@
         $scope.$on('$locationChangeStart', function( event ) {
             delete $rootScope.transactions;
             delete $rootScope.transactionsStateMessage;
+            delete $rootScope.transactionsData;
         });
 
         vm.getCompanyCurrencies = function(){
@@ -57,20 +59,25 @@
         };
         vm.getCompanyCurrencies();
 
-        $scope.getLatestTransactions = function(){
+        $scope.getLatestTransactions = function(transactionsUrl){
+
             $scope.loadingTransactions = true;
             if($rootScope.transactions.length > 0 ){
                 $rootScope.transactions.length = 0;
             }
 
-            vm.filterParams = '?page=' + $scope.page + '&page_size=' + vm.pageSize + '&orderby=' + vm.orderBy
-                + '&tx_code=' + $scope.searchParams.txCode + '&tx_type=' + $scope.searchParams.searchType
-                + '&status=' + $scope.searchParams.searchStatus; // all the params of the filtering
+            if(!transactionsUrl){
+            vm.filterParams = '?page=' + $scope.page + '&page_size=' + vm.pageSize
+                + '&orderby=' + ($scope.searchParams.orderBy == 'Latest' ? '-created' : $scope.searchParams.orderBy == 'Largest' ? '-amount' : $scope.searchParams.orderBy == 'Smallest' ? 'amount' : '')
+                + '&tx_code=' + $scope.searchParams.txCode
+                + '&tx_type=' + ($scope.searchParams.searchType == 'Type' ? '' : $scope.searchParams.searchType.toLowerCase())
+                + '&status=' + ($scope.searchParams.searchStatus == 'Status' ? '' : $scope.searchParams.searchStatus)
+                + '&subtype=' + $scope.searchParams.searchSubType; // all the params of the filtering
 
-            //console.log($scope.searchParams.searchUser);
             console.log(API + '/admin/transactions/' + vm.filterParams);
 
-            var transactionsUrl = API + '/admin/transactions/' + vm.filterParams;
+                transactionsUrl = API + '/admin/transactions/' + vm.filterParams;
+            }
 
             $http.get(transactionsUrl, {
                 headers: {
@@ -81,7 +88,8 @@
                 $scope.loadingTransactions = false;
                 if (res.status === 200) {
                     console.log(res.data.data);
-                    $rootScope.transactions = res.data.data.results;
+                    $rootScope.transactionsData = res.data.data;
+                    $rootScope.transactions = $rootScope.transactionsData.results;
                     if($rootScope.transactions == 0){
                         $rootScope.transactionsStateMessage = 'No Transactions Have Been Found';
                         return;

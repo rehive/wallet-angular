@@ -29,6 +29,9 @@
             <td class="table-row-center" >{{transaction.created | date:'mediumDate'}} {{transaction.created | date:'shortTime'}}</td>
         </tr>
     </table>
+    <div>
+
+    </div>
 </div>
 <div ng-show="transactions.length == 0">
     <h4 ng-hide="transactionsStateMessage == ''" ng-bind="transactionsStateMessage"></h4>
