@@ -71,7 +71,7 @@
             $http.post(API + '/admin/transactions/deposit/', $scope.depositData, {
                 headers: {
                     'Content-Type': 'application/json',
-                    'Authorization': 'JWT ' + vm.token
+                    'Authorization': vm.token
                 }
             }).then(function (res) {
                 console.log(res);

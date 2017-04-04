@@ -55,7 +55,7 @@
             $http.post(API + '/admin/transactions/transfer/',$scope.transferData, {
                 headers: {
                     'Content-Type': 'application/json',
-                    'Authorization': 'JWT ' + vm.token
+                    'Authorization': vm.token
                 }
             }).then(function (res) {
                 $scope.onGoingTransaction = false;

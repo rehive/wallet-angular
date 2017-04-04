@@ -46,7 +46,7 @@
             $http.get(API + '/company/currencies/', {
                 headers: {
                     'Content-Type': 'application/json',
-                    'Authorization': 'JWT ' + vm.token
+                    'Authorization': vm.token
                 }
             }).then(function (res) {
                 if (res.status === 200) {
@@ -90,7 +90,7 @@
             $http.get(transactionsUrl, {
                 headers: {
                     'Content-Type': 'application/json',
-                    'Authorization': 'JWT ' + vm.token
+                    'Authorization': vm.token
                 }
             }).then(function (res) {
                 $scope.loadingTransactions = false;

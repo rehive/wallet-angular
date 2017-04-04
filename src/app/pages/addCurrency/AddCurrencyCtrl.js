@@ -27,7 +27,7 @@
             $http.get(API + '/company/currencies/', {
                 headers: {
                     'Content-Type': 'application/json',
-                    'Authorization': 'JWT ' + vm.token
+                    'Authorization': vm.token
                 }
             }).then(function (res) {
                 if (res.status === 200) {

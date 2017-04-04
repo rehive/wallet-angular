@@ -69,7 +69,7 @@
             $http.post(API + '/admin/transactions/withdraw/',$scope.withdrawalData, {
                 headers: {
                     'Content-Type': 'application/json',
-                    'Authorization': 'JWT ' + vm.token
+                    'Authorization': vm.token
                 }
             }).then(function (res) {
                 $scope.onGoingTransaction = false;

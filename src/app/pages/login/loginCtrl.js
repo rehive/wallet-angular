@@ -17,7 +17,7 @@
             }).then(function (res) {
                 $rootScope.$pageFinishedLoading = true;
                 if (res.status === 200) {
-                    cookieManagement.setCookie('TOKEN',res.data.data.token);
+                    cookieManagement.setCookie('TOKEN','Token ' + res.data.data.token);
                     cookieManagement.setCookie('COMPANY',res.data.data.user.company);
                     toastr.success('You have successfully logged in with the email address ' + res.data.data.user.email +'!');
                     $location.path('/dashboard');
