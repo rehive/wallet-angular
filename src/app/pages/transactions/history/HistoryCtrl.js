@@ -16,8 +16,8 @@
             txCode: '',
             searchUserFrom:'',
             searchUserTo:'',
-            date_from: '',
-            date_to: '',
+            searchDateFrom: '',
+            searchDateTo: '',
             searchType: 'Type',
             searchStatus: 'Status',
             searchCurrency: {},
@@ -61,6 +61,8 @@
         vm.getCompanyCurrencies();
 
         $scope.getLatestTransactions = function(transactionsUrl){
+
+            //console.log($scope.searchParams.searchCurrency? 'asd' : '');
             $rootScope.transactionsStateMessage = '';
             $scope.loadingTransactions = true;
             if($rootScope.transactions.length > 0 ){
@@ -69,6 +71,11 @@
 
             if(!transactionsUrl){
             vm.filterParams = '?page=' + $scope.page + '&page_size=' + vm.pageSize
+                + '&created__gt=' + ($scope.searchParams.searchDateFrom? Date.parse($scope.searchParams.searchDateFrom) : '')
+                + '&created__lt=' + ($scope.searchParams.searchDateTo? Date.parse($scope.searchParams.searchDateTo) : '')
+                + '&currency=' + ($scope.searchParams.searchCurrency.code ? ($scope.searchParams.searchCurrency.code == 'Currency' ? '' : $scope.searchParams.searchCurrency.code) : '')
+                + '&from_reference=' + $scope.searchParams.searchUserFrom
+                + '&to_reference=' + $scope.searchParams.searchUserTo
                 + '&orderby=' + ($scope.searchParams.orderBy == 'Latest' ? '-created' : $scope.searchParams.orderBy == 'Largest' ? '-amount' : $scope.searchParams.orderBy == 'Smallest' ? 'amount' : '')
                 + '&tx_code=' + $scope.searchParams.txCode
                 + '&tx_type=' + ($scope.searchParams.searchType == 'Type' ? '' : $scope.searchParams.searchType.toLowerCase())
@@ -88,7 +95,7 @@
             }).then(function (res) {
                 $scope.loadingTransactions = false;
                 if (res.status === 200) {
-                    console.log(res.data.data);
+                    console.log(res.data.data.results);
                     $rootScope.transactionsData = res.data.data;
                     $rootScope.transactions = $rootScope.transactionsData.results;
                     if($rootScope.transactions == 0){
