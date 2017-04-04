@@ -9,10 +9,14 @@
 
         var vm = this;
         vm.token = cookieManagement.getCookie('TOKEN');
-        vm.pageSize = 25;
 
-        $scope.page = 1;
-        $scope.searchParams = {
+        $rootScope.pagination = {
+            pageSize: 25,
+            page: 1,
+            maxSize: 5
+        };
+
+        $rootScope.searchParams = {
             txCode: '',
             searchUserFrom:'',
             searchUserTo:'',
@@ -40,6 +44,8 @@
             delete $rootScope.transactions;
             delete $rootScope.transactionsStateMessage;
             delete $rootScope.transactionsData;
+            delete $rootScope.pagination;
+            delete $rootScope.searchParams;
         });
 
         vm.getCompanyCurrencies = function(){
@@ -51,7 +57,7 @@
             }).then(function (res) {
                 if (res.status === 200) {
                     res.data.data.results.splice(0,0,{code: 'Currency'});
-                    $scope.searchParams.searchCurrency.code = "Currency";
+                    $rootScope.searchParams.searchCurrency.code = "Currency";
                     $scope.currencyOptions = res.data.data.results;
                 }
             }).catch(function (error) {
@@ -60,32 +66,38 @@
         };
         vm.getCompanyCurrencies();
 
-        $scope.getLatestTransactions = function(transactionsUrl){
+        $scope.getLatestTransactions = function(applyFilter){
 
-            //console.log($scope.searchParams.searchCurrency? 'asd' : '');
+
+
+            if(applyFilter){
+                $rootScope.pagination.page = 1;
+            }
+
+            console.log($rootScope.pagination.page);
+
+            //console.log($rootScope.searchParams.searchCurrency? 'asd' : '');
             $rootScope.transactionsStateMessage = '';
             $scope.loadingTransactions = true;
             if($rootScope.transactions.length > 0 ){
                 $rootScope.transactions.length = 0;
             }
 
-            if(!transactionsUrl){
-            vm.filterParams = '?page=' + $scope.page + '&page_size=' + vm.pageSize
-                + '&created__gt=' + ($scope.searchParams.searchDateFrom? Date.parse($scope.searchParams.searchDateFrom) : '')
-                + '&created__lt=' + ($scope.searchParams.searchDateTo? Date.parse($scope.searchParams.searchDateTo) : '')
-                + '&currency=' + ($scope.searchParams.searchCurrency.code ? ($scope.searchParams.searchCurrency.code == 'Currency' ? '' : $scope.searchParams.searchCurrency.code) : '')
-                + '&from_reference=' + $scope.searchParams.searchUserFrom
-                + '&to_reference=' + $scope.searchParams.searchUserTo
-                + '&orderby=' + ($scope.searchParams.orderBy == 'Latest' ? '-created' : $scope.searchParams.orderBy == 'Largest' ? '-amount' : $scope.searchParams.orderBy == 'Smallest' ? 'amount' : '')
-                + '&tx_code=' + $scope.searchParams.txCode
-                + '&tx_type=' + ($scope.searchParams.searchType == 'Type' ? '' : $scope.searchParams.searchType.toLowerCase())
-                + '&status=' + ($scope.searchParams.searchStatus == 'Status' ? '' : $scope.searchParams.searchStatus)
-                + '&subtype=' + $scope.searchParams.searchSubType; // all the params of the filtering
+            vm.filterParams = '?page=' + $rootScope.pagination.page + '&page_size=' + $rootScope.pagination.pageSize
+                + '&created__gt=' + ($rootScope.searchParams.searchDateFrom? Date.parse($rootScope.searchParams.searchDateFrom) : '')
+                + '&created__lt=' + ($rootScope.searchParams.searchDateTo? Date.parse($rootScope.searchParams.searchDateTo) : '')
+                + '&currency=' + ($rootScope.searchParams.searchCurrency.code ? ($rootScope.searchParams.searchCurrency.code == 'Currency' ? '' : $rootScope.searchParams.searchCurrency.code) : '')
+                + '&from_reference=' + $rootScope.searchParams.searchUserFrom
+                + '&to_reference=' + $rootScope.searchParams.searchUserTo
+                + '&orderby=' + ($rootScope.searchParams.orderBy == 'Latest' ? '-created' : $rootScope.searchParams.orderBy == 'Largest' ? '-amount' : $rootScope.searchParams.orderBy == 'Smallest' ? 'amount' : '')
+                + '&tx_code=' + $rootScope.searchParams.txCode
+                + '&tx_type=' + ($rootScope.searchParams.searchType == 'Type' ? '' : $rootScope.searchParams.searchType.toLowerCase())
+                + '&status=' + ($rootScope.searchParams.searchStatus == 'Status' ? '' : $rootScope.searchParams.searchStatus)
+                + '&subtype=' + $rootScope.searchParams.searchSubType; // all the params of the filtering
 
             console.log(API + '/admin/transactions/' + vm.filterParams);
 
-                transactionsUrl = API + '/admin/transactions/' + vm.filterParams;
-            }
+                var transactionsUrl = API + '/admin/transactions/' + vm.filterParams;
 
             $http.get(transactionsUrl, {
                 headers: {
@@ -95,7 +107,7 @@
             }).then(function (res) {
                 $scope.loadingTransactions = false;
                 if (res.status === 200) {
-                    console.log(res.data.data.results);
+                    //console.log(res.data.data);
                     $rootScope.transactionsData = res.data.data;
                     $rootScope.transactions = $rootScope.transactionsData.results;
                     if($rootScope.transactions == 0){
