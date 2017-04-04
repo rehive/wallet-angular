@@ -14,7 +14,8 @@
         $scope.page = 1;
         $scope.searchParams = {
             txCode: '',
-            searchUser:'',
+            searchUserFrom:'',
+            searchUserTo:'',
             date_from: '',
             date_to: '',
             searchType: 'Type',
@@ -60,7 +61,7 @@
         vm.getCompanyCurrencies();
 
         $scope.getLatestTransactions = function(transactionsUrl){
-
+            $rootScope.transactionsStateMessage = '';
             $scope.loadingTransactions = true;
             if($rootScope.transactions.length > 0 ){
                 $rootScope.transactions.length = 0;
