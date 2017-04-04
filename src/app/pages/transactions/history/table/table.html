@@ -16,17 +16,17 @@
         <tr ng-repeat="transaction in transactions " data-toggle="modal"
             ng-click="openModal('app/pages/transactions/history/historyModal/historyModal.html', 'md',transaction)"
             class="editable-row center pointer">
-            <td class="table-row-center" ng-bind="transaction.tx_code"></td>
-            <td class="table-row-center" ng-bind="transaction.from_reference"></td>
-            <td class="table-row-center" ng-bind="transaction.to_reference"></td>
-            <td class="table-row-center" ng-bind="transaction.tx_type"></td>
-            <td class="table-row-center" ng-bind="transaction.subtype || 'None'"></td>
-            <td class="table-row-center" ng-bind="transaction.currency.code"></td>
-            <td class="table-row-center" ng-bind="transaction.from_account"></td>
-            <td class="table-row-center" ng-bind="transaction.amount"></td>
-            <td class="table-row-center" ng-bind="transaction.fee"></td>
-            <td class="table-row-center" ng-bind="transaction.status"></td>
-            <td class="table-row-center" >{{transaction.created | date:'mediumDate'}} {{transaction.created | date:'shortTime'}}</td>
+            <td><div title="{{transaction.tx_code}}" class="history-table" ng-bind="transaction.tx_code"></div></td>
+            <td><div title="{{transaction.from_reference}}" class="history-table" ng-bind="transaction.from_reference"></div></td>
+            <td><div title="{{transaction.to_reference}}" class="history-table" ng-bind="transaction.to_reference"></div></td>
+            <td><div title="{{transaction.tx_type}}" class="history-table" ng-bind="transaction.tx_type"></div></td>
+            <td><div title="{{transaction.subtype}}" class="history-table" ng-bind="transaction.subtype || 'None'"></div></td>
+            <td><div title="{{transaction.currency.code}}" class="history-table" ng-bind="transaction.currency.code"></div></td>
+            <td><div title="{{transaction.from_account}}" class="history-table" ng-bind="transaction.from_account"></div></td>
+            <td><div title="{{transaction.amount}}" class="history-table" ng-bind="transaction.amount"></div></td>
+            <td><div title="{{transaction.fee}}" class="history-table" ng-bind="transaction.fee"></div></td>
+            <td><div title="{{transaction.status}}" class="history-table" ng-bind="transaction.status"></div></td>
+            <td><div title="{{transaction.created | date:'mediumDate'}} {{transaction.created | date:'shortTime'}}" class="history-table"  >{{transaction.created | date:'mediumDate'}} {{transaction.created | date:'shortTime'}}</div></td>
         </tr>
     </table>
     <div>
