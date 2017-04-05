@@ -6,8 +6,6 @@
 
     /** @ngInject */
     function ResetPasswordCtrl($scope,cookieManagement,$http,toastr,$location,API) {
-        $scope.companyName = cookieManagement.getCookie('COMPANY');
-        $scope.currencies = ['$XBR','$ZER','$EUR'];
 
         $scope.resetPassword = function(identifier,company_id){
             $http.post(API + '/auth/password/reset/', {
@@ -23,6 +21,6 @@
                 toastr.error(error.data.message);
             });
         };
+        
     }
-
 })();

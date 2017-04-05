@@ -22,7 +22,6 @@
         });
 
         vm.getCurrencies = function(){
-
             // using wrong url here
             $http.get(API + '/company/currencies/', {
                 headers: {
@@ -43,10 +42,11 @@
         $scope.next = function(){
             $scope.showConfirmCurrency = true;
         };
-        
+
         $scope.confirmCurrency = function () {
             $scope.showConfirmCurrency = false;
             $scope.showCompleteCurrency = true;
         }
+        
     }
 })();

@@ -12,21 +12,6 @@
         $scope.transactionsStateMessage = '';
         vm.token = cookieManagement.getCookie('TOKEN');
 
-        $scope.openModal = function (page, size,transaction) {
-
-            $uibModal.open({
-                animation: true,
-                templateUrl: page,
-                size: size,
-                controller: 'transactionModalCtrl',
-                resolve: {
-                    transaction: function () {
-                        return transaction;
-                    }
-                }
-            });
-        };
-
         vm.getLatestTransactions = function(){
             $http.get(API + '/admin/transactions/?page_size=3&orderby=-created', {
                 headers: {
@@ -48,6 +33,19 @@
         };
         vm.getLatestTransactions();
 
-    }
+        $scope.openModal = function (page, size,transaction) {
+            $uibModal.open({
+                animation: true,
+                templateUrl: page,
+                size: size,
+                controller: 'transactionModalCtrl',
+                resolve: {
+                    transaction: function () {
+                        return transaction;
+                    }
+                }
+            });
+        };
 
+    }
 })();

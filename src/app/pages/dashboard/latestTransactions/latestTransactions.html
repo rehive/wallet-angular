@@ -27,7 +27,8 @@
             <td><div title="{{transaction.amount}}" class="history-table" ng-bind="transaction.amount"></div></td>
             <td><div title="{{transaction.fee}}" class="history-table" ng-bind="transaction.fee"></div></td>
             <td><div title="{{transaction.status}}" class="history-table" ng-bind="transaction.status"></div></td>
-            <td><div title="{{transaction.created | date:'mediumDate'}} {{transaction.created | date:'shortTime'}}" class="history-table"  >{{transaction.created | date:'mediumDate'}} {{transaction.created | date:'shortTime'}}</div></td>
+            <td><div title="{{transaction.created | date:'mediumDate'}} {{transaction.created | date:'shortTime'}}" class="history-table">
+              {{transaction.created | date:'mediumDate'}} {{transaction.created | date:'shortTime'}}</div></td>
         </tr>
     </table>
     </div>
