@@ -2,13 +2,11 @@
     <div ng-show="transactions.length > 0" class="divider">
     <table class="table table-condensed table-striped table-hover ">
         <tr class="black-muted-bg">
-            <td><b>Code</b></td>
             <td><b>From</b></td>
             <td><b>To</b></td>
             <td><b>Type</b></td>
             <td><b>Subtype</b></td>
             <td><b>Currency</b></td>
-            <td><b>Account</b></td>
             <td><b>Amount</b></td>
             <td><b>Fee</b></td>
             <td><b>Status</b></td>
@@ -17,13 +15,11 @@
         <tr ng-repeat="transaction in transactions " data-toggle="modal"
             ng-click="openModal('app/pages/dashboard/latestTransactions/transactionModal/transactionModal.html', 'md',transaction)"
             class="editable-row center pointer">
-            <td><div title="{{transaction.tx_code}}" class="history-table" ng-bind="transaction.tx_code"></div></td>
             <td><div title="{{transaction.from_reference}}" class="history-table" ng-bind="transaction.from_reference"></div></td>
             <td><div title="{{transaction.to_reference}}" class="history-table" ng-bind="transaction.to_reference"></div></td>
             <td><div title="{{transaction.tx_type}}" class="history-table" ng-bind="transaction.tx_type"></div></td>
             <td><div title="{{transaction.subtype}}" class="history-table" ng-bind="transaction.subtype || 'None'"></div></td>
             <td><div title="{{transaction.currency.code}}" class="history-table" ng-bind="transaction.currency.code"></div></td>
-            <td><div title="{{transaction.from_account}}" class="history-table" ng-bind="transaction.from_account"></div></td>
             <td><div title="{{transaction.amount}}" class="history-table" ng-bind="transaction.amount"></div></td>
             <td><div title="{{transaction.fee}}" class="history-table" ng-bind="transaction.fee"></div></td>
             <td><div title="{{transaction.status}}" class="history-table" ng-bind="transaction.status"></div></td>
