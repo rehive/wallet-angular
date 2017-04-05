@@ -11,13 +11,13 @@
         vm.token = cookieManagement.getCookie('TOKEN');
 
         $rootScope.pagination = {
-            pageSize: 25,
-            page: 1,
+            itemsPerPage: 25,
+            pageNo: 1,
             maxSize: 5
         };
 
         $rootScope.searchParams = {
-            txCode: '',
+            searchTxCode: '',
             searchUserFrom:'',
             searchUserTo:'',
             searchDateFrom: '',
@@ -25,7 +25,7 @@
             searchType: 'Type',
             searchStatus: 'Status',
             searchCurrency: {},
-            orderBy: 'Latest',
+            searchOrderBy: 'Latest',
             searchSubType: ''
         };
 
@@ -33,6 +33,7 @@
         $rootScope.transactions = [];
         $rootScope.transactionsStateMessage = '';
         $rootScope.transactionsData = {};
+
         $scope.loadingTransactions = false;
         $scope.typeOptions = ['Type','Deposit','Transfer','Withdraw'];
         $scope.statusOptions = ['Status','Cancelled','Claimed','Complete','Denied','Expired','Failed','Incoming',
@@ -56,6 +57,7 @@
                 }
             }).then(function (res) {
                 if (res.status === 200) {
+                  //adding currency as default value in both results array and ng-model of currency
                     res.data.data.results.splice(0,0,{code: 'Currency'});
                     $rootScope.searchParams.searchCurrency.code = "Currency";
                     $scope.currencyOptions = res.data.data.results;
@@ -67,35 +69,31 @@
         vm.getCompanyCurrencies();
 
         $scope.getLatestTransactions = function(applyFilter){
-
-
+          $rootScope.transactionsStateMessage = '';
+          $scope.loadingTransactions = true;
 
             if(applyFilter){
-                $rootScope.pagination.page = 1;
+              // if function is called from history-filters directive, then pageNo set to 1
+                $rootScope.pagination.pageNo = 1;
             }
 
-            console.log($rootScope.pagination.page);
-
-            //console.log($rootScope.searchParams.searchCurrency? 'asd' : '');
-            $rootScope.transactionsStateMessage = '';
-            $scope.loadingTransactions = true;
             if($rootScope.transactions.length > 0 ){
                 $rootScope.transactions.length = 0;
             }
 
-            vm.filterParams = '?page=' + $rootScope.pagination.page + '&page_size=' + $rootScope.pagination.pageSize
+            vm.filterParams = '?page=' + $rootScope.pagination.pageNo + '&page_size=' + $rootScope.pagination.itemsPerPage
                 + '&created__gt=' + ($rootScope.searchParams.searchDateFrom? Date.parse($rootScope.searchParams.searchDateFrom) : '')
                 + '&created__lt=' + ($rootScope.searchParams.searchDateTo? Date.parse($rootScope.searchParams.searchDateTo) : '')
                 + '&currency=' + ($rootScope.searchParams.searchCurrency.code ? ($rootScope.searchParams.searchCurrency.code == 'Currency' ? '' : $rootScope.searchParams.searchCurrency.code) : '')
                 + '&from_reference=' + $rootScope.searchParams.searchUserFrom
                 + '&to_reference=' + $rootScope.searchParams.searchUserTo
-                + '&orderby=' + ($rootScope.searchParams.orderBy == 'Latest' ? '-created' : $rootScope.searchParams.orderBy == 'Largest' ? '-amount' : $rootScope.searchParams.orderBy == 'Smallest' ? 'amount' : '')
-                + '&tx_code=' + $rootScope.searchParams.txCode
+                + '&orderby=' + ($rootScope.searchParams.searchOrderBy == 'Latest' ? '-created' : $rootScope.searchParams.searchOrderBy == 'Largest' ? '-amount' : $rootScope.searchParams.searchOrderBy == 'Smallest' ? 'amount' : '')
+                + '&tx_code=' + $rootScope.searchParams.searchTxCode
                 + '&tx_type=' + ($rootScope.searchParams.searchType == 'Type' ? '' : $rootScope.searchParams.searchType.toLowerCase())
                 + '&status=' + ($rootScope.searchParams.searchStatus == 'Status' ? '' : $rootScope.searchParams.searchStatus)
                 + '&subtype=' + $rootScope.searchParams.searchSubType; // all the params of the filtering
 
-            console.log(API + '/admin/transactions/' + vm.filterParams);
+                //console.log(API + '/admin/transactions/' + vm.filterParams);
 
                 var transactionsUrl = API + '/admin/transactions/' + vm.filterParams;
 
@@ -116,7 +114,6 @@
                     }
 
                     $rootScope.transactionsStateMessage = '';
-
                 }
             }).catch(function (error) {
                 $scope.loadingTransactions = false;
@@ -127,7 +124,6 @@
         $scope.getLatestTransactions();
 
         $scope.openModal = function (page, size,transaction) {
-
             $uibModal.open({
                 animation: true,
                 templateUrl: page,
@@ -140,5 +136,6 @@
                 }
             });
         };
+
     }
 })();

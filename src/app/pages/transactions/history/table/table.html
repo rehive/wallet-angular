@@ -26,11 +26,12 @@
             <td><div title="{{transaction.amount}}" class="history-table" ng-bind="transaction.amount"></div></td>
             <td><div title="{{transaction.fee}}" class="history-table" ng-bind="transaction.fee"></div></td>
             <td><div title="{{transaction.status}}" class="history-table" ng-bind="transaction.status"></div></td>
-            <td><div title="{{transaction.created | date:'mediumDate'}} {{transaction.created | date:'shortTime'}}" class="history-table"  >{{transaction.created | date:'mediumDate'}} {{transaction.created | date:'shortTime'}}</div></td>
+            <td><div title="{{transaction.created | date:'mediumDate'}} {{transaction.created | date:'shortTime'}}" class="history-table">
+              {{transaction.created | date:'mediumDate'}} {{transaction.created | date:'shortTime'}}</div></td>
         </tr>
     </table>
     <div >
-        <p uib-pagination boundary-links="true" items-per-page="pagination.pageSize"  total-items="transactionsData.count" ng-model="pagination.page"
+        <p uib-pagination boundary-links="true" items-per-page="pagination.itemsPerPage"  total-items="transactionsData.count" ng-model="pagination.pageNo"
            max-size="pagination.maxSize" class="pagination-sm pull-right" force-ellipses="true" ng-change="getLatestTransactions()"
            previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;"></p>
     </div>
