@@ -19,7 +19,7 @@
                         'Authorization': vm.token
                     }
             }).then(function (res) {
-                console.log(res);
+                //console.log(res);
                 if (res.status === 200) {
                     if(status == 'Complete'){
                         toastr.success('Transaction successfully updated, marked as Complete');

@@ -13,11 +13,10 @@
         $scope.withdrawalData = {
             user: null,
             amount: null,
-            reference: '',
+            reference: "",
             confirm_on_create: false,
             currency: null
         };
-
         $scope.onGoingTransaction = false;
         $scope.showAdvancedOption = false;
         $scope.confirmWithdrawalView = false;
@@ -64,7 +63,7 @@
         };
 
         $scope.createWithdrawal = function () {
-            console.log($scope.withdrawalData);
+            //console.log($scope.withdrawalData);
             $scope.onGoingTransaction = true;
             $http.post(API + '/admin/transactions/withdraw/',$scope.withdrawalData, {
                 headers: {
@@ -73,7 +72,7 @@
                 }
             }).then(function (res) {
                 $scope.onGoingTransaction = false;
-                console.log(res);
+                //console.log(res);
                 if (res.status === 201) {
                     toastr.success('You have successfully withdrawn the money!');
                     $scope.toggleConfirmWithdrawalView($scope.confirmWithdrawalView);

@@ -19,8 +19,7 @@
                     'Authorization': vm.token
                 }
             }).then(function (res) {
-                console.log(res);
-
+                //console.log(res);
                 if (res.status === 200) {
                     if(res.data.data.results.length == 0){
                         $scope.transactionsStateMessage = 'No Pending Transactions';
@@ -36,7 +35,6 @@
         vm.getPendingTransactions();
 
         $scope.openModal = function (page, size,transaction) {
-
             vm.theModal = $uibModal.open({
                 animation: true,
                 templateUrl: page,
@@ -48,13 +46,7 @@
                     }
                 }
             });
-
-            //vm.theModal.result.finally(function(){
-            //    $scope.transactions = [];
-            //    $timeout(function(){
-            //        vm.getPendingTransactions();
-            //    },2000);
-            //});
         };
+
     }
 })();

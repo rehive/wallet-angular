@@ -1,11 +1,12 @@
-<div ba-panel  ba-panel-title="Confirm Withdrawal" ba-panel-class="light-text">
+<div ba-panel ba-panel-title="Confirm Withdrawal" ba-panel-class="light-text">
     <div>
         <p>You are about to withdraw <b>{{selectedCurrency.symbol}} {{withdrawalData.amount}}</b> from <b>{{withdrawalData.user}}</b></p>
     </div>
     <div >
         <div class="col-sm-offset-2 col-sm-10">
             <button ng-disabled="onGoingTransaction" ng-click="createWithdrawal()" class="btn btn-primary pull-right">Confirm</button>
-            <button ng-disabled="onGoingTransaction" ng-click="toggleConfirmWithdrawalView(confirmWithdrawalView)" class="btn btn-info pull-right margin-right">Back</button>
+            <button ng-disabled="onGoingTransaction" ng-click="toggleConfirmWithdrawalView(confirmWithdrawalView)"
+            class="btn btn-info pull-right margin-right">Back</button>
         </div>
     </div>
 </div>

@@ -105,7 +105,7 @@
             }).then(function (res) {
                 $scope.loadingTransactions = false;
                 if (res.status === 200) {
-                    //console.log(res.data.data);
+                    console.log(res.data.data);
                     $rootScope.transactionsData = res.data.data;
                     $rootScope.transactions = $rootScope.transactionsData.results;
                     if($rootScope.transactions == 0){

@@ -43,7 +43,7 @@
         $scope.displayAdvancedOption = function () {
             $scope.showAdvancedOption = true;
         };
-        
+
         $scope.toggleDepositView = function(view) {
             $scope.showAdvancedOption = false;
             $scope.confirmDepositView = false;
@@ -64,7 +64,7 @@
         };
 
         $scope.createDeposit = function () {
-            console.log($scope.depositData);
+            //console.log($scope.depositData);
             $scope.onGoingTransaction = true;
             // $http.post takes the params as follow post(url, data, {config})
             // https://docs.angularjs.org/api/ng/service/$http#post
@@ -74,7 +74,7 @@
                     'Authorization': vm.token
                 }
             }).then(function (res) {
-                console.log(res);
+                //console.log(res);
                 $scope.onGoingTransaction = false;
                 if (res.status === 201) {
                     toastr.success('You have successfully deposited your money!');
@@ -88,7 +88,5 @@
             });
         }
 
-
     }
-
 })();
