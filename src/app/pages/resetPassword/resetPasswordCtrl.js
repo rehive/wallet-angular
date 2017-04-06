@@ -5,7 +5,7 @@
         .controller('ResetPasswordCtrl', ResetPasswordCtrl);
 
     /** @ngInject */
-    function ResetPasswordCtrl($scope,cookieManagement,$http,toastr,$location,API) {
+    function ResetPasswordCtrl($scope,$http,toastr,$location,API,errorToasts) {
 
         $scope.resetPassword = function(identifier,company_id){
             $http.post(API + '/auth/password/reset/', {
@@ -17,8 +17,7 @@
                     $location.path('/login');
                 }
             }).catch(function (error) {
-                console.log(error);
-                toastr.error(error.data.message);
+                errorToasts.evaluateErrors(error.data.data);
             });
         };
         

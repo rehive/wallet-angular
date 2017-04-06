@@ -5,7 +5,7 @@
         .controller('LoginCtrl', LoginCtrl);
 
     /** @ngInject */
-    function LoginCtrl($rootScope,$scope,$http,toastr,cookieManagement,API,$location) {
+    function LoginCtrl($rootScope,$scope,$http,toastr,cookieManagement,API,$location,errorToasts) {
 
         $scope.login = function(identifier, company_id, password) {
             $rootScope.$pageFinishedLoading = false;
@@ -23,10 +23,8 @@
                     $location.path('/dashboard');
                 }
             }).catch(function (error) {
-
-                console.log(error);
                 $rootScope.$pageFinishedLoading = true;
-                toastr.error(error.data.message);
+                errorToasts.evaluateErrors(error.data.data);
             });
         };
 

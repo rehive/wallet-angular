@@ -5,7 +5,7 @@
         .controller('DepositsCtrl', DepositsCtrl);
 
     /** @ngInject */
-    function DepositsCtrl($rootScope,$scope,IMAGEURL,$http,API,cookieManagement,toastr) {
+    function DepositsCtrl($rootScope,$scope,IMAGEURL,$http,API,cookieManagement,toastr,errorToasts) {
 
         var vm = this;
         vm.token = cookieManagement.getCookie('TOKEN');
@@ -82,9 +82,8 @@
                     $scope.toggleCompleteDepositView();
                 }
             }).catch(function (error) {
-                console.log(error);
                 $scope.onGoingTransaction = false;
-                //ToDo:show toast message errors
+                errorToasts.evaluateErrors(error.data.data);
             });
         }
 

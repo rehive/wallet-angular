@@ -5,7 +5,7 @@
         .controller('HistoryCtrl', HistoryCtrl);
 
     /** @ngInject */
-    function HistoryCtrl($rootScope,$scope,API,$http,cookieManagement,$uibModal) {
+    function HistoryCtrl($rootScope,$scope,API,$http,cookieManagement,$uibModal,errorToasts) {
 
         var vm = this;
         vm.token = cookieManagement.getCookie('TOKEN');
@@ -63,7 +63,7 @@
                     $scope.currencyOptions = res.data.data.results;
                 }
             }).catch(function (error) {
-                console.log(error);
+                errorToasts.evaluateErrors(error.data.data);
             });
         };
         vm.getCompanyCurrencies();
@@ -118,7 +118,7 @@
             }).catch(function (error) {
                 $scope.loadingTransactions = false;
                 $rootScope.transactionsStateMessage = 'Failed To Load Data';
-                console.log(error);
+                errorToasts.evaluateErrors(error.data.data);
             });
         };
         $scope.getLatestTransactions();

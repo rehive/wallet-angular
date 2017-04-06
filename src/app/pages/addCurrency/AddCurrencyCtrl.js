@@ -5,7 +5,7 @@
         .controller('AddCurrencyCtrl', AddCurrencyCtrl);
 
     /** @ngInject */
-    function AddCurrencyCtrl($rootScope,$scope,$http,API,cookieManagement,IMAGEURL) {
+    function AddCurrencyCtrl($rootScope,$scope,$http,API,cookieManagement,IMAGEURL,errorToasts) {
 
         var vm = this;
         vm.token = cookieManagement.getCookie('TOKEN');
@@ -34,7 +34,7 @@
                     $scope.currencyOptions = res.data.data.results;
                 }
             }).catch(function (error) {
-                console.log(error);
+                errorToasts.evaluateErrors(error.data.data);
             });
         };
         vm.getCurrencies();

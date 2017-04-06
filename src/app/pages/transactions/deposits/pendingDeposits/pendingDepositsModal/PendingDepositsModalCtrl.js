@@ -5,7 +5,7 @@
         .controller('PendingDepositsModalCtrl', PendingDepositsModalCtrl);
 
     /** @ngInject */
-    function PendingDepositsModalCtrl($uibModalInstance,$scope,$http,API,cookieManagement,toastr,transaction) {
+    function PendingDepositsModalCtrl($uibModalInstance,$scope,$http,API,cookieManagement,toastr,transaction,errorToasts) {
         $scope.transaction = transaction;
 
         var vm = this;
@@ -30,7 +30,7 @@
                     $uibModalInstance.dismiss('cancel');
                 }
             }).catch(function (error) {
-                console.log(error);
+                errorToasts.evaluateErrors(error.data.data);
             });
         };
     }

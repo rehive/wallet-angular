@@ -5,7 +5,7 @@
         .controller('PendingDepositCtrl', PendingDepositCtrl);
 
     /** @ngInject */
-    function PendingDepositCtrl($rootScope,$scope,$http,API,cookieManagement,$uibModal,toastr) {
+    function PendingDepositCtrl($rootScope,$scope,$http,API,cookieManagement,$uibModal,errorToasts) {
 
         var vm = this;
         $scope.transactions = [];
@@ -39,7 +39,7 @@
                 }
             }).catch(function (error) {
                 $scope.transactionsStateMessage = 'Failed To Load Data';
-                console.log(error);
+                errorToasts.evaluateErrors(error.data.data);
             });
         };
 

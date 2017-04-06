@@ -5,7 +5,7 @@
         .controller('PageTopCtrl', PageTopCtrl);
 
     /** @ngInject */
-    function PageTopCtrl($rootScope,$scope,$http,cookieManagement,API,$location) {
+    function PageTopCtrl($rootScope,$scope,$http,cookieManagement,API,$location,errorToasts) {
         var vm = this;
 
         $scope.companyName = cookieManagement.getCookie('COMPANY');
@@ -24,7 +24,7 @@
                     $scope.currencies = res.data.data.results;
                 }
             }).catch(function (error) {
-                console.log(error);
+                errorToasts.evaluateErrors(error.data.data);
             });
         };
         vm.getCompanyCurrencies();

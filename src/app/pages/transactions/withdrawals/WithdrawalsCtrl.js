@@ -5,7 +5,7 @@
         .controller('WithdrawalsCtrl', WithdrawalsCtrl);
 
     /** @ngInject */
-    function WithdrawalsCtrl($rootScope,$scope,IMAGEURL,$http,API,cookieManagement,toastr) {
+    function WithdrawalsCtrl($rootScope,$scope,IMAGEURL,$http,API,cookieManagement,toastr,errorToasts) {
 
         var vm = this;
         vm.token = cookieManagement.getCookie('TOKEN');
@@ -80,8 +80,7 @@
                 }
             }).catch(function (error) {
                 $scope.onGoingTransaction = false;
-                console.log(error);
-                //ToDo:show toast message errors
+                errorToasts.evaluateErrors(error.data.data);
             });
         }
 

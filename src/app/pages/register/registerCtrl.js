@@ -7,7 +7,7 @@
     /** @ngInject */
     function RegisterCtrl($scope,$http,toastr,API) {
 
-        $scope.register = function( email, company_id, password1, password2) {
+        $scope.register = function( email, company_id, password1, password2,errorToasts) {
             $http.post(API + '/auth/register/', {
                 email: email,
                 company_id: company_id,
@@ -21,7 +21,7 @@
                 //} else {
                 // }
             }).catch(function (error) {
-                //     toastr
+                errorToasts.evaluateErrors(error.data.data);
             });
         };
 
