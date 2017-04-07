@@ -2,7 +2,7 @@
     <div class="add-row-editable-table add-currency-link">
         <button class="btn btn-success pull-right" ng-click="goToAddCurrency()">Add Currency</button>
     </div>
-    <table class="table table-condensed">
+    <table class="table">
         <tr class="black-muted-bg">
             <td><b>Logo</b></td>
             <td><b>Pending Withrawals</b></td>
@@ -10,12 +10,12 @@
             <td></td>
         </tr>
         <tr ng-repeat="currency in currencyDetails" class="editable-row center">
-            <td class="table-row-center" width="15%">
+            <td width="15%">
                 <img class="logo" ng-src="{{currency.logo}}" alt="token">
             </td>
-            <td class="table-row-center" width="15%" ng-bind="currency.pendingWithdrawals"></td>
-            <td class="table-row-center" width="15%" ng-bind="currency.volume"></td>
-            <td class="table-row-center" >
+            <td width="15%" ng-bind="currency.pendingWithdrawals"></td>
+            <td width="15%" ng-bind="currency.volume"></td>
+            <td class="currency-row-last-child">
                 <a href ><button class="btn btn-primary pull-right currencies-buttons">Overview</button></a>
                 <a href ><button class="btn btn-primary pull-right currencies-buttons">Users</button></a>
                 <a href ><button class="btn btn-primary pull-right currencies-buttons">Deposits</button></a>
