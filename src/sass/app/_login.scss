@@ -10,7 +10,6 @@ $text-color: grey;
 }
 
 .auth-main {
-  @include main-background();
   display: flex;
   align-items: center;
   height: 100%;
@@ -18,12 +17,11 @@ $text-color: grey;
 }
 
 .auth-block {
-  width: 540px;
-  margin: 10% auto;
+  width: 380px;
+  margin: 7% auto;
   border-radius: 5px;
-  @include bg-translucent-dark(0.55);
-  color: #fff;
-  padding: 32px;
+  color: #000;
+  padding: 20px;
   h1 {
     font-weight: $font-light;
     margin-bottom: 28px;

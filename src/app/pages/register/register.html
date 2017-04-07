@@ -1,40 +1,32 @@
 <div class="auth-main">
-    <div class="auth-block">
-        <h1>Sign up to Rehive</h1>
+    <div class="auth-block text-center">
+        <h1>Sign Up</h1>
         <a href="/#/login" class="auth-link">Already have a Rehive account? Sign in!</a>
 
         <form class="form-horizontal">
             <div class="form-group">
-                <label for="inputEmail1" class="col-sm-2 control-label">Email</label>
-
-                <div class="col-sm-10">
+                <div class="col-sm-12">
                     <input type="email" ng-model="emailId" class="form-control" id="inputEmail1" placeholder="Email">
                 </div>
             </div>
             <div class="form-group">
-                <label for="inputName1" class="col-sm-2 control-label">CompanyID</label>
-
-                <div class="col-sm-10">
+                <div class="col-sm-12">
                     <input type="text" ng-model="company_id" class="form-control" id="inputName1" placeholder="Choose a unique ID for your company">
                 </div>
             </div>
             <div class="form-group">
-                <label for="inputPassword1" class="col-sm-2 control-label">Password</label>
-
-                <div class="col-sm-10">
+                <div class="col-sm-12">
                     <input type="password" ng-model="password1" class="form-control" id="inputPassword1" placeholder="Password">
                 </div>
             </div>
             <div class="form-group">
-                <label for="inputPassword2" class="col-sm-2 control-label">Re_Password</label>
-
-                <div class="col-sm-10">
+                <div class="col-sm-12">
                     <input type="password" ng-model="password2" class="form-control" id="inputPassword2" placeholder="Retype Password">
                 </div>
             </div>
             <div class="form-group">
-                <div class="col-sm-offset-2 col-sm-10">
-                    <button ng-click="register(emailId,company_id,password1,password2)" class="btn btn-default btn-auth">Sign up</button>
+                <div class="col-sm-12">
+                    <button ng-click="register(emailId,company_id,password1,password2)" class="btn btn-primary btn-auth pull-right">Sign up</button>
                 </div>
             </div>
         </form>
