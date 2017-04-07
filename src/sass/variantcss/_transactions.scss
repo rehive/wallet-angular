@@ -22,10 +22,6 @@
   color: #ff7171;
 }
 
-.transaction-details-button{
-  width: auto;
-}
-
 .apply-button{
   button{
     width: 100%;
@@ -37,4 +33,10 @@
   border-radius: 0;
   padding: 5px;
   width: 40%
+}
+
+
+.transaction-details-button{
+  width: auto;
+  padding: 6px
 }
