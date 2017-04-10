@@ -41,7 +41,7 @@
         $scope.currencyOptions = [];
         $scope.orderByOptions = ['Largest','Latest','Smallest'];
 
-        $scope.$on('$locationChangeStart', function( event ) {
+        $scope.$on("$destroy", function( event ) {
             delete $rootScope.transactions;
             delete $rootScope.transactionsStateMessage;
             delete $rootScope.transactionsData;
@@ -105,7 +105,6 @@
             }).then(function (res) {
                 $scope.loadingTransactions = false;
                 if (res.status === 200) {
-                    console.log(res.data.data);
                     $rootScope.transactionsData = res.data.data;
                     $rootScope.transactions = $rootScope.transactionsData.results;
                     if($rootScope.transactions == 0){
