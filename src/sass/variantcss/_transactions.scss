@@ -2,7 +2,7 @@
 
 .image-center{
   display: block;
-  margin: 10px auto 25px auto;
+  margin: 0 auto 15px auto;
 }
 
 .image-overview{
@@ -40,8 +40,20 @@
   width: 40%
 }
 
-
 .transaction-details-button{
   width: auto;
   padding: 6px
+}
+
+.subscript{
+  font-size: small;
+}
+
+.settings-fees-buttons{
+  width: 70px;
+  margin: 0 0 0 12px;
+}
+
+.fees-table > tbody > tr > td {
+  padding: 6px;
 }

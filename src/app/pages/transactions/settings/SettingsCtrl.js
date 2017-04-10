@@ -5,9 +5,20 @@
         .controller('SettingsCtrl', SettingsCtrl);
 
     /** @ngInject */
-    function SettingsCtrl() {
+    function SettingsCtrl($rootScope,$scope,IMAGEURL) {
 
+        $scope.currencyImageUrl = "https://storage.googleapis.com/rehive-static/dashboard/dist/img/default_company_icon.png";
 
+        $rootScope.$watch('selectedCurrency',function(){
+            if($rootScope.selectedCurrency && $rootScope.selectedCurrency.code){
+                $scope.currencyImageUrl = IMAGEURL + $rootScope.selectedCurrency.code + '.png';
+            }
+        });
+
+        $scope.feesParams = {
+            feeType: 'Transfer'
+        };
+        $scope.typeOptions = ['Transfer','Deposit','Withdraw'];
     }
 
 })();

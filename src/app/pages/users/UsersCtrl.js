@@ -36,6 +36,7 @@
         });
 
         vm.getCompanyCurrencies = function(){
+            //TODO: fix quick switching error with line 49 and 53
             $http.get(API + '/company/currencies/', {
                 headers: {
                     'Content-Type': 'application/json',
@@ -55,7 +56,7 @@
         vm.getCompanyCurrencies();
 
         $scope.pick = function(){
-            console.log($scope.usersSearchParams.searchCountry);
+         //   console.log($scope.usersSearchParams.searchCountry);
         }
 
     }

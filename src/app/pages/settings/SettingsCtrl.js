@@ -5,7 +5,8 @@
         .controller('SettingsCtrl', SettingsCtrl);
 
     /** @ngInject */
-    function SettingsCtrl() {
+    function SettingsCtrl($scope) {
+
 
 
     }
