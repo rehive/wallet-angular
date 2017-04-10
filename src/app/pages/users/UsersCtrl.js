@@ -22,6 +22,7 @@
             searchDateTo: '',
             searchStatus: 'KYC',
             searchCurrency: {},
+            searchCountry: '',
             searchOrderBy: 'Order By'
         };
 
@@ -53,7 +54,9 @@
         };
         vm.getCompanyCurrencies();
 
-
+        $scope.pick = function(){
+            console.log($scope.usersSearchParams.searchCountry);
+        }
 
     }
 })();
