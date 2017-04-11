@@ -5,10 +5,11 @@
         .controller('UsersCtrl', UsersCtrl);
 
     /** @ngInject */
-    function UsersCtrl($scope,API,$http,cookieManagement,errorToasts) {
+    function UsersCtrl($scope,API,$http,cookieManagement,errorToasts,$window) {
 
         var vm = this;
         vm.token = cookieManagement.getCookie('TOKEN');
+        vm.currenciesList = JSON.parse($window.sessionStorage.currenciesList);
 
         $scope.usersPagination = {
             itemsPerPage: 25,
@@ -31,21 +32,10 @@
         $scope.orderByOptions = ['Order By','Join Date','Balance','User'];
 
         vm.getCompanyCurrencies = function(){
-            $http.get(API + '/company/currencies/', {
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': vm.token
-                }
-            }).then(function (res) {
-                if (res.status === 200) {
-                    //adding currency as default value in both results array and ng-model of currency
-                    res.data.data.results.splice(0,0,{code: 'Currency'});
-                    $scope.usersSearchParams.searchCurrency.code = 'Currency';
-                    $scope.currencyOptions = res.data.data.results;
-                }
-            }).catch(function (error) {
-                errorToasts.evaluateErrors(error.data.data);
-            });
+            //adding currency as default value in both results array and ng-model of currency
+            vm.currenciesList.splice(0,0,{code: 'Currency'});
+            $scope.usersSearchParams.searchCurrency.code = 'Currency';
+            $scope.currencyOptions = vm.currenciesList;
         };
         vm.getCompanyCurrencies();
 
