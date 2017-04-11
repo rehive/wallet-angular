@@ -46,6 +46,7 @@
 }
 
 .subscript{
+  margin-top: 2px;
   font-size: small;
 }
 
@@ -64,4 +65,14 @@
 
 .tier-form .panel > .panel-body{
  padding: 0 22px 15px 22px;
+}
+
+.tier-form{
+  button{
+    margin-top: 15px;
+  }
+}
+
+.bank-accounts .bank-accounts-hr{
+  margin: 15px 0;
 }
