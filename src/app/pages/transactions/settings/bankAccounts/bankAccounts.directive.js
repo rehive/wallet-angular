@@ -8,7 +8,7 @@
     function bankAccounts() {
         return {
             restrict: 'E',
-            controller: 'SettingsCtrl',
+            controller: 'BankAccountsCtrl',
             templateUrl: 'app/pages/transactions/settings/bankAccounts/bankAccounts.html'
         };
     }

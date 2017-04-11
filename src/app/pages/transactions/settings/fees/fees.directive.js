@@ -8,7 +8,7 @@
     function fees() {
         return {
             restrict: 'E',
-            controller: 'SettingsCtrl',
+            controller: 'FeesCtrl',
             templateUrl: 'app/pages/transactions/settings/fees/fees.html'
         };
     }

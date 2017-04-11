@@ -15,10 +15,9 @@
             }
         });
 
-        $scope.feesParams = {
-            feeType: 'Transfer'
+        $scope.goToCurrencySetting = function(settingView){
+            $scope.settingView = settingView;
         };
-        $scope.typeOptions = ['Transfer','Deposit','Withdraw'];
-    }
 
+    }
 })();
