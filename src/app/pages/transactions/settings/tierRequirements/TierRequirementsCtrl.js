@@ -8,13 +8,14 @@
     function TierRequirementsCtrl($rootScope,$scope,IMAGEURL) {
 
         $scope.selectedTier = 'Tier 1';
+        $scope.activeTier = 0;
 
         $scope.selectTier= function(tier){
             $scope.selectedTier = tier;
         };
 
         $scope.saveTierRequirements = function(){
-            alert($scope.selectedTier);
+            alert($scope.activeTier);
         };
     }
 })();

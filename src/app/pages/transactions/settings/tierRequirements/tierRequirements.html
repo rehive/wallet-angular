@@ -1,11 +1,13 @@
-<uib-tabset active="$tabSetStatus.activeTab">
-    <uib-tab ng-click="selectTier('Tier 1')" heading="Tier 1">
-        <tier-requirements-form></tier-requirements-form>
-    </uib-tab>
-    <uib-tab ng-click="selectTier('Tier 2')" heading="Tier 2">
-        <tier-requirements-form></tier-requirements-form>
-    </uib-tab>
-    <uib-tab ng-click="selectTier('Tier 3')" heading="Tier 3">
-        <tier-requirements-form></tier-requirements-form>
-    </uib-tab>
-</uib-tabset>
+<div class="tier-limits">
+    <uib-tabset active="activeTier">
+        <uib-tab ng-click="selectTier('Tier 1')" heading="Tier 1">
+            <tier-requirements-form></tier-requirements-form>
+        </uib-tab>
+        <uib-tab ng-click="selectTier('Tier 2')" heading="Tier 2">
+            <tier-requirements-form></tier-requirements-form>
+        </uib-tab>
+        <uib-tab ng-click="selectTier('Tier 3')" heading="Tier 3">
+            <tier-requirements-form></tier-requirements-form>
+        </uib-tab>
+    </uib-tabset>
+</div>
