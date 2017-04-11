@@ -8,7 +8,6 @@
     function userTable() {
         return {
             restrict: 'E',
-            controller: 'UsersCtrl',
             templateUrl: 'app/pages/users/userTable/userTable.html'
         };
     }

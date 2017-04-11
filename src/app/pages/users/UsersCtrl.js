@@ -5,18 +5,18 @@
         .controller('UsersCtrl', UsersCtrl);
 
     /** @ngInject */
-    function UsersCtrl($rootScope,$scope,API,$http,cookieManagement,errorToasts) {
+    function UsersCtrl($scope,API,$http,cookieManagement,errorToasts) {
 
         var vm = this;
         vm.token = cookieManagement.getCookie('TOKEN');
 
-        $rootScope.usersPagination = {
+        $scope.usersPagination = {
             itemsPerPage: 25,
             pageNo: 1,
             maxSize: 5
         };
 
-        $rootScope.usersSearchParams = {
+        $scope.usersSearchParams = {
             searchUser:'',
             searchDateFrom: '',
             searchDateTo: '',
@@ -30,11 +30,6 @@
         $scope.currencyOptions = [];
         $scope.orderByOptions = ['Order By','Join Date','Balance','User'];
 
-        $scope.$on("$destroy", function( event ) {
-            delete $rootScope.usersPagination;
-            delete $rootScope.usersSearchParams;
-        });
-
         vm.getCompanyCurrencies = function(){
             $http.get(API + '/company/currencies/', {
                 headers: {
@@ -45,9 +40,7 @@
                 if (res.status === 200) {
                     //adding currency as default value in both results array and ng-model of currency
                     res.data.data.results.splice(0,0,{code: 'Currency'});
-                    if($rootScope.usersSearchParams && $rootScope.usersSearchParams.searchCurrency){
-                        $rootScope.usersSearchParams.searchCurrency.code = 'Currency';
-                    }
+                    $scope.usersSearchParams.searchCurrency.code = 'Currency';
                     $scope.currencyOptions = res.data.data.results;
                 }
             }).catch(function (error) {
@@ -57,7 +50,7 @@
         vm.getCompanyCurrencies();
 
         $scope.pick = function(){
-         //   console.log($scope.usersSearchParams.searchCountry);
+            console.log($scope.usersSearchParams.searchCountry);
         }
 
     }

@@ -8,7 +8,6 @@
     function userFilters() {
         return {
             restrict: 'E',
-            controller: 'UsersCtrl',
             templateUrl: 'app/pages/users/filters/userFilters.html'
         };
     }
