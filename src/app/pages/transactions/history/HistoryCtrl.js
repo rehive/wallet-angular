@@ -5,18 +5,18 @@
         .controller('HistoryCtrl', HistoryCtrl);
 
     /** @ngInject */
-    function HistoryCtrl($rootScope,$scope,API,$http,cookieManagement,$uibModal,errorToasts) {
+    function HistoryCtrl($scope,API,$http,cookieManagement,$uibModal,errorToasts) {
 
         var vm = this;
         vm.token = cookieManagement.getCookie('TOKEN');
 
-        $rootScope.pagination = {
+        $scope.pagination = {
             itemsPerPage: 25,
             pageNo: 1,
             maxSize: 5
         };
 
-        $rootScope.searchParams = {
+        $scope.searchParams = {
             searchTxCode: '',
             searchUserFrom:'',
             searchUserTo:'',
@@ -29,25 +29,15 @@
             searchSubType: ''
         };
 
-        //used rootscope to communicate between directives
-        $rootScope.transactions = [];
-        $rootScope.transactionsStateMessage = '';
-        $rootScope.transactionsData = {};
-
+        $scope.transactions = [];
+        $scope.transactionsStateMessage = '';
+        $scope.transactionsData = {};
         $scope.loadingTransactions = false;
         $scope.typeOptions = ['Type','Deposit','Transfer','Withdraw'];
         $scope.statusOptions = ['Status','Cancelled','Claimed','Complete','Denied','Expired','Failed','Incoming',
                                 'Incomplete','Pending','Processing','Reversed','Unclaimed','Uncredited','Waiting'];
         $scope.currencyOptions = [];
         $scope.orderByOptions = ['Largest','Latest','Smallest'];
-
-        $scope.$on("$destroy", function( event ) {
-            delete $rootScope.transactions;
-            delete $rootScope.transactionsStateMessage;
-            delete $rootScope.transactionsData;
-            delete $rootScope.pagination;
-            delete $rootScope.searchParams;
-        });
 
         vm.getCompanyCurrencies = function(){
             $http.get(API + '/company/currencies/', {
@@ -59,9 +49,7 @@
                 if (res.status === 200) {
                   //adding currency as default value in both results array and ng-model of currency
                     res.data.data.results.splice(0,0,{code: 'Currency'});
-                    if($rootScope.searchParams && $rootScope.searchParams.searchCurrency){
-                        $rootScope.searchParams.searchCurrency.code = 'Currency';
-                    }
+                    $scope.searchParams.searchCurrency.code = 'Currency';
                     $scope.currencyOptions = res.data.data.results;
                 }
             }).catch(function (error) {
@@ -70,34 +58,36 @@
         };
         vm.getCompanyCurrencies();
 
+        vm.getTransactionUrl = function(){
+            vm.filterParams = '?page=' + $scope.pagination.pageNo + '&page_size=' + $scope.pagination.itemsPerPage
+                + '&created__gt=' + ($scope.searchParams.searchDateFrom? Date.parse($scope.searchParams.searchDateFrom) : '')
+                + '&created__lt=' + ($scope.searchParams.searchDateTo? Date.parse($scope.searchParams.searchDateTo) : '')
+                + '&currency=' + ($scope.searchParams.searchCurrency.code ? ($scope.searchParams.searchCurrency.code == 'Currency' ? '' : $scope.searchParams.searchCurrency.code) : '')
+                + '&from_reference=' + $scope.searchParams.searchUserFrom
+                + '&to_reference=' + $scope.searchParams.searchUserTo
+                + '&orderby=' + ($scope.searchParams.searchOrderBy == 'Latest' ? '-created' : $scope.searchParams.searchOrderBy == 'Largest' ? '-amount' : $scope.searchParams.searchOrderBy == 'Smallest' ? 'amount' : '')
+                + '&tx_code=' + $scope.searchParams.searchTxCode
+                + '&tx_type=' + ($scope.searchParams.searchType == 'Type' ? '' : $scope.searchParams.searchType.toLowerCase())
+                + '&status=' + ($scope.searchParams.searchStatus == 'Status' ? '' : $scope.searchParams.searchStatus)
+                + '&subtype=' + $scope.searchParams.searchSubType; // all the params of the filtering
+
+            return API + '/admin/transactions/' + vm.filterParams;
+        };
+
         $scope.getLatestTransactions = function(applyFilter){
-          $rootScope.transactionsStateMessage = '';
-          $scope.loadingTransactions = true;
+            $scope.transactionsStateMessage = '';
+            $scope.loadingTransactions = true;
 
             if(applyFilter){
               // if function is called from history-filters directive, then pageNo set to 1
-                $rootScope.pagination.pageNo = 1;
+                $scope.pagination.pageNo = 1;
             }
 
-            if($rootScope.transactions.length > 0 ){
-                $rootScope.transactions.length = 0;
+            if($scope.transactions.length > 0 ){
+                $scope.transactions.length = 0;
             }
 
-            vm.filterParams = '?page=' + $rootScope.pagination.pageNo + '&page_size=' + $rootScope.pagination.itemsPerPage
-                + '&created__gt=' + ($rootScope.searchParams.searchDateFrom? Date.parse($rootScope.searchParams.searchDateFrom) : '')
-                + '&created__lt=' + ($rootScope.searchParams.searchDateTo? Date.parse($rootScope.searchParams.searchDateTo) : '')
-                + '&currency=' + ($rootScope.searchParams.searchCurrency.code ? ($rootScope.searchParams.searchCurrency.code == 'Currency' ? '' : $rootScope.searchParams.searchCurrency.code) : '')
-                + '&from_reference=' + $rootScope.searchParams.searchUserFrom
-                + '&to_reference=' + $rootScope.searchParams.searchUserTo
-                + '&orderby=' + ($rootScope.searchParams.searchOrderBy == 'Latest' ? '-created' : $rootScope.searchParams.searchOrderBy == 'Largest' ? '-amount' : $rootScope.searchParams.searchOrderBy == 'Smallest' ? 'amount' : '')
-                + '&tx_code=' + $rootScope.searchParams.searchTxCode
-                + '&tx_type=' + ($rootScope.searchParams.searchType == 'Type' ? '' : $rootScope.searchParams.searchType.toLowerCase())
-                + '&status=' + ($rootScope.searchParams.searchStatus == 'Status' ? '' : $rootScope.searchParams.searchStatus)
-                + '&subtype=' + $rootScope.searchParams.searchSubType; // all the params of the filtering
-
-                //console.log(API + '/admin/transactions/' + vm.filterParams);
-
-                var transactionsUrl = API + '/admin/transactions/' + vm.filterParams;
+            var transactionsUrl = vm.getTransactionUrl();
 
             $http.get(transactionsUrl, {
                 headers: {
@@ -107,18 +97,18 @@
             }).then(function (res) {
                 $scope.loadingTransactions = false;
                 if (res.status === 200) {
-                    $rootScope.transactionsData = res.data.data;
-                    $rootScope.transactions = $rootScope.transactionsData.results;
-                    if($rootScope.transactions == 0){
-                        $rootScope.transactionsStateMessage = 'No Transactions Have Been Found';
+                    $scope.transactionsData = res.data.data;
+                    $scope.transactions = $scope.transactionsData.results;
+                    if($scope.transactions == 0){
+                        $scope.transactionsStateMessage = 'No Transactions Have Been Found';
                         return;
                     }
 
-                    $rootScope.transactionsStateMessage = '';
+                    $scope.transactionsStateMessage = '';
                 }
             }).catch(function (error) {
                 $scope.loadingTransactions = false;
-                $rootScope.transactionsStateMessage = 'Failed To Load Data';
+                $scope.transactionsStateMessage = 'Failed To Load Data';
                 errorToasts.evaluateErrors(error.data.data);
             });
         };

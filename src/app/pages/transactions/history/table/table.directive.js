@@ -8,7 +8,6 @@
     function historyTable() {
         return {
             restrict: 'E',
-            controller: 'HistoryCtrl',
             templateUrl: 'app/pages/transactions/history/table/table.html'
         };
     }

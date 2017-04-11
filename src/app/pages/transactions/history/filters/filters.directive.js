@@ -8,7 +8,6 @@
     function historyFilters() {
         return {
             restrict: 'E',
-            controller: 'HistoryCtrl',
             templateUrl: 'app/pages/transactions/history/filters/filters.html'
         };
     }
