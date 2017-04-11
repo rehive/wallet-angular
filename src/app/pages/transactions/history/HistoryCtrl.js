@@ -59,7 +59,9 @@
                 if (res.status === 200) {
                   //adding currency as default value in both results array and ng-model of currency
                     res.data.data.results.splice(0,0,{code: 'Currency'});
-                    $rootScope.searchParams.searchCurrency.code = "Currency";
+                    if($rootScope.searchParams && $rootScope.searchParams.searchCurrency){
+                        $rootScope.searchParams.searchCurrency.code = 'Currency';
+                    }
                     $scope.currencyOptions = res.data.data.results;
                 }
             }).catch(function (error) {

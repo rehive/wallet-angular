@@ -36,7 +36,6 @@
         });
 
         vm.getCompanyCurrencies = function(){
-            //TODO: fix quick switching error with line 49 and 53
             $http.get(API + '/company/currencies/', {
                 headers: {
                     'Content-Type': 'application/json',
@@ -46,7 +45,9 @@
                 if (res.status === 200) {
                     //adding currency as default value in both results array and ng-model of currency
                     res.data.data.results.splice(0,0,{code: 'Currency'});
-                    $rootScope.usersSearchParams.searchCurrency.code = 'Currency';
+                    if($rootScope.usersSearchParams && $rootScope.usersSearchParams.searchCurrency){
+                        $rootScope.usersSearchParams.searchCurrency.code = 'Currency';
+                    }
                     $scope.currencyOptions = res.data.data.results;
                 }
             }).catch(function (error) {
