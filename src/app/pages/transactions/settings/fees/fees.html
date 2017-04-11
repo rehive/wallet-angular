@@ -1,41 +1,45 @@
-<div ba-panel class="deposits-menu" ba-panel-title="Transaction Fees" ba-panel-class="light-text with-scroll">
-    <table class="table fees-table table-striped ">
-        <tr class="black-muted-bg divider">
-            <th><b>Type</b></th>
-            <th><b>Amount</b></th>
-            <th><b>Percentage</b></th>
-            <th></th>
-        </tr>
-        <tr>
-            <td>Withdraw</td>
-            <td>2.00</td>
-            <td>10.00%</td>
-            <td class="currency-row-last-child">
-                <button class="btn btn-danger pull-right settings-fees-buttons">Delete</button>
-                <button class="btn btn-info pull-right settings-fees-buttons">Edit</button>
-            </td>
-        </tr>
-    </table>
+<div ng-show="editingFee == false">
+    <div ba-panel class="deposits-menu" ba-panel-title="Transaction Fees" ba-panel-class="light-text with-scroll">
+        <table class="table fees-table table-striped ">
+            <tr class="black-muted-bg divider">
+                <th><b>Type</b></th>
+                <th><b>Amount</b></th>
+                <th><b>Percentage</b></th>
+                <th></th>
+            </tr>
+            <tr>
+                <td>Withdraw</td>
+                <td>2.00</td>
+                <td>10.00%</td>
+                <td class="currency-row-last-child">
+                    <button class="btn btn-danger pull-right settings-fees-buttons">Delete</button>
+                    <button ng-click="toggleEditView()" class="btn btn-info pull-right settings-fees-buttons">Edit</button>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div ba-panel class="deposits-menu" ba-panel-title="Add Fee" ba-panel-class="light-text with-scroll">
+        <form name="feesForm" class="deposit-form">
+            <div class="form-group divider">
+                <label><b>Transaction Type</b></label>
+                <br>
+                <select class="form-control pointer" ng-model="feesParams.feeType" ng-options="type for type in typeOptions">
+                </select>
+            </div>
+            <div class="form-group">
+                <label><b>Fee Amount(Fixed value)</b> <span class="required-icon"></span></label>
+                <input type="number" ng-model="withdrawalData.amount" class="form-control"  placeholder="0.00">
+            </div>
+            <div class="form-group">
+                <label><b>Percentage (Calculated on transaction amount)</b> <span class="required-icon"></span></label>
+                <input type="number" ng-model="withdrawalData.percentage" class="form-control"  placeholder="%">
+            </div>
+            <div class="form-group">
+                <button class="btn btn-primary pull-right">Add</button>
+            </div>
+        </form>
+    </div>
 </div>
-
-<div ba-panel class="deposits-menu" ba-panel-title="Add Fee" ba-panel-class="light-text with-scroll">
-    <form name="feesForm" class="deposit-form">
-        <div class="form-group divider">
-            <label><b>Transaction Type</b></label>
-            <br>
-            <select class="form-control pointer" ng-model="feesParams.feeType" ng-options="type for type in typeOptions">
-            </select>
-        </div>
-        <div class="form-group">
-            <label><b>Fee Amount(Fixed value)</b> <span class="required-icon"></span></label>
-            <input type="number" ng-model="withdrawalData.amount" class="form-control"  placeholder="0.00">
-        </div>
-        <div class="form-group">
-            <label><b>Percentage (Calculated on transaction amount)</b> <span class="required-icon"></span></label>
-            <input type="number" ng-model="withdrawalData.percentage" class="form-control"  placeholder="%">
-        </div>
-        <div class="form-group">
-            <button ng-disabled="!feesForm.$valid" class="btn btn-primary pull-right">Add</button>
-        </div>
-    </form>
+<div ng-hide="editingFee == false">
+    <edit-fees></edit-fees>
 </div>

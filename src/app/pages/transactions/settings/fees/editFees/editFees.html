@@ -1,0 +1,21 @@
+<div ba-panel class="deposits-menu" ba-panel-title="Edit Fee" ba-panel-class="light-text with-scroll">
+    <form class="deposit-form">
+        <div class="form-group divider">
+            <label><b>Transaction Type</b></label>
+            <br>
+            <select class="form-control pointer" ng-model="editFees.feeType" ng-options="type for type in typeOptions">
+            </select>
+        </div>
+        <div class="form-group">
+            <label><b>Fee Amount(Fixed value)</b> <span class="required-icon"></span></label>
+            <input type="number" ng-model="editFees.feeAmount" class="form-control"  placeholder="0.00">
+        </div>
+        <div class="form-group">
+            <label><b>Percentage (Calculated on transaction amount)</b> <span class="required-icon"></span></label>
+            <input type="number" ng-model="editFees.feePercentage" class="form-control"  placeholder="%">
+        </div>
+        <div class="form-group">
+            <button ng-click="toggleEditView()" class="btn btn-primary pull-right">Edit</button>
+        </div>
+    </form>
+</div>
