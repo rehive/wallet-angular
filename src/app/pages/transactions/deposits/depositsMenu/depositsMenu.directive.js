@@ -9,7 +9,6 @@
     function depositsMenu() {
         return {
             restrict: 'E',
-            controller: 'DepositsCtrl',
             templateUrl: 'app/pages/transactions/deposits/depositsMenu/depositsMenu.html'
         };
     }

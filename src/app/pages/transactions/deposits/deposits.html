@@ -2,16 +2,16 @@
     <div class="col-lg-3 col-md-4 col-sm-12 col-xs-12">
         <deposits-menu></deposits-menu>
     </div>
-    <div ng-hide="confirmDepositView || completeDepositView || pendingDepositView" class="col-lg-6 col-md-8 col-sm-12 col-xs-12">
+    <div ng-show="showView == 'createDeposit'" class="col-lg-6 col-md-8 col-sm-12 col-xs-12">
         <create-deposit></create-deposit>
     </div>
-    <div ng-show="confirmDepositView" class="col-lg-6 col-md-8 col-sm-12 col-xs-12">
+    <div ng-show="showView == 'confirmDeposit'" class="col-lg-6 col-md-8 col-sm-12 col-xs-12">
         <confirm-deposit></confirm-deposit>
     </div>
-    <div ng-show="completeDepositView" class="col-lg-6 col-md-8 col-sm-12 col-xs-12">
+    <div ng-show="showView == 'completeDeposit'" class="col-lg-6 col-md-8 col-sm-12 col-xs-12">
         <complete-deposit></complete-deposit>
     </div>
-    <div ng-show="pendingDepositView" class="col-lg-9 col-md-8 col-sm-12 col-xs-12">
+    <div ng-show="showView == 'pendingDeposit'" class="col-lg-9 col-md-8 col-sm-12 col-xs-12">
         <pending-deposits></pending-deposits>
     </div>
 </div>

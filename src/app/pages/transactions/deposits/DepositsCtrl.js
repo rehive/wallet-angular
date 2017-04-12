@@ -20,9 +20,7 @@
 
         $scope.onGoingTransaction = false;
         $scope.showAdvancedOption = false;
-        $scope.confirmDepositView = false;
-        $scope.completeDepositView = false;
-        $scope.pendingDepositView =false;
+        $scope.showView = 'createDeposit';
         $scope.currencyImageUrl = "https://storage.googleapis.com/rehive-static/dashboard/dist/img/default_company_icon.png";
 
         $rootScope.$watch('selectedCurrency',function(){
@@ -32,13 +30,9 @@
             }
         });
 
-        $scope.toggleConfirmDepositView = function(confirmDepositView){
-            $scope.confirmDepositView = !confirmDepositView;
-        };
-
-        $scope.toggleCompleteDepositView = function(completeDepositView){
-            $scope.completeDepositView = !completeDepositView;
-        };
+        $scope.goToView = function(view){
+          $scope.showView = view;
+        }
 
         $scope.displayAdvancedOption = function () {
             $scope.showAdvancedOption = true;
@@ -46,8 +40,6 @@
 
         $scope.toggleDepositView = function(view) {
             $scope.showAdvancedOption = false;
-            $scope.confirmDepositView = false;
-            $scope.completeDepositView = false;
             $scope.depositData = {
                 user: null,
                 amount: null,
@@ -57,14 +49,13 @@
             };
 
             if(view == 'deposit'){
-                $scope.pendingDepositView = false;
+                $scope.goToView('createDeposit');
             } else{
-                $scope.pendingDepositView = true;
+                $scope.goToView('pendingDeposit');
             }
         };
 
         $scope.createDeposit = function () {
-            //console.log($scope.depositData);
             $scope.onGoingTransaction = true;
             // $http.post takes the params as follow post(url, data, {config})
             // https://docs.angularjs.org/api/ng/service/$http#post
@@ -78,8 +69,7 @@
                 $scope.onGoingTransaction = false;
                 if (res.status === 201) {
                     toastr.success('You have successfully deposited your money!');
-                    $scope.toggleConfirmDepositView($scope.confirmDepositView);
-                    $scope.toggleCompleteDepositView();
+                    $scope.goToView('completeDeposit');
                 }
             }).catch(function (error) {
                 $scope.onGoingTransaction = false;

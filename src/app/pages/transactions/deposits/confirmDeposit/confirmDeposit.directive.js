@@ -9,7 +9,6 @@
     function confirmDeposit() {
         return {
             restrict: 'E',
-            controller: 'DepositsCtrl',
             templateUrl: 'app/pages/transactions/deposits/confirmDeposit/confirmDeposit.html'
         };
     }
