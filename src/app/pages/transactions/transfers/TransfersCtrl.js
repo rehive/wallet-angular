@@ -67,7 +67,7 @@
                 }
             }).catch(function (error) {
                 $scope.onGoingTransaction = false;
-                errorToasts.evaluateErrors(error.data.data);
+                errorToasts.evaluateErrors(error.data);
             });
         }
 

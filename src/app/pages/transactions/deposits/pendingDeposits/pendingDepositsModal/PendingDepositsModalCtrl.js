@@ -30,7 +30,7 @@
                     $uibModalInstance.dismiss('cancel');
                 }
             }).catch(function (error) {
-                errorToasts.evaluateErrors(error.data.data);
+                errorToasts.evaluateErrors(error.data);
             });
         };
     }

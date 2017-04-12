@@ -10,7 +10,7 @@
             .state('transactions.settings', {
                 url: '/settings',
                 templateUrl: 'app/pages/transactions/settings/settings.html',
-                controller: "SettingsCtrl",
+                controller: "TransactionsSettingsCtrl",
                 title: 'Settings',
                 sidebarMeta: {
                     order: 500

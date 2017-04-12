@@ -28,7 +28,7 @@
                 }
             }).catch(function (error) {
                 $scope.transactionsStateMessage = 'Failed To Load Data';
-                errorToasts.evaluateErrors(error.data.data);
+                errorToasts.evaluateErrors(error.data);
             });
         };
         vm.getLatestTransactions();

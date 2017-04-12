@@ -99,7 +99,7 @@
             }).catch(function (error) {
                 $scope.loadingTransactions = false;
                 $scope.transactionsStateMessage = 'Failed To Load Data';
-                errorToasts.evaluateErrors(error.data.data);
+                errorToasts.evaluateErrors(error.data);
             });
         };
         $scope.getLatestTransactions();

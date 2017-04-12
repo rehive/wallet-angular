@@ -8,7 +8,6 @@
     function transactionsSettingsMenu() {
         return {
             restrict: 'E',
-            controller: 'SettingsCtrl',
             templateUrl: 'app/pages/transactions/settings/settingsMenu/settingsMenu.html'
         };
     }

@@ -27,7 +27,7 @@
                 }
             }).catch(function (error) {
                 $rootScope.$pageFinishedLoading = true;
-                errorToasts.evaluateErrors(error.data.data);
+                errorToasts.evaluateErrors(error.data);
             });
         };
 

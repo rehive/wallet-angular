@@ -2,10 +2,10 @@
     'use strict';
 
     angular.module('BlurAdmin.pages.transactions.settings')
-        .controller('SettingsCtrl', SettingsCtrl);
+        .controller('TransactionsSettingsCtrl', TransactionsSettingsCtrl);
 
     /** @ngInject */
-    function SettingsCtrl($rootScope,$scope,IMAGEURL) {
+    function TransactionsSettingsCtrl($rootScope,$scope,IMAGEURL) {
 
         $scope.currencyImageUrl = "https://storage.googleapis.com/rehive-static/dashboard/dist/img/default_company_icon.png";
 

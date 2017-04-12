@@ -25,7 +25,7 @@
                     $window.sessionStorage.currenciesList = JSON.stringify(res.data.data.results);
                 }
             }).catch(function (error) {
-                errorToasts.evaluateErrors(error.data.data);
+                errorToasts.evaluateErrors(error.data);
             });
         };
         vm.getCompanyCurrencies();

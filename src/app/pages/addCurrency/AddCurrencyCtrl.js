@@ -34,7 +34,7 @@
                     $scope.currencyOptions = res.data.data.results;
                 }
             }).catch(function (error) {
-                errorToasts.evaluateErrors(error.data.data);
+                errorToasts.evaluateErrors(error.data);
             });
         };
         vm.getCurrencies();
@@ -47,6 +47,6 @@
             $scope.showConfirmCurrency = false;
             $scope.showCompleteCurrency = true;
         }
-        
+
     }
 })();
