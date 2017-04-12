@@ -19,9 +19,7 @@
         };
         $scope.onGoingTransaction = false;
         $scope.showAdvancedOption = false;
-        $scope.confirmWithdrawalView = false;
-        $scope.completeWithdrawalView = false;
-        $scope.pendingWithdrawalView =false;
+        $scope.showView = 'createWithdrawal';
         $scope.currencyImageUrl = "https://storage.googleapis.com/rehive-static/dashboard/dist/img/default_company_icon.png";
 
         $rootScope.$watch('selectedCurrency',function(){
@@ -31,13 +29,9 @@
             }
         });
 
-        $scope.toggleConfirmWithdrawalView = function(confirmWithdrawalView){
-            $scope.confirmWithdrawalView = !confirmWithdrawalView;
-        };
-
-        $scope.toggleCompleteWithdrawalView = function(completeWithdrawalView){
-            $scope.completeWithdrawalView = !completeWithdrawalView;
-        };
+        $scope.goToView = function(view){
+          $scope.showView = view;
+        }
 
         $scope.displayAdvancedOption = function () {
             $scope.showAdvancedOption = true;
@@ -45,8 +39,6 @@
 
         $scope.toggleWithdrawalView = function(view) {
             $scope.showAdvancedOption = false;
-            $scope.confirmWithdrawalView = false;
-            $scope.completeWithdrawalView = false;
             $scope.withdrawalData = {
                 user: null,
                 amount: null,
@@ -56,9 +48,9 @@
             };
 
             if(view == 'withdrawal'){
-                $scope.pendingWithdrawalView = false;
+                $scope.goToView('createWithdrawal');
             } else{
-                $scope.pendingWithdrawalView = true;
+                $scope.goToView('pendingWithdrawal');
             }
         };
 
@@ -75,8 +67,7 @@
                 //console.log(res);
                 if (res.status === 201) {
                     toastr.success('You have successfully withdrawn the money!');
-                    $scope.toggleConfirmWithdrawalView($scope.confirmWithdrawalView);
-                    $scope.toggleCompleteWithdrawalView();
+                    $scope.goToView('completeWithdrawal');
                 }
             }).catch(function (error) {
                 $scope.onGoingTransaction = false;

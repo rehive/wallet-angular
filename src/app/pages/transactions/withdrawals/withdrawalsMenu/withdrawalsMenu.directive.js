@@ -9,7 +9,6 @@
     function withdrawalsMenu() {
         return {
             restrict: 'E',
-            controller: 'WithdrawalsCtrl',
             templateUrl: 'app/pages/transactions/withdrawals/withdrawalsMenu/withdrawalsMenu.html'
         };
     }

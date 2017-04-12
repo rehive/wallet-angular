@@ -2,16 +2,16 @@
     <div class="col-lg-3 col-md-4 col-sm-12 col-xs-12">
         <withdrawals-menu></withdrawals-menu>
     </div>
-    <div ng-hide="confirmWithdrawalView || completeWithdrawalView || pendingWithdrawalView" class="col-lg-6 col-md-8 col-sm-12 col-xs-12">
+    <div ng-show="showView == 'createWithdrawal'" class="col-lg-6 col-md-8 col-sm-12 col-xs-12">
         <create-withdrawal></create-withdrawal>
     </div>
-    <div ng-show="confirmWithdrawalView" class="col-lg-6 col-md-8 col-sm-12 col-xs-12">
+    <div ng-show="showView == 'confirmWithdrawal'" class="col-lg-6 col-md-8 col-sm-12 col-xs-12">
         <confirm-withdrawal></confirm-withdrawal>
     </div>
-    <div ng-show="completeWithdrawalView" class="col-lg-6 col-md-8 col-sm-12 col-xs-12">
+    <div ng-show="showView == 'completeWithdrawal'" class="col-lg-6 col-md-8 col-sm-12 col-xs-12">
         <complete-withdrawal></complete-withdrawal>
     </div>
-    <div ng-show="pendingWithdrawalView" class="col-lg-9 col-md-8 col-sm-12 col-xs-12">
+    <div ng-show="showView == 'pendingWithdrawal'" class="col-lg-9 col-md-8 col-sm-12 col-xs-12">
         <pending-withdrawals></pending-withdrawals>
     </div>
 </div>

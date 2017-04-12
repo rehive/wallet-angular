@@ -8,7 +8,6 @@
     function createWithdrawal() {
         return {
             restrict: 'E',
-            controller: 'WithdrawalsCtrl',
             templateUrl: 'app/pages/transactions/withdrawals/createWithdrawal/createWithdrawal.html'
         };
     }

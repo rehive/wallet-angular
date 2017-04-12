@@ -8,7 +8,6 @@
     function confirmWithdrawal() {
         return {
             restrict: 'E',
-            controller: 'WithdrawalsCtrl',
             templateUrl: 'app/pages/transactions/withdrawals/confirmWithdrawal/confirmWithdrawal.html'
         };
     }
