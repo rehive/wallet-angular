@@ -1,0 +1,59 @@
+<div ba-panel ba-panel-title="Administrator Info">
+    <div>
+        <div class="form-group">
+            <label><b>Email</b></label>
+            <p class="text-muted">test1@rehive.com</p>
+        </div>
+        <div class="form-group">
+            <label><b>First Name</b></label>
+            <input type="text" ng-model="administrator.firstName" class="form-control" placeholder="E.g Satoshi">
+        </div>
+        <div class="form-group">
+            <label><b>Last Name</b></label>
+            <input type="text" ng-model="administrator.lastName" class="form-control" placeholder="E.g Nakomoto">
+        </div>
+        <div class="form-group">
+            <label><b>Nationality</b></label>
+            <country-select class="form-control pointer" data-ng-model="administrator.country"></country-select>
+        </div>
+        <div class="form-group">
+            <label><b>Identity/Passport Numbere</b></label>
+            <input type="text" ng-model="administrator.identity" class="form-control" placeholder="E.g 891218666987">
+        </div>
+        <div class="form-group">
+            <button ng-click="goToView('confirmDeposit')" class="btn btn-primary pull-right">Save</button>
+        </div>
+    </div>
+</div>
+
+<div ba-panel ba-panel-title="Contact Details">
+    <div>
+        <div class="form-group">
+            <label><b>Mobile Number</b></label>
+            <input type="text" ng-model="administrator.mobileNumber" class="form-control" placeholder="E.g +27842380806">
+        </div>
+        <div class="form-group">
+            <label><b>Skype Name</b></label>
+            <input type="text" ng-model="administrator.skypeName" class="form-control" placeholder="E.g Satoshi">
+        </div>
+        <div class="form-group">
+            <button ng-click="goToView('confirmDeposit')" class="btn btn-primary pull-right">Save</button>
+        </div>
+    </div>
+</div>
+
+<div ba-panel ba-panel-title="Other">
+    <div>
+        <div class="form-group">
+            <label><b>Language</b></label>
+            <input type="text" ng-model="administrator.mobileNumber" class="form-control" placeholder="E.g +27842380806">
+        </div>
+        <div class="form-group">
+            <label><b>Timezone</b></label>
+            <input type="text" ng-model="administrator.skypeName" class="form-control" placeholder="E.g Satoshi">
+        </div>
+        <div class="form-group">
+            <button ng-click="goToView('confirmDeposit')" class="btn btn-primary pull-right">Save</button>
+        </div>
+    </div>
+</div>

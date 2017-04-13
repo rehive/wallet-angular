@@ -1,7 +1,7 @@
-$text-color: grey;
+$text-color: #494242;
 
 .form-control, .form-control:focus {
-  @include placeholderStyle($text-color, 0.9);
+  @include placeholderStyle($text-color, 0.5);
   border-radius: 0;
   color: $text-color;
 }
