@@ -5,17 +5,23 @@
         .controller('SettingsCtrl', SettingsCtrl);
 
     /** @ngInject */
-    function SettingsCtrl($scope,API,IMAGEURL,$http,cookieManagement,errorToasts) {
+    function SettingsCtrl($scope,API,IMAGEURL,$http,cookieManagement,errorToasts,$window) {
 
         var vm = this;
         vm.token = cookieManagement.getCookie('TOKEN');
         $scope.settingView = 'accountInfo';
         $scope.companyImageUrl = "https://storage.googleapis.com/rehive-static/dashboard/dist/img/default_company_icon.png";
+        $scope.company = {
+            defaultCurrency: {
+                code : 'USD'
+            }
+        };
         $scope.administrator = {
             firstName: '',
             lastName: '',
             country: 'ZA'
         };
+        $scope.currencyOptions = JSON.parse($window.sessionStorage.currenciesList);
 
 
         vm.getCompanyDetails = function(){
@@ -31,7 +37,7 @@
             }).catch(function (error) {
                 errorToasts.evaluateErrors(error.data);
             });
-          }
+          };
           vm.getCompanyDetails();
 
         $scope.goToSetting = function(view){
