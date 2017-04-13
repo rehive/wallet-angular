@@ -15,7 +15,7 @@
 }
 
 .deposits-menu .deposits-menu-options{
-  padding: 10px;
+  padding: 5px 0;
   box-sizing: border-box;
 }
 
@@ -25,6 +25,10 @@
 
 .deposit-form .required-icon{
   color: #ff7171;
+}
+
+.deposits-menu > .panel > .panel-body{
+  padding: 15px 10px;
 }
 
 .apply-button{
