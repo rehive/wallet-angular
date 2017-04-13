@@ -5,12 +5,13 @@
         .controller('PageTopCtrl', PageTopCtrl);
 
     /** @ngInject */
-    function PageTopCtrl($rootScope,$scope,$http,cookieManagement,API,$location,errorToasts,$window) {
+    function PageTopCtrl($rootScope,$scope,$http,cookieManagement,API,$location,errorToasts,$window,_) {
         var vm = this;
 
         $scope.companyName = cookieManagement.getCookie('COMPANY');
         vm.token = cookieManagement.getCookie('TOKEN');
         $scope.currencies = [];
+        vm.currentLocation = $location.path();
 
         vm.getCompanyCurrencies = function(){
             $http.get(API + '/company/currencies/', {
@@ -28,7 +29,9 @@
                 errorToasts.evaluateErrors(error.data);
             });
         };
-        vm.getCompanyCurrencies();
+        if(vm.currentLocation != '/login'){
+            vm.getCompanyCurrencies();
+        }
 
         $scope.selectCurrency = function(selectedCurrency){
             $rootScope.selectedCurrency = selectedCurrency;
