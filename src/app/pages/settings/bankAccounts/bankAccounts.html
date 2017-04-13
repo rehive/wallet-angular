@@ -1,0 +1,44 @@
+<!--ng-show="editingFee == true"-->
+<div >
+    <div ba-panel class="setting-bank-accounts" ba-panel-title="Bank Accounts" ba-panel-class="light-text with-scroll">
+        <table class="table table-striped setting-bank-accounts-table">
+            <tr>
+                <td>Barclays, 47484950</td>
+                <td>
+                    <button class="btn btn-danger pull-right settings-fees-buttons">Delete</button>
+                    <button ng-click="toggleEditView()" class="btn btn-info pull-right settings-fees-buttons">Edit</button>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div ba-panel ba-panel-title="Add Bank Account" ba-panel-class="light-text with-scroll">
+        <form class="deposit-form">
+            <div class="form-group">
+                <label><b>Account Name/Holder</b></label>
+                <input type="text" ng-model="bankData.accountName" class="form-control"  placeholder="E.g Currency Corp">
+            </div>
+            <div class="form-group">
+                <label><b>Account Number</b></label>
+                <input type="text" ng-model="bankData.accountName" class="form-control"  placeholder="E.g 5246357653">
+            </div>
+            <div class="form-group">
+                <label><b>Account Type</b></label>
+                <input type="text" ng-model="bankData.accountName" class="form-control"  placeholder="E.g Cheque/Current/Savings">
+            </div>
+            <div class="form-group">
+                <label><b>Bank Name</b></label>
+                <input type="text" ng-model="bankData.accountName" class="form-control"  placeholder="E.g Saharah Bank Ltd">
+            </div>
+            <div class="form-group">
+                <label><b>Bank Code</b></label>
+                <input type="text" ng-model="bankData.accountName" class="form-control"  placeholder="E.g 456798">
+            </div>
+            <div class="form-group">
+                <button class="btn btn-primary pull-right">Add</button>
+            </div>
+        </form>
+    </div>
+</div>
+<div ng-hide="editingFee == false">
+    <!--<edit-fees></edit-fees>-->
+</div>
