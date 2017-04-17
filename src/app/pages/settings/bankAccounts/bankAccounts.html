@@ -1,5 +1,4 @@
-<!--ng-show="editingFee == true"-->
-<div >
+<div ng-hide="editingBankAccounts">
     <div ba-panel class="setting-bank-accounts" ba-panel-title="Bank Accounts" ba-panel-class="light-text with-scroll">
         <table class="table table-striped setting-bank-accounts-table">
             <tr>
@@ -31,7 +30,31 @@
             </div>
             <div class="form-group">
                 <label><b>Bank Code</b></label>
+                <input type="text" ng-model="bankData.accountName" class="form-control"  placeholder="E.g 342543">
+            </div>
+            <div class="form-group">
+                <label><b>Branch Code</b></label>
                 <input type="text" ng-model="bankData.accountName" class="form-control"  placeholder="E.g 456798">
+            </div>
+            <div class="form-group">
+                <label><b>Bank/Branch Address</b></label>
+                <input type="text" ng-model="bankData.accountName" class="form-control divider"  placeholder="Address line 1">
+                <input type="text" ng-model="bankData.accountName" class="form-control divider"  placeholder="Address line 2">
+                <input type="text" ng-model="bankData.accountName" class="form-control divider"  placeholder="City">
+                <country-select class="form-control pointer divider" data-ng-model="administrator.country"></country-select>
+                <input type="text" ng-model="bankData.accountName" class="form-control divider"  placeholder="Code/Zipcode">
+            </div>
+            <div class="form-group">
+                <label><b>SWIFT</b></label>
+                <input type="text" ng-model="bankData.accountName" class="form-control"  placeholder="E.g FDDODUMM">
+            </div>
+            <div class="form-group">
+                <label><b>IBAN</b></label>
+                <input type="text" ng-model="bankData.accountName" class="form-control"  placeholder="E.g DE41700333001189190812">
+            </div>
+            <div class="form-group">
+                <label><b>BIC</b></label>
+                <input type="text" ng-model="bankData.accountName" class="form-control"  placeholder="E.g FDDODUMMXXX">
             </div>
             <div class="form-group">
                 <button class="btn btn-primary pull-right">Add</button>
@@ -39,6 +62,6 @@
         </form>
     </div>
 </div>
-<div ng-hide="editingFee == false">
-    <!--<edit-fees></edit-fees>-->
+<div ng-show="editingBankAccounts">
+    <edit-bank-account></edit-bank-account>
 </div>
