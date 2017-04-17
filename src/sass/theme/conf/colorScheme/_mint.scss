@@ -4,7 +4,7 @@ $default-text: #666666;
 $help-text: #949494;
 $label-text: #ffffff;
 
-$disabled: #dddddd;
+$disabled: rgba(22, 21, 21, 0.52);;
 $disabled-bg: tint($disabled, 15%);
 $border: #d6d6d6;
 $border-light: tint($border, 15%);
