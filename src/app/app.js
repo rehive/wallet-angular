@@ -31,6 +31,8 @@ angular.module('BlurAdmin', [
                 newUrlArray = newUrl.split('/'),
                 newUrlLastElement = _.last(newUrlArray);
 
+            $rootScope.securityConfigured = true;
+
             if(token) {
                 $rootScope.gotToken = true;
             } else if(newUrlLastElement == 'register' || newUrlLastElement == 'resetPassword'){

@@ -7,8 +7,9 @@
 
   angular.module('BlurAdmin.pages', [
     'ui.router',
+    'BlurAdmin.pages.changePassword',
     'BlurAdmin.pages.settings',
-    'BlurAdmin.pages.currency',
+    'BlurAdmin.pages.addCurrency',
     'BlurAdmin.pages.dashboard',
     'BlurAdmin.pages.transactions',
     'BlurAdmin.pages.users',

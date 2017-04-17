@@ -1,7 +1,7 @@
 (function () {
     'use strict';
 
-    angular.module('BlurAdmin.pages.currency')
+    angular.module('BlurAdmin.pages.addCurrency')
         .directive('completeCurrency', completeCurrency);
 
     /** @ngInject */

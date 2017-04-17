@@ -26,10 +26,11 @@
 </head>
 <body>
 <div ng-hide="gotToken" ui-view="admin" ></div>
+<div ng-hide="securityConfigured" ui-view="security" ></div>
 <div class="body-bg"></div>
 <main ng-if="$pageFinishedLoading" ng-class="{ 'menu-collapsed': $baSidebarService.isMenuCollapsed() }">
 
-  <div ng-show="gotToken"> <!-- ng-show -->
+  <div ng-show="gotToken && securityConfigured"> <!-- ng-show -->
   <ba-sidebar></ba-sidebar>
   <page-top></page-top>
 
