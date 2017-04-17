@@ -2,13 +2,13 @@
     'use strict';
 
     angular.module('BlurAdmin.pages.settings')
-        .directive('editSubtype', editSubtype);
+        .directive('editWebhook', editWebhook);
 
     /** @ngInject */
-    function editSubtype() {
+    function editWebhook() {
         return {
             restrict: 'E',
-            templateUrl: 'app/pages/settings/subtypes/editSubtype/editSubtype.html'
+            templateUrl: 'app/pages/settings/webhooks/editWebhook/editWebhook.html'
         };
     }
 })();

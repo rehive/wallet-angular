@@ -1,0 +1,45 @@
+<div ng-hide="editingWebhooks">
+    <div ba-panel ba-panel-title="Transaction Subtypes" ba-panel-class="light-text with-scroll">
+        <table class="table fees-table table-striped ">
+            <tr class="black-muted-bg divider">
+                <th><b>Type</b></th>
+                <th><b>URL</b></th>
+                <th><b>Secret</b></th>
+                <th></th>
+            </tr>
+            <tr>
+                <td>Deposit</td>
+                <td>http://requestb.in/1ioi4ar1</td>
+                <td>bli</td>
+                <td class="currency-row-last-child">
+                    <button class="btn btn-danger pull-right settings-fees-buttons">Delete</button>
+                    <button ng-click="toggleWebhooksEditView()" class="btn btn-info pull-right settings-fees-buttons">Edit</button>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div ba-panel ba-panel-title="Add Webhook" ba-panel-class="light-text with-scroll">
+        <form name="webhooksForm" class="deposit-form">
+            <div class="form-group divider">
+                <label><b>Transaction Type</b> <span class="required-icon">*</span></label>
+                <br>
+                <select class="form-control pointer" ng-model="webhooksParams.type" ng-options="type for type in typeOptions" required>
+                </select>
+            </div>
+            <div class="form-group">
+                <label><b>Webhook URL</b> <span class="required-icon">*</span></label>
+                <input type="text" ng-model="withdrawalData.name" class="form-control"  placeholder="URL" required>
+            </div>
+            <div class="form-group">
+                <label><b>Webhook Secret</b> <span class="required-icon">*</span></label>
+                <input type="text" ng-model="withdrawalData.name" class="form-control"  placeholder="Secret" required>
+            </div>
+            <div class="form-group">
+                <button ng-disabled="!webhooksForm.$valid" class="btn btn-primary pull-right">Add</button>
+            </div>
+        </form>
+    </div>
+</div>
+<div ng-show="editingWebhooks">
+    <edit-webhook></edit-webhook>
+</div>
