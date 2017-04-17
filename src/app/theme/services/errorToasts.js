@@ -9,7 +9,7 @@
 
         return {
             evaluateErrors: function (errors) {
-              if(errors.data){
+              if(errors && errors.data){
                 for(var key in errors.data){
                     if (errors.data.hasOwnProperty(key)) {
                         errors.data[key].forEach(function(error){

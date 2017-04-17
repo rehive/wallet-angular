@@ -10,7 +10,7 @@
             .state('changePassword', {
                 url: '/changePassword',
                 views:{
-                    'security':{
+                    'securityViews':{
                         templateUrl: 'app/pages/changePassword/changePassword.html',
                         controller: 'ChangePasswordCtrl'
                     }

@@ -41,6 +41,11 @@ angular.module('BlurAdmin', [
                 $rootScope.gotToken = false;
                 $location.path('/login');
             }
+
+            //checking if changing password or setting up 2 factor authentication
+            if(newUrlLastElement == 'changePassword'){
+                $rootScope.securityConfigured = false;
+            }
         })
     });
 

@@ -21,7 +21,7 @@
             lastName: '',
             country: 'ZA'
         };
-        $scope.currencyOptions = JSON.parse($window.sessionStorage.currenciesList);
+        $scope.currencyOptions = JSON.parse($window.sessionStorage.currenciesList || []);
 
 
         vm.getCompanyDetails = function(){
