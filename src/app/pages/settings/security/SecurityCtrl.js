@@ -15,5 +15,9 @@
             $location.path('/changePassword');
         };
 
+        $scope.enableTwoFactorAuth = function(){
+            $location.path('/twoFactorAuthentication');
+        };
+
     }
 })();

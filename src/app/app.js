@@ -43,7 +43,7 @@ angular.module('BlurAdmin', [
             }
 
             //checking if changing password or setting up 2 factor authentication
-            if(newUrlLastElement == 'changePassword'){
+            if(newUrlLastElement == 'changePassword' || newUrlLastElement == 'twoFactorAuthentication'){
                 $rootScope.securityConfigured = false;
             }
         })
