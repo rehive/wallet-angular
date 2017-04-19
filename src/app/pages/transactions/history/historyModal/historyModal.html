@@ -8,7 +8,7 @@
     <div class="modal-body">
         <div class="row">
             <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-                <b>From: </b>
+                <p><strong>From: </strong></p>
             </div>
             <div col-lg-8 col-md-8 col-sm-8 col-xs-8>
                 <p ng-bind="transaction.from_reference"></p>
@@ -16,7 +16,7 @@
         </div>
         <div class="row">
             <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-                <b>To: </b>
+                <p><strong>To: </strong></p>
             </div>
             <div col-lg-8 col-md-8 col-sm-8 col-xs-8>
                 <p ng-bind="transaction.to_reference"></p>
@@ -24,7 +24,7 @@
         </div>
         <div class="row">
             <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-                <b>Type: </b>
+                <p><strong>Type: </strong></p>
             </div>
             <div col-lg-8 col-md-8 col-sm-8 col-xs-8>
                 <p ng-bind="transaction.tx_type"></p>
@@ -32,7 +32,7 @@
         </div>
         <div class="row">
             <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-                <b>Currency: </b>
+                <p><strong>Currency: </strong></p>
             </div>
             <div col-lg-8 col-md-8 col-sm-8 col-xs-8>
                 <p ng-bind="transaction.currency.code"></p>
@@ -40,7 +40,7 @@
         </div>
         <div class="row">
             <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-                <b>Account: </b>
+                <p><strong>Account: </strong></p>
             </div>
             <div col-lg-8 col-md-8 col-sm-8 col-xs-8>
                 <p ng-bind="transaction.from_account"></p>
@@ -48,7 +48,7 @@
         </div>
         <div class="row">
             <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-                <b>Amount: </b>
+                <p><strong>Amount: </strong></p>
             </div>
             <div col-lg-8 col-md-8 col-sm-8 col-xs-8>
                 <p ng-bind="transaction.amount"></p>
@@ -56,7 +56,7 @@
         </div>
         <div class="row">
             <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-                <b>Fee: </b>
+                <p><strong>Fee: </strong></p>
             </div>
             <div col-lg-8 col-md-8 col-sm-8 col-xs-8>
                 <p ng-bind="transaction.fee"></p>
@@ -64,7 +64,7 @@
         </div>
         <div class="row">
             <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-                <b>Code: </b>
+                <p><strong>Code: </strong></p>
             </div>
             <div col-lg-8 col-md-8 col-sm-8 col-xs-8>
                 <p ng-bind="transaction.tx_code"></p>
@@ -72,7 +72,7 @@
         </div>
         <div class="row">
             <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-                <b>Balance: </b>
+                <p><strong>Balance: </strong></p>
             </div>
             <div col-lg-8 col-md-8 col-sm-8 col-xs-8>
                 <p ng-bind="transaction.to_balance"></p>
@@ -80,7 +80,7 @@
         </div>
         <div class="row">
             <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-                <b>Metadata: </b>
+                <p><strong>Metadata: </strong></p>
             </div>
             <div ng-show="metadata" class="metadata" col-lg-8 col-md-8 col-sm-8 col-xs-8>
                 <pre ng-bind="metadata"></pre>
@@ -88,7 +88,7 @@
         </div>
         <div class="row">
             <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-                <b>Date: </b>
+                <p><strong>Date: </strong></p>
             </div>
             <div col-lg-8 col-md-8 col-sm-8 col-xs-8>
                 <p>{{transaction.created | date:'mediumDate'}} {{transaction.created | date:'shortTime'}}</p>

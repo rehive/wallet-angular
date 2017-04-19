@@ -11,7 +11,7 @@
 }
 
 .margin-right{
-  margin-right: 20px;
+  margin-right: 10px;
 }
 
 .deposits-menu .deposits-menu-options{
@@ -50,7 +50,7 @@
 }
 
 .subscript{
-  margin-top: 2px;
+  margin-top: 3px;
   font-size: small;
 }
 
@@ -67,16 +67,14 @@
   padding: 0;
 }
 
-.tier-form .panel > .panel-body{
- padding: 0 22px 15px 22px;
+.tier-form .panel-body h2{
+ margin: 0 0 10px 0;
 }
 
-.tier-form{
-  button{
-    margin-top: 15px;
-  }
+.transaction-history-pagination{
+  margin-bottom: 0;
 }
 
-.bank-accounts .bank-accounts-hr{
-  margin: 15px 0;
+.confirm-transaction > p {
+  margin-bottom: 20px;
 }

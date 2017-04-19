@@ -32,7 +32,7 @@
         <h4 ng-hide="transactionsStateMessage == ''" ng-bind="transactionsStateMessage"></h4>
         <loading-image ng-show="transactionsStateMessage == ''"></loading-image>
     </div>
-    <div class="add-row-editable-table">
+    <div ng-show="transactions.length > 0" class="add-row-editable-table">
         <a href="/#/transactions/history"><button class="btn btn-primary pull-right" ng-click="">View All</button></a>
     </div>
 </div>

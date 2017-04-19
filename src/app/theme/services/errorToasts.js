@@ -18,7 +18,9 @@
                     }
                 };
               } else{
-                toastr.error(errors.message, 'Message');
+                  if(errors){
+                      toastr.error(errors.message, 'Message');
+                  }
               }
             }
         }

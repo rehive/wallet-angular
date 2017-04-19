@@ -28,24 +28,24 @@
 </div>
 
 <div class="row">
-    <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12 divider">
+    <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12">
         <label><b>Subtype</b></label>
         <input type="text"  class="form-control" id="subtype"  placeholder="Enter Subtype" ng-model="searchParams.searchSubType" size="12">
     </div>
-    <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12 divider">
+    <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12">
         <label><b>Currency</b></label>
         <br>
         <select class="form-control pointer" ng-model="searchParams.searchCurrency"
                 ng-options="currency.code for currency in currencyOptions track by currency.code">
         </select>
     </div>
-    <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12 divider">
+    <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12">
         <label><b>Status</b></label>
         <br>
         <select class="form-control pointer" ng-model="searchParams.searchStatus" ng-options="status for status in statusOptions">
         </select>
     </div>
-    <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12 divider">
+    <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12">
         <label><b>Order By</b></label>
         <br>
         <select class="form-control pointer" ng-model="searchParams.searchOrderBy" ng-options="orderBy for orderBy in orderByOptions">

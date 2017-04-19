@@ -1,5 +1,5 @@
 <div ng-hide="editingWebhooks">
-    <div ba-panel ba-panel-title="Transaction Subtypes" ba-panel-class="light-text with-scroll">
+    <div ba-panel ba-panel-title="Transaction Webhooks" ba-panel-class="light-text with-scroll">
         <table class="table fees-table table-striped ">
             <tr class="black-muted-bg divider">
                 <th><b>Type</b></th>
@@ -20,7 +20,7 @@
     </div>
     <div ba-panel ba-panel-title="Add Webhook" ba-panel-class="light-text with-scroll">
         <form name="webhooksForm" class="deposit-form">
-            <div class="form-group divider">
+            <div class="form-group">
                 <label><b>Transaction Type</b> <span class="required-icon">*</span></label>
                 <br>
                 <select class="form-control pointer" ng-model="webhooksParams.type" ng-options="type for type in typeOptions" required>

@@ -49,7 +49,7 @@ $modal-input-border: #e7e7e7;
     }
   }
   .modal-header {
-    border: none;
+    border-bottom: 1px solid $modal-input-border;
     .close{
       margin-top: -5px;
     }

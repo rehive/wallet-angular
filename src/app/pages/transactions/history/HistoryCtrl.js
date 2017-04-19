@@ -12,7 +12,7 @@
         vm.currenciesList = JSON.parse($window.sessionStorage.currenciesList);
 
         $scope.pagination = {
-            itemsPerPage: 25,
+            itemsPerPage: 26,
             pageNo: 1,
             maxSize: 5
         };

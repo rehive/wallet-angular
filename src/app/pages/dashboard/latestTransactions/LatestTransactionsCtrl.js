@@ -13,7 +13,7 @@
         vm.token = cookieManagement.getCookie('TOKEN');
 
         vm.getLatestTransactions = function(){
-            $http.get(API + '/admin/transactions/?page_size=3&orderby=-created', {
+            $http.get(API + '/admin/transactions/?page_size=4&orderby=-created', {
                 headers: {
                     'Content-Type': 'application/json',
                     'Authorization': vm.token
