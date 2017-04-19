@@ -31,6 +31,7 @@ angular.module('BlurAdmin', [
                 newUrlArray = newUrl.split('/'),
                 newUrlLastElement = _.last(newUrlArray);
 
+            //using to check if user is in changing password or setting up 2 factor authentication
             $rootScope.securityConfigured = true;
 
             if(token) {
