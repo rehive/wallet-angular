@@ -1,27 +1,27 @@
 <div ba-panel ba-panel-title="Company Info">
     <div>
         <div class="form-group">
-            <label><b>Company Name</b></label>
+            <label><strong>Company Name</strong></label>
             <input type="text" ng-model="company.companyName" class="form-control" placeholder="Company">
         </div>
         <div class="form-group">
-            <label><b>Company Description</b></label>
+            <label><strong>Company Description</strong></label>
             <textarea rows="4" ng-model="company.description" class="form-control" placeholder="E.g Currency Corp is a registered financial services provider."></textarea>
         </div>
         <div class="form-group">
-            <label><b>Website URL</b></label>
+            <label><strong>Website URL</strong></label>
             <input type="text" ng-model="company.websiteUrl" class="form-control" placeholder="E.g http://www.zapgo.co">
         </div>
         <div class="form-group">
-            <label><b>Password Reset URL</b></label>
+            <label><strong>Password Reset URL</strong></label>
             <input type="text" ng-model="company.passwordResetUrl" class="form-control" placeholder="E.g http://www.rehive.com/reset/password/">
         </div>
         <div class="form-group">
-            <label><b>Email Confirmation URL</b></label>
+            <label><strong>Email Confirmation URL</strong></label>
             <input type="text" ng-model="company.emailConfirmationUrl" class="form-control" placeholder="E.g http://www.rehive.com/verify/email/">
         </div>
         <div class="form-group">
-            <label><b>Default Currency</b></label>
+            <label><strong>Default Currency</strong></label>
             <br>
             <select class="form-control pointer" ng-model="company.defaultCurrency"
                     ng-options="currency.code for currency in currencyOptions track by currency.code">
@@ -36,23 +36,23 @@
 <div ba-panel ba-panel-title="Company Address">
     <div>
         <div class="form-group">
-            <label><b>Address Line 1</b></label>
+            <label><strong>Address Line 1</strong></label>
             <input type="text" ng-model="company.address1" class="form-control" placeholder="Address Line 1">
         </div>
         <div class="form-group">
-            <label><b>Address Line 2</b></label>
+            <label><strong>Address Line 2</strong></label>
             <input type="text" ng-model="company.address2" class="form-control" placeholder="Address Line 2">
         </div>
         <div class="form-group">
-            <label><b>City</b></label>
+            <label><strong>City</strong></label>
             <input type="text" ng-model="company.city" class="form-control" placeholder="City">
         </div>
         <div class="form-group">
-            <label><b>Country</b></label>
+            <label><strong>Country</strong></label>
             <country-select class="form-control pointer" data-ng-model="company.country"></country-select>
         </div>
         <div class="form-group">
-            <label><b>Code/Zipcode</b></label>
+            <label><strong>Code/Zipcode</strong></label>
             <input type="text" ng-model="company.zipcode" class="form-control" placeholder="Code/Zipcode">
         </div>
         <div class="form-group">

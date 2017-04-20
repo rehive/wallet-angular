@@ -1,26 +1,26 @@
 <div class="row">
     <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12 divider">
-        <label><b>Code</b></label>
+        <label><strong>Code</strong></label>
         <input type="text"  class="form-control" id="code"  placeholder="Enter Transaction Code" ng-model="searchParams.searchTxCode" size="12">
     </div>
     <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12 divider">
-        <label><b>From</b></label>
+        <label><strong>From</strong></label>
         <input type="text"  class="form-control" id="from"  placeholder="Enter Email address" ng-model="searchParams.searchUserFrom" size="12">
     </div>
     <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12 divider">
-        <label><b>To</b></label>
+        <label><strong>To</strong></label>
         <input type="text"  class="form-control" id="to"  placeholder="Enter Email address." ng-model="searchParams.searchUserTo" size="12">
     </div>
     <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12 divider">
-        <label><b>From Date</b></label>
+        <label><strong>From Date</strong></label>
         <input type="date" ng-model="searchParams.searchDateFrom" class="form-control" id="date_from"  placeholder="Date From">
     </div>
     <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12 divider">
-        <label><b>To Date</b></label>
+        <label><strong>To Date</strong></label>
         <input type="date" ng-model="searchParams.searchDateTo" class="form-control" id="date_to"  placeholder="Date To">
     </div>
     <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12 divider">
-        <label><b>Type</b></label>
+        <label><strong>Type</strong></label>
         <br>
         <select class="form-control pointer" ng-model="searchParams.searchType" ng-options="type for type in typeOptions">
         </select>
@@ -29,24 +29,24 @@
 
 <div class="row">
     <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12">
-        <label><b>Subtype</b></label>
+        <label><strong>Subtype</strong></label>
         <input type="text"  class="form-control" id="subtype"  placeholder="Enter Subtype" ng-model="searchParams.searchSubType" size="12">
     </div>
     <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12">
-        <label><b>Currency</b></label>
+        <label><strong>Currency</strong></label>
         <br>
         <select class="form-control pointer" ng-model="searchParams.searchCurrency"
                 ng-options="currency.code for currency in currencyOptions track by currency.code">
         </select>
     </div>
     <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12">
-        <label><b>Status</b></label>
+        <label><strong>Status</strong></label>
         <br>
         <select class="form-control pointer" ng-model="searchParams.searchStatus" ng-options="status for status in statusOptions">
         </select>
     </div>
     <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12">
-        <label><b>Order By</b></label>
+        <label><strong>Order By</strong></label>
         <br>
         <select class="form-control pointer" ng-model="searchParams.searchOrderBy" ng-options="orderBy for orderBy in orderByOptions">
         </select>

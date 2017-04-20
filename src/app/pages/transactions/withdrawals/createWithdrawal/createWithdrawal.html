@@ -1,15 +1,15 @@
 <div ba-panel  ba-panel-title="Create Withdrawal" ba-panel-class="light-text">
     <form name="withdrawalForm" class="deposit-form">
         <div class="form-group">
-            <label><b>User</b> <span class="required-icon">*</span></label>
+            <label><strong>User</strong> <span class="required-icon">*</span></label>
             <input type="email" ng-model="withdrawalData.user" class="form-control" placeholder="E.g email@domain.com" required>
         </div>
         <div class="form-group">
-            <label><b>Amount</b> <span class="required-icon">*</span></label>
+            <label><strong>Amount</strong> <span class="required-icon">*</span></label>
             <input type="number" ng-model="withdrawalData.amount" class="form-control"  placeholder="E.g 100000000" required>
         </div>
         <div class="form-group">
-            <label><b>Reference</b></label>
+            <label><strong>Reference</strong></label>
             <input type="text" ng-model="withdrawal.reference" class="form-control"  placeholder="E.g # 1234">
         </div>
         <div class="form-group">
@@ -21,7 +21,7 @@
                     <input type="checkbox"  ng-model="withdrawalData.confirm_on_create">
                     <span>Confirm on create</span>
                 </label>
-                <i uib-tooltip-html="'<b>Complete withdrawal immediately after creation, it will override the normal behaviour of requiring an update or manual “completion” via the dashboard</b>'" class="ion-information-circled"></i>
+                <i uib-tooltip-html="'<strong>Complete withdrawal immediately after creation, it will override the normal behaviour of requiring an update or manual “completion” via the dashboard</strong>'" class="ion-information-circled"></i>
             </div>
         </div>
         <div class="form-group">
