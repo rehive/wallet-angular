@@ -1,1 +1,34 @@
-<h1>No Services Available</h1>
+<div ba-panel ba-panel-title="Services" ba-panel-class=" with-scroll" >
+    <div>
+        <table class="table">
+            <tr  width="15%" class="black-muted-bg">
+                <td><strong>Logo</strong></td>
+                <td><strong>Name</strong></td>
+                <td><strong>Description</strong></td>
+                <td></td>
+            </tr>
+            <tr class="editable-row center">
+                <td width="15%"><img ng-src="{{defaultImageUrl}}" class="logo"></td>
+                <td  width="15%">Teller Service</td>
+                <td width="30%">Human teller network for exchanging cash.</td>
+                <td><a href="" ><button class="btn btn-primary pull-right currencies-buttons">Activate</button></a></td>
+            </tr>
+            <tr class="editable-row center">
+                <td width="15%"><img ng-src="{{defaultImageUrl}}" class="logo"></td>
+                <td width="15%">Stellar Service</td>
+                <td width="30%">Manage digital currencies on the Stellar Network.</td>
+                <td><a href="" ><button class="btn btn-primary pull-right currencies-buttons">Activate</button></a></td>
+            </tr>
+            <tr class="editable-row center">
+                <td width="15%"><img ng-src="{{defaultImageUrl}}" class="logo"></td>
+                <td width="15%">Bitcoin Service</td>
+                <td width="30%">Enable bitcoin sending and receiving.</td>
+                <td>
+                    <a href="#/bitcoinService" ><button class="btn btn-primary pull-right currencies-buttons">Manage</button></a>
+                    <a href="" ><button class="btn btn-danger pull-right currencies-buttons">Deactivate</button></a>
+                </td>
+            </tr>
+        </table>
+        <hr class="no-margin hr-top-border">
+    </div>
+</div>

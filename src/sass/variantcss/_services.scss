@@ -1,0 +1,12 @@
+.accordian-buttons{
+  &> a > button{
+    margin-bottom: 20px;
+    width: 100%;
+  }
+  &> a > button:first-child{
+    padding-left: 0;
+  }
+  &> a > button:last-child{
+    padding-right: 0;
+  }
+}
