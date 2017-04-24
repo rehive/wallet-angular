@@ -27,7 +27,7 @@
                 <p><strong>Type: </strong></p>
             </div>
             <div col-lg-8 col-md-8 col-sm-8 col-xs-8>
-                <p ng-bind="transaction.tx_type">
+                <p ng-bind="transaction.tx_type | capitalizeWord">
             </div>
         </div>
         <div class="row">
@@ -43,7 +43,7 @@
                 <p><strong>Account: </strong></p>
             </div>
             <div col-lg-8 col-md-8 col-sm-8 col-xs-8>
-                <p ng-bind="transaction.from_account">
+                <p ng-bind="transaction.from_account | capitalizeWord">
             </div>
         </div>
         <div class="row">

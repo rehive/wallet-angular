@@ -16,7 +16,7 @@
             class="editable-row center pointer">
             <td><div title="{{transaction.from_reference}}" class="history-table" ng-bind="transaction.from_reference"></div></td>
             <td><div title="{{transaction.to_reference}}" class="history-table" ng-bind="transaction.to_reference"></div></td>
-            <td><div title="{{transaction.tx_type}}" class="history-table" ng-bind="transaction.tx_type"></div></td>
+            <td><div title="{{transaction.tx_type}}" class="history-table" ng-bind="transaction.tx_type | capitalizeWord"></div></td>
             <td><div title="{{transaction.subtype}}" class="history-table" ng-bind="transaction.subtype || 'None'"></div></td>
             <td><div title="{{transaction.currency.code}}" class="history-table" ng-bind="transaction.currency.code"></div></td>
             <td><div title="{{transaction.amount}}" class="history-table" ng-bind="transaction.amount"></div></td>

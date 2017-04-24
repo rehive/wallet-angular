@@ -5,7 +5,7 @@
         .controller('HistoryCtrl', HistoryCtrl);
 
     /** @ngInject */
-    function HistoryCtrl($scope,API,$http,cookieManagement,$uibModal,errorToasts,$window) {
+    function HistoryCtrl($scope,API,$http,cookieManagement,$uibModal,errorToasts,$window,stringService) {
 
         var vm = this;
         vm.token = cookieManagement.getCookie('TOKEN');
