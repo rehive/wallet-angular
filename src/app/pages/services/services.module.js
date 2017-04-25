@@ -3,7 +3,8 @@
 
     angular.module('BlurAdmin.pages.services', [
         "BlurAdmin.pages.services.bitcoinService",
-        "BlurAdmin.pages.services.bitcoinService.bitcoinServiceTransactions"
+        "BlurAdmin.pages.services.bitcoinService.bitcoinServiceTransactions",
+        "BlurAdmin.pages.services.bitcoinService.bitcoinServiceUsers"
     ])
         .config(routeConfig);
 
