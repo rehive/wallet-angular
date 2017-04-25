@@ -2,7 +2,8 @@
     'use strict';
 
     angular.module('BlurAdmin.pages.services', [
-        "BlurAdmin.bitcoinService"
+        "BlurAdmin.pages.services.bitcoinService",
+        "BlurAdmin.pages.services.bitcoinService.bitcoinServiceTransactions"
     ])
         .config(routeConfig);
 

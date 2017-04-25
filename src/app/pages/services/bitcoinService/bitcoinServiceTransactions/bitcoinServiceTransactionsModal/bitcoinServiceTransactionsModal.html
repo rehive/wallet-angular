@@ -1,0 +1,101 @@
+<div class="modal-content">
+    <div class="modal-header">
+        <button type="button" class="close" ng-click="$dismiss()" aria-label="Close">
+            <em class="ion-ios-close-empty sn-link-close"></em>
+        </button>
+        <h4 class="modal-title" id="myModalLabel">Bitcoin Service Transaction Details</h4>
+    </div>
+    <div class="modal-body">
+        <div class="row">
+            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                <p><strong>From: </strong></p>
+            </div>
+            <div col-lg-8 col-md-8 col-sm-8 col-xs-8>
+                <p ng-bind="transaction.from_reference"></p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                <p><strong>To: </strong></p>
+            </div>
+            <div col-lg-8 col-md-8 col-sm-8 col-xs-8>
+                <p ng-bind="transaction.to_reference"></p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                <p><strong>Type: </strong></p>
+            </div>
+            <div col-lg-8 col-md-8 col-sm-8 col-xs-8>
+                <p ng-bind="transaction.tx_type | capitalizeWord"></p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                <p><strong>Currency: </strong></p>
+            </div>
+            <div col-lg-8 col-md-8 col-sm-8 col-xs-8>
+                <p ng-bind="transaction.currency.code"></p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                <p><strong>Account: </strong></p>
+            </div>
+            <div col-lg-8 col-md-8 col-sm-8 col-xs-8>
+                <p ng-bind="transaction.from_account | capitalizeWord"></p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                <p><strong>Amount: </strong></p>
+            </div>
+            <div col-lg-8 col-md-8 col-sm-8 col-xs-8>
+                <p ng-bind="transaction.amount"></p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                <p><strong>Fee: </strong></p>
+            </div>
+            <div col-lg-8 col-md-8 col-sm-8 col-xs-8>
+                <p ng-bind="transaction.fee"></p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                <p><strong>Code: </strong></p>
+            </div>
+            <div col-lg-8 col-md-8 col-sm-8 col-xs-8>
+                <p ng-bind="transaction.tx_code"></p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                <p><strong>Balance: </strong></p>
+            </div>
+            <div col-lg-8 col-md-8 col-sm-8 col-xs-8>
+                <p ng-bind="transaction.to_balance"></p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                <p><strong>Metadata: </strong></p>
+            </div>
+            <div ng-show="metadata" class="metadata" col-lg-8 col-md-8 col-sm-8 col-xs-8>
+                <pre ng-bind="metadata"></pre>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                <p><strong>Date: </strong></p>
+            </div>
+            <div col-lg-8 col-md-8 col-sm-8 col-xs-8>
+                <p>{{transaction.created | date:'mediumDate'}} {{transaction.created | date:'shortTime'}}</p>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-primary" ng-click="$dismiss()">Close</button>
+    </div>
+</div>

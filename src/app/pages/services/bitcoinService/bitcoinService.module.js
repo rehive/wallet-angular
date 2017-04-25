@@ -1,7 +1,7 @@
 (function () {
     'use strict';
 
-    angular.module('BlurAdmin.bitcoinService', [])
+    angular.module('BlurAdmin.pages.services.bitcoinService', [])
         .config(routeConfig);
 
     /** @ngInject */

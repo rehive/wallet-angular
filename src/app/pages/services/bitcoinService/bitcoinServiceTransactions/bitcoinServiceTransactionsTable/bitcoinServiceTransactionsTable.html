@@ -1,0 +1,38 @@
+<div ng-show="transactions.length > 0" class="divider">
+    <table class="table table-condensed table-striped table-hover ">
+        <tr class="black-muted-bg">
+            <td><strong>From</strong></td>
+            <td><strong>To</strong></td>
+            <td><strong>Type</strong></td>
+            <td><strong>Subtype</strong></td>
+            <td><strong>Currency</strong></td>
+            <td><strong>Amount</strong></td>
+            <td><strong>Fee</strong></td>
+            <td><strong>Status</strong></td>
+            <td><strong>Date</strong></td>
+        </tr>
+        <tr ng-repeat="transaction in transactions " data-toggle="modal"
+            ng-click="openModal('app/pages/services/bitcoinService/bitcoinServiceTransactions/bitcoinServiceTransactionsModal/bitcoinServiceTransactionsModal.html', 'md',transaction)"
+            class="editable-row center pointer">
+            <td><div title="{{transaction.from_reference}}" class="history-table" ng-bind="transaction.from_reference"></div></td>
+            <td><div title="{{transaction.to_reference}}" class="history-table" ng-bind="transaction.to_reference"></div></td>
+            <td><div title="{{transaction.tx_type}}" class="history-table" ng-bind="transaction.tx_type | capitalizeWord"></div></td>
+            <td><div title="{{transaction.subtype}}" class="history-table" ng-bind="transaction.subtype || 'None'"></div></td>
+            <td><div title="{{transaction.currency.code}}" class="history-table" ng-bind="transaction.currency.code"></div></td>
+            <td><div title="{{transaction.amount}}" class="history-table" ng-bind="transaction.amount"></div></td>
+            <td><div title="{{transaction.fee}}" class="history-table" ng-bind="transaction.fee"></div></td>
+            <td><div title="{{transaction.status}}" class="history-table" ng-bind="transaction.status"></div></td>
+            <td><div title="{{transaction.created | date:'mediumDate'}} {{transaction.created | date:'shortTime'}}" class="history-table">
+              {{transaction.created | date:'mediumDate'}} {{transaction.created | date:'shortTime'}}</div></td>
+        </tr>
+    </table>
+    <div>
+        <p uib-pagination boundary-links="true" items-per-page="pagination.itemsPerPage"  total-items="transactionsData.count" ng-model="pagination.pageNo"
+           max-size="pagination.maxSize" class="pagination-sm pull-right transaction-history-pagination" force-ellipses="true" ng-change="getLatestTransactions()"
+           previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;"></p>
+    </div>
+</div>
+<div ng-show="transactions.length == 0">
+    <h4 ng-hide="transactionsStateMessage == ''" ng-bind="transactionsStateMessage"></h4>
+    <loading-image ng-show="transactionsStateMessage == ''"></loading-image>
+</div>
