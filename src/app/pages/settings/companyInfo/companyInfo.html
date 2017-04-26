@@ -2,7 +2,7 @@
     <div>
         <div class="form-group">
             <label><strong>Company Name</strong></label>
-            <input type="text" ng-model="company.companyName" class="form-control" placeholder="Company">
+            <input type="text" ng-model="company.name" class="form-control" placeholder="Company">
         </div>
         <div class="form-group">
             <label><strong>Company Description</strong></label>
@@ -10,20 +10,20 @@
         </div>
         <div class="form-group">
             <label><strong>Website URL</strong></label>
-            <input type="text" ng-model="company.websiteUrl" class="form-control" placeholder="E.g http://www.zapgo.co">
+            <input type="text" ng-model="company.website" class="form-control" placeholder="E.g http://www.zapgo.co">
         </div>
         <div class="form-group">
             <label><strong>Password Reset URL</strong></label>
-            <input type="text" ng-model="company.passwordResetUrl" class="form-control" placeholder="E.g http://www.rehive.com/reset/password/">
+            <input type="text" ng-model="company.password_reset_url" class="form-control" placeholder="E.g http://www.rehive.com/reset/password/">
         </div>
         <div class="form-group">
             <label><strong>Email Confirmation URL</strong></label>
-            <input type="text" ng-model="company.emailConfirmationUrl" class="form-control" placeholder="E.g http://www.rehive.com/verify/email/">
+            <input type="text" ng-model="company.email_confirmation_url" class="form-control" placeholder="E.g http://www.rehive.com/verify/email/">
         </div>
         <div class="form-group">
             <label><strong>Default Currency</strong></label>
             <br>
-            <select class="form-control pointer" ng-model="company.defaultCurrency"
+            <select class="form-control pointer" ng-model="company.default_currency"
                     ng-options="currency.code for currency in currencyOptions track by currency.code">
             </select>
         </div>

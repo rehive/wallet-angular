@@ -12,8 +12,8 @@
         $scope.settingView = 'accountInfo';
         $scope.companyImageUrl = "https://storage.googleapis.com/rehive-static/dashboard/dist/img/default_company_icon.png";
         $scope.company = {
-            defaultCurrency: {
-                code : 'USD'
+            default_currency: {
+                code : 'XBT'
             }
         };
         $scope.administrator = {
@@ -25,7 +25,7 @@
 
 
         vm.getCompanyDetails = function(){
-            $http.get(API + '/company/', {
+            $http.get(API + '/admin/company/', {
                 headers: {
                     'Content-Type': 'application/json',
                     'Authorization': vm.token
