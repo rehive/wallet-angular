@@ -1,6 +1,7 @@
 'use strict';
 
 angular.module('BlurAdmin', [
+    'ngFileUpload',
     'ngCookies',
     'ngAnimate',
     'ui.bootstrap',

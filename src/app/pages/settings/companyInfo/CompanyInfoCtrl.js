@@ -25,7 +25,6 @@
             }).then(function (res) {
                 $scope.loadingAccountInfo = false;
                 if (res.status === 200) {
-                    console.log(res.data.data);
                     $scope.company = res.data.data;
                 }
             }).catch(function (error) {
