@@ -2,50 +2,50 @@
     <form class="deposit-form">
         <div class="form-group">
             <label><strong>Account Name/Holder</strong></label>
-            <input type="text" ng-model="bankData.accountName" class="form-control"  placeholder="E.g Currency Corp">
+            <input type="text" ng-change="bankAccountChanged('name')" ng-model="editBankData.name" class="form-control"  placeholder="E.g Currency Corp">
         </div>
         <div class="form-group">
             <label><strong>Account Number</strong></label>
-            <input type="text" ng-model="bankData.accountName" class="form-control"  placeholder="E.g 5246357653">
+            <input type="text" ng-change="bankAccountChanged('number')" ng-model="editBankData.number" class="form-control"  placeholder="E.g 5246357653">
         </div>
         <div class="form-group">
             <label><strong>Account Type</strong></label>
-            <input type="text" ng-model="bankData.accountName" class="form-control"  placeholder="E.g Cheque/Current/Savings">
+            <input type="text" ng-change="bankAccountChanged('type')" ng-model="editBankData.type" class="form-control"  placeholder="E.g Cheque/Current/Savings">
         </div>
         <div class="form-group">
             <label><strong>Bank Name</strong></label>
-            <input type="text" ng-model="bankData.accountName" class="form-control"  placeholder="E.g Saharah Bank Ltd">
+            <input type="text"  ng-change="bankAccountChanged('bank_name')" ng-model="editBankData.bank_name" class="form-control"  placeholder="E.g Saharah Bank Ltd">
         </div>
         <div class="form-group">
             <label><strong>Bank Code</strong></label>
-            <input type="text" ng-model="bankData.accountName" class="form-control"  placeholder="E.g 342543">
+            <input type="text" ng-change="bankAccountChanged('bank_code')" ng-model="editBankData.bank_code" class="form-control"  placeholder="E.g 342543">
         </div>
         <div class="form-group">
             <label><strong>Branch Code</strong></label>
-            <input type="text" ng-model="bankData.accountName" class="form-control"  placeholder="E.g 456798">
+            <input type="text" ng-change="bankAccountChanged('branch_code')" ng-model="editBankData.branch_code" class="form-control"  placeholder="E.g 456798">
         </div>
         <div class="form-group">
             <label><strong>Bank/Branch Address</strong></label>
-            <input type="text" ng-model="bankData.accountName" class="form-control divider"  placeholder="Address line 1">
-            <input type="text" ng-model="bankData.accountName" class="form-control divider"  placeholder="Address line 2">
-            <input type="text" ng-model="bankData.accountName" class="form-control divider"  placeholder="City">
-            <country-select class="form-control pointer divider" data-ng-model="administrator.country"></country-select>
-            <input type="text" ng-model="bankData.accountName" class="form-control divider"  placeholder="Code/Zipcode">
+            <input type="text" ng-model="es" class="form-control divider"  placeholder="Address line 1">
+            <input type="text" ng-model="er" class="form-control divider"  placeholder="Address line 2">
+            <input type="text" ng-model="et" class="form-control divider"  placeholder="City">
+            <country-select class="form-control pointer divider" data-ng-model="eq"></country-select>
+            <input type="text" ng-model="ew" class="form-control divider"  placeholder="Code/Zipcode">
         </div>
         <div class="form-group">
             <label><strong>SWIFT</strong></label>
-            <input type="text" ng-model="bankData.accountName" class="form-control"  placeholder="E.g FDDODUMM">
+            <input type="text" ng-change="bankAccountChanged('swift')" ng-model="editBankData.swift" class="form-control"  placeholder="E.g FDDODUMM">
         </div>
         <div class="form-group">
             <label><strong>IBAN</strong></label>
-            <input type="text" ng-model="bankData.accountName" class="form-control"  placeholder="E.g DE41700333001189190812">
+            <input type="text" ng-change="bankAccountChanged('iban')" ng-model="editBankData.iban" class="form-control"  placeholder="E.g DE41700333001189190812">
         </div>
         <div class="form-group">
             <label><strong>BIC</strong></label>
-            <input type="text" ng-model="bankData.accountName" class="form-control"  placeholder="E.g FDDODUMMXXX">
+            <input type="text" ng-change="bankAccountChanged('bic')" ng-model="editBankData.bic" class="form-control"  placeholder="E.g FDDODUMMXXX">
         </div>
         <div class="form-group">
-            <button ng-click="" class="btn btn-primary pull-right">Add</button>
+            <button ng-click="updateBankAccount()" class="btn btn-primary pull-right">Save</button>
             <button ng-click="toggleEditBankAccountsView()" class="btn btn-primary pull-right margin-right">Back</button>
         </div>
     </form>

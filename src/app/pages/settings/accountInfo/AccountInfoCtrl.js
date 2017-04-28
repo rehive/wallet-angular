@@ -5,7 +5,7 @@
         .controller('AccountInfoCtrl', AccountInfoCtrl);
 
     /** @ngInject */
-    function AccountInfoCtrl($scope,API,IMAGEURL,$http,cookieManagement,errorToasts) {
+    function AccountInfoCtrl($scope,API,IMAGEURL,$http,cookieManagement,errorToasts,toastr) {
 
         var vm = this;
         vm.token = cookieManagement.getCookie('TOKEN');
@@ -46,6 +46,7 @@
                 $scope.loadingAccountInfo = false;
                 if (res.status === 200) {
                     $scope.administrator = res.data.data;
+                    toastr.success('You have successfully updated the administrator info!');
                 }
                 vm.updatedAdministrator = {};
             }).catch(function (error) {

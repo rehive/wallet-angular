@@ -1,0 +1,15 @@
+<div class="modal-content">
+    <div class="modal-header">
+        <button type="button" class="close" ng-click="$dismiss()" aria-label="Close">
+            <em class="ion-ios-close-empty sn-link-close"></em>
+        </button>
+        <h4 class="modal-title" id="myModalLabel">Delete Bank Account</h4>
+    </div>
+    <div class="modal-body">
+        <p>{{bankAccount.name}}, {{bankAccount.number}}</p>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-info pull-left" ng-click="$dismiss()">Close</button>
+        <button ng-click="deleteBankAccount()" type="button" class="btn btn-danger pull-right" ng-click="">Delete</button>
+    </div>
+</div>

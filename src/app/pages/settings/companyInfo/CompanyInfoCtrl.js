@@ -5,7 +5,7 @@
         .controller('CompanyInfoCtrl', CompanyInfoCtrl);
 
     /** @ngInject */
-    function CompanyInfoCtrl($scope,API,IMAGEURL,$http,cookieManagement,errorToasts) {
+    function CompanyInfoCtrl($scope,API,toastr,$http,cookieManagement,errorToasts) {
 
         var vm = this;
         vm.token = cookieManagement.getCookie('TOKEN');
@@ -48,6 +48,7 @@
                 $scope.loadingCompanyInfo = false;
                 if (res.status === 200) {
                     $scope.company = res.data.data;
+                    toastr.success('You have successfully updated the company info!');
                 }
             }).catch(function (error) {
                 $scope.loadingCompanyInfo = false;
