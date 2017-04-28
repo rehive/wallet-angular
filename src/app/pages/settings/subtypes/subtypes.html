@@ -8,24 +8,14 @@
                 <th><strong>Description</strong></th>
                 <th></th>
             </tr>
-            <tr>
-                <td>Transfer</td>
-                <td>hello</td>
-                <td>qweq</td>
-                <td>fesd</td>
+            <tr ng-repeat="subtype in subtypes | orderBy: 'created'">
+                <td ng-bind="subtype.tx_type | capitalizeWord"></td>
+                <td title="{{subtype.name}}" ng-bind="subtype.name | limitTo: 6"></td>
+                <td title="{{subtype.label}}" ng-bind="subtype.label || 'None' | limitTo: 6"></td>
+                <td title="{{subtype.description}}" ng-bind="subtype.description || 'None' | limitTo:6"></td>
                 <td class="currency-row-last-child">
-                    <button class="btn btn-danger pull-right settings-fees-buttons">Delete</button>
-                    <button ng-click="toggleSubtypeEditView()" class="btn btn-info pull-right settings-fees-buttons">Edit</button>
-                </td>
-            </tr>
-            <tr>
-                <td>Withdraw</td>
-                <td>purchase</td>
-                <td>None</td>
-                <td>None</td>
-                <td class="currency-row-last-child">
-                    <button class="btn btn-danger pull-right settings-fees-buttons">Delete</button>
-                    <button ng-click="toggleSubtypeEditView()" class="btn btn-info pull-right settings-fees-buttons">Edit</button>
+                    <button ng-click="openSubtypeModal('app/pages/settings/subtypes/subtypeModal/subtypeModal.html','md',subtype)" class="btn btn-danger pull-right settings-fees-buttons">Delete</button>
+                    <button ng-click="toggleSubtypeEditView(subtype)" class="btn btn-info pull-right settings-fees-buttons">Edit</button>
                 </td>
             </tr>
         </table>
@@ -35,23 +25,23 @@
             <div class="form-group">
                 <label><strong>Transaction Type</strong> <span class="required-icon">*</span></label>
                 <br>
-                <select class="form-control pointer" ng-model="subtypesParams.type" ng-options="type for type in typeOptions" required>
+                <select class="form-control pointer" ng-model="newSubtype.tx_type" ng-options="type for type in typeOptions" required>
                 </select>
             </div>
             <div class="form-group">
                 <label><strong>Name</strong> <span class="required-icon">*</span></label>
-                <input type="text" ng-model="withdrawalData.name" class="form-control"  placeholder="Name" required>
+                <input type="text" ng-model="newSubtype.name" class="form-control"  placeholder="Name" required>
             </div>
             <div class="form-group">
                 <label><strong>Label</strong></label>
-                <input type="text" ng-model="withdrawalData.name" class="form-control"  placeholder="Label">
+                <input type="text" ng-model="newSubtype.label" class="form-control"  placeholder="Label">
             </div>
             <div class="form-group">
                 <label><strong>Description</strong></label>
-                <input type="text" ng-model="withdrawalData.name" class="form-control"  placeholder="Description">
+                <input type="text" ng-model="newSubtype.description" class="form-control"  placeholder="Description">
             </div>
             <div class="form-group">
-                <button ng-disabled="!subtypeForm.$valid" class="btn btn-primary pull-right">Add</button>
+                <button ng-disabled="!subtypeForm.$valid" ng-click="addSubtype()" class="btn btn-primary pull-right">Add</button>
             </div>
         </form>
     </div>

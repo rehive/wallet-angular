@@ -5,7 +5,7 @@
         .controller('BankAccountsCtrl', BankAccountsCtrl);
 
     /** @ngInject */
-    function BankAccountsCtrl($scope,API,$uibModal,toastr,$http,cookieManagement,errorToasts) {
+    function BankAccountsCtrl($scope,API,$uibModal,toastr,$http,cookieManagement,errorToasts,$window) {
 
         var vm = this;
         vm.token = cookieManagement.getCookie('TOKEN');
@@ -52,6 +52,7 @@
                     vm.getBankAccounts();
                     toastr.success('You have successfully added the bank account!');
                     $scope.newBankData = {};
+                    $window.scrollTo(0, 0);
                 }
             }).catch(function (error) {
                 $scope.loadingBankAccounts = false;
@@ -64,6 +65,7 @@
         };
 
         $scope.updateBankAccount = function () {
+            $window.scrollTo(0, 0);
             $scope.editingBankAccounts = !$scope.editingBankAccounts;
             $scope.loadingBankAccounts = true;
             $http.patch(API + '/admin/bank-accounts/'+ $scope.editBankData.id, vm.updatedBankAccount, {
