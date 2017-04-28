@@ -12,11 +12,11 @@
         $scope.companyImageUrl = "https://storage.googleapis.com/rehive-static/dashboard/dist/img/default_company_icon.png";
 
         $scope.changePassword = function(){
-            $location.path('/changePassword');
+            $location.path('/password/change');
         };
 
         $scope.enableTwoFactorAuth = function(){
-            $location.path('/twoFactorAuthentication');
+            $location.path('/authentication/two-factor');
         };
 
     }

@@ -8,7 +8,7 @@
     function routeConfig($stateProvider) {
         $stateProvider
             .state('changePassword', {
-                url: '/changePassword',
+                url: '/password/change',
                 views:{
                     'securityViews':{
                         templateUrl: 'app/pages/changePassword/changePassword.html',

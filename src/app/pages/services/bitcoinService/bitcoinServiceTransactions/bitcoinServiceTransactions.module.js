@@ -8,7 +8,7 @@
     function routeConfig($stateProvider,$urlRouterProvider) {
         $stateProvider
             .state('bitcoinServiceTransactions', {
-                url: '/bitcoinServiceTransactions',
+                url: '/services/bitcoin/transactions',
                 templateUrl: 'app/pages/services/bitcoinService/bitcoinServiceTransactions/bitcoinServiceTransactions.html',
                 controller: "BitcoinServiceTransactionsCtrl",
                 title: 'Transactions'

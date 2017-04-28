@@ -34,10 +34,10 @@ angular.module('BlurAdmin', [
 
             //using to check if user is in changing password or setting up 2 factor authentication
             $rootScope.securityConfigured = true;
-
+            
             if(token) {
                 $rootScope.gotToken = true;
-            } else if(newUrlLastElement == 'register' || newUrlLastElement == 'resetPassword'){
+            } else if(newUrlLastElement == 'register' || newUrlLastElement == 'reset'){
                 // do nothing
             } else {
                 $rootScope.gotToken = false;
@@ -45,7 +45,7 @@ angular.module('BlurAdmin', [
             }
 
             //checking if changing password or setting up 2 factor authentication
-            if(newUrlLastElement == 'changePassword' || newUrlLastElement == 'twoFactorAuthentication'){
+            if(newUrlLastElement == 'change' || newUrlLastElement == 'two-factor'){
                 $rootScope.securityConfigured = false;
             }
         })

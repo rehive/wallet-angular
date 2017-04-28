@@ -27,7 +27,7 @@
 
 
         $scope.goToAddCurrency = function(){
-            $location.path('/add_currency');
+            $location.path('/currency/add');
         }
     }
 })();

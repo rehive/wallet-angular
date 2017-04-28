@@ -8,7 +8,7 @@
     function routeConfig($stateProvider) {
         $stateProvider
             .state('twoFactorAuthentication', {
-                url: '/twoFactorAuthentication',
+                url: '/authentication/two-factor',
                 views:{
                     'securityViews':{
                         templateUrl: 'app/pages/twoFactorAuth/twoFactorAuth.html',
