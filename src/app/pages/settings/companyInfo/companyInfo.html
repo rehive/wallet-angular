@@ -2,33 +2,32 @@
     <div>
         <div class="form-group">
             <label><strong>Company Name</strong></label>
-            <input type="text" ng-model="company.name" class="form-control" placeholder="Company">
+            <input type="text" ng-change="companyInfoChanged('name')" ng-model="company.name" class="form-control" placeholder="Company">
         </div>
         <div class="form-group">
             <label><strong>Company Description</strong></label>
-            <textarea rows="4" ng-model="company.description" class="form-control" placeholder="E.g Currency Corp is a registered financial services provider."></textarea>
+            <textarea rows="4" ng-change="companyInfoChanged('description')" ng-model="company.description" class="form-control" placeholder="E.g Currency Corp is a registered financial services provider."></textarea>
         </div>
         <div class="form-group">
             <label><strong>Website URL</strong></label>
-            <input type="text" ng-model="company.website" class="form-control" placeholder="E.g http://www.zapgo.co">
+            <input type="text" ng-change="companyInfoChanged('website')" ng-model="company.website" class="form-control" placeholder="E.g http://www.zapgo.co">
         </div>
         <div class="form-group">
             <label><strong>Password Reset URL</strong></label>
-            <input type="text" ng-model="company.password_reset_url" class="form-control" placeholder="E.g http://www.rehive.com/reset/password/">
+            <input type="text" ng-change="companyInfoChanged('password_reset_url')" ng-model="company.password_reset_url" class="form-control" placeholder="E.g http://www.rehive.com/reset/password/">
         </div>
         <div class="form-group">
             <label><strong>Email Confirmation URL</strong></label>
-            <input type="text" ng-model="company.email_confirmation_url" class="form-control" placeholder="E.g http://www.rehive.com/verify/email/">
+            <input type="text" ng-change="companyInfoChanged('email_confirmation_url')" ng-model="company.email_confirmation_url" class="form-control" placeholder="E.g http://www.rehive.com/verify/email/">
         </div>
         <div class="form-group">
             <label><strong>Default Currency</strong></label>
             <br>
-            <select class="form-control pointer" ng-model="company.default_currency"
-                    ng-options="currency.code for currency in currencyOptions track by currency.code">
+            <select class="form-control pointer" ng-change="companyInfoChanged('default_currency')" ng-model="company.default_currency" ng-options="currency for currency in currencies">
             </select>
         </div>
         <div class="form-group">
-            <button ng-click="goToView('confirmDeposit')" class="btn btn-primary pull-right">Save</button>
+            <button ng-click="updateCompanyInfo()" class="btn btn-primary pull-right">Save</button>
         </div>
     </div>
 </div>
@@ -37,7 +36,7 @@
     <div>
         <div class="form-group">
             <label><strong>Address Line 1</strong></label>
-            <input type="text" ng-model="company.address1" class="form-control" placeholder="Address Line 1">
+            <input type="text"  ng-model="company.address1" class="form-control" placeholder="Address Line 1">
         </div>
         <div class="form-group">
             <label><strong>Address Line 2</strong></label>

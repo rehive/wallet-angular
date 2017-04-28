@@ -34,7 +34,7 @@ angular.module('BlurAdmin', [
 
             //using to check if user is in changing password or setting up 2 factor authentication
             $rootScope.securityConfigured = true;
-            
+
             if(token) {
                 $rootScope.gotToken = true;
             } else if(newUrlLastElement == 'register' || newUrlLastElement == 'reset'){
