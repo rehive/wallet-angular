@@ -27,6 +27,11 @@
                 }
             }).catch(function (error) {
                 errorToasts.evaluateErrors(error.data);
+                if(error.status == 403){
+                    cookieManagement.deleteCookie('TOKEN');
+                    cookieManagement.deleteCookie('COMPANY');
+                    $location.path('/login');
+                }
             });
         };
         if(vm.currentLocation != '/login'){

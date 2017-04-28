@@ -9,7 +9,7 @@
 
         var vm = this;
         vm.token = cookieManagement.getCookie('TOKEN');
-        $scope.settingView = 'subtypes';
+        $scope.settingView = 'accountInfo';
         $scope.companyImageUrl = "https://storage.googleapis.com/rehive-static/dashboard/dist/img/default_company_icon.png";
         $scope.currencyOptions = JSON.parse($window.sessionStorage.currenciesList || '[]');
         $scope.updatingLogo = false;
