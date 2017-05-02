@@ -1,6 +1,6 @@
 <div ng-hide="editingSubtype">
-    <div ba-panel ba-panel-title="Transaction Subtypes" ba-panel-class="light-text with-scroll">
-        <table class="table fees-table table-striped ">
+    <div ba-panel class="setting-bank-accounts" ba-panel-title="Transaction Subtypes" ba-panel-class="light-text with-scroll">
+        <table class="table fees-table table-striped setting-bank-accounts-table">
             <tr class="black-muted-bg divider">
                 <th><strong>Type</strong></th>
                 <th><strong>Name</strong></th>
@@ -9,14 +9,14 @@
                 <th></th>
             </tr>
             <tr ng-repeat="subtype in subtypes | orderBy: 'created'">
-                <td ng-bind="subtype.tx_type | capitalizeWord"></td>
-                <td title="{{subtype.name}}" ng-bind="subtype.name | limitTo: 6"></td>
-                <td title="{{subtype.label}}" ng-bind="subtype.label || 'None' | limitTo: 6"></td>
-                <td title="{{subtype.description}}" ng-bind="subtype.description || 'None' | limitTo:6"></td>
-                <td class="currency-row-last-child">
+                <th ng-bind="subtype.tx_type | capitalizeWord"></th>
+                <th title="{{subtype.name}}" ng-bind="subtype.name | limitTo: 8"></th>
+                <th title="{{subtype.label}}" ng-bind="subtype.label || 'None' | limitTo: 6"></th>
+                <th title="{{subtype.description}}" ng-bind="subtype.description || 'None' | limitTo:6"></th>
+                <th class="currency-row-last-child">
                     <button ng-click="openSubtypeModal('app/pages/settings/subtypes/subtypeModal/subtypeModal.html','md',subtype)" class="btn btn-danger pull-right settings-fees-buttons">Delete</button>
                     <button ng-click="toggleSubtypeEditView(subtype)" class="btn btn-info pull-right settings-fees-buttons">Edit</button>
-                </td>
+                </th>
             </tr>
         </table>
     </div>
