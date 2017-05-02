@@ -9,11 +9,11 @@
             <td><strong>Last Login</strong></td>
         </tr>
         <tr ng-repeat="user in users " class="editable-row center">
-            <td><a href="/#/user/details"><div title="{{user.email}}" class="history-table" ng-bind="user.email"></div></a></td>
-            <td><div title="{{user.currency}}" class="history-table" ng-bind="user.currency"></div></td>
-            <td><div title="{{user.balance}}" class="history-table" ng-bind="user.balance"></div></td>
-            <td><div title="{{user.joined}}" class="history-table" ng-bind="user.joined"></div></td>
-            <td><div title="{{user.created | date:'mediumDate'}} {{transaction.created | date:'shortTime'}}" class="history-table">
+            <td><a href="/#/user/details"><div title="{{user.email}}" class="transactions-list-element" ng-bind="user.email"></div></a></td>
+            <td><div title="{{user.currency}}" class="transactions-list-element" ng-bind="user.currency"></div></td>
+            <td><div title="{{user.balance}}" class="transactions-list-element" ng-bind="user.balance"></div></td>
+            <td><div title="{{user.joined}}" class="transactions-list-element" ng-bind="user.joined"></div></td>
+            <td><div title="{{user.created | date:'mediumDate'}} {{transaction.created | date:'shortTime'}}" class="transactions-list-element">
                 {{user.created | date:'mediumDate'}} {{transaction.created | date:'shortTime'}}</div></td>
         </tr>
     </table>

@@ -1,10 +1,8 @@
-// css by Aquibur Rahman Khan
-
 .divider{
   margin-bottom: 20px;
 }
 
-.logo{
+.currency-logo{
   height: 60px;
   width: 60px;
   margin: 10px 0;
@@ -18,21 +16,15 @@
   border-top: 1px solid gainsboro;
 }
 
-.currencies-buttons{
+.button-width-100-no-right-margin{
   margin: 10px 0 10px 10px;
   width: 100px;
 }
 
-.table > tbody > tr > .currency-row-last-child:last-child {
+.table > tbody > tr > .no-right-padding-last-child:last-child {
   padding-right: 0;
 }
 
 .pointer{
   cursor: pointer;
 }
-
-.add-currency-link button{
-  margin-bottom: 20px;
-}
-
-// css by Aquibur Rahman Khan end

@@ -14,15 +14,15 @@
         <tr ng-repeat="transaction in transactions " data-toggle="modal"
             ng-click="openModal('app/pages/transactions/history/historyModal/historyModal.html', 'md',transaction)"
             class="editable-row center pointer">
-            <td><div title="{{transaction.from_reference}}" class="history-table" ng-bind="transaction.from_reference"></div></td>
-            <td><div title="{{transaction.to_reference}}" class="history-table" ng-bind="transaction.to_reference"></div></td>
-            <td><div title="{{transaction.tx_type}}" class="history-table" ng-bind="transaction.tx_type | capitalizeWord"></div></td>
-            <td><div title="{{transaction.subtype}}" class="history-table" ng-bind="transaction.subtype || 'None'"></div></td>
-            <td><div title="{{transaction.currency.code}}" class="history-table" ng-bind="transaction.currency.code"></div></td>
-            <td><div title="{{transaction.amount}}" class="history-table" ng-bind="transaction.amount"></div></td>
-            <td><div title="{{transaction.fee}}" class="history-table" ng-bind="transaction.fee"></div></td>
-            <td><div title="{{transaction.status}}" class="history-table" ng-bind="transaction.status"></div></td>
-            <td><div title="{{transaction.created | date:'mediumDate'}} {{transaction.created | date:'shortTime'}}" class="history-table">
+            <td><div title="{{transaction.from_reference}}" class="transactions-list-element" ng-bind="transaction.from_reference"></div></td>
+            <td><div title="{{transaction.to_reference}}" class="transactions-list-element" ng-bind="transaction.to_reference"></div></td>
+            <td><div title="{{transaction.tx_type}}" class="transactions-list-element" ng-bind="transaction.tx_type | capitalizeWord"></div></td>
+            <td><div title="{{transaction.subtype}}" class="transactions-list-element" ng-bind="transaction.subtype || 'None'"></div></td>
+            <td><div title="{{transaction.currency.code}}" class="transactions-list-element" ng-bind="transaction.currency.code"></div></td>
+            <td><div title="{{transaction.amount}}" class="transactions-list-element" ng-bind="transaction.amount"></div></td>
+            <td><div title="{{transaction.fee}}" class="transactions-list-element" ng-bind="transaction.fee"></div></td>
+            <td><div title="{{transaction.status}}" class="transactions-list-element" ng-bind="transaction.status"></div></td>
+            <td><div title="{{transaction.created | date:'mediumDate'}} {{transaction.created | date:'shortTime'}}" class="transactions-list-element">
               {{transaction.created | date:'mediumDate'}} {{transaction.created | date:'shortTime'}}</div></td>
         </tr>
     </table>

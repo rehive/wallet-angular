@@ -336,13 +336,3 @@ th {
   margin-top: 10px;
 }
 
-//css by Aquibur Rahman Khan
-
-@media screen and (max-width: $resXL) {
-  .history-table{
-    max-width: 80px;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    white-space: nowrap;
-  }
-}

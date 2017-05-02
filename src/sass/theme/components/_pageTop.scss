@@ -145,114 +145,19 @@ a.collapse-menu-link {
   }
 }
 
-//css added by Aquibur Rahman Khan
-
-.user-currency-item-list .user-currency-item {
-  font-size: 16px;
-  padding: 8px 20px;
-}
-
-.user-currency-dropdown-label{
-  font-size: 20px;
-  text-align: center;
-  margin: 7px 0 13px 0;
-
-}
-
-.user-currency-dropdown-last-item{
-  margin: 4px 0 0 0;
-}
-
-.user-currency-dropdown-last-item:hover{
-  background-color: #f5f5f5;
-}
-
-.no-margin{
-  margin: 0;
-}
-
-.user-currency-dropdown{
-  width: 300px;
-  top: 40px;
-}
-
-.user-currency{
-  float: right;
-  min-width: 50px;
-  margin-top: 25px;
-}
-
-.al-user-currency {
-  float: right;
-  margin-right: 20px;
-  a{
-    font-size: 16px;
-    span{
-      color: #5bc0de;
-    }
-  i{
-    font-size: 17px;
-    color: white;
-  }
-  }
-}
-
-//css added by Aquibur Rahman Khan  end
-
 @media screen and (max-width: $resS) {
   .search {
     display: none;
   }
-
-  //css added by Aquibur Rahman Khan
-
-  .al-user-currency {
-    margin-right: 10px;
-  }
-
-  //css added by Aquibur Rahman Khan  end
 }
 
 @media screen and (max-width: $resXS) {
   .page-top {
     padding: 0 20px;
   }
-
-  //css added by Aquibur Rahman Khan
-
-  .al-user-currency {
-    margin-right: 10px;
-  }
-
-  //css added by Aquibur Rahman Khan  end
 }
 
 @media (max-width: $resXXS) {
-
-  //css added by Aquibur Rahman Khan
-
-  .user-currency-dropdown-items{
-    font-size: 15px;
-  }
-
-  .user-currency-dropdown{
-    width: 200px;
-    top: 40px;
-  }
-
-  .al-user-currency {
-    margin-right: 20px;
-    a {
-      font-size: 20px;
-      i {
-        font-size: 11px;
-        color: white;
-      }
-    }
-  }
-
-  //css added by Aquibur Rahman Khan  end
-
   .user-profile{
     min-width: 40px;
   }

@@ -5,8 +5,9 @@
         .controller('transactionModalCtrl', transactionModalCtrl);
 
     /** @ngInject */
-    function transactionModalCtrl($scope,transaction) {
+    function transactionModalCtrl($scope,transaction,metadataTextService) {
         $scope.transaction = transaction;
+        $scope.metadata = metadataTextService.convertToText(transaction.metadata);
     }
 
 })();

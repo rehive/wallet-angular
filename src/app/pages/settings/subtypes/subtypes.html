@@ -13,7 +13,7 @@
                 <th title="{{subtype.name}}" ng-bind="subtype.name | limitTo: 8"></th>
                 <th title="{{subtype.label}}" ng-bind="subtype.label || 'None' | limitTo: 6"></th>
                 <th title="{{subtype.description}}" ng-bind="subtype.description || 'None' | limitTo:6"></th>
-                <th class="currency-row-last-child">
+                <th class="no-right-padding-last-child">
                     <button ng-click="openSubtypeModal('app/pages/settings/subtypes/subtypeModal/subtypeModal.html','md',subtype)" class="btn btn-danger pull-right settings-fees-buttons">Delete</button>
                     <button ng-click="toggleSubtypeEditView(subtype)" class="btn btn-info pull-right settings-fees-buttons">Edit</button>
                 </th>
@@ -21,7 +21,7 @@
         </table>
     </div>
     <div ba-panel ba-panel-title="Add Subtype" ba-panel-class="light-text with-scroll">
-        <form name="subtypeForm" class="deposit-form">
+        <form name="subtypeForm" class="custom-form">
             <div class="form-group">
                 <label><strong>Transaction Type</strong> <span class="required-icon">*</span></label>
                 <br>

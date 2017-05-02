@@ -1,6 +1,6 @@
 <div ba-panel ba-panel-title="Currencies" ba-panel-class=" with-scroll" class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-    <div class="add-currency-link">
-        <button class="btn btn-success pull-right" ng-click="goToAddCurrency()">Add Currency</button>
+    <div>
+        <button class="btn btn-success pull-right divider" ng-click="goToAddCurrency()">Add Currency</button>
     </div>
     <table class="table">
         <tr class="black-muted-bg">
@@ -9,17 +9,17 @@
             <td><strong>24h Volume</strong></td>
             <td></td>
         </tr>
-        <tr ng-repeat="currency in currencyDetails" class="editable-row center">
+        <tr ng-repeat="currency in currencyDetails" class="editable-row">
             <td width="15%">
-                <img class="logo" ng-src="{{currency.logo}}" alt="token">
+                <img class="currency-logo" ng-src="{{currency.logo}}" alt="token">
             </td>
             <td width="15%" ng-bind="currency.pendingWithdrawals"></td>
             <td width="15%" ng-bind="currency.volume"></td>
-            <td class="currency-row-last-child">
-                <a href="" ><button class="btn btn-primary pull-right currencies-buttons">Overview</button></a>
-                <a href="#/users" ><button class="btn btn-primary pull-right currencies-buttons">Users</button></a>
-                <a href="#/transactions/deposits" ><button class="btn btn-primary pull-right currencies-buttons">Deposits</button></a>
-                <a href="#/transactions/withdrawals" ><button class="btn btn-primary pull-right currencies-buttons">Withdrawals</button></a>
+            <td class="no-right-padding-last-child">
+                <a href="" ><button class="btn btn-primary pull-right button-width-100-no-right-margin">Overview</button></a>
+                <a href="#/users" ><button class="btn btn-primary pull-right button-width-100-no-right-margin">Users</button></a>
+                <a href="#/transactions/deposits" ><button class="btn btn-primary pull-right button-width-100-no-right-margin">Deposits</button></a>
+                <a href="#/transactions/withdrawals" ><button class="btn btn-primary pull-right button-width-100-no-right-margin">Withdrawals</button></a>
             </td>
         </tr>
     </table>

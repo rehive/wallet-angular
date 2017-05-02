@@ -11,7 +11,7 @@
                 <th title="{{webhook.tx_type}}" ng-bind="webhook.tx_type | capitalizeWord"></th>
                 <th title="{{webhook.url}}" ng-bind="webhook.url | limitTo:14"></th>
                 <th title="{{webhook.secret}}" ng-bind="webhook.secret"></th>
-                <th class="currency-row-last-child">
+                <th class="no-right-padding-last-child">
                     <button ng-click="openWebhooksModal('app/pages/settings/webhooks/webhooksModal/webhooksModal.html','md',webhook)" class="btn btn-danger pull-right settings-fees-buttons">Delete</button>
                     <button ng-click="toggleWebhooksEditView(webhook)" class="btn btn-info pull-right settings-fees-buttons">Edit</button>
                 </th>
@@ -19,7 +19,7 @@
         </table>
     </div>
     <div ba-panel ba-panel-title="Add Webhook" ba-panel-class="light-text with-scroll">
-        <form name="webhooksForm" class="deposit-form">
+        <form name="webhooksForm" class="custom-form">
             <div class="form-group">
                 <label><strong>Transaction Type</strong> <span class="required-icon">*</span></label>
                 <br>

@@ -12,12 +12,12 @@
         <tr ng-repeat="transaction in transactions " data-toggle="modal"
             ng-click="openModal('app/pages/transactions/deposits/pendingDeposits/pendingDepositsModal/pendingDepositsModal.html', 'md',transaction)"
             class="editable-row center pointer">
-            <td class="table-row-center history-table" ng-bind="transaction.tx_code"></td>
-            <td class="table-row-center history-table" ng-bind="transaction.from_reference"></td>
-            <td class="table-row-center history-table" ng-bind="transaction.currency.code"></td>
-            <td class="table-row-center history-table" ng-bind="transaction.amount"></td>
-            <td class="table-row-center history-table" >{{transaction.created | date:'mediumDate'}} {{transaction.created | date:'shortTime'}}</td>
-            <td class="table-row-center history-table" ng-bind="transaction.status"></td>
+            <td class="table-row-center transactions-list-element" ng-bind="transaction.tx_code"></td>
+            <td class="table-row-center transactions-list-element" ng-bind="transaction.from_reference | limitTo:14"></td>
+            <td class="table-row-center transactions-list-element" ng-bind="transaction.currency.code"></td>
+            <td class="table-row-center transactions-list-element" ng-bind="transaction.amount"></td>
+            <td class="table-row-center transactions-list-element" >{{transaction.created | date:'mediumDate'}} {{transaction.created | date:'shortTime'}}</td>
+            <td class="table-row-center transactions-list-element" ng-bind="transaction.status"></td>
         </tr>
     </table>
     <div ng-show="transactions.length == 0">
