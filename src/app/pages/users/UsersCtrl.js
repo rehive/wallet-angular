@@ -10,6 +10,7 @@
         var vm = this;
         vm.token = cookieManagement.getCookie('TOKEN');
         vm.currenciesList = JSON.parse($window.sessionStorage.currenciesList);
+        $scope.users = [{email: 'a@b.com',currency:'USD',balance:3200,joined:'soon', lastTransaction:'hello', lastLogin: 'bye'}];
 
         $scope.usersPagination = {
             itemsPerPage: 25,

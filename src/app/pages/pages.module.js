@@ -14,6 +14,7 @@
     'BlurAdmin.pages.dashboard',
     'BlurAdmin.pages.transactions',
     'BlurAdmin.pages.users',
+    'BlurAdmin.pages.userDetails',
     'BlurAdmin.pages.services',
     'BlurAdmin.pages.login',
     'BlurAdmin.pages.register',

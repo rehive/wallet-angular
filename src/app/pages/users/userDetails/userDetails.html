@@ -1,0 +1,233 @@
+<div class="row divider">
+    <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">
+        <img ng-src="{{userImageUrl}}"  width="90" height="90" alt="token Image">
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+        <div ba-panel ba-panel-title="Account Info" >
+            <table class="table table-condensed table-striped user-details-table">
+                <tr>
+                    <th width="70%"><strong>Identifier</strong></th>
+                    <th></th>
+                </tr>
+                <tr>
+                    <th width="70%">
+                        a0e332b7-0ceb-479b-a975-5ad3db18ce85
+                    </th>
+                    <th></th>
+                </tr>
+                <tr>
+                    <th width="70%"><strong>Email Address</strong></th>
+                    <th></th>
+                </tr>
+                <tr>
+                    <th width="70%">joshua@rehive.com</th>
+                    <th><span class="ion-checkmark pull-right"></span></th>
+                </tr>
+                <tr>
+                    <th width="70%"><strong>Mobile Numbers</strong></th>
+                    <th></th>
+                </tr>
+                <tr>
+                    <th width="70%">+27793416724</th>
+                    <th><button class="btn btn-primary pull-right">Verify</button></th>
+                </tr>
+            </table>
+        </div>
+        <div ba-panel ba-panel-title="Basic Info" >
+            <table class="table table-condensed table-striped user-details-table">
+                <tr>
+                    <th width="50%"><strong>Name</strong></th>
+                    <th>Aquib</th>
+                </tr>
+                <tr>
+                    <th width="50%"><strong>Last Name</strong></th>
+                    <th>Khan</th>
+                </tr>
+                <tr>
+                    <th width="50%"><strong>Nationality</strong></th>
+                    <th>South Africa</th>
+                </tr>
+                <tr>
+                    <th width="50%"><strong>Language</strong></th>
+                    <th>en</th>
+                </tr>
+                <tr>
+                    <th width="50%"><strong>Date of birth</strong></th>
+                    <th>17 Nov, 1991</th>
+                </tr>
+                <tr>
+                    <th width="50%"><strong>ID Number</strong></th>
+                    <th>323422355322</th>
+                </tr>
+            </table>
+        </div>
+        <div ba-panel ba-panel-title="Address">
+            <table class="table table-condensed table-striped user-details-table">
+                <tr>
+                    <th width="50%"><strong>Line 1</strong></th>
+                    <th>34 test Street</th>
+                </tr>
+                <tr>
+                    <th width="50%"><strong>Line 2</strong></th>
+                    <th>Test Village</th>
+                </tr>
+                <tr>
+                    <th width="50%"><strong>City</strong></th>
+                    <th>Test City</th>
+                </tr>
+                <tr>
+                    <th width="50%"><strong>State/Province</strong></th>
+                    <th>Western Cape</th>
+                </tr>
+                <tr>
+                    <th width="50%"><strong>Country</strong></th>
+                    <th>ZA</th>
+                </tr>
+                <tr>
+                    <th width="50%"><strong>Postal Code</strong></th>
+                    <th>8002</th>
+                </tr>
+            </table>
+        </div>
+        <div ba-panel ba-panel-title="Bank Account" >
+            <table class="table table-condensed table-striped user-details-table">
+                <tr>
+                    <th width="50%"><strong>Account Name/Holder</strong></th>
+                    <th>Default</th>
+                </tr>
+                <tr>
+                    <th width="50%"><strong>Account Number</strong></th>
+                    <th>9999999999</th>
+                </tr>
+                <tr>
+                    <th width="50%"><strong>Account Type</strong></th>
+                    <th>Cheque</th>
+                </tr>
+                <tr>
+                    <th width="50%"><strong>Bank Name</strong></th>
+                    <th>Central Bank</th>
+                </tr>
+                <tr>
+                    <th width="50%"><strong>Bank Code</strong></th>
+                    <th>0000</th>
+                </tr>
+                <tr>
+                    <th width="50%"><strong>Branch Code</strong></th>
+                    <th>0000</th>
+                </tr>
+                <tr>
+                    <th width="50%"><strong>Bank Address</strong></th>
+                    <th>None</th>
+                </tr>
+                <tr>
+                    <th width="50%"><strong>Swift</strong></th>
+                    <th></th>
+                </tr>
+                <tr>
+                    <th width="50%"><strong>IBAN</strong></th>
+                    <th></th>
+                </tr>
+                <tr>
+                    <th width="50%"><strong>BIC</strong></th>
+                    <th></th>
+                </tr>
+            </table>
+        </div>
+        <div ba-panel ba-panel-title="Address">
+            <table class="table table-condensed table-striped user-details-table">
+                <tr>
+                    <th><strong>Document</strong></th>
+                    <th><strong>Type</strong></th>
+                    <th><strong>Uploaded</strong></th>
+                    <th><strong>Status</strong></th>
+                </tr>
+                <tr ng-repeat="document in documents">
+                    <th>Other</th>
+                    <th>Other</th>
+                    <th>Feb. 14, 2017, 11:23 a.m</th>
+                    <th><button class="btn btn-warning pull-right">Pending</button></th>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <!--right column-->
+    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+        <div ba-panel ba-panel-title="User Activity" >
+            <table class="table table-condensed table-striped user-details-table">
+                <tr>
+                    <th width="40%"><strong>Joined</strong></th>
+                    <th>July 15, 2016, 2:25 p.m.</th>
+                </tr>
+                <tr>
+                    <th width="40%"><strong>Last Login</strong></th>
+                    <th>April 13, 2017, 1:03 p.m.</th>
+                </tr>
+                <tr>
+                    <th width="40%"><strong>Transactions</strong></th>
+                    <th><a href="#">View</a></th>
+                </tr>
+            </table>
+        </div>
+        <div ba-panel ba-panel-title="Accounts" >
+            <table class="table table-condensed table-striped user-details-table">
+                <tr>
+                    <th><strong>Currency</strong></th>
+                    <th><strong>Balance</strong></th>
+                    <th></th>
+                </tr>
+                <tr>
+                    <th>XBT</th>
+                    <th>1.00000191</th>
+                    <th><button class="btn btn-primary pull-right">Settings</button></th>
+                </tr>
+                <tr>
+                    <th>USD</th>
+                    <th>199.40</th>
+                    <th><button class="btn btn-primary pull-right">Settings</button></th>
+                </tr>
+                <tr>
+                    <th>EUR</th>
+                    <th>3243.42</th>
+                    <th><button class="btn btn-primary pull-right">Settings</button></th>
+                </tr>
+                <tr>
+                    <th>ZAR</th>
+                    <th>39.46</th>
+                    <th><button class="btn btn-primary pull-right">Settings</button></th>
+                </tr>
+            </table>
+        </div>
+        <div ba-panel ba-panel-title="User Controls">
+            <div>
+                <label  class="checkbox-inline custom-checkbox nowrap">
+                    <input type="checkbox"  ng-model="depositData.confirm_on_create">
+                    <span>Allow transactions</span>
+                </label>
+            </div>
+            <hr>
+            <div class="margin-bottom-ten-px">
+                <label  class="checkbox-inline custom-checkbox nowrap">
+                    <input  type="checkbox"  ng-model="depositData.confirm_on_create">
+                    <span>Allow transfer transactions</span>
+                </label>
+            </div>
+            <div class="margin-bottom-ten-px">
+                <label  class="checkbox-inline custom-checkbox nowrap">
+                    <input  type="checkbox"  ng-model="depositData.confirm_on_create">
+                    <span> Allow deposit transactions</span>
+                </label>
+            </div>
+            <div class="divider">
+                <label  class="checkbox-inline custom-checkbox nowrap">
+                    <input  type="checkbox"  ng-model="depositData.confirm_on_create">
+                    <span>Allow withdraw transactions</span>
+                </label>
+            </div>
+            <div class="form-group">
+                <button  class="btn btn-primary pull-right">Save</button>
+            </div>
+        </div>
+    </div>
+</div>
