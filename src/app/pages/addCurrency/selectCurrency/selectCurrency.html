@@ -1,7 +1,10 @@
-<div ba-panel>
+<div ng-hide="loadingCurrencies" ba-panel>
     <label class="divider"><strong>Select Currency</strong></label>
     <select class="form-control pointer divider" ng-model="changeCurrency.currencyChoice"
             ng-options="currency.code for currency in currencyOptions track by currency.code">
     </select>
     <button class="btn btn-primary pull-right" ng-click="next()">Next</button>
+</div>
+<div ba-panel ng-show="loadingCurrencies">
+    <loading-image></loading-image>
 </div>

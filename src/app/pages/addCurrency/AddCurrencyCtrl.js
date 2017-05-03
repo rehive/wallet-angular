@@ -14,6 +14,7 @@
         $scope.changeCurrency.currencyChoice = {};
         $scope.showConfirmCurrency = false;
         $scope.showCompleteCurrency = false;
+        $scope.loadingCurrencies = true;
 
         $rootScope.$watch('selectedCurrency',function(){
             if($rootScope.selectedCurrency && $rootScope.selectedCurrency.code) {
@@ -22,18 +23,20 @@
         });
 
         vm.getCurrencies = function(){
-            // using wrong url here
-            $http.get(API + '/company/currencies/', {
+            $scope.loadingCurrencies = true;
+            $http.get(API + '/admin/currencies/?page_size=250', {
                 headers: {
                     'Content-Type': 'application/json',
                     'Authorization': vm.token
                 }
             }).then(function (res) {
+                $scope.loadingCurrencies = false;
                 if (res.status === 200) {
                     $scope.changeCurrency.currencyChoice.code = res.data.data.results[0].code;
                     $scope.currencyOptions = res.data.data.results;
                 }
             }).catch(function (error) {
+                $scope.loadingCurrencies = false;
                 errorToasts.evaluateErrors(error.data);
             });
         };

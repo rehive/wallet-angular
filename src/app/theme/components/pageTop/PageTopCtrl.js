@@ -14,7 +14,7 @@
         vm.currentLocation = $location.path();
 
         vm.getCompanyCurrencies = function(){
-            $http.get(API + '/company/currencies/', {
+            $http.get(API + '/admin/currencies/?enabled=true', {
                 headers: {
                     'Content-Type': 'application/json',
                     'Authorization': vm.token

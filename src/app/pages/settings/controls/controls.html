@@ -3,28 +3,28 @@
         <p class="divider"><strong>Transaction Controls:</strong></p>
         <div>
             <label  class="checkbox-inline custom-checkbox nowrap">
-                <input type="checkbox"  ng-model="depositData.confirm_on_create">
-                <span>Allow transactions</span>
+                <input type="checkbox" ng-model="controls[0].enabled" ng-checked="controls[0].enabled">
+                <span>{{controls[0].description}}</span>
             </label>
         </div>
     </div>
     <hr>
     <div class="margin-bottom-ten-px">
         <label  class="checkbox-inline custom-checkbox nowrap">
-            <input  type="checkbox"  ng-model="depositData.confirm_on_create">
-            <span>Allow transfer transactions</span>
+            <input  type="checkbox" ng-model="controls[1].enabled" ng-checked="controls[1].enabled">
+            <span>{{controls[1].description}}</span>
+        </label>
+    </div>
+    <div class="margin-bottom-ten-px">
+        <label class="checkbox-inline custom-checkbox nowrap">
+            <input  type="checkbox" ng-model="controls[2].enabled" ng-checked="controls[2].enabled">
+            <span>{{controls[2].description}}</span>
         </label>
     </div>
     <div class="margin-bottom-ten-px">
         <label  class="checkbox-inline custom-checkbox nowrap">
-            <input  type="checkbox"  ng-model="depositData.confirm_on_create">
-            <span> Allow deposit transactions</span>
-        </label>
-    </div>
-    <div class="margin-bottom-ten-px">
-        <label  class="checkbox-inline custom-checkbox nowrap">
-            <input  type="checkbox"  ng-model="depositData.confirm_on_create">
-            <span>Allow withdraw transactions</span>
+            <input  type="checkbox" ng-model="controls[3].enabled" ng-checked="controls[3].enabled">
+            <span>{{controls[3].description}}</span>
         </label>
     </div>
     <hr>
@@ -32,13 +32,13 @@
         <p class="divider"><strong>Verifications Controls:</strong></p>
         <div>
             <label  class="checkbox-inline custom-checkbox nowrap">
-                <input  type="checkbox"  ng-model="depositData.confirm_on_create">
-                <span>Verification is required for transactions</span>
+                <input  type="checkbox" ng-model="controls[4].enabled" ng-checked="controls[4].enabled">
+                <span>{{controls[4].description}}</span>
             </label>
         </div>
     </div>
     <div class="form-group">
-        <button  class="btn btn-primary pull-right">Save</button>
+        <button ng-click="saveControls()"  class="btn btn-primary pull-right">Save</button>
     </div>
     </div>
 </div>

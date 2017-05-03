@@ -9,9 +9,45 @@
 
         var vm = this;
         vm.token = cookieManagement.getCookie('TOKEN');
-        $scope.companyImageUrl = "https://storage.googleapis.com/rehive-static/dashboard/dist/img/default_company_icon.png";
-        $scope.editingBankAccounts = false;
+        $scope.loadingCompanyNotifications = true;
+        $scope.sds= true;
 
+        vm.getCompanyNotifications = function () {
+            $scope.loadingCompanyNotifications = true;
+            $http.get(API + '/admin/notifications/', {
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': vm.token
+                }
+            }).then(function (res) {
+                $scope.loadingCompanyNotifications = false;
+                if (res.status === 200) {
+                    $scope.notifications = res.data.data;
+                }
+            }).catch(function (error) {
+                $scope.loadingCompanyNotifications = false;
+                errorToasts.evaluateErrors(error.data);
+            });
+        };
+        vm.getCompanyNotifications();
+
+        $scope.saveNotifications = function(){
+            //$scope.loadingCompanyNotifications = true;
+            //$http.put(API + '/admin/notifications/', $scope.notifications, {
+            //    headers: {
+            //        'Content-Type': 'application/json',
+            //        'Authorization': vm.token
+            //    }
+            //}).then(function (res) {
+            //    $scope.loadingCompanyNotifications = false;
+            //    if (res.status === 200) {
+            //        vm.getCompanyNotifications();
+            //    }
+            //}).catch(function (error) {
+            //    $scope.loadingCompanyNotifications = false;
+            //    errorToasts.evaluateErrors(error.data);
+            //});
+        }
 
     }
 })();
