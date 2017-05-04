@@ -3,18 +3,15 @@
         <tr class="black-muted-bg">
             <td><strong>Email</strong></td>
             <td><strong>Currency</strong></td>
-            <td><strong>Balance</strong></td>
             <td><strong>Joined</strong></td>
-            <td><strong>Last Transaction</strong></td>
             <td><strong>Last Login</strong></td>
         </tr>
         <tr ng-repeat="user in users " class="editable-row center">
             <td><a href="/#/user/details"><div title="{{user.email}}" class="transactions-list-element" ng-bind="user.email"></div></a></td>
-            <td><div title="{{user.currency}}" class="transactions-list-element" ng-bind="user.currency"></div></td>
-            <td><div title="{{user.balance}}" class="transactions-list-element" ng-bind="user.balance"></div></td>
-            <td><div title="{{user.joined}}" class="transactions-list-element" ng-bind="user.joined"></div></td>
-            <td><div title="{{user.created | date:'mediumDate'}} {{transaction.created | date:'shortTime'}}" class="transactions-list-element">
-                {{user.created | date:'mediumDate'}} {{transaction.created | date:'shortTime'}}</div></td>
+            <td><div title="{{user.currency.code}}" class="transactions-list-element" ng-bind="user.currency.code"></div></td>
+            <td><div title="{{user.date_joined | date:'mediumTime'}}" class="transactions-list-element" ng-bind="user.date_joined | date:'shortTime'"></div></td>
+            <td><div title="{{user.last_login | date:'mediumDate'}}" class="transactions-list-element">
+                {{user.created | date:'shortDate'}}</div></td>
         </tr>
     </table>
     <div >

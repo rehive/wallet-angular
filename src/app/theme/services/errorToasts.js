@@ -18,8 +18,10 @@
                     }
                 };
               } else{
-                  if(errors){
+                  if(errors && errors.message){
                       toastr.error(errors.message, 'Message');
+                  } else {
+                      toastr.error(errors, 'Message');
                   }
               }
             }
