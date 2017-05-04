@@ -5,12 +5,11 @@
         .controller('NotificationsCtrl', NotificationsCtrl);
 
     /** @ngInject */
-    function NotificationsCtrl($scope,API,IMAGEURL,$http,cookieManagement,errorToasts) {
+    function NotificationsCtrl($scope,API,toastr,$http,cookieManagement,errorToasts) {
 
         var vm = this;
         vm.token = cookieManagement.getCookie('TOKEN');
         $scope.loadingCompanyNotifications = true;
-        $scope.sds= true;
 
         vm.getCompanyNotifications = function () {
             $scope.loadingCompanyNotifications = true;
@@ -31,22 +30,19 @@
         };
         vm.getCompanyNotifications();
 
-        $scope.saveNotifications = function(){
-            //$scope.loadingCompanyNotifications = true;
-            //$http.put(API + '/admin/notifications/', $scope.notifications, {
-            //    headers: {
-            //        'Content-Type': 'application/json',
-            //        'Authorization': vm.token
-            //    }
-            //}).then(function (res) {
-            //    $scope.loadingCompanyNotifications = false;
-            //    if (res.status === 200) {
-            //        vm.getCompanyNotifications();
-            //    }
-            //}).catch(function (error) {
-            //    $scope.loadingCompanyNotifications = false;
-            //    errorToasts.evaluateErrors(error.data);
-            //});
+        $scope.saveNotifications = function(notification){
+            $http.patch(API + '/admin/notifications/' + notification.id, {enabled: notification.enabled}, {
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': vm.token
+                }
+            }).then(function (res) {
+                if (res.status === 200) {
+                    toastr.success('You have successfully updated the notification');
+                }
+            }).catch(function (error) {
+                errorToasts.evaluateErrors(error.data);
+            });
         }
 
     }

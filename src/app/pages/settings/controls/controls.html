@@ -3,7 +3,7 @@
         <p class="divider"><strong>Transaction Controls:</strong></p>
         <div>
             <label  class="checkbox-inline custom-checkbox nowrap">
-                <input type="checkbox" ng-model="controls[0].enabled" ng-checked="controls[0].enabled">
+                <input type="checkbox" ng-change="saveControls(controls[0])" ng-model="controls[0].enabled" ng-checked="controls[0].enabled">
                 <span>{{controls[0].description}}</span>
             </label>
         </div>
@@ -11,19 +11,19 @@
     <hr>
     <div class="margin-bottom-ten-px">
         <label  class="checkbox-inline custom-checkbox nowrap">
-            <input  type="checkbox" ng-model="controls[1].enabled" ng-checked="controls[1].enabled">
+            <input type="checkbox" ng-change="saveControls(controls[1])" ng-model="controls[1].enabled" ng-checked="controls[1].enabled">
             <span>{{controls[1].description}}</span>
         </label>
     </div>
     <div class="margin-bottom-ten-px">
         <label class="checkbox-inline custom-checkbox nowrap">
-            <input  type="checkbox" ng-model="controls[2].enabled" ng-checked="controls[2].enabled">
+            <input type="checkbox" ng-change="saveControls(controls[2])" ng-model="controls[2].enabled" ng-checked="controls[2].enabled">
             <span>{{controls[2].description}}</span>
         </label>
     </div>
     <div class="margin-bottom-ten-px">
         <label  class="checkbox-inline custom-checkbox nowrap">
-            <input  type="checkbox" ng-model="controls[3].enabled" ng-checked="controls[3].enabled">
+            <input type="checkbox" ng-change="saveControls(controls[3])" ng-model="controls[3].enabled" ng-checked="controls[3].enabled">
             <span>{{controls[3].description}}</span>
         </label>
     </div>
@@ -31,14 +31,10 @@
     <div class="divider">
         <p class="divider"><strong>Verifications Controls:</strong></p>
         <div>
-            <label  class="checkbox-inline custom-checkbox nowrap">
-                <input  type="checkbox" ng-model="controls[4].enabled" ng-checked="controls[4].enabled">
+            <label class="checkbox-inline custom-checkbox nowrap">
+                <input type="checkbox" ng-change="saveControls(controls[4])" ng-model="controls[4].enabled" ng-checked="controls[4].enabled">
                 <span>{{controls[4].description}}</span>
             </label>
         </div>
-    </div>
-    <div class="form-group">
-        <button ng-click="saveControls()"  class="btn btn-primary pull-right">Save</button>
-    </div>
     </div>
 </div>

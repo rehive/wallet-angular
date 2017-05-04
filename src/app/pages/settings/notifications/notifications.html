@@ -2,12 +2,9 @@
     <div>
         <div class="margin-bottom-ten-px" ng-repeat="notification in notifications">
             <label  class="checkbox-inline custom-checkbox nowrap">
-                <input type="checkbox"  ng-model="notification.enabled" ng-checked="notification.enabled">
+                <input type="checkbox" ng-change="saveNotifications(notification)" ng-model="notification.enabled" ng-checked="notification.enabled">
                 <span>{{notification.description}}</span>
             </label>
-        </div>
-        <div class="form-group">
-            <button ng-click="saveNotifications()" class="btn btn-primary pull-right">Save</button>
         </div>
     </div>
 </div>
