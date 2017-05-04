@@ -22,7 +22,6 @@
             }).then(function (res) {
                 $scope.loadingCompanyControls = false;
                 if (res.status === 200) {
-                    console.log(res.data.data);
                     $scope.controls = res.data.data;
                 }
             }).catch(function (error) {

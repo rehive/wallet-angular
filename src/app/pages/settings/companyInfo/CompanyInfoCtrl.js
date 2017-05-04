@@ -5,19 +5,18 @@
         .controller('CompanyInfoCtrl', CompanyInfoCtrl);
 
     /** @ngInject */
-    function CompanyInfoCtrl($scope,API,toastr,$http,cookieManagement,errorToasts) {
+    function CompanyInfoCtrl($scope,API,toastr,$http,cookieManagement,errorToasts,_) {
 
         var vm = this;
         vm.token = cookieManagement.getCookie('TOKEN');
         $scope.companyImageUrl = "https://storage.googleapis.com/rehive-static/dashboard/dist/img/default_company_icon.png";
         $scope.loadingCompanyInfo = true;
-        $scope.currencies = ['XBT'];
+        $scope.company = {};
         vm.updatedCompanyInfo = {};
 
         $scope.companyInfoChanged = function(field){
             vm.updatedCompanyInfo[field] = $scope.company[field];
         };
-
 
         vm.getCompanyInfo = function () {
             $http.get(API + '/admin/company/', {
@@ -29,6 +28,7 @@
                 $scope.loadingCompanyInfo = false;
                 if (res.status === 200) {
                     $scope.company = res.data.data;
+                    vm.getCurrencies();
                 }
             }).catch(function (error) {
                 $scope.loadingCompanyInfo = false;
@@ -36,6 +36,22 @@
             });
         };
         vm.getCompanyInfo();
+
+        vm.getCurrencies = function(){
+            $http.get(API + '/admin/currencies/?page_size=250', {
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': vm.token
+                }
+            }).then(function (res) {
+                if (res.status === 200) {
+                    $scope.currencies = _.pluck(res.data.data.results,'code');
+                }
+            }).catch(function (error) {
+                $scope.loadingCompanyInfo = false;
+                errorToasts.evaluateErrors(error.data);
+            });
+        };
 
         $scope.updateCompanyInfo = function () {
             $scope.loadingCompanyInfo = true;

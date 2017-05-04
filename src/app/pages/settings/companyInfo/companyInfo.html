@@ -23,7 +23,7 @@
         <div class="form-group">
             <label><strong>Default Currency</strong></label>
             <br>
-            <select class="form-control pointer" ng-change="companyInfoChanged('default_currency')" ng-model="company.default_currency" ng-options="currency for currency in currencies">
+            <select class="form-control pointer" ng-change="companyInfoChanged('default_currency')"  ng-model="company.default_currency" ng-options="code for code in currencies">
             </select>
         </div>
         <div class="form-group">
@@ -32,33 +32,33 @@
     </div>
 </div>
 
-<div ng-hide="loadingCompanyInfo" ba-panel ba-panel-title="Company Address">
-    <div>
-        <div class="form-group">
-            <label><strong>Address Line 1</strong></label>
-            <input type="text"  ng-model="company.address1" class="form-control" placeholder="Address Line 1">
-        </div>
-        <div class="form-group">
-            <label><strong>Address Line 2</strong></label>
-            <input type="text" ng-model="company.address2" class="form-control" placeholder="Address Line 2">
-        </div>
-        <div class="form-group">
-            <label><strong>City</strong></label>
-            <input type="text" ng-model="company.city" class="form-control" placeholder="City">
-        </div>
-        <div class="form-group">
-            <label><strong>Country</strong></label>
-            <country-select class="form-control pointer" data-ng-model="company.country"></country-select>
-        </div>
-        <div class="form-group">
-            <label><strong>Code/Zipcode</strong></label>
-            <input type="text" ng-model="company.zipcode" class="form-control" placeholder="Code/Zipcode">
-        </div>
-        <div class="form-group">
-            <button ng-click="goToView('confirmDeposit')" class="btn btn-primary pull-right">Save</button>
-        </div>
-    </div>
-</div>
+<!--<div ng-hide="loadingCompanyInfo" ba-panel ba-panel-title="Company Address">-->
+    <!--<div>-->
+        <!--<div class="form-group">-->
+            <!--<label><strong>Address Line 1</strong></label>-->
+            <!--<input type="text"  ng-model="company.address1" class="form-control" placeholder="Address Line 1">-->
+        <!--</div>-->
+        <!--<div class="form-group">-->
+            <!--<label><strong>Address Line 2</strong></label>-->
+            <!--<input type="text" ng-model="company.address2" class="form-control" placeholder="Address Line 2">-->
+        <!--</div>-->
+        <!--<div class="form-group">-->
+            <!--<label><strong>City</strong></label>-->
+            <!--<input type="text" ng-model="company.city" class="form-control" placeholder="City">-->
+        <!--</div>-->
+        <!--<div class="form-group">-->
+            <!--<label><strong>Country</strong></label>-->
+            <!--<country-select class="form-control pointer" data-ng-model="company.country"></country-select>-->
+        <!--</div>-->
+        <!--<div class="form-group">-->
+            <!--<label><strong>Code/Zipcode</strong></label>-->
+            <!--<input type="text" ng-model="company.zipcode" class="form-control" placeholder="Code/Zipcode">-->
+        <!--</div>-->
+        <!--<div class="form-group">-->
+            <!--<button ng-click="goToView('confirmDeposit')" class="btn btn-primary pull-right">Save</button>-->
+        <!--</div>-->
+    <!--</div>-->
+<!--</div>-->
 <div ba-panel ng-show="loadingCompanyInfo">
     <loading-image></loading-image>
 </div>
