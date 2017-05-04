@@ -43,39 +43,29 @@
 
         $scope.addCompanyCurrency = function(){
 
-            var addCurrency = {
-                code: $scope.addCurrency.currencyChoice.code,
-                description: $scope.addCurrency.currencyChoice.description,
-                symbol: $scope.addCurrency.currencyChoice.symbol,
-                unit: $scope.addCurrency.currencyChoice.unit,
-                divisibility: $scope.addCurrency.currencyChoice.divisibility
-            };
+            var code = $scope.addCurrency.currencyChoice.code;
 
-            //$scope.loadingCurrencies = true;
-            //$http.post(API + '/admin/currencies/', addCurrency, {
-            //    headers: {
-            //        'Content-Type': 'application/json',
-            //        'Authorization': vm.token
-            //    }
-            //}).then(function (res) {
-            //    $scope.loadingCurrencies = false;
-            //    if (res.status === 200) {
-            //        $scope.addCurrency.currencyChoice.code = res.data.data.results[0].code;
-            //        $scope.currencyOptions = res.data.data.results;
-            //    }
-            //}).catch(function (error) {
-            //    $scope.loadingCurrencies = false;
-            //    errorToasts.evaluateErrors(error.data);
-            //});
+            $scope.loadingCurrencies = true;
+            $http.patch(API + '/admin/currencies/' + code, {enabled: true}, {
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': vm.token
+                }
+            }).then(function (res) {
+                $scope.loadingCurrencies = false;
+                if (res.status === 200) {
+                    $scope.showConfirmCurrency = false;
+                    $scope.showCompleteCurrency = true;
+                    $rootScope.selectedCurrency = res.data.data;
+                }
+            }).catch(function (error) {
+                $scope.loadingCurrencies = false;
+                errorToasts.evaluateErrors(error.data);
+            });
         };
 
         $scope.next = function(){
             $scope.showConfirmCurrency = true;
-        };
-
-        $scope.confirmCurrency = function () {
-            $scope.showConfirmCurrency = false;
-            $scope.showCompleteCurrency = true;
         };
 
     }

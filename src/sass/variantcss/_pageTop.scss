@@ -25,6 +25,8 @@
 .user-currency-dropdown{
   width: 300px;
   top: 40px;
+  max-height: 300px;
+  overflow-y: scroll;
 }
 
 .user-currency{
