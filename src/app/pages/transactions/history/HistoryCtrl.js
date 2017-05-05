@@ -5,8 +5,9 @@
         .controller('HistoryCtrl', HistoryCtrl);
 
     /** @ngInject */
-    function HistoryCtrl($scope,API,$http,cookieManagement,$uibModal,errorToasts,$window,stringService) {
+    function HistoryCtrl($scope,API,$http,cookieManagement,$uibModal,errorToasts,$window,stringService,$state) {
 
+        console.log($state.params.code);
         var vm = this;
         vm.token = cookieManagement.getCookie('TOKEN');
         vm.currenciesList = JSON.parse($window.sessionStorage.currenciesList);

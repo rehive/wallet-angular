@@ -5,7 +5,7 @@
         .controller('UserDetailsCtrl', UserDetailsCtrl);
 
     /** @ngInject */
-    function UserDetailsCtrl($scope,API,$http,cookieManagement,errorToasts,$window,$stateParams) {
+    function UserDetailsCtrl($scope,API,$http,cookieManagement,errorToasts,$state,$stateParams) {
 
         var vm = this;
         vm.token = cookieManagement.getCookie('TOKEN');
@@ -25,7 +25,6 @@
                 $scope.loadingUser = false;
                 if (res.status === 200) {
                     $scope.user = res.data.data;
-                    console.log(res.data.data);
                 }
             }).catch(function (error) {
                 $scope.loadingUser = false;
@@ -33,6 +32,10 @@
             });
         };
         vm.getUser();
+
+        $scope.goToTransactions = function(identifier){
+            $state.go('transactions.history',{"code": identifier})
+        }
 
     }
 })();

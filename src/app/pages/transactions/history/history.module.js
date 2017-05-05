@@ -10,6 +10,9 @@
             .state('transactions.history', {
                 url: '/history',
                 templateUrl: 'app/pages/transactions/history/history.html',
+                params: {
+                    code: null
+                },
                 controller: "HistoryCtrl",
                 title: 'History',
                 sidebarMeta: {
