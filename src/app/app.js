@@ -15,6 +15,7 @@ angular.module('BlurAdmin', [
     'ngJsTree',
     'countrySelect',
     'angular-progress-button-styles',
+    'iso-3166-country-codes',
 
     'BlurAdmin.theme',
     'BlurAdmin.pages'

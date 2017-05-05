@@ -8,7 +8,7 @@
     function routeConfig($stateProvider) {
         $stateProvider
             .state('userDetails', {
-                url: '/user/details',
+                url: '/user/:uuid',
                 templateUrl: 'app/pages/users/userDetails/userDetails.html',
                 controller: "UserDetailsCtrl",
                 title: 'User Details'

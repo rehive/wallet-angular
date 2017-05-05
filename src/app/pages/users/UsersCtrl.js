@@ -5,7 +5,7 @@
         .controller('UsersCtrl', UsersCtrl);
 
     /** @ngInject */
-    function UsersCtrl($scope,API,$http,cookieManagement,errorToasts,$window) {
+    function UsersCtrl($rootScope,$scope,API,$http,cookieManagement,errorToasts,$window) {
 
         var vm = this;
         vm.token = cookieManagement.getCookie('TOKEN');
@@ -33,26 +33,27 @@
         $scope.currencyOptions = [];
         $scope.orderByOptions = ['Order By','Join Date','Balance','User'];
 
+        $rootScope.$watch('selectedCurrency',function(){
+            if($rootScope.selectedCurrency && $rootScope.selectedCurrency.code) {
+                vm.getCompanyCurrencies();
+                $scope.getAllUsers();
+            }
+        });
+
         vm.getCompanyCurrencies = function(){
             //adding currency as default value in both results array and ng-model of currency
-            vm.currenciesList.splice(0,0,{code: 'Currency'});
-            $scope.usersSearchParams.searchCurrency.code = 'Currency';
+            $scope.usersSearchParams.searchCurrency.code = $rootScope.selectedCurrency.code;
             $scope.currencyOptions = vm.currenciesList;
         };
-        vm.getCompanyCurrencies();
 
         vm.getUsersUrl = function(){
-            vm.filterParams = '?page=' + $scope.usersPagination.pageNo + '&page_size=' + $scope.usersPagination.itemsPerPage;
-                //+ '&created__gt=' + ($scope.searchParams.searchDateFrom? Date.parse($scope.searchParams.searchDateFrom) : '')
-                //+ '&created__lt=' + ($scope.searchParams.searchDateTo? Date.parse($scope.searchParams.searchDateTo) : '')
-                //+ '&currency=' + ($scope.searchParams.searchCurrency.code ? ($scope.searchParams.searchCurrency.code == 'Currency' ? '' : $scope.searchParams.searchCurrency.code) : '')
-                //+ '&from_reference=' + $scope.searchParams.searchUserFrom
-                //+ '&to_reference=' + $scope.searchParams.searchUserTo
-                //+ '&orderby=' + ($scope.searchParams.searchOrderBy == 'Latest' ? '-created' : $scope.searchParams.searchOrderBy == 'Largest' ? '-amount' : $scope.searchParams.searchOrderBy == 'Smallest' ? 'amount' : '')
-                //+ '&tx_code=' + $scope.searchParams.searchTxCode
-                //+ '&tx_type=' + ($scope.searchParams.searchType == 'Type' ? '' : $scope.searchParams.searchType.toLowerCase())
-                //+ '&status=' + ($scope.searchParams.searchStatus == 'Status' ? '' : $scope.searchParams.searchStatus)
-                //+ '&subtype=' + $scope.searchParams.searchSubType; // all the params of the filtering
+            vm.filterParams = '?page=' + $scope.usersPagination.pageNo + '&page_size=' + $scope.usersPagination.itemsPerPage
+            + '&currency=' + ($scope.usersSearchParams.searchCurrency.code ?  $scope.usersSearchParams.searchCurrency.code : '');
+                //+ '&created__gt=' + ($scope.usersSearchParams.searchDateFrom? Date.parse($scope.usersSearchParams.searchDateFrom) : '')
+                //+ '&created__lt=' + ($scope.usersSearchParams.searchDateTo? Date.parse($scope.usersSearchParams.searchDateTo) : '')
+                //+ '&user=' + ($scope.usersSearchParams.searchUser? $scope.usersSearchParams.searchUser : '')
+                //+ '&orderby=' + ($scope.usersSearchParams.searchOrderBy == 'Latest' ? '-created' : $scope.usersSearchParams.searchOrderBy == 'Largest' ? '-amount' : $scope.usersSearchParams.searchOrderBy == 'Smallest' ? 'amount' : '')
+                //+ '&status=' + ($scope.usersSearchParams.searchStatus == 'Status' ? '' : $scope.usersSearchParams.searchStatus)
 
             return API + '/admin/users/' + vm.filterParams;
         };
@@ -71,6 +72,7 @@
 
             var usersUrl = vm.getUsersUrl();
 
+            console.log(usersUrl);
             $http.get(usersUrl, {
                 headers: {
                     'Content-Type': 'application/json',
@@ -79,7 +81,6 @@
             }).then(function (res) {
                 $scope.loadingUsers = false;
                 if (res.status === 200) {
-                    console.log(res);
                     $scope.usersData = res.data.data;
                     $scope.users = res.data.data.results;
                     if($scope.users.length == 0){
@@ -95,7 +96,6 @@
                 errorToasts.evaluateErrors(error.data);
             });
         };
-        $scope.getAllUsers();
 
     }
 })();

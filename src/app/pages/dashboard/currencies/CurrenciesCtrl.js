@@ -5,7 +5,7 @@
         .controller('CurrenciesCtrl', CurrenciesCtrl);
 
     /** @ngInject */
-    function CurrenciesCtrl($rootScope,$scope,$location,cookieManagement,API,$http,IMAGEURL) {
+    function CurrenciesCtrl($rootScope,$scope,$location,cookieManagement,API,$http,IMAGEURL,errorToasts) {
 
         var vm = this;
         vm.token = cookieManagement.getCookie('TOKEN');
