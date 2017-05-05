@@ -1,4 +1,4 @@
-<div class="divider">
+<div ng-hide="users.length == 0" class="divider">
     <table class="table table-condensed table-striped">
         <tr class="black-muted-bg">
             <td><strong>Email</strong></td>
@@ -9,18 +9,20 @@
         <tr ng-repeat="user in users " class="editable-row center">
             <td><a href="/#/user/details"><div title="{{user.email}}" class="transactions-list-element" ng-bind="user.email"></div></a></td>
             <td><div title="{{user.currency.code}}" class="transactions-list-element" ng-bind="user.currency.code"></div></td>
-            <td><div title="{{user.date_joined | date:'mediumTime'}}" class="transactions-list-element" ng-bind="user.date_joined | date:'shortTime'"></div></td>
-            <td><div title="{{user.last_login | date:'mediumDate'}}" class="transactions-list-element">
-                {{user.created | date:'shortDate'}}</div></td>
+            <td><div title="{{user.date_joined | date:'mediumDate'}}, {{user.date_joined | date:'shortTime'}}" class="transactions-list-element">
+                {{user.date_joined | date:'mediumDate'}}, {{user.date_joined | date:'shortTime'}}
+            </div></td>
+            <td><div title="{{user.last_login | date:'mediumDate'}}, {{user.last_login | date:'shortTime'}}" class="transactions-list-element">
+                {{user.last_login | date:'mediumDate'}}, {{user.last_login | date:'shortTime'}}</div></td>
         </tr>
     </table>
     <div >
-        <p uib-pagination boundary-links="true" items-per-page="pagination.itemsPerPage"  total-items="transactionsData.count" ng-model="pagination.pageNo"
-           max-size="pagination.maxSize" class="pagination-sm pull-right transaction-history-pagination" force-ellipses="true" ng-change="getLatestTransactions()"
+        <p uib-pagination boundary-links="true" items-per-page="usersPagination.itemsPerPage"  total-items="usersData.count" ng-model="usersPagination.pageNo"
+           max-size="usersPagination.maxSize" class="pagination-sm pull-right transaction-history-pagination" force-ellipses="true" ng-change="getAllUsers()"
            previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;"></p>
     </div>
 </div>
 <div ng-show="users.length == 0">
-    <h4 ng-hide="transactionsStateMessage == ''" ng-bind="transactionsStateMessage"></h4>
-    <loading-image ng-show="transactionsStateMessage == ''"></loading-image>
+    <h4 ng-hide="usersStateMessage == ''" ng-bind="usersStateMessage"></h4>
+    <loading-image ng-show="usersStateMessage == ''"></loading-image>
 </div>

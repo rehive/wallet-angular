@@ -23,7 +23,6 @@
                 $scope.loadingCompanyControls = false;
                 if (res.status === 200) {
                     $scope.controls = res.data.data;
-                    console.log($scope.controls);
                 }
             }).catch(function (error) {
                 $scope.loadingCompanyControls = false;

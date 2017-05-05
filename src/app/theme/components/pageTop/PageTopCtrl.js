@@ -13,6 +13,12 @@
         $scope.currencies = [];
         vm.currentLocation = $location.path();
 
+        $rootScope.$watch('selectedCurrency',function(){
+            if($rootScope.selectedCurrency && $rootScope.selectedCurrency.code) {
+                vm.getCompanyCurrencies();
+            }
+        });
+
         vm.getCompanyCurrencies = function(){
             $http.get(API + '/admin/currencies/?enabled=true', {
                 headers: {
@@ -21,7 +27,9 @@
                 }
             }).then(function (res) {
                 if (res.status === 200) {
-                    $rootScope.selectedCurrency = res.data.data.results[0];
+                    if(!$rootScope.selectedCurrency){
+                        $rootScope.selectedCurrency = res.data.data.results[0];
+                    }
                     $scope.currencies = res.data.data.results;
                     $window.sessionStorage.currenciesList = JSON.stringify(res.data.data.results);
                 }

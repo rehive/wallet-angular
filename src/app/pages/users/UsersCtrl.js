@@ -9,7 +9,8 @@
 
         var vm = this;
         vm.token = cookieManagement.getCookie('TOKEN');
-        vm.currenciesList = JSON.parse($window.sessionStorage.currenciesList);
+        vm.currenciesList = JSON.parse($window.sessionStorage.currenciesList || '[]');
+        $scope.usersStateMessage = '';
         $scope.users = [];
 
         $scope.usersPagination = {
@@ -79,12 +80,12 @@
                 $scope.loadingUsers = false;
                 if (res.status === 200) {
                     console.log(res);
+                    $scope.usersData = res.data.data;
                     $scope.users = res.data.data.results;
                     if($scope.users.length == 0){
-                        $scope.usersStateMessage = 'No Transactions Have Been Found';
+                        $scope.usersStateMessage = 'No Users Have Been Found';
                         return;
                     }
-
                     $scope.usersStateMessage = '';
                 }
             }).catch(function (error) {

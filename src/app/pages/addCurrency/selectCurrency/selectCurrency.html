@@ -1,7 +1,7 @@
 <div ng-hide="loadingCurrencies" ba-panel>
     <label class="divider"><strong>Select Currency</strong></label>
     <select class="form-control pointer divider" ng-model="addCurrency.currencyChoice"
-            ng-options="currency.code + ' - ' + currency.description for currency in currencyOptions track by currency.code">
+            ng-options="currency.code + ' - ' + currency.description for currency in currencyOptions | orderBy: 'code'">
     </select>
     <button class="btn btn-primary pull-right" ng-click="next()">Next</button>
 </div>
