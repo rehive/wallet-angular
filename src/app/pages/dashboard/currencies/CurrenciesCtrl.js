@@ -5,26 +5,32 @@
         .controller('CurrenciesCtrl', CurrenciesCtrl);
 
     /** @ngInject */
-    function CurrenciesCtrl($scope,$location) {
+    function CurrenciesCtrl($rootScope,$scope,$location,cookieManagement,API,$http,IMAGEURL) {
 
-        $scope.currencyDetails = [{
-            logo: "https://storage.googleapis.com/rehive-static/dashboard/dist/img/tokens/USD.png",
-            pendingWithdrawals: 0,
-            volume: 0
-        },{
-            logo: "https://storage.googleapis.com/rehive-static/dashboard/dist/img/tokens/EUR.png",
-            pendingWithdrawals: 0,
-            volume: 0
-        },{
-            logo: "https://storage.googleapis.com/rehive-static/dashboard/dist/img/tokens/XBT.png",
-            pendingWithdrawals: 0,
-            volume: 0
-        },{
-            logo: "https://storage.googleapis.com/rehive-static/dashboard/dist/img/tokens/USD.png",
-            pendingWithdrawals: 20,
-            volume: 30
-        }];
+        var vm = this;
+        vm.token = cookieManagement.getCookie('TOKEN');
+        $scope.IMAGEURL = IMAGEURL;
 
+        vm.getCompanyCurrencies = function(){
+            $http.get(API + '/admin/currencies/?enabled=true', {
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': vm.token
+                }
+            }).then(function (res) {
+                if (res.status === 200) {
+                    $scope.currencies = res.data.data.results;
+                }
+            }).catch(function (error) {
+                errorToasts.evaluateErrors(error.data);
+            });
+        };
+        vm.getCompanyCurrencies();
+
+        $scope.goToView = function(currency,path){
+            $rootScope.selectedCurrency = currency;
+            $location.path(path);
+        };
 
         $scope.goToAddCurrency = function(){
             $location.path('/currency/add');

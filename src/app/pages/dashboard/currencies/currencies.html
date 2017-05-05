@@ -9,17 +9,17 @@
             <td><strong>24h Volume</strong></td>
             <td></td>
         </tr>
-        <tr ng-repeat="currency in currencyDetails" class="editable-row">
+        <tr ng-repeat="currency in currencies" class="editable-row">
             <td width="15%">
-                <img class="currency-logo" ng-src="{{currency.logo}}" alt="token">
+                <img class="currency-logo" ng-src="{{IMAGEURL + currency.code + '.png'}}" alt="token">
             </td>
-            <td width="15%" ng-bind="currency.pendingWithdrawals"></td>
-            <td width="15%" ng-bind="currency.volume"></td>
+            <td width="15%">0</td>
+            <td width="15%">0</td>
             <td class="no-right-padding-last-child">
-                <a href="" ><button class="btn btn-primary pull-right button-width-100-no-right-margin">Overview</button></a>
-                <a href="#/users" ><button class="btn btn-primary pull-right button-width-100-no-right-margin">Users</button></a>
-                <a href="#/transactions/deposits" ><button class="btn btn-primary pull-right button-width-100-no-right-margin">Deposits</button></a>
-                <a href="#/transactions/withdrawals" ><button class="btn btn-primary pull-right button-width-100-no-right-margin">Withdrawals</button></a>
+                <button ng-click="goToView(currency,'/transactions/overview')" class="btn btn-primary pull-right button-width-100-no-right-margin">Overview</button>
+                <button ng-click="goToView(currency,'/users')" class="btn btn-primary pull-right button-width-100-no-right-margin">Users</button>
+                <button ng-click="goToView(currency,'/transactions/deposits')" class="btn btn-primary pull-right button-width-100-no-right-margin">Deposits</button>
+                <button ng-click="goToView(currency,'/transactions/withdrawals')" class="btn btn-primary pull-right button-width-100-no-right-margin">Withdrawals</button>
             </td>
         </tr>
     </table>
