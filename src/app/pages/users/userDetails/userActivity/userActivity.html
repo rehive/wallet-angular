@@ -1,0 +1,16 @@
+<div ba-panel ba-panel-title="User Activity" >
+    <table class="table table-condensed table-striped user-details-table">
+        <tr>
+            <th width="40%"><strong>Joined</strong></th>
+            <th>{{user.date_joined | date:'mediumDate'}}, {{user.date_joined | date:'shortTime'}}</th>
+        </tr>
+        <tr>
+            <th width="40%"><strong>Last Login</strong></th>
+            <th>{{user.last_login | date:'mediumDate'}}, {{user.last_login | date:'shortTime'}}</th>
+        </tr>
+        <tr>
+            <th width="40%"><strong>Transactions</strong></th>
+            <th><a  class="pointer" ng-click="goToTransactions(user.identifier)">View</a></th>
+        </tr>
+    </table>
+</div>

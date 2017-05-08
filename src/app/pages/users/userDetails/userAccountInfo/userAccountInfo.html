@@ -1,0 +1,30 @@
+<div ba-panel ba-panel-title="Account Info" >
+    <table class="table table-condensed table-striped user-details-table">
+        <tr ng-show="user.identifier">
+            <th width="70%"><strong>Identifier</strong></th>
+            <th></th>
+        </tr>
+        <tr ng-show="user.identifier">
+            <th width="70%" ng-bind="user.identifier"></th>
+            <th></th>
+        </tr>
+        <tr ng-show="user.email">
+            <th width="70%"><strong>Email Address</strong></th>
+            <th></th>
+        </tr>
+        <tr ng-show="user.email">
+            <th width="70%" ng-bind="user.email"></th>
+            <th></th>
+            <!--<span class="ion-checkmark pull-right"></span>-->
+        </tr>
+        <tr ng-show="user.mobile_number">
+            <th width="70%"><strong>Mobile Numbers</strong></th>
+            <th></th>
+        </tr>
+        <tr ng-show="user.mobile_number">
+            <th width="70%" ng-bind="user.mobile_number"></th>
+            <th></th>
+            <!--<button class="btn btn-primary pull-right">Verify</button>-->
+        </tr>
+    </table>
+</div>
