@@ -5,7 +5,7 @@
         .controller('SubtypesCtrl', SubtypesCtrl);
 
     /** @ngInject */
-    function SubtypesCtrl($scope,API,$uibModal,toastr,$http,cookieManagement,errorToasts,$window) {
+    function SubtypesCtrl($scope,API,$uibModal,toastr,$http,cookieManagement,errorToasts,$window,errorHandler) {
 
         var vm = this;
         vm.token = cookieManagement.getCookie('TOKEN');
@@ -25,21 +25,23 @@
         };
 
         vm.getSubtypes = function () {
-            $scope.loadingSubtypes = true;
-            $http.get(API + '/admin/subtypes/', {
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': vm.token
-                }
-            }).then(function (res) {
-                $scope.loadingSubtypes = false;
-                if (res.status === 200) {
-                    $scope.subtypes = res.data.data;
-                }
-            }).catch(function (error) {
-                $scope.loadingSubtypes = false;
-                errorToasts.evaluateErrors(error.data);
-            });
+            if(vm.token) {
+                $scope.loadingSubtypes = true;
+                $http.get(API + '/admin/subtypes/', {
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': vm.token
+                    }
+                }).then(function (res) {
+                    $scope.loadingSubtypes = false;
+                    if (res.status === 200) {
+                        $scope.subtypes = res.data.data;
+                    }
+                }).catch(function (error) {
+                    $scope.loadingSubtypes = false;
+                    errorToasts.evaluateErrors(error.data);
+                });
+            }
         };
         vm.getSubtypes();
 
@@ -61,6 +63,10 @@
                 }
             }).catch(function (error) {
                 $scope.loadingSubtypes = false;
+                if(error.status == 403){
+                    errorHandler.handle403();
+                    return
+                }
                 errorToasts.evaluateErrors(error.data);
             });
         };
@@ -86,6 +92,10 @@
                 }
             }).catch(function (error) {
                 $scope.loadingSubtypes = false;
+                if(error.status == 403){
+                    errorHandler.handle403();
+                    return
+                }
                 errorToasts.evaluateErrors(error.data);
             });
         };

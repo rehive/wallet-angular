@@ -5,7 +5,7 @@
         .controller('UsersCtrl', UsersCtrl);
 
     /** @ngInject */
-    function UsersCtrl($rootScope,$scope,API,$http,cookieManagement,errorToasts,$window) {
+    function UsersCtrl($rootScope,$scope,API,$http,cookieManagement,errorToasts,$window,errorHandler) {
 
         var vm = this;
         vm.token = cookieManagement.getCookie('TOKEN');
@@ -72,7 +72,6 @@
 
             var usersUrl = vm.getUsersUrl();
 
-            console.log(usersUrl);
             $http.get(usersUrl, {
                 headers: {
                     'Content-Type': 'application/json',
@@ -90,8 +89,11 @@
                     $scope.usersStateMessage = '';
                 }
             }).catch(function (error) {
-                console.log(error);
                 $scope.loadingUsers = false;
+                if(error.status == 403){
+                    errorHandler.handle403();
+                    return
+                }
                 $scope.usersStateMessage = 'Failed To Load Data';
                 errorToasts.evaluateErrors(error.data);
             });

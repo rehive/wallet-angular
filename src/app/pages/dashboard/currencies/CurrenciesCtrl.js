@@ -12,18 +12,20 @@
         $scope.IMAGEURL = IMAGEURL;
 
         vm.getCompanyCurrencies = function(){
-            $http.get(API + '/admin/currencies/?enabled=true', {
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': vm.token
-                }
-            }).then(function (res) {
-                if (res.status === 200) {
-                    $scope.currencies = res.data.data.results;
-                }
-            }).catch(function (error) {
-                errorToasts.evaluateErrors(error.data);
-            });
+            if(vm.token) {
+                $http.get(API + '/admin/currencies/?enabled=true', {
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': vm.token
+                    }
+                }).then(function (res) {
+                    if (res.status === 200) {
+                        $scope.currencies = res.data.data.results;
+                    }
+                }).catch(function (error) {
+                    errorToasts.evaluateErrors(error.data);
+                });
+            }
         };
         vm.getCompanyCurrencies();
 

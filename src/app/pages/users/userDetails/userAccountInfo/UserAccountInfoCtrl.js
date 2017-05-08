@@ -14,21 +14,23 @@
         $scope.loadingUser = true;
 
         vm.getUser = function(){
-            $scope.loadingUser = true;
-            $http.get(API + '/admin/users/' + vm.uuid, {
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': vm.token
-                }
-            }).then(function (res) {
-                $scope.loadingUser = false;
-                if (res.status === 200) {
-                    $scope.user = res.data.data;
-                }
-            }).catch(function (error) {
-                $scope.loadingUser = false;
-                errorToasts.evaluateErrors(error.data);
-            });
+            if(vm.token) {
+                $scope.loadingUser = true;
+                $http.get(API + '/admin/users/' + vm.uuid, {
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': vm.token
+                    }
+                }).then(function (res) {
+                    $scope.loadingUser = false;
+                    if (res.status === 200) {
+                        $scope.user = res.data.data;
+                    }
+                }).catch(function (error) {
+                    $scope.loadingUser = false;
+                    errorToasts.evaluateErrors(error.data);
+                });
+            }
         };
         vm.getUser();
 

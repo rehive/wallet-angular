@@ -5,7 +5,7 @@
         .controller('PendingWithdrawalsModalCtrl', PendingWithdrawalsModalCtrl);
 
     /** @ngInject */
-    function PendingWithdrawalsModalCtrl($uibModalInstance,$scope,$http,API,cookieManagement,toastr,transaction,errorToasts) {
+    function PendingWithdrawalsModalCtrl($uibModalInstance,$scope,$http,API,cookieManagement,toastr,transaction,errorToasts,errorHandler) {
         $scope.transaction = transaction;
 
         var vm = this;
@@ -29,6 +29,10 @@
                     $uibModalInstance.dismiss('cancel');
                 }
             }).catch(function (error) {
+                if(error.status == 403){
+                    errorHandler.handle403();
+                    return
+                }
                 errorToasts.evaluateErrors(error.data);
             });
         };

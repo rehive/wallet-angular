@@ -5,7 +5,7 @@
         .controller('AddCurrencyCtrl', AddCurrencyCtrl);
 
     /** @ngInject */
-    function AddCurrencyCtrl($rootScope,$scope,$http,API,cookieManagement,IMAGEURL,errorToasts) {
+    function AddCurrencyCtrl($rootScope,$scope,$http,API,cookieManagement,IMAGEURL,errorToasts,errorHandler) {
 
         var vm = this;
         vm.token = cookieManagement.getCookie('TOKEN');
@@ -22,22 +22,26 @@
         });
 
         vm.getCurrencies = function(){
-            $scope.loadingCurrencies = true;
-            $http.get(API + '/admin/currencies/?page_size=250', {
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': vm.token
-                }
-            }).then(function (res) {
-                $scope.loadingCurrencies = false;
-                if (res.status === 200) {
-                    $scope.addCurrency.currencyChoice = res.data.data.results.find(function(currency){return currency.code == $rootScope.selectedCurrency.code});
-                    $scope.currencyOptions = res.data.data.results;
-                }
-            }).catch(function (error) {
-                $scope.loadingCurrencies = false;
-                errorToasts.evaluateErrors(error.data);
-            });
+            if(vm.token) {
+                $scope.loadingCurrencies = true;
+                $http.get(API + '/admin/currencies/?page_size=250', {
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': vm.token
+                    }
+                }).then(function (res) {
+                    $scope.loadingCurrencies = false;
+                    if (res.status === 200) {
+                        $scope.addCurrency.currencyChoice = res.data.data.results.find(function (currency) {
+                            return currency.code == $rootScope.selectedCurrency.code
+                        });
+                        $scope.currencyOptions = res.data.data.results;
+                    }
+                }).catch(function (error) {
+                    $scope.loadingCurrencies = false;
+                    errorToasts.evaluateErrors(error.data);
+                });
+            }
         };
         vm.getCurrencies();
 
@@ -60,6 +64,10 @@
                 }
             }).catch(function (error) {
                 $scope.loadingCurrencies = false;
+                if(error.status == 403){
+                    errorHandler.handle403();
+                    return
+                }
                 errorToasts.evaluateErrors(error.data);
             });
         };

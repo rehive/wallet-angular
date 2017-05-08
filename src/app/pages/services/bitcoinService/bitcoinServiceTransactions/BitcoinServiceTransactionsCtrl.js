@@ -5,7 +5,7 @@
         .controller('BitcoinServiceTransactionsCtrl', BitcoinServiceTransactionsCtrl);
 
     /** @ngInject */
-    function BitcoinServiceTransactionsCtrl($scope,API,$http,cookieManagement,$uibModal,errorToasts,$window,stringService) {
+    function BitcoinServiceTransactionsCtrl($scope,API,$http,cookieManagement,$uibModal,errorToasts,$window,stringService,errorHandler) {
 
         var vm = this;
         vm.token = cookieManagement.getCookie('TOKEN');
@@ -65,42 +65,48 @@
         };
 
         $scope.getLatestTransactions = function(applyFilter){
-            $scope.transactionsStateMessage = '';
-            $scope.loadingTransactions = true;
+            if(vm.token){
+                $scope.transactionsStateMessage = '';
+                $scope.loadingTransactions = true;
 
-            if(applyFilter){
-              // if function is called from history-filters directive, then pageNo set to 1
-                $scope.pagination.pageNo = 1;
-            }
-
-            if($scope.transactions.length > 0 ){
-                $scope.transactions.length = 0;
-            }
-
-            var transactionsUrl = vm.getTransactionUrl();
-
-            $http.get(transactionsUrl, {
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': vm.token
+                if(applyFilter){
+                  // if function is called from history-filters directive, then pageNo set to 1
+                    $scope.pagination.pageNo = 1;
                 }
-            }).then(function (res) {
-                $scope.loadingTransactions = false;
-                if (res.status === 200) {
-                    $scope.transactionsData = res.data.data;
-                    $scope.transactions = $scope.transactionsData.results;
-                    if($scope.transactions == 0){
-                        $scope.transactionsStateMessage = 'No Transactions Have Been Found';
-                        return;
+
+                if($scope.transactions.length > 0 ){
+                    $scope.transactions.length = 0;
+                }
+
+                var transactionsUrl = vm.getTransactionUrl();
+
+                $http.get(transactionsUrl, {
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': vm.token
                     }
+                }).then(function (res) {
+                    $scope.loadingTransactions = false;
+                    if (res.status === 200) {
+                        $scope.transactionsData = res.data.data;
+                        $scope.transactions = $scope.transactionsData.results;
+                        if($scope.transactions == 0){
+                            $scope.transactionsStateMessage = 'No Transactions Have Been Found';
+                            return;
+                        }
 
-                    $scope.transactionsStateMessage = '';
-                }
-            }).catch(function (error) {
-                $scope.loadingTransactions = false;
-                $scope.transactionsStateMessage = 'Failed To Load Data';
-                errorToasts.evaluateErrors(error.data);
-            });
+                        $scope.transactionsStateMessage = '';
+                    }
+                }).catch(function (error) {
+                    $scope.loadingTransactions = false;
+                    if(error.status == 403){
+                        errorHandler.handle403();
+                        return
+                    }
+                    $scope.transactionsStateMessage = 'Failed To Load Data';
+                    errorToasts.evaluateErrors(error.data);
+                });
+            }
         };
         $scope.getLatestTransactions();
 

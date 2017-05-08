@@ -21,25 +21,27 @@
         });
 
         vm.getPendingTransactions = function(){
-            $http.get(API + '/admin/transactions/?tx_type=deposit&status=Pending&orderby=-created&currency=' + $rootScope.selectedCurrency.code, {
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': vm.token
-                }
-            }).then(function (res) {
-                if (res.status === 200) {
-                    if(res.data.data.results.length == 0){
-                        $scope.transactionsStateMessage = 'No Pending Transactions';
-                        return;
+            if(vm.token) {
+                $http.get(API + '/admin/transactions/?tx_type=deposit&status=Pending&orderby=-created&currency=' + $rootScope.selectedCurrency.code, {
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': vm.token
                     }
-                    $scope.transactions = res.data.data.results;
-                    $scope.transactionsStateMessage = '';
-                }
-            }).catch(function (error) {
-                console.log(error);
-                $scope.transactionsStateMessage = 'Failed To Load Data';
-                errorToasts.evaluateErrors(error.data);
-            });
+                }).then(function (res) {
+                    if (res.status === 200) {
+                        if (res.data.data.results.length == 0) {
+                            $scope.transactionsStateMessage = 'No Pending Transactions';
+                            return;
+                        }
+                        $scope.transactions = res.data.data.results;
+                        $scope.transactionsStateMessage = '';
+                    }
+                }).catch(function (error) {
+                    console.log(error);
+                    $scope.transactionsStateMessage = 'Failed To Load Data';
+                    errorToasts.evaluateErrors(error.data);
+                });
+            }
         };
 
         $scope.openModal = function (page, size,transaction) {

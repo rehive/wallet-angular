@@ -5,7 +5,7 @@
         .controller('BankAccountsCtrl', BankAccountsCtrl);
 
     /** @ngInject */
-    function BankAccountsCtrl($scope,API,$uibModal,toastr,$http,cookieManagement,errorToasts,$window) {
+    function BankAccountsCtrl($scope,API,$uibModal,toastr,$http,cookieManagement,errorToasts,$window,errorHandler) {
 
         var vm = this;
         vm.token = cookieManagement.getCookie('TOKEN');
@@ -22,21 +22,23 @@
         };
 
         vm.getBankAccounts = function () {
-            $scope.loadingBankAccounts = true;
-            $http.get(API + '/admin/bank-accounts', {
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': vm.token
-                }
-            }).then(function (res) {
-                $scope.loadingBankAccounts = false;
-                if (res.status === 200) {
-                    $scope.bankAccounts = res.data.data;
-                }
-            }).catch(function (error) {
-                $scope.loadingBankAccounts = false;
-                errorToasts.evaluateErrors(error.data);
-            });
+            if(vm.token) {
+                $scope.loadingBankAccounts = true;
+                $http.get(API + '/admin/bank-accounts', {
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': vm.token
+                    }
+                }).then(function (res) {
+                    $scope.loadingBankAccounts = false;
+                    if (res.status === 200) {
+                        $scope.bankAccounts = res.data.data;
+                    }
+                }).catch(function (error) {
+                    $scope.loadingBankAccounts = false;
+                    errorToasts.evaluateErrors(error.data);
+                });
+            }
         };
         vm.getBankAccounts();
 
@@ -56,6 +58,10 @@
                 }
             }).catch(function (error) {
                 $scope.loadingBankAccounts = false;
+                if(error.status == 403){
+                    errorHandler.handle403();
+                    return
+                }
                 errorToasts.evaluateErrors(error.data);
             });
         };
@@ -81,6 +87,10 @@
                 }
             }).catch(function (error) {
                 $scope.loadingBankAccounts = false;
+                if(error.status == 403){
+                    errorHandler.handle403();
+                    return
+                }
                 errorToasts.evaluateErrors(error.data);
             });
         };

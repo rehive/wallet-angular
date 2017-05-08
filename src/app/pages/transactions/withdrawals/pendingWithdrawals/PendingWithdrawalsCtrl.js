@@ -5,7 +5,7 @@
         .controller('PendingWithdrawalCtrl', PendingWithdrawalCtrl);
 
     /** @ngInject */
-    function PendingWithdrawalCtrl($rootScope,$scope,$http,API,cookieManagement,$uibModal,errorToasts) {
+    function PendingWithdrawalCtrl($rootScope,$scope,$http,API,cookieManagement,$uibModal,errorToasts,errorHandler) {
 
         var vm = this;
         $scope.transactions = [];
@@ -36,6 +36,10 @@
                     $scope.transactionsStateMessage = '';
                 }
             }).catch(function (error) {
+                if(error.status == 403){
+                    errorHandler.handle403();
+                    return
+                }
                 $scope.transactionsStateMessage = 'Failed To Load Data';
                 errorToasts.evaluateErrors(error.data);
             });

@@ -5,7 +5,7 @@
         .controller('CompanyInfoCtrl', CompanyInfoCtrl);
 
     /** @ngInject */
-    function CompanyInfoCtrl($scope,API,toastr,$http,cookieManagement,errorToasts,_) {
+    function CompanyInfoCtrl($scope,API,toastr,$http,cookieManagement,errorToasts,_,errorHandler) {
 
         var vm = this;
         vm.token = cookieManagement.getCookie('TOKEN');
@@ -19,21 +19,23 @@
         };
 
         vm.getCompanyInfo = function () {
-            $http.get(API + '/admin/company/', {
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': vm.token
-                }
-            }).then(function (res) {
-                $scope.loadingCompanyInfo = false;
-                if (res.status === 200) {
-                    $scope.company = res.data.data;
-                    vm.getCurrencies();
-                }
-            }).catch(function (error) {
-                $scope.loadingCompanyInfo = false;
-                errorToasts.evaluateErrors(error.data);
-            });
+            if(vm.token) {
+                $http.get(API + '/admin/company/', {
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': vm.token
+                    }
+                }).then(function (res) {
+                    $scope.loadingCompanyInfo = false;
+                    if (res.status === 200) {
+                        $scope.company = res.data.data;
+                        vm.getCurrencies();
+                    }
+                }).catch(function (error) {
+                    $scope.loadingCompanyInfo = false;
+                    errorToasts.evaluateErrors(error.data);
+                });
+            }
         };
         vm.getCompanyInfo();
 
@@ -68,6 +70,10 @@
                 }
             }).catch(function (error) {
                 $scope.loadingCompanyInfo = false;
+                if(error.status == 403){
+                    errorHandler.handle403();
+                    return
+                }
                 errorToasts.evaluateErrors(error.data);
             });
         };

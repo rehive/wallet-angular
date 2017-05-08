@@ -5,7 +5,7 @@
         .controller('ControlsCtrl', ControlsCtrl);
 
     /** @ngInject */
-    function ControlsCtrl($scope,API,toastr,$http,cookieManagement,errorToasts) {
+    function ControlsCtrl($scope,API,toastr,$http,cookieManagement,errorToasts,errorHandler) {
 
         var vm = this;
         vm.token = cookieManagement.getCookie('TOKEN');
@@ -13,21 +13,23 @@
         $scope.loadingCompanyControls = true;
 
         vm.getCompanyControls = function () {
-            $scope.loadingCompanyControls = true;
-            $http.get(API + '/admin/controls/', {
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': vm.token
-                }
-            }).then(function (res) {
-                $scope.loadingCompanyControls = false;
-                if (res.status === 200) {
-                    $scope.controls = res.data.data;
-                }
-            }).catch(function (error) {
-                $scope.loadingCompanyControls = false;
-                errorToasts.evaluateErrors(error.data);
-            });
+            if(vm.token) {
+                $scope.loadingCompanyControls = true;
+                $http.get(API + '/admin/controls/', {
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': vm.token
+                    }
+                }).then(function (res) {
+                    $scope.loadingCompanyControls = false;
+                    if (res.status === 200) {
+                        $scope.controls = res.data.data;
+                    }
+                }).catch(function (error) {
+                    $scope.loadingCompanyControls = false;
+                    errorToasts.evaluateErrors(error.data);
+                });
+            }
         };
         vm.getCompanyControls();
 
@@ -42,6 +44,10 @@
                     toastr.success('You have successfully updated the control');
                 }
             }).catch(function (error) {
+                if(error.status == 403){
+                    errorHandler.handle403();
+                    return
+                }
                 errorToasts.evaluateErrors(error.data);
             });
         }

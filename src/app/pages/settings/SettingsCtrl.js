@@ -17,19 +17,21 @@
 
 
         vm.getCompanyDetails = function(){
-            $http.get(API + '/admin/company/', {
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': vm.token
-                }
-            }).then(function (res) {
-                if (res.status === 200) {
-                  $scope.companyImageUrl = res.data.data.logo;
-                }
-            }).catch(function (error) {
-                console.log(error);
-                errorToasts.evaluateErrors(error.data);
-            });
+            if(vm.token) {
+                $http.get(API + '/admin/company/', {
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': vm.token
+                    }
+                }).then(function (res) {
+                    if (res.status === 200) {
+                        $scope.companyImageUrl = res.data.data.logo;
+                    }
+                }).catch(function (error) {
+                    console.log(error);
+                    errorToasts.evaluateErrors(error.data);
+                });
+            }
           };
           vm.getCompanyDetails();
 

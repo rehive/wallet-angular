@@ -5,7 +5,7 @@
         .controller('PageTopCtrl', PageTopCtrl);
 
     /** @ngInject */
-    function PageTopCtrl($rootScope,$scope,$http,cookieManagement,API,$location,errorToasts,$window,_) {
+    function PageTopCtrl($rootScope,$scope,$http,cookieManagement,API,$location,errorToasts,$window,errorHandler) {
         var vm = this;
 
         $scope.companyName = cookieManagement.getCookie('COMPANY');
@@ -20,27 +20,28 @@
         });
 
         vm.getCompanyCurrencies = function(){
-            $http.get(API + '/admin/currencies/?enabled=true', {
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': vm.token
-                }
-            }).then(function (res) {
-                if (res.status === 200) {
-                    if(!$rootScope.selectedCurrency){
-                        $rootScope.selectedCurrency = res.data.data.results[0];
+            if(vm.token){
+                $http.get(API + '/admin/currencies/?enabled=true', {
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': vm.token
                     }
-                    $scope.currencies = res.data.data.results;
-                    $window.sessionStorage.currenciesList = JSON.stringify(res.data.data.results);
-                }
-            }).catch(function (error) {
-                errorToasts.evaluateErrors(error.data);
-                if(error.status == 403){
-                    cookieManagement.deleteCookie('TOKEN');
-                    cookieManagement.deleteCookie('COMPANY');
-                    $location.path('/login');
-                }
-            });
+                }).then(function (res) {
+                    if (res.status === 200) {
+                        if(!$rootScope.selectedCurrency){
+                            $rootScope.selectedCurrency = res.data.data.results[0];
+                        }
+                        $scope.currencies = res.data.data.results;
+                        $window.sessionStorage.currenciesList = JSON.stringify(res.data.data.results);
+                    }
+                }).catch(function (error) {
+                    if(error.status == 403){
+                        errorHandler.handle403();
+                        return
+                    }
+                    errorToasts.evaluateErrors(error.data);
+                });
+            }
         };
         if(vm.currentLocation != '/login'){
             vm.getCompanyCurrencies();

@@ -5,7 +5,7 @@
         .controller('DepositsCtrl', DepositsCtrl);
 
     /** @ngInject */
-    function DepositsCtrl($rootScope,$scope,IMAGEURL,$http,API,cookieManagement,toastr,errorToasts) {
+    function DepositsCtrl($rootScope,$scope,IMAGEURL,$http,API,cookieManagement,toastr,errorToasts,errorHandler) {
 
         var vm = this;
         vm.token = cookieManagement.getCookie('TOKEN');
@@ -73,6 +73,10 @@
                 }
             }).catch(function (error) {
                 $scope.onGoingTransaction = false;
+                if(error.status == 403){
+                    errorHandler.handle403();
+                    return
+                }
                 errorToasts.evaluateErrors(error.data);
             });
         }

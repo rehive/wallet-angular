@@ -5,14 +5,13 @@
         .controller('PendingDepositsModalCtrl', PendingDepositsModalCtrl);
 
     /** @ngInject */
-    function PendingDepositsModalCtrl($uibModalInstance,$scope,$http,API,cookieManagement,toastr,transaction,errorToasts) {
+    function PendingDepositsModalCtrl($uibModalInstance,$scope,$http,API,cookieManagement,toastr,transaction,errorToasts,errorHandler) {
         $scope.transaction = transaction;
 
         var vm = this;
         vm.token = cookieManagement.getCookie('TOKEN');
 
         $scope.updateTransaction = function(status){
-            console.log(status);
             $http.put(API + '/admin/transactions/' + $scope.transaction.tx_code + '/', { status: status },
                 {
                     headers: {
@@ -30,6 +29,10 @@
                     $uibModalInstance.dismiss('cancel');
                 }
             }).catch(function (error) {
+                if(error.status == 403){
+                    errorHandler.handle403();
+                    return
+                }
                 errorToasts.evaluateErrors(error.data);
             });
         };

@@ -5,7 +5,7 @@
         .controller('AccountInfoCtrl', AccountInfoCtrl);
 
     /** @ngInject */
-    function AccountInfoCtrl($scope,API,IMAGEURL,$http,cookieManagement,errorToasts,toastr) {
+    function AccountInfoCtrl($scope,API,errorHandler,$http,cookieManagement,errorToasts,toastr) {
 
         var vm = this;
         vm.token = cookieManagement.getCookie('TOKEN');
@@ -18,20 +18,22 @@
         };
 
         vm.getAdminAccountInfo = function () {
-            $http.get(API + '/user', {
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': vm.token
-                }
-            }).then(function (res) {
-                $scope.loadingAccountInfo = false;
-                if (res.status === 200) {
-                    $scope.administrator = res.data.data;
-                }
-            }).catch(function (error) {
-                $scope.loadingAccountInfo = false;
-                errorToasts.evaluateErrors(error.data);
-            });
+            if(vm.token) {
+                $http.get(API + '/user', {
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': vm.token
+                    }
+                }).then(function (res) {
+                    $scope.loadingAccountInfo = false;
+                    if (res.status === 200) {
+                        $scope.administrator = res.data.data;
+                    }
+                }).catch(function (error) {
+                    $scope.loadingAccountInfo = false;
+                    errorToasts.evaluateErrors(error.data);
+                });
+            }
         };
         vm.getAdminAccountInfo();
 
@@ -52,6 +54,10 @@
             }).catch(function (error) {
                 vm.updatedAdministrator = {};
                 $scope.loadingAccountInfo = false;
+                if(error.status == 403){
+                    errorHandler.handle403();
+                    return
+                }
                 errorToasts.evaluateErrors(error.data);
             });
         };

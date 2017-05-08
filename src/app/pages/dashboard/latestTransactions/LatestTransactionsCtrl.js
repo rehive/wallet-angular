@@ -13,23 +13,25 @@
         vm.token = cookieManagement.getCookie('TOKEN');
 
         vm.getLatestTransactions = function(){
-            $http.get(API + '/admin/transactions/?page_size=4&orderby=-created', {
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': vm.token
-                }
-            }).then(function (res) {
-                if (res.status === 200) {
-                    if(res.data.data.results.length == 0){
-                        $scope.transactionsStateMessage = 'No Transactions Have Been Made';
+            if(vm.token) {
+                $http.get(API + '/admin/transactions/?page_size=4&orderby=-created', {
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': vm.token
                     }
-                    $scope.transactions = res.data.data.results;
-                    $scope.transactionsStateMessage = '';
-                }
-            }).catch(function (error) {
-                $scope.transactionsStateMessage = 'Failed To Load Data';
-                errorToasts.evaluateErrors(error.data);
-            });
+                }).then(function (res) {
+                    if (res.status === 200) {
+                        if (res.data.data.results.length == 0) {
+                            $scope.transactionsStateMessage = 'No Transactions Have Been Made';
+                        }
+                        $scope.transactions = res.data.data.results;
+                        $scope.transactionsStateMessage = '';
+                    }
+                }).catch(function (error) {
+                    $scope.transactionsStateMessage = 'Failed To Load Data';
+                    errorToasts.evaluateErrors(error.data);
+                });
+            }
         };
         vm.getLatestTransactions();
 

@@ -4,7 +4,7 @@
     angular.module('BlurAdmin.pages.settings')
         .controller('WebhooksModalCtrl', WebhooksModalCtrl);
 
-    function WebhooksModalCtrl($scope,webhook,toastr,$http,API,cookieManagement,errorToasts) {
+    function WebhooksModalCtrl($scope,webhook,toastr,$http,API,cookieManagement,errorToasts,errorHandler) {
 
         var vm = this;
 
@@ -33,6 +33,10 @@
                 }
             }).catch(function (error) {
                 $scope.deletingWebhook = false;
+                if(error.status == 403){
+                    errorHandler.handle403();
+                    return
+                }
                 errorToasts.evaluateErrors(error.data);
             });
         };

@@ -5,7 +5,7 @@
         .controller('WebhooksCtrl', WebhooksCtrl);
 
     /** @ngInject */
-    function WebhooksCtrl($scope,API,$uibModal,toastr,$http,cookieManagement,errorToasts,$window,stringService) {
+    function WebhooksCtrl($scope,API,$uibModal,toastr,$http,cookieManagement,errorToasts,$window,stringService,errorHandler) {
 
         var vm = this;
         vm.updatedWebhook = {};
@@ -28,22 +28,24 @@
         };
 
         vm.getWebhooks = function () {
-            $scope.loadingWebhooks = true;
-            $http.get(API + '/admin/webhooks', {
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': vm.token
-                }
-            }).then(function (res) {
-                $scope.loadingWebhooks = false;
-                if (res.status === 200) {
-                    $scope.webhooks = res.data.data;
-                    $window.scrollTo(0, 0);
-                }
-            }).catch(function (error) {
-                $scope.loadingWebhooks = false;
-                errorToasts.evaluateErrors(error.data);
-            });
+            if(vm.token) {
+                $scope.loadingWebhooks = true;
+                $http.get(API + '/admin/webhooks', {
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': vm.token
+                    }
+                }).then(function (res) {
+                    $scope.loadingWebhooks = false;
+                    if (res.status === 200) {
+                        $scope.webhooks = res.data.data;
+                        $window.scrollTo(0, 0);
+                    }
+                }).catch(function (error) {
+                    $scope.loadingWebhooks = false;
+                    errorToasts.evaluateErrors(error.data);
+                });
+            }
         };
         vm.getWebhooks();
 
@@ -66,6 +68,10 @@
             }).catch(function (error) {
                 $scope.webhooksParams = {tx_type: 'Transfer'};
                 $scope.loadingWebhooks = false;
+                if(error.status == 403){
+                    errorHandler.handle403();
+                    return
+                }
                 errorToasts.evaluateErrors(error.data);
             });
         };
@@ -92,6 +98,10 @@
                 }
             }).catch(function (error) {
                 $scope.loadingWebhooks = false;
+                if(error.status == 403){
+                    errorHandler.handle403();
+                    return
+                }
                 errorToasts.evaluateErrors(error.data);
             });
         };
