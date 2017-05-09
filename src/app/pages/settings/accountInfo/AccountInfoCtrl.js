@@ -19,7 +19,7 @@
 
         vm.getAdminAccountInfo = function () {
             if(vm.token) {
-                $http.get(API + '/user', {
+                $http.get(API + '/user/', {
                     headers: {
                         'Content-Type': 'application/json',
                         'Authorization': vm.token
@@ -30,6 +30,7 @@
                         $scope.administrator = res.data.data;
                     }
                 }).catch(function (error) {
+                  console.log(error);
                     $scope.loadingAccountInfo = false;
                     errorToasts.evaluateErrors(error.data);
                 });

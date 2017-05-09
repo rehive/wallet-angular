@@ -24,7 +24,7 @@
         vm.getBankAccounts = function () {
             if(vm.token) {
                 $scope.loadingBankAccounts = true;
-                $http.get(API + '/admin/bank-accounts', {
+                $http.get(API + '/admin/bank-accounts/', {
                     headers: {
                         'Content-Type': 'application/json',
                         'Authorization': vm.token
