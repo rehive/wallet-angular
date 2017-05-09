@@ -10,18 +10,24 @@
         </div>
         <div class="form-group">
             <label><strong>Reference</strong></label>
-            <input type="text" ng-model="withdrawal.reference" class="form-control"  placeholder="E.g # 1234">
+            <input type="text" ng-model="withdrawalData.reference" class="form-control"  placeholder="E.g # 1234">
         </div>
         <div class="form-group">
             <div ng-hide="showAdvancedOption">
                 <a class="pointer" ng-click="displayAdvancedOption()">Advanced Options</a>
             </div>
             <div ng-show="showAdvancedOption">
-                <label class="checkbox-inline custom-checkbox nowrap">
-                    <input type="checkbox"  ng-model="withdrawalData.confirm_on_create">
-                    <span>Confirm on create</span>
-                </label>
-                <i uib-tooltip-html="'<strong>Complete withdrawal immediately after creation, it will override the normal behaviour of requiring an update or manual “completion” via the dashboard</strong>'" class="ion-information-circled"></i>
+              <div class="form-group">
+                  <label><strong>Metadata <i uib-tooltip-html="'<strong>Metadata should be entered in JSON format.Eg: {&#34;Hello&#34;: &#34;World&#34;}</strong>'" class="ion-information-circled"></i></strong></label>
+                  <input type="text" ng-model="withdrawalData.metadata" class="form-control"  placeholder='E.g {"Hello" : "World"}'>
+              </div>
+              <div class="margin-bottom-ten-px">
+                  <label class="checkbox-inline custom-checkbox nowrap">
+                      <input type="checkbox"  ng-model="withdrawalData.confirm_on_create">
+                      <span>Confirm on create</span>
+                  </label>
+                  <i uib-tooltip-html="'<strong>When this option is disabled, a pending transaction will be created, requiring an update or manual “completion” via the dashboard.</strong>'" class="ion-information-circled"></i>
+              </div>
             </div>
         </div>
         <div class="form-group">

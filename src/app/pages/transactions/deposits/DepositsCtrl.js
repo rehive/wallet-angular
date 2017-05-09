@@ -14,7 +14,8 @@
             user: null,
             amount: null,
             reference: "",
-            confirm_on_create: false,
+            confirm_on_create: true,
+            metadata: "",
             currency: null
         };
 
@@ -44,7 +45,8 @@
                 user: null,
                 amount: null,
                 reference: "",
-                confirm_on_create: false,
+                confirm_on_create: true,
+                metadata: "",
                 currency: $rootScope.selectedCurrency.code
             };
 
@@ -59,6 +61,7 @@
             $scope.onGoingTransaction = true;
             // $http.post takes the params as follow post(url, data, {config})
             // https://docs.angularjs.org/api/ng/service/$http#post
+            //console.log($Scope.depositData);
             $http.post(API + '/admin/transactions/deposit/', $scope.depositData, {
                 headers: {
                     'Content-Type': 'application/json',

@@ -14,7 +14,8 @@
             user: null,
             amount: null,
             reference: "",
-            confirm_on_create: false,
+            confirm_on_create: true,
+            metadata: "",
             currency: null
         };
         $scope.onGoingTransaction = false;
@@ -42,8 +43,9 @@
             $scope.withdrawalData = {
                 user: null,
                 amount: null,
-                reference: '',
-                confirm_on_create: false,
+                reference: "",
+                confirm_on_create: true,
+                metadata: "",
                 currency: $rootScope.selectedCurrency.code
             };
 
