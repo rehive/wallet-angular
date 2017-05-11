@@ -5,7 +5,7 @@
         .controller('DepositsCtrl', DepositsCtrl);
 
     /** @ngInject */
-    function DepositsCtrl($rootScope,$scope,IMAGEURL,$http,API,cookieManagement,toastr,errorToasts,errorHandler) {
+    function DepositsCtrl($rootScope,$scope,IMAGEURL,$http,API,cookieManagement,toastr,errorToasts,errorHandler,$state) {
 
         var vm = this;
         vm.token = cookieManagement.getCookie('TOKEN');
@@ -17,6 +17,10 @@
             confirm_on_create: true,
             metadata: "",
             currency: null
+        };
+
+        if($state.params.email){
+          $scope.depositData.user = $state.params.email;
         };
 
         $scope.onGoingTransaction = false;

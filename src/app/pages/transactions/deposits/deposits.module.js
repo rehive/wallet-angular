@@ -11,6 +11,9 @@
                 url: '/deposits',
                 templateUrl: 'app/pages/transactions/deposits/deposits.html',
                 controller: "DepositsCtrl",
+                params: {
+                  email: null
+                },
                 title: 'Deposits',
                 sidebarMeta: {
                     order: 300

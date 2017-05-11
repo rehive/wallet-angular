@@ -5,13 +5,39 @@
         .controller('UserAccountsCtrl', UserAccountsCtrl);
 
     /** @ngInject */
-    function UserAccountsCtrl($scope,API,$stateParams,$http,cookieManagement,errorToasts,toastr) {
+    function UserAccountsCtrl($rootScope,$scope,API,$stateParams,$http,cookieManagement,errorToasts,toastr,$state) {
 
         var vm = this;
         vm.token = cookieManagement.getCookie('TOKEN');
         vm.uuid = $stateParams.uuid;
-        $scope.companyImageUrl = "https://storage.googleapis.com/rehive-static/dashboard/dist/img/default_company_icon.png";
-        $scope.loadingUser = true;
+        $scope.loadingUserAccounts = true;
+
+        vm.getUser = function(){
+            if(vm.token) {
+                $scope.loadingUserAccounts = true;
+                $http.get(API + '/admin/accounts/?user=' + vm.uuid, {
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': vm.token
+                    }
+                }).then(function (res) {
+                    $scope.loadingUserAccounts = false;
+                    if (res.status === 200) {
+                        $scope.account = res.data.data.results[0];
+                        $scope.balances = res.data.data.results[0].balances;
+                    }
+                }).catch(function (error) {
+                    $scope.loadingUserAccounts = false;
+                    errorToasts.evaluateErrors(error.data);
+                });
+            }
+        };
+        vm.getUser();
+
+        $scope.goToView = function(state,currency,email){
+          $rootScope.selectedCurrency = currency;
+          $state.go(state,{"email": email});
+        };
 
     }
 })();

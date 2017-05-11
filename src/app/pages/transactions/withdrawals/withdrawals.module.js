@@ -11,6 +11,9 @@
                 url: '/withdrawals',
                 templateUrl: 'app/pages/transactions/withdrawals/withdrawals.html',
                 controller: "WithdrawalsCtrl",
+                params: {
+                  email: null
+                },
                 title: 'Withdrawals',
                 sidebarMeta: {
                     order: 200
