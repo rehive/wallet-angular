@@ -10,19 +10,23 @@
         var vm = this;
         vm.token = cookieManagement.getCookie('TOKEN');
         $scope.IMAGEURL = IMAGEURL;
+        $scope.loadingCurrencies = true;
 
         vm.getCompanyCurrencies = function(){
             if(vm.token) {
+              $scope.loadingCurrencies = true;
                 $http.get(API + '/admin/currencies/?enabled=true', {
                     headers: {
                         'Content-Type': 'application/json',
                         'Authorization': vm.token
                     }
                 }).then(function (res) {
+                  $scope.loadingCurrencies = false;
                     if (res.status === 200) {
                         $scope.currencies = res.data.data.results;
                     }
                 }).catch(function (error) {
+                  $scope.loadingCurrencies = false;
                     if(error.status == 403){
                         errorHandler.handle403();
                         return
