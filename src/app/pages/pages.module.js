@@ -18,7 +18,8 @@
     'BlurAdmin.pages.services',
     'BlurAdmin.pages.login',
     'BlurAdmin.pages.register',
-    'BlurAdmin.pages.resetPassword'
+    'BlurAdmin.pages.resetPassword',
+    'BlurAdmin.pages.accountSettings'
   ])
       .config(routeConfig);
 

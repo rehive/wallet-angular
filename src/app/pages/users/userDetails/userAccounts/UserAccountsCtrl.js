@@ -5,7 +5,7 @@
         .controller('UserAccountsCtrl', UserAccountsCtrl);
 
     /** @ngInject */
-    function UserAccountsCtrl($rootScope,$scope,API,$stateParams,$http,cookieManagement,errorToasts,toastr,$state) {
+    function UserAccountsCtrl($rootScope,$scope,API,$stateParams,$http,cookieManagement,errorToasts,$location,$state) {
 
         var vm = this;
         vm.token = cookieManagement.getCookie('TOKEN');
@@ -38,6 +38,10 @@
           $rootScope.selectedCurrency = currency;
           $state.go(state,{"email": email});
         };
+
+        $scope.goToSettings = function(currencyCode){
+            $location.path('account/settings/'+ currencyCode)
+        }
 
     }
 })();

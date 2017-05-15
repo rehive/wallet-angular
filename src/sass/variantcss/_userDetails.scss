@@ -10,3 +10,10 @@
 .user-accounts-btn{
   width: 80px;
 }
+
+.user-account-balance-overflow{
+  width: 85px;
+  overflow-x: hidden;
+  text-overflow: ellipsis;
+
+}
