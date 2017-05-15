@@ -9,9 +9,12 @@
             <td><strong>24h Volume</strong></td>
             <td></td>
         </tr>
-        <tr ng-repeat="currency in currencies" class="editable-row">
+        <tr ng-repeat="currency in currencies" class="editable-row dashboard-currencies-table-row">
             <td width="15%">
-                <img class="currency-logo" ng-src="{{IMAGEURL + currency.code + '.png'}}" alt="token">
+                <div class="dashboard-currencies-hexagon-container">
+                    <div class="dashboard-currencies-hexagon"></div>
+                    <div class="dashboard-currencies-hex-over">{{currency.code}}</div>
+                </div>
             </td>
             <td width="15%">0</td>
             <td width="15%">0</td>

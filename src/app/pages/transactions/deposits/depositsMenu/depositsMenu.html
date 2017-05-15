@@ -1,5 +1,8 @@
 <div ba-panel class="menu-box" ba-panel-title="Manage Deposits" ba-panel-class="light-text">
-    <img ng-src="{{currencyImageUrl}}" class="image-center" width="80" height="80" alt="token Image">
+    <div class="menu-hex-container">
+        <div class="hexagon"></div>
+        <div class="hex-over">{{selectedCurrency.code}}</div>
+    </div>
     <hr class="no-margin">
     <div ng-click="toggleDepositView('deposit')" class="pointer menu-box-options">
         <h5>Deposit <i class="pull-right ion-chevron-right"></i></h5>

@@ -1,0 +1,115 @@
+//use http://csshexagon.com/  to get different sizes of hexagons
+
+@mixin hexagon($width,$height,$margin){
+  position: relative;
+  background-color: #3c8dbc;
+  width: $width;
+  height: $height;
+  margin: $margin;
+}
+
+@mixin hexagon-before-after($border-left,$border-right){
+  content: "";
+  position: absolute;
+  width: 0;
+  border-left: $border-left;
+  border-right: $border-right;
+}
+
+@mixin hexagon-before($border-bottom){
+  bottom: 100%;
+  border-bottom: $border-bottom;
+}
+
+@mixin hexagon-after($border-top){
+  top: 100%;
+  width: 0;
+  border-top: $border-top;
+}
+
+@mixin hexagon-hex-over($width,$font-size,$top){
+  position: relative;
+  margin: auto;
+  z-index: 5;
+  color: white;
+  width: $width;
+  font-size: $font-size;
+  top: $top;
+}
+
+.menu-hex-container{
+  display: block;
+  width: 100%;
+  margin: auto;
+}
+
+.hexagon {
+  @include hexagon(70px,40.41px,20px auto);
+}
+
+.hexagon:before,
+.hexagon:after {
+  @include hexagon-before-after(35px solid transparent,35px solid transparent);
+}
+
+.hexagon:before {
+  @include hexagon-before(20.21px solid #3c8dbc);
+}
+
+.hexagon:after {
+  @include hexagon-after(20.21px solid #3c8dbc);
+}
+.hex-over{
+  @include hexagon-hex-over(39px,20px,-48px);
+}
+
+.overview-hexagon-container{
+  margin-left: 14.5px;
+}
+
+.overview-hexagon {
+  @include hexagon(146px,84.29px,42.15px 0 45px 0);
+}
+
+.overview-hexagon:before,
+.overview-hexagon:after {
+  @include hexagon-before-after(73px solid transparent,73px solid transparent);
+}
+
+.overview-hexagon:before {
+  @include hexagon-before(42.15px solid #3c8dbc);
+}
+
+.overview-hexagon:after {
+  @include hexagon-after(42.15px solid #3c8dbc);
+}
+.overview-hex-over{
+  @include hexagon-hex-over(77px,40px,-92px);
+}
+
+.dashboard-currencies-hexagon-container {
+  position: relative;
+  top: 9.9px;
+}
+
+.dashboard-currencies-hexagon {
+  @include hexagon(50px,28.87px,14.43px 0);
+}
+
+.dashboard-currencies-hexagon:before,
+.dashboard-currencies-hexagon:after {
+  @include hexagon-before-after(25px solid transparent,25px solid transparent);
+}
+
+.dashboard-currencies-hexagon:before {
+  @include hexagon-before(14.43px solid #3c8dbc);
+}
+
+.dashboard-currencies-hexagon:after {
+  @include hexagon-after(14.43px solid #3c8dbc);
+}
+.dashboard-currencies-hex-over{
+  @include hexagon-hex-over(118px,15px,-39.5px);
+  margin: 0;
+  left: 10px
+}
