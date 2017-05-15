@@ -5,7 +5,7 @@
         .controller('TierLimitsCtrl', TierLimitsCtrl);
 
     /** @ngInject */
-    function TierLimitsCtrl($rootScope,$scope,IMAGEURL) {
+    function TierLimitsCtrl($rootScope,$scope) {
 
         $scope.selectedLimitsTier = 'Tier 1';
         $scope.activeLimitsTier = 0;

@@ -5,7 +5,7 @@
         .controller('AccountSettingsAllowedLimitsCtrl', AccountSettingsAllowedLimitsCtrl);
 
     /** @ngInject */
-    function AccountSettingsAllowedLimitsCtrl($rootScope,$scope,IMAGEURL) {
+    function AccountSettingsAllowedLimitsCtrl($rootScope,$scope) {
 
 
     }

@@ -10,7 +10,6 @@
         var vm = this;
         vm.token = cookieManagement.getCookie('TOKEN');
         vm.updatedSubtype = {};
-        $scope.companyImageUrl = "https://storage.googleapis.com/rehive-static/dashboard/dist/img/default_company_icon.png";
         $scope.loadingSubtypes = true;
         $scope.editingSubtype = false;
         $scope.editSubtype = {};

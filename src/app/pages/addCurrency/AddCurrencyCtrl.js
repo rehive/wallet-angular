@@ -5,7 +5,7 @@
         .controller('AddCurrencyCtrl', AddCurrencyCtrl);
 
     /** @ngInject */
-    function AddCurrencyCtrl($rootScope,$scope,$http,API,cookieManagement,IMAGEURL,errorToasts,errorHandler) {
+    function AddCurrencyCtrl($rootScope,$scope,$http,API,cookieManagement,errorToasts,errorHandler) {
 
         var vm = this;
         vm.token = cookieManagement.getCookie('TOKEN');
@@ -14,12 +14,6 @@
         $scope.showConfirmCurrency = false;
         $scope.showCompleteCurrency = false;
         $scope.loadingCurrencies = true;
-
-        $rootScope.$watch('selectedCurrency',function(){
-            if($rootScope.selectedCurrency && $rootScope.selectedCurrency.code) {
-                $scope.currencyImageUrl = IMAGEURL + $rootScope.selectedCurrency.code + '.png';
-            }
-        });
 
         vm.getCurrencies = function(){
             if(vm.token) {

@@ -5,7 +5,7 @@
         .controller('DepositsCtrl', DepositsCtrl);
 
     /** @ngInject */
-    function DepositsCtrl($rootScope,$scope,IMAGEURL,$http,API,cookieManagement,toastr,errorToasts,errorHandler,$state) {
+    function DepositsCtrl($rootScope,$scope,$http,API,cookieManagement,toastr,errorToasts,errorHandler,$state) {
 
         var vm = this;
         vm.token = cookieManagement.getCookie('TOKEN');
@@ -26,11 +26,9 @@
         $scope.onGoingTransaction = false;
         $scope.showAdvancedOption = false;
         $scope.showView = 'createDeposit';
-        $scope.currencyImageUrl = "https://storage.googleapis.com/rehive-static/dashboard/dist/img/default_company_icon.png";
 
         $rootScope.$watch('selectedCurrency',function(){
             if($rootScope.selectedCurrency && $rootScope.selectedCurrency.code) {
-                $scope.currencyImageUrl = IMAGEURL + $rootScope.selectedCurrency.code + '.png';
                 $scope.depositData.currency = $rootScope.selectedCurrency.code;
             }
         });

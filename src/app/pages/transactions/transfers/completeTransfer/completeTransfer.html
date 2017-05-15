@@ -1,5 +1,8 @@
 <div ba-panel ba-panel-title="Transfer Successful">
-    <img ng-src="{{currencyImageUrl}}" class="image-center" width="100" height="100" alt="token Image">
+    <div class="menu-hex-container">
+        <div class="hexagon"></div>
+        <div class="hex-over">{{selectedCurrency.code}}</div>
+    </div>
     <div class="text-center">
         <h3>{{companyName}} {{selectedCurrency.code}}</h3>
     </div>

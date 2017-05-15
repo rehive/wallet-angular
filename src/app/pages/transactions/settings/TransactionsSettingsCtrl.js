@@ -5,15 +5,7 @@
         .controller('TransactionsSettingsCtrl', TransactionsSettingsCtrl);
 
     /** @ngInject */
-    function TransactionsSettingsCtrl($rootScope,$scope,IMAGEURL) {
-
-        $scope.currencyImageUrl = "https://storage.googleapis.com/rehive-static/dashboard/dist/img/default_company_icon.png";
-
-        $rootScope.$watch('selectedCurrency',function(){
-            if($rootScope.selectedCurrency && $rootScope.selectedCurrency.code){
-                $scope.currencyImageUrl = IMAGEURL + $rootScope.selectedCurrency.code + '.png';
-            }
-        });
+    function TransactionsSettingsCtrl($rootScope,$scope) {
 
         $scope.goToCurrencySetting = function(settingView){
             $scope.settingView = settingView;

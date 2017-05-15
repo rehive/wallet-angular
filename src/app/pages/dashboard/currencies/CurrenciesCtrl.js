@@ -5,11 +5,10 @@
         .controller('CurrenciesCtrl', CurrenciesCtrl);
 
     /** @ngInject */
-    function CurrenciesCtrl($rootScope,$scope,$location,cookieManagement,API,$http,IMAGEURL,errorToasts,errorHandler) {
+    function CurrenciesCtrl($rootScope,$scope,$location,cookieManagement,API,$http,errorToasts,errorHandler) {
 
         var vm = this;
         vm.token = cookieManagement.getCookie('TOKEN');
-        $scope.IMAGEURL = IMAGEURL;
         $scope.loadingCurrencies = true;
 
         vm.getCompanyCurrencies = function(){

@@ -5,7 +5,7 @@
         .controller('TierRequirementsCtrl', TierRequirementsCtrl);
 
     /** @ngInject */
-    function TierRequirementsCtrl($rootScope,$scope,IMAGEURL) {
+    function TierRequirementsCtrl($rootScope,$scope) {
 
         $scope.selectedTier = 'Tier 1';
         $scope.activeTier = 0;

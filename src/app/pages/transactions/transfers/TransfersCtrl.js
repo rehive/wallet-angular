@@ -5,7 +5,7 @@
         .controller('TransfersCtrl', TransfersCtrl);
 
     /** @ngInject */
-    function TransfersCtrl($rootScope,$scope,IMAGEURL,$http,API,cookieManagement,toastr,errorToasts,errorHandler) {
+    function TransfersCtrl($rootScope,$scope,$http,API,cookieManagement,toastr,errorToasts,errorHandler) {
 
         var vm = this;
         vm.token = cookieManagement.getCookie('TOKEN');
@@ -21,11 +21,9 @@
         $scope.showAdvancedOption = false;
         $scope.confirmTransferView = false;
         $scope.completeTransferView = false;
-        $scope.currencyImageUrl = "https://storage.googleapis.com/rehive-static/dashboard/dist/img/default_company_icon.png";
 
         $rootScope.$watch('selectedCurrency',function(){
             if($rootScope.selectedCurrency && $rootScope.selectedCurrency.code){
-                $scope.currencyImageUrl = IMAGEURL + $rootScope.selectedCurrency.code + '.png';
                 $scope.transferData.currency = $rootScope.selectedCurrency.code;
             }
         });
