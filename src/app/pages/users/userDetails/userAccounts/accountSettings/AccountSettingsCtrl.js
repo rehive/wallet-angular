@@ -5,15 +5,22 @@
         .controller('AccountSettingsCtrl', AccountSettingsCtrl);
 
     /** @ngInject */
-    function AccountSettingsCtrl($scope,API,$http,cookieManagement,errorToasts,$stateParams) {
+    function AccountSettingsCtrl($scope,IMAGEURL,API,$http,cookieManagement,errorToasts,$stateParams) {
 
         var vm = this;
         vm.token = cookieManagement.getCookie('TOKEN');
-        vm.currency = $stateParams.currency;
-        console.log(vm.currency);
-        $scope.user = {};
-        $scope.user.profile = "https://storage.googleapis.com/rehive-static/dashboard/dist/img/default_company_icon.png";
-        $scope.loadingUser = true;
+        vm.currencyCode = $stateParams.currencyCode;
+        $scope.settingView = 'controls';
+        $scope.currencyImageUrl = "https://storage.googleapis.com/rehive-static/dashboard/dist/img/default_company_icon.png";
+        $scope.$watch('currencyCode',function(){
+            if(vm.currencyCode){
+                $scope.currencyImageUrl = IMAGEURL + vm.currencyCode + '.png';
+            }
+        });
+
+        $scope.goToSetting = function(view){
+            $scope.settingView = view;
+        };
 
         //vm.getUser = function(){
         //    if(vm.token) {

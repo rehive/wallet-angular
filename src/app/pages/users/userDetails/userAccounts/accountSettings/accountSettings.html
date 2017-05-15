@@ -1,0 +1,14 @@
+<div class="row" >
+    <div class="col-lg-3 col-md-4 col-sm-12 col-xs-12">
+        <account-settings-menu></account-settings-menu>
+    </div>
+    <div ng-show="settingView == 'controls'" class="col-lg-6 col-md-8 col-sm-12 col-xs-12">
+        <account-settings-controls></account-settings-controls>
+    </div>
+    <div ng-show="settingView == 'allowedLimits'" class="col-lg-6 col-md-8 col-sm-12 col-xs-12">
+        <account-settings-allowed-limits></account-settings-allowed-limits>
+    </div>
+    <div ng-show="settingView == 'customLimits'" class="col-lg-6 col-md-8 col-sm-12 col-xs-12">
+        <account-settings-custom-limits></account-settings-custom-limits>
+    </div>
+</div>
