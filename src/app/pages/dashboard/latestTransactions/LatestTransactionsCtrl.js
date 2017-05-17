@@ -23,6 +23,7 @@
                     if (res.status === 200) {
                         if (res.data.data.results.length == 0) {
                             $scope.transactionsStateMessage = 'No Transactions Have Been Made';
+                            return;
                         }
                         $scope.transactions = res.data.data.results;
                         $scope.transactionsStateMessage = '';
