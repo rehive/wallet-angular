@@ -47,6 +47,9 @@
                 }
             }).then(function (res) {
                 if (res.status === 200) {
+                    if($scope.company.default_currency == null){
+                        $scope.company.default_currency = res.data.data.results[0].code;
+                    }
                     $scope.currencies = _.pluck(res.data.data.results,'code');
                 }
             }).catch(function (error) {

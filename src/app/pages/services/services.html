@@ -1,4 +1,4 @@
-<div ba-panel ba-panel-title="Services" ba-panel-class=" with-scroll" >
+<div ng-hide="newUser" ba-panel ba-panel-title="Services" ba-panel-class=" with-scroll" >
     <div>
         <table class="table">
             <tr  width="15%" class="black-muted-bg">
@@ -30,5 +30,10 @@
             </tr>
         </table>
         <hr class="no-margin hr-top-border">
+    </div>
+</div>
+<div ng-show="newUser">
+    <div class="row">
+        <initial-add-currency></initial-add-currency>
     </div>
 </div>

@@ -26,9 +26,13 @@
                 }).then(function (res) {
                     $scope.loadingCurrencies = false;
                     if (res.status === 200) {
-                        $scope.addCurrency.currencyChoice = res.data.data.results.find(function (currency) {
-                            return currency.code == $rootScope.selectedCurrency.code
-                        });
+                        if($rootScope.selectedCurrency && $rootScope.selectedCurrency.code){
+                            $scope.addCurrency.currencyChoice = res.data.data.results.find(function (currency) {
+                                return currency.code == $rootScope.selectedCurrency.code
+                            });
+                        } else {
+                            $scope.addCurrency.currencyChoice = res.data.data.results[0];
+                        }
                         $scope.currencyOptions = res.data.data.results;
                     }
                 }).catch(function (error) {

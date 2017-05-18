@@ -5,7 +5,7 @@
         .controller('OverviewCtrl', OverviewCtrl);
 
     /** @ngInject */
-    function OverviewCtrl($rootScope,$scope) {
+    function OverviewCtrl($scope) {
 
     }
 })();

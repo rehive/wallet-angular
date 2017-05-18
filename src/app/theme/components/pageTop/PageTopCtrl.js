@@ -28,6 +28,7 @@
                     }
                 }).then(function (res) {
                     if (res.status === 200) {
+                        $rootScope.newUser = res.data.data.count == 0 ? true : false;
                         if(!$rootScope.selectedCurrency){
                             $rootScope.selectedCurrency = res.data.data.results[0];
                         }
@@ -52,6 +53,10 @@
         };
 
         $scope.logout = function(){
+            $rootScope.selectedCurrency = null;
+            $rootScope.newUser = null;
+            $rootScope.gotToken = null;
+            $rootScope.securityConfigured = null;
             cookieManagement.deleteCookie('TOKEN');
             cookieManagement.deleteCookie('COMPANY');
             $location.path('/login');

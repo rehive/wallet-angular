@@ -1,7 +1,13 @@
-<div class="row">
-    <dashboard-currencies ></dashboard-currencies>
+<div ng-hide="newUser">
+    <div class="row">
+        <dashboard-currencies ></dashboard-currencies>
+    </div>
+    <div class="row">
+        <latest-transactions ></latest-transactions>
+    </div>
 </div>
-
-<div class="row">
-    <latest-transactions ></latest-transactions>
+<div ng-show="newUser">
+    <div class="row">
+        <initial-add-currency></initial-add-currency>
+    </div>
 </div>

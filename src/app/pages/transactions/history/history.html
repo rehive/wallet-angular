@@ -1,8 +1,15 @@
-<div ba-panel ba-panel-title="Filters">
-    <history-filters></history-filters>
+<div ng-hide="newUser">
+    <div ba-panel ba-panel-title="Filters">
+        <history-filters></history-filters>
+    </div>
+    <div class="row">
+        <div ba-panel ba-panel-title="Transactions" ba-panel-class="with-scroll" class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <history-table></history-table>
+        </div>
+    </div>
 </div>
-<div class="row">
-    <div ba-panel ba-panel-title="Transactions" ba-panel-class=" with-scroll" class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-        <history-table></history-table>
+<div ng-show="newUser">
+    <div class="row">
+        <initial-add-currency></initial-add-currency>
     </div>
 </div>
