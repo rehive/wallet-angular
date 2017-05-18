@@ -28,12 +28,12 @@
                     }
                 }).then(function (res) {
                     if (res.status === 200) {
-                        $rootScope.newUser = res.data.data.count == 0 ? true : false;
                         if(!$rootScope.selectedCurrency){
                             $rootScope.selectedCurrency = res.data.data.results[0];
                         }
                         $scope.currencies = res.data.data.results;
                         $window.sessionStorage.currenciesList = JSON.stringify(res.data.data.results);
+                        $rootScope.newUser = res.data.data.count == 0;
                     }
                 }).catch(function (error) {
                     if(error.status == 403){
