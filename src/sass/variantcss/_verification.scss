@@ -1,0 +1,17 @@
+.verification-text{
+ box-sizing: border-box;
+  padding: 10px;
+ & > p{
+   color:#666;
+   font-size: 12px;
+  }
+}
+
+.verification-link{
+  cursor: pointer;
+}
+
+.verification-button{
+  display: block;
+  margin: auto;
+}

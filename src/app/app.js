@@ -36,7 +36,8 @@ angular.module('BlurAdmin', [
 
             if(token) {
                 $rootScope.gotToken = true;
-            } else if(newUrlLastElement == 'register' || newUrlLastElement == 'reset'){
+            } else if(newUrlLastElement == 'register' || newUrlLastElement == 'reset' || newUrlLastElement == 'verification'
+                || newUrlLastElement == 'name_request'){
                 // do nothing
             } else {
                 $rootScope.gotToken = false;

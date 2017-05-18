@@ -19,7 +19,9 @@
     'BlurAdmin.pages.login',
     'BlurAdmin.pages.register',
     'BlurAdmin.pages.resetPassword',
-    'BlurAdmin.pages.accountSettings'
+    'BlurAdmin.pages.accountSettings',
+    'BlurAdmin.pages.verification',
+    'BlurAdmin.pages.companyNameRequest'
   ])
       .config(routeConfig);
 
