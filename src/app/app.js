@@ -21,7 +21,6 @@ angular.module('BlurAdmin', [
     'BlurAdmin.pages'
 ])
 
-    //.constant('API', 'http://127.0.0.1:8000/api/3')
     .constant('API', 'https://rehive.com/api/3')
 
     .run(function($cookies,$rootScope,cookieManagement,userVerification,$location,_){
@@ -29,34 +28,24 @@ angular.module('BlurAdmin', [
         //using to check if user has a verified email address
         $rootScope.userVerified = true;
 
+        //using to check if user is in changing password or setting up 2 factor authentication
+        $rootScope.securityConfigured = true;
+
 
         var locationChangeStart = $rootScope.$on('$locationChangeStart', function (event,newUrl) {
-
-            userVerification.verify(function(err,verified){
-                if(verified){
-                    $rootScope.userVerified = true;
-                    routeManagement(event,newUrl);
-                } else {
-                    $rootScope.userVerified = false;
-                    routeManagement(event,newUrl);
-                }
-            });
-
-
+            routeManagement(event,newUrl);
         });
 
         function routeManagement(event,newUrl){
+
             var token = cookieManagement.getCookie('TOKEN'),
                 newUrlArray = newUrl.split('/'),
                 newUrlLastElement = _.last(newUrlArray);
 
-            //using to check if user is in changing password or setting up 2 factor authentication
-            $rootScope.securityConfigured = true;
-
             if(token) {
                 $rootScope.gotToken = true;
-            } else if(newUrlLastElement == 'register' || newUrlLastElement == 'reset' || newUrlLastElement == 'verification'
-                || newUrlLastElement == 'name_request'){
+            } else if(newUrlLastElement == 'register' || newUrlLastElement == 'reset'
+                || newUrlLastElement == 'verification' || newUrlLastElement == 'name_request'){
                 // do nothing
             } else {
                 $rootScope.gotToken = false;
