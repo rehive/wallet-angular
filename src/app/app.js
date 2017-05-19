@@ -34,6 +34,11 @@ angular.module('BlurAdmin', [
             //using to check if user is in changing password or setting up 2 factor authentication
             $rootScope.securityConfigured = true;
 
+            //using to check if user has a verified email address
+            if($rootScope.userVerified == null){
+                $rootScope.userVerified = true;
+            }
+
             if(token) {
                 $rootScope.gotToken = true;
             } else if(newUrlLastElement == 'register' || newUrlLastElement == 'reset' || newUrlLastElement == 'verification'

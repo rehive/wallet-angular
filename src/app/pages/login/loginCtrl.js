@@ -5,7 +5,7 @@
         .controller('LoginCtrl', LoginCtrl);
 
     /** @ngInject */
-    function LoginCtrl($rootScope,$scope,$http,toastr,cookieManagement,API,$location,errorToasts,stringService) {
+    function LoginCtrl($rootScope,$scope,$http,cookieManagement,API,$location,errorToasts,userVerification) {
 
         var vm = this;
 
@@ -17,11 +17,18 @@
                 company_id: company_id,
                 password: password
             }).then(function (res) {
-
                 if (res.status === 200) {
                     cookieManagement.setCookie('TOKEN','Token ' + res.data.data.token);
-                    vm.getCompanyInfo(res.data.data.token);
-                    toastr.success('You have successfully logged in with the email address ' + res.data.data.user.email +'!');
+                    userVerification.verify(function(err,verified){
+                        if(verified){
+                            vm.getCompanyInfo(res.data.data.token);
+                        } else {
+                            $rootScope.$pageFinishedLoading = true;
+                            $rootScope.userVerified = false;
+                            $location.path('/verification');
+                        }
+                    });
+
                 }
             }).catch(function (error) {
                 console.log(error);

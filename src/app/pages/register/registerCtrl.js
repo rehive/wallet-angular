@@ -22,25 +22,15 @@
             }).then(function (res) {
                 if (res.status === 201) {
                     cookieManagement.setCookie('TOKEN','Token ' + res.data.data.token);
-                    var companyName = vm.getCompanyName(res.data.data.user.company.split("_"));
-                    cookieManagement.setCookie('COMPANY',companyName);
-                    toastr.success('You have successfully registered with rehive!');
+                    //cookieManagement.setCookie('COMPANY',companyName);
                     $rootScope.$pageFinishedLoading = true;
-                    $location.path('/dashboard');
+                    $location.path('/verification');
                 } else {
                  }
             }).catch(function (error) {
                 $rootScope.$pageFinishedLoading = true;
                 errorToasts.evaluateErrors(error.data);
             });
-        };
-
-        vm.getCompanyName = function(companyNameArray){
-            var companyName = '';
-            companyNameArray.forEach(function(word){
-                companyName += stringService.capitalizeWord(word) + ' ';
-            });
-            return companyName;
         };
 
     }
