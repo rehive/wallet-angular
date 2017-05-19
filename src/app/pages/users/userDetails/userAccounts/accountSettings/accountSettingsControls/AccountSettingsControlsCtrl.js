@@ -5,7 +5,7 @@
         .controller('AccountSettingsControlsCtrl', AccountSettingsControlsCtrl);
 
     /** @ngInject */
-    function AccountSettingsControlsCtrl($rootScope,$scope) {
+    function AccountSettingsControlsCtrl($scope) {
 
 
     }

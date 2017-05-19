@@ -54,9 +54,9 @@
 
         $scope.logout = function(){
             $rootScope.selectedCurrency = null;
-            $rootScope.newUser = null;
-            $rootScope.gotToken = null;
-            $rootScope.securityConfigured = null;
+            $rootScope.newUser = false;
+            $rootScope.gotToken = false;
+            $rootScope.securityConfigured = true;
             cookieManagement.deleteCookie('TOKEN');
             cookieManagement.deleteCookie('COMPANY');
             $location.path('/login');

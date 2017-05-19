@@ -24,6 +24,7 @@
                     cookieManagement.setCookie('TOKEN','Token ' + res.data.data.token);
                     //cookieManagement.setCookie('COMPANY',companyName);
                     $rootScope.$pageFinishedLoading = true;
+                    $rootScope.userVerified = false;
                     $location.path('/verification');
                 } else {
                  }
