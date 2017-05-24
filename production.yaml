@@ -1,0 +1,4 @@
+PROJECT_NAME: rehive-dashboard
+NAMESPACE: rehive-dashboard-beta
+IMAGE: rehive/dashboard
+VIRTUAL_HOST: beta.dashboard.rehive.com

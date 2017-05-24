@@ -1,0 +1,67 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: rehive-dashboard-beta
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: rehive-dashboard
+  namespace: rehive-dashboard-beta
+spec:
+  ports:
+  - port: 80
+    targetPort: 80
+    protocol: TCP
+  type: NodePort
+  selector:
+    app: rehive-dashboard
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: rehive-dashboard
+  namespace: rehive-dashboard-beta
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: rehive-dashboard
+    spec:
+      containers:
+      - image: rehive/dashboard:v0.001
+        imagePullPolicy: Always
+        name: rehive-dashboard
+        ports:
+        - containerPort: 80
+---
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: rehive-dashboard
+  namespace: rehive-dashboard-beta
+  annotations:
+    kubernetes.io/tls-acme: "true"
+    kubernetes.io/ingress.class: "gce"
+spec:
+  tls:
+  - hosts:
+    - beta.dashboard.rehive.com
+    - www.beta.dashboard.rehive.com
+    secretName: rehive-dashboard-tls
+  rules:
+  - host: beta.dashboard.rehive.com
+    http:
+      paths:
+      - path: /*
+        backend:
+          serviceName: rehive-dashboard
+          servicePort: 80
+  - host: www.beta.dashboard.rehive.com
+    http:
+      paths:
+      - path: /*
+        backend:
+          serviceName: rehive-dashboard
+          servicePort: 80
