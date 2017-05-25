@@ -31,7 +31,6 @@
 
                 }
             }).catch(function (error) {
-                console.log(error);
                 $rootScope.$pageFinishedLoading = true;
                 errorToasts.evaluateErrors(error.data);
             });

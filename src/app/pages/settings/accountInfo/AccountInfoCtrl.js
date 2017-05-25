@@ -29,7 +29,6 @@
                         $scope.administrator = res.data.data;
                     }
                 }).catch(function (error) {
-                  console.log(error);
                     $scope.loadingAccountInfo = false;
                     errorToasts.evaluateErrors(error.data);
                 });

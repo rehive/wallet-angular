@@ -63,14 +63,12 @@
             $scope.onGoingTransaction = true;
             // $http.post takes the params as follow post(url, data, {config})
             // https://docs.angularjs.org/api/ng/service/$http#post
-            //console.log($Scope.depositData);
             $http.post(API + '/admin/transactions/deposit/', $scope.depositData, {
                 headers: {
                     'Content-Type': 'application/json',
                     'Authorization': vm.token
                 }
             }).then(function (res) {
-                //console.log(res);
                 $scope.onGoingTransaction = false;
                 if (res.status === 201) {
                     toastr.success('You have successfully deposited your money!');

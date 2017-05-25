@@ -48,7 +48,6 @@
         };
 
         $scope.createTransfer = function () {
-            //console.log($scope.transferData);
             $scope.onGoingTransaction = true;
             $http.post(API + '/admin/transactions/transfer/',$scope.transferData, {
                 headers: {
@@ -57,7 +56,6 @@
                 }
             }).then(function (res) {
                 $scope.onGoingTransaction = false;
-                //console.log(res);
                 if (res.status === 201) {
                     toastr.success('You have successfully transferred the money!');
                     $scope.toggleConfirmTransferView($scope.confirmTransferView);

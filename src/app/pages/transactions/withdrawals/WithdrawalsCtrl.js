@@ -24,7 +24,7 @@
 
         if($state.params.email){
           $scope.withdrawalData.user = $state.params.email;
-        };
+        }
 
         $rootScope.$watch('selectedCurrency',function(){
             if($rootScope.selectedCurrency && $rootScope.selectedCurrency.code) {
@@ -34,7 +34,7 @@
 
         $scope.goToView = function(view){
           $scope.showView = view;
-        }
+        };
 
         $scope.displayAdvancedOption = function () {
             $scope.showAdvancedOption = true;
@@ -59,7 +59,6 @@
         };
 
         $scope.createWithdrawal = function () {
-            //console.log($scope.withdrawalData);
             $scope.onGoingTransaction = true;
             $http.post(API + '/admin/transactions/withdraw/',$scope.withdrawalData, {
                 headers: {
@@ -68,7 +67,6 @@
                 }
             }).then(function (res) {
                 $scope.onGoingTransaction = false;
-                //console.log(res);
                 if (res.status === 201) {
                     toastr.success('You have successfully withdrawn the money!');
                     $scope.goToView('completeWithdrawal');

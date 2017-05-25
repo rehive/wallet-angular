@@ -28,7 +28,6 @@
                         $scope.companyImageUrl = res.data.data.logo;
                     }
                 }).catch(function (error) {
-                    console.log(error);
                     errorToasts.evaluateErrors(error.data);
                 });
             }

@@ -37,7 +37,6 @@
                         $scope.transactionsStateMessage = '';
                     }
                 }).catch(function (error) {
-                    console.log(error);
                     $scope.transactionsStateMessage = 'Failed To Load Data';
                     errorToasts.evaluateErrors(error.data);
                 });
