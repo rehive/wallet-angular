@@ -21,22 +21,20 @@ body {
   }
 }
 
-body.mobile{
-  background: none;
-  .body-bg{
-    display: block;
-    position: fixed;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    right: 0;
-    background-attachment: inherit;
-    background-color: $body-bg;
-  }
-  &.blur-theme .body-bg{
-    @include main-background();
-  }
-}
+//body.mobile{
+//  background: none;
+//  .body-bg{
+//    display: inline-block;
+//    position: fixed;
+//    top: 0;
+//    left: 0;
+//    bottom: 0;
+//    right: 0;
+//  }
+//  &.blur-theme .body-bg{
+//    @include main-background();
+//  }
+//}
 
 @media screen and (-ms-high-contrast: active), (-ms-high-contrast: none)
 {

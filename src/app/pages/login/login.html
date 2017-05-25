@@ -4,22 +4,22 @@
         <a href="/#/register" class="auth-link">New to Rehive? Sign up!</a>
 
         <form class="form-horizontal">
-            <div class="form-group">
+            <div class="row form-group">
                 <div class="col-sm-12">
                     <input type="email" ng-model="identifier" class="form-control" id="inputEmail1" placeholder="Email">
                 </div>
             </div>
-            <div class="form-group">
+            <div class="row form-group">
                 <div class="col-sm-12">
                     <input type="text" ng-model="company_id" class="form-control" id="inputCompany1" placeholder="CompanyID">
                 </div>
             </div>
-            <div class="form-group">
+            <div class="row form-group">
                 <div class="col-sm-12">
                     <input type="password" ng-model="password" class="form-control" id="inputPassword1" placeholder="Password">
                 </div>
             </div>
-            <div class="form-group">
+            <div class="row form-group">
                 <div class="col-sm-12">
                     <button ng-click="login(identifier,company_id,password)" class="btn btn-primary btn-auth pull-right">Sign in</button>
                     <a href="/#/password/reset" class="forgot-pass pull-left">Forgot password?</a>
