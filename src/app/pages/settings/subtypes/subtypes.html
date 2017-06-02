@@ -13,7 +13,7 @@
                 <th title="{{subtype.name}}" ng-bind="subtype.name | limitTo: 8"></th>
                 <th title="{{subtype.label}}" ng-bind="subtype.label || 'None' | limitTo: 6"></th>
                 <th title="{{subtype.description}}" ng-bind="subtype.description || 'None' | limitTo:6"></th>
-                <th class="no-right-padding-last-child">
+                <th class="rehive-table-row-last-child">
                     <button ng-click="openSubtypeModal('app/pages/settings/subtypes/subtypeModal/subtypeModal.html','md',subtype)" class="btn btn-danger pull-right settings-fees-buttons">Delete</button>
                     <button ng-click="toggleSubtypeEditView(subtype)" class="btn btn-info pull-right settings-fees-buttons">Edit</button>
                 </th>
