@@ -36,6 +36,8 @@ angular.module('BlurAdmin', [
             routeManagement(event,newUrl);
         });
 
+        console.log($rootScope);
+
         function routeManagement(event,newUrl){
 
             var token = cookieManagement.getCookie('TOKEN'),
