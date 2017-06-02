@@ -9,7 +9,7 @@
         </tr>
         <tr ng-repeat="accountBalance in balances">
             <th ng-bind="accountBalance.currency.code"></th>
-            <th title="{{accountBalance.balance}}"><div class="user-account-balance-overflow" ng-bind="accountBalance.balance"></div></th>
+            <th title="{{accountBalance.balance  | currencyModifiersFilter: accountBalance.currency.divisibility}}"><div class="user-account-balance-overflow" ng-bind="accountBalance.balance  | currencyModifiersFilter: accountBalance.currency.divisibility"></div></th>
             <th><button ng-click="goToView('transactions.withdrawals',accountBalance.currency,account.user.email)" class="btn btn-primary pull-right user-accounts-btn">Withdrawal</button></th>
             <th><button ng-click="goToView('transactions.deposits',accountBalance.currency,account.user.email)" class="btn btn-primary pull-right user-accounts-btn">Deposit</button></th>
             <th><button ng-click="goToSettings(accountBalance.currency.code)" class="btn btn-primary pull-right user-accounts-btn">Settings</button></th>
