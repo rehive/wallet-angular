@@ -5,7 +5,7 @@
         .controller('TransfersCtrl', TransfersCtrl);
 
     /** @ngInject */
-    function TransfersCtrl($rootScope,$scope,$http,API,cookieManagement,toastr,errorToasts,errorHandler) {
+    function TransfersCtrl($rootScope,$scope,$http,API,cookieManagement,toastr,errorToasts,errorHandler,currencyModifiers) {
 
         var vm = this;
         vm.token = cookieManagement.getCookie('TOKEN');
@@ -18,9 +18,7 @@
         };
 
         $scope.onGoingTransaction = false;
-        $scope.showAdvancedOption = false;
-        $scope.confirmTransferView = false;
-        $scope.completeTransferView = false;
+        $scope.showView = 'createTransfer';
 
         $rootScope.$watch('selectedCurrency',function(){
             if($rootScope.selectedCurrency && $rootScope.selectedCurrency.code){
@@ -28,28 +26,41 @@
             }
         });
 
-        $scope.toggleConfirmTransferView = function(confirmTransferView){
-            $scope.confirmTransferView = !confirmTransferView;
-        };
-
-        $scope.toggleCompleteTransferView = function(completeTransferView){
-            $scope.completeTransferView = !completeTransferView;
+        $scope.goToView = function(view){
+            if($scope.transferData.amount){
+                var validAmount = currencyModifiers.validateCurrency($scope.transferData.amount,$rootScope.selectedCurrency.divisibility);
+                if(validAmount){
+                    $scope.showView = view;
+                } else {
+                    toastr.error('Please input amount to ' + $rootScope.selectedCurrency.divisibility + ' decimal places');
+                }
+            } else{
+                $scope.showView = view;
+            }
         };
 
         $scope.toggleTransferView = function() {
-            $scope.confirmTransferView = false;
-            $scope.completeTransferView = false;
             $scope.transferData = {
                 user: null,
                 amount: null,
                 reference: null,
                 currency: $rootScope.selectedCurrency.code
             };
+
+            $scope.goToView('createTransfer');
         };
 
         $scope.createTransfer = function () {
+
+            var sendTransactionData = {
+                user: $scope.transferData.user,
+                amount: currencyModifiers.convertToCents($scope.transferData.amount,$rootScope.selectedCurrency.divisibility),
+                reference: $scope.transferData.reference,
+                currency: $scope.transferData.currency
+            };
+
             $scope.onGoingTransaction = true;
-            $http.post(API + '/admin/transactions/transfer/',$scope.transferData, {
+            $http.post(API + '/admin/transactions/transfer/',sendTransactionData, {
                 headers: {
                     'Content-Type': 'application/json',
                     'Authorization': vm.token
@@ -58,8 +69,7 @@
                 $scope.onGoingTransaction = false;
                 if (res.status === 201) {
                     toastr.success('You have successfully transferred the money!');
-                    $scope.toggleConfirmTransferView($scope.confirmTransferView);
-                    $scope.toggleCompleteTransferView();
+                    $scope.goToView('completeTransfer');
                 }
             }).catch(function (error) {
                 $scope.onGoingTransaction = false;

@@ -5,7 +5,7 @@
         .controller('WithdrawalsCtrl', WithdrawalsCtrl);
 
     /** @ngInject */
-    function WithdrawalsCtrl($rootScope,$scope,$http,API,cookieManagement,toastr,errorToasts,errorHandler,$state) {
+    function WithdrawalsCtrl($rootScope,$scope,$http,API,cookieManagement,toastr,errorToasts,errorHandler,$state,currencyModifiers) {
 
         var vm = this;
         vm.token = cookieManagement.getCookie('TOKEN');
@@ -33,7 +33,16 @@
         });
 
         $scope.goToView = function(view){
-          $scope.showView = view;
+            if($scope.withdrawalData.amount){
+                var validAmount = currencyModifiers.validateCurrency($scope.withdrawalData.amount,$rootScope.selectedCurrency.divisibility);
+                if(validAmount){
+                    $scope.showView = view;
+                } else {
+                    toastr.error('Please input amount to ' + $rootScope.selectedCurrency.divisibility + ' decimal places');
+                }
+            } else{
+                $scope.showView = view;
+            }
         };
 
         $scope.displayAdvancedOption = function () {
@@ -59,8 +68,18 @@
         };
 
         $scope.createWithdrawal = function () {
+
+            var sendTransactionData = {
+                user: $scope.withdrawalData.user,
+                amount: currencyModifiers.convertToCents($scope.withdrawalData.amount,$rootScope.selectedCurrency.divisibility),
+                reference: $scope.withdrawalData.reference,
+                confirm_on_create: $scope.withdrawalData.confirm_on_create,
+                metadata: $scope.withdrawalData.metadata,
+                currency: $scope.withdrawalData.currency
+            };
+
             $scope.onGoingTransaction = true;
-            $http.post(API + '/admin/transactions/withdraw/',$scope.withdrawalData, {
+            $http.post(API + '/admin/transactions/withdraw/',sendTransactionData, {
                 headers: {
                     'Content-Type': 'application/json',
                     'Authorization': vm.token
