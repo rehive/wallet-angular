@@ -44,14 +44,22 @@ angular.module('BlurAdmin', [
                 newUrlArray = newUrl.split('/'),
                 newUrlLastElement = _.last(newUrlArray);
 
-            if(token) {
-                $rootScope.gotToken = true;
-            } else if(newUrlLastElement == 'register' || newUrlLastElement == 'reset'
-                || newUrlLastElement == 'verification' || newUrlLastElement == 'name_request'){
-                // do nothing
-            } else {
+            if(newUrlLastElement == 'login'){
+                cookieManagement.deleteCookie('TOKEN');
                 $rootScope.gotToken = false;
                 $location.path('/login');
+            } else{
+                if(token) {
+                    $rootScope.gotToken = true;
+                } else if(newUrlLastElement == 'register' || newUrlLastElement == 'reset'
+                    || newUrlLastElement == 'verification' || newUrlLastElement == 'name_request'){
+                    // do nothing
+                } else {
+                    cookieManagement.deleteCookie('TOKEN');
+                    $rootScope.gotToken = false;
+                    $location.path('/login');
+                }
+
             }
 
             //checking if changing password or setting up 2 factor authentication

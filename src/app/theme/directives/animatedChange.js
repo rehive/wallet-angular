@@ -33,7 +33,7 @@
           $timeout(function () {
             element.next().find('i').addClass('show-arr');
           }, 500);
-        }, 3500);
+        }, 500);
       }
     };
   }
