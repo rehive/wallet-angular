@@ -1,13 +1,12 @@
-[![Build Status](https://travis-ci.org/akveo/blur-admin.svg?branch=master)](https://travis-ci.org/akveo/blur-admin)
+# Rehive Angular Admin Dashboard
 
-# BlurAdmin Angular admin panel front-end framework
-
-Customizable admin panel framework made with :heart: by [Akveo team](http://akveo.com/). Follow us on [Twitter](https://twitter.com/akveo_inc) to get latest news about this template first!
-
-### Demo
-**[Mint version demo](http://akveo.com/blur-admin-mint/)**             |  **[Blur version demo](http://akveo.com/blur-admin/)**
-:-------------------------:|:-------------------------:
-![Mint version demo](http://i.imgur.com/A3TMviJ.png)  |  ![Blur version demo](http://i.imgur.com/EAoiK2O.jpg)
+Rehive's dashboard is designed to help you manage your product from end-to-end:
+* invite new users, collect KYC documents, verify user information,
+* clear deposits and withdrawals, manage and review transactions,
+* manage customer support,
+* set transaction fees, set transaction limits, set notification preferences,
+* configure employee and user permissions
+* and more.
 
 ## Angular 2 version
 Here you can find Angular2 based version: [ng2-admin](https://github.com/akveo/ng2-admin).
