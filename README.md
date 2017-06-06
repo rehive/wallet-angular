@@ -10,7 +10,7 @@ Rehive's dashboard is designed to help you manage your product from end-to-end:
 * configure employee and user permissions
 * and more.
 
-### Open-Source
+### Open-source
 
 Rehive's back office dashboard is an open sourced project in Angular JS which advanced users can host in order to extend functionality.
 
