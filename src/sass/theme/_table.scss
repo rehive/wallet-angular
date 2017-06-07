@@ -221,7 +221,7 @@ input.search-input {
 }
 
 .black-muted-bg {
-  background-color: rgba(0, 0, 0, 0.1);
+  background-color: #f4f4f4;
 }
 
 .table-hover {
@@ -241,7 +241,7 @@ input.search-input {
 }
 
 .table-striped > tbody > tr:nth-of-type(odd) {
-  background-color: rgba(0, 0, 0, 0.1);
+  background-color: #f4f4f4
 }
 
 @mixin color-row($color) {

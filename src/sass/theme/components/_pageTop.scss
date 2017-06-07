@@ -16,12 +16,12 @@
 a.al-logo {
   color: $sidebar-text;
   display: block;
-  font-size: 24px;
+  font-size: 20px;
   font-family: $font-family;
   white-space: nowrap;
   float: left;
   outline: none !important;
-  line-height: 60px;
+  line-height: 66px;
 
   &:hover{
     color:#84c9f1;
@@ -79,7 +79,7 @@ a.collapse-menu-link {
   cursor: pointer;
   display: block;
   text-decoration: none;
-  line-height: 42px;
+  line-height: 46.5px;
   color: $sidebar-text;
   padding: 0;
   float: left;
