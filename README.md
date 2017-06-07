@@ -16,7 +16,8 @@ Rehive's back office dashboard is an open sourced project in Angular JS which ad
 
 ### Getting started
 
-* git clone  `https://github.com/rehive/dashboard-angular.git`,
+* fork the repository
+* git clone  `https://github.com/{{username}}/dashboard-angular.git`,
 * cd into `dashboard-angular`
 * run `npm install` to install the dependencies,
 * to run local copy in development mode, execute: `gulp serve`,
