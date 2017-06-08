@@ -60,7 +60,7 @@
 
         $scope.getAllUsers = function(applyFilter){
             $scope.usersStateMessage = '';
-            $scope.loadingUsers = false;
+            $scope.loadingUsers = true;
 
             if(applyFilter){
                 $scope.usersPagination.pageNo = 1;

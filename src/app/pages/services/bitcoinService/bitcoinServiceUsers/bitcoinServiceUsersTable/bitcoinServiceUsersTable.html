@@ -2,25 +2,18 @@
     <table class="table table-condensed table-striped table-hover ">
         <tr class="black-muted-bg">
             <td><strong>Email</strong></td>
-            <td><strong>Currency</strong></td>
-            <td><strong>Balance</strong></td>
-            <td><strong>Joined</strong></td>
-            <td><strong>Last Transaction</strong></td>
-            <td><strong>Last Login</strong></td>
+            <td><strong>Identifier</strong></td>
+            <td><strong>Address</strong></td>
         </tr>
-        <tr ng-repeat="user in users" class="editable-row center pointer">
-            <td><div title="{{transaction.from_reference}}" class="transactions-list-element" ng-bind="transaction.from_reference"></div></td>
-            <td><div title="{{transaction.to_reference}}" class="transactions-list-element" ng-bind="transaction.to_reference"></div></td>
-            <td><div title="{{transaction.tx_type}}" class="transactions-list-element" ng-bind="transaction.tx_type"></div></td>
-            <td><div title="{{transaction.subtype}}" class="transactions-list-element" ng-bind="transaction.subtype || 'None'"></div></td>
-            <td><div title="{{transaction.currency.code}}" class="transactions-list-element" ng-bind="transaction.currency.code"></div></td>
-            <td><div title="{{transaction.created | date:'mediumDate'}} {{transaction.created | date:'shortTime'}}" class="transactions-list-element">
-                {{transaction.created | date:'mediumDate'}} {{transaction.created | date:'shortTime'}}</div></td>
+        <tr ng-repeat="user in users" class="editable-row center" >
+            <td><a href="#/user/{{user.identifier}}"><div title="{{user.email}}" class="transactions-list-element" ng-bind="user.email"></div></a></td>
+            <td><div title="{{user.identifier}}" class="transactions-list-element" ng-bind="user.identifier"></div></td>
+            <td><div title="{{user.crypto.address}}" class="transactions-list-element" ng-bind="user.crypto.address"></div></td>
         </tr>
     </table>
     <div >
-        <p uib-pagination boundary-links="true" items-per-page="pagination.itemsPerPage"  total-items="transactionsData.count" ng-model="pagination.pageNo"
-           max-size="pagination.maxSize" class="pagination-sm pull-right transaction-history-pagination" force-ellipses="true" ng-change="getLatestTransactions()"
+        <p uib-pagination boundary-links="true" items-per-page="pagination.itemsPerPage"  total-items="usersData.count" ng-model="pagination.pageNo"
+           max-size="pagination.maxSize" class="pagination-sm pull-right transaction-history-pagination" force-ellipses="true" ng-change="getAllUsers()"
            previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;"></p>
     </div>
 </div>

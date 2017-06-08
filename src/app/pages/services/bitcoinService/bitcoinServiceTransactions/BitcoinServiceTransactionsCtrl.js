@@ -5,7 +5,7 @@
         .controller('BitcoinServiceTransactionsCtrl', BitcoinServiceTransactionsCtrl);
 
     /** @ngInject */
-    function BitcoinServiceTransactionsCtrl($scope,API,$http,cookieManagement,$uibModal,errorToasts,$window,stringService,errorHandler) {
+    function BitcoinServiceTransactionsCtrl($scope,$http,cookieManagement,$uibModal,errorToasts,$window,stringService,errorHandler) {
 
         var vm = this;
         vm.token = cookieManagement.getCookie('TOKEN');
@@ -61,7 +61,7 @@
                 + '&status=' + ($scope.searchParams.searchStatus == 'Status' ? '' : $scope.searchParams.searchStatus)
                 + '&subtype=' + $scope.searchParams.searchSubType; // all the params of the filtering
 
-            return API + '/admin/transactions/' + vm.filterParams;
+            return 'https://rehive.com/services/bitcoin/transactions/' + vm.filterParams;
         };
 
         $scope.getLatestTransactions = function(applyFilter){
