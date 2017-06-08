@@ -50,7 +50,7 @@ $panel-heading-font-size: 16px;
 
 .panel {
   > .panel-body {
-    padding: 20px 22px;
+    padding: 10px;
     height: 100%;
   }
   > .panel-heading {
@@ -66,8 +66,7 @@ $panel-heading-font-size: 16px;
 .panel-heading, .panel-footer {
   height: $panel-title-height;
   font-size: $panel-heading-font-size;
-  $vertical-padding: ($panel-title-height - $panel-heading-font-size) / 2;
-  padding: $vertical-padding 22px;
+  padding: 10px;
 }
 
 .panel-title {

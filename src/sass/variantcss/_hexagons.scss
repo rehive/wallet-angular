@@ -63,10 +63,6 @@
   @include hexagon-hex-over(39px,20px,-48px);
 }
 
-.overview-hexagon-container{
-  margin-left: 14.5px;
-}
-
 .overview-hexagon {
   @include hexagon(146px,84.29px,42.15px 0 45px 0);
 }
