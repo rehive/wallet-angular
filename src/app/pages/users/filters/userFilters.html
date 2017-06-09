@@ -11,10 +11,10 @@
         <label><strong>To Date</strong></label>
         <input type="date" ng-model="usersSearchParams.searchDateTo" class="form-control" id="date_to"  placeholder="Date To">
     </div>
-    <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12 divider">
-        <label><strong>Select Country</strong></label>
-        <country-select class="form-control pointer" data-ng-model="usersSearchParams.searchCountry"></country-select>
-    </div>
+    <!--<div class="col-lg-2 col-md-2 col-sm-12 col-xs-12 divider">-->
+        <!--<label><strong>Select Country</strong></label>-->
+        <!--<country-select class="form-control pointer" data-ng-model="usersSearchParams.searchCountry"></country-select>-->
+    <!--</div>-->
     <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12 divider">
         <label><strong>Currency</strong></label>
         <br>
@@ -28,15 +28,15 @@
         <select class="form-control pointer" ng-model="usersSearchParams.searchStatus" ng-options="status for status in statusOptions">
         </select>
     </div>
-</div>
-
-<div class="row">
     <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12">
         <label><strong>Order By</strong></label>
         <br>
         <select class="form-control pointer" ng-model="usersSearchParams.searchOrderBy" ng-options="orderBy for orderBy in orderByOptions">
         </select>
     </div>
+</div>
+
+<div class="row">
     <div class="col-lg-2 col-md-2 col-sm-12 col-xs-12 pull-right apply-button">
         <label>&nbsp;</label>
         <br>

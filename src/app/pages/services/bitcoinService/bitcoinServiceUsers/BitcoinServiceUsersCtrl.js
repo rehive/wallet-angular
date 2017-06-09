@@ -6,46 +6,8 @@
 
     /** @ngInject */
     function BitcoinServiceUsersCtrl($scope,$http,cookieManagement,$uibModal,errorToasts,$window,stringService) {
-              var vm = this;
-              vm.token = cookieManagement.getCookie('TOKEN');
-              vm.currenciesList = JSON.parse($window.sessionStorage.currenciesList);
-
-        ////dummy data
-        //
-        //$scope.usersData ={
-        //    'data':{
-        //        'count':2,
-        //        'next':null,
-        //        'previous':null,
-        //        'results':[
-        //            {
-        //                'crypto':{
-        //                    'address':'12313123',
-        //                    'payment_uri':'bitcoin:12313123',
-        //                    'qr_code':'https://chart.googleapis.com/chart?chs=300&cht=qr&chl=bitcoin%3A12313123&choe=UTF-8'
-        //                },
-        //                'email':'connor@rehive.com',
-        //                'identifier':'1231312'
-        //            },
-        //            {
-        //                'crypto':{
-        //                    'address':'123131312',
-        //                    'payment_uri':'bitcoin:123131312',
-        //                    'qr_code':'https://chart.googleapis.com/chart?chs=300&cht=qr&chl=bitcoin%3A123131312&choe=UTF-8'
-        //                },
-        //                'email':'connor+2@rehive.com',
-        //                'identifier':'123131231'
-        //            }
-        //        ]
-        //    },
-        //    'status':'success'
-        //};
-        //
-        //$scope.users = $scope.usersData.data.results;
-        //
-        //console.log($scope.users);
-        //
-        //// dummy data
+        var vm = this;
+        vm.token = cookieManagement.getCookie('TOKEN');
 
         $scope.usersPagination = {
             itemsPerPage: 25,
@@ -54,36 +16,19 @@
         };
 
         $scope.usersSearchParams = {
-            searchUser:'',
-            searchDateFrom: '',
-            searchDateTo: '',
-            searchStatus: 'KYC',
-            searchCurrency: {},
-            searchCountry: '',
-            searchOrderBy: 'Order By'
+            searchEmail:'',
+            searchIdentifier: '',
+            searchAddress: ''
         };
 
         $scope.users = [];
-        $scope.statusOptions = ['KYC','Declined','Pending','Verified'];
-        $scope.currencyOptions = [];
-        $scope.orderByOptions = ['Order By','Join Date','Balance','User'];
-
-        vm.getCompanyCurrencies = function(){
-            //adding currency as default value in both results array and ng-model of currency
-            vm.currenciesList.splice(0,0,{code: 'Currency'});
-            $scope.usersSearchParams.searchCurrency.code = 'Currency';
-            $scope.currencyOptions = vm.currenciesList;
-        };
-        vm.getCompanyCurrencies();
+        $scope.loadingUsers = true;
 
         vm.getUsersUrl = function(){
-            vm.filterParams = '?page=' + $scope.usersPagination.pageNo + '&page_size=' + $scope.usersPagination.itemsPerPage;
-            //+ '&currency=' + ($scope.usersSearchParams.searchCurrency.code ?  $scope.usersSearchParams.searchCurrency.code : '');
-            //+ '&created__gt=' + ($scope.usersSearchParams.searchDateFrom? Date.parse($scope.usersSearchParams.searchDateFrom) : '')
-            //+ '&created__lt=' + ($scope.usersSearchParams.searchDateTo? Date.parse($scope.usersSearchParams.searchDateTo) : '')
-            //+ '&user=' + ($scope.usersSearchParams.searchUser? $scope.usersSearchParams.searchUser : '')
-            //+ '&orderby=' + ($scope.usersSearchParams.searchOrderBy == 'Latest' ? '-created' : $scope.usersSearchParams.searchOrderBy == 'Largest' ? '-amount' : $scope.usersSearchParams.searchOrderBy == 'Smallest' ? 'amount' : '')
-            //+ '&status=' + ($scope.usersSearchParams.searchStatus == 'Status' ? '' : $scope.usersSearchParams.searchStatus)
+            vm.filterParams = '?page=' + $scope.usersPagination.pageNo + '&page_size=' + $scope.usersPagination.itemsPerPage
+            + '&email=' + $scope.usersSearchParams.searchEmail
+            + '&identifier=' + $scope.usersSearchParams.searchIdentifier
+            + '&address=' + $scope.usersSearchParams.searchAddress;
 
             return 'https://rehive.com/services/bitcoin/users/' + vm.filterParams;
         };

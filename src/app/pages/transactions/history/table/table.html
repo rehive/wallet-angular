@@ -14,8 +14,8 @@
         <tr ng-repeat="transaction in transactions " data-toggle="modal"
             ng-click="openModal('app/pages/transactions/history/historyModal/historyModal.html', 'md',transaction)"
             class="editable-row center pointer">
-            <td><div title="{{transaction.from_reference}}" class="transactions-list-element" ng-bind="transaction.from_reference"></div></td>
-            <td><div title="{{transaction.to_reference}}" class="transactions-list-element" ng-bind="transaction.to_reference"></div></td>
+            <td><div title="{{transaction.from_reference}}" class="transactions-list-element" ng-bind="transaction.from_reference  | limitTo: '18'"></div></td>
+            <td><div title="{{transaction.to_reference}}" class="transactions-list-element" ng-bind="transaction.to_reference | limitTo: '18'"></div></td>
             <td><div title="{{transaction.tx_type}}" class="transactions-list-element" ng-bind="transaction.tx_type | capitalizeWord"></div></td>
             <td><div title="{{transaction.subtype}}" class="transactions-list-element" ng-bind="transaction.subtype || 'None'"></div></td>
             <td><div title="{{transaction.currency.code}}" class="transactions-list-element" ng-bind="transaction.currency.code"></div></td>

@@ -18,48 +18,34 @@
         };
 
         $scope.searchParams = {
-            searchTxCode: '',
-            searchUserFrom:'',
-            searchUserTo:'',
+            searchEmail: '',
+            searchType: 'Type',
+            searchTxHash:'',
+            searchRehiveCode:'',
             searchDateFrom: '',
             searchDateTo: '',
-            searchType: 'Type',
             searchStatus: 'Status',
-            searchCurrency: {},
-            searchOrderBy: 'Latest',
-            searchSubType: ''
+            searchOrderBy: 'Latest'
         };
 
         $scope.transactions = [];
         $scope.transactionsStateMessage = '';
         $scope.transactionsData = {};
         $scope.loadingTransactions = false;
-        $scope.typeOptions = ['Type','Deposit','Transfer','Withdraw'];
-        $scope.statusOptions = ['Status','Cancelled','Claimed','Complete','Denied','Expired','Failed','Incoming',
-                                'Incomplete','Pending','Processing','Reversed','Unclaimed','Uncredited','Waiting'];
-        $scope.currencyOptions = [];
+        $scope.typeOptions = ['Type','Deposit','Send','Withdraw'];
+        $scope.statusOptions = ['Status','Pending','Confirmed','Complete','Failed'];
         $scope.orderByOptions = ['Largest','Latest','Smallest'];
-
-        vm.getCompanyCurrencies = function(){
-            //adding currency as default value in both results array and ng-model of currency
-            vm.currenciesList.splice(0,0,{code: 'Currency'});
-            $scope.searchParams.searchCurrency.code = 'Currency';
-            $scope.currencyOptions = vm.currenciesList;
-        };
-        vm.getCompanyCurrencies();
 
         vm.getTransactionUrl = function(){
             vm.filterParams = '?page=' + $scope.pagination.pageNo + '&page_size=' + $scope.pagination.itemsPerPage
+                + '&email=' + $scope.searchParams.searchEmail
+                + '&tx_type=' + ($scope.searchParams.searchType == 'Type' ? '' : $scope.searchParams.searchType.toLowerCase())
+                + '&transaction_hash=' + $scope.searchParams.searchTxHash
+                + '&rehive_code=' + $scope.searchParams.searchRehiveCode
                 + '&created__gt=' + ($scope.searchParams.searchDateFrom? Date.parse($scope.searchParams.searchDateFrom) : '')
                 + '&created__lt=' + ($scope.searchParams.searchDateTo? Date.parse($scope.searchParams.searchDateTo) : '')
-                + '&currency=' + ($scope.searchParams.searchCurrency.code ? ($scope.searchParams.searchCurrency.code == 'Currency' ? '' : $scope.searchParams.searchCurrency.code) : '')
-                + '&from_reference=' + $scope.searchParams.searchUserFrom
-                + '&to_reference=' + $scope.searchParams.searchUserTo
-                + '&orderby=' + ($scope.searchParams.searchOrderBy == 'Latest' ? '-created' : $scope.searchParams.searchOrderBy == 'Largest' ? '-amount' : $scope.searchParams.searchOrderBy == 'Smallest' ? 'amount' : '')
-                + '&tx_code=' + $scope.searchParams.searchTxCode
-                + '&tx_type=' + ($scope.searchParams.searchType == 'Type' ? '' : $scope.searchParams.searchType.toLowerCase())
                 + '&status=' + ($scope.searchParams.searchStatus == 'Status' ? '' : $scope.searchParams.searchStatus)
-                + '&subtype=' + $scope.searchParams.searchSubType; // all the params of the filtering
+                + '&orderby=' + ($scope.searchParams.searchOrderBy == 'Latest' ? '-created' : $scope.searchParams.searchOrderBy == 'Largest' ? '-amount' : $scope.searchParams.searchOrderBy == 'Smallest' ? 'amount' : '');
 
             return 'https://rehive.com/services/bitcoin/transactions/' + vm.filterParams;
         };
