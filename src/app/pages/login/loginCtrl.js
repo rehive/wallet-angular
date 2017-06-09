@@ -46,8 +46,12 @@
                     }
                 }).then(function (res) {
                     $rootScope.$pageFinishedLoading = true;
-                    cookieManagement.setCookie('COMPANY',res.data.data.name);
-                    $location.path('/dashboard');
+                    if(res.data.data && res.data.data.name){
+                        cookieManagement.setCookie('COMPANY',res.data.data.name);
+                        $location.path('/dashboard');
+                    } else {
+                        $location.path('/company/name_request');
+                    }
                 }).catch(function (error) {
                     $rootScope.$pageFinishedLoading = true;
                     errorToasts.evaluateErrors(error.data);

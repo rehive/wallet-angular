@@ -16,7 +16,7 @@
 
                 if(verified){
                     $rootScope.userVerified = true;
-                    $location.path('/dashboard');
+                    $location.path('/company/name_request');
                 } else {
                     toastr.error('Please verify your account','Message');
                 }
