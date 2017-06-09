@@ -8,18 +8,10 @@
     <div class="modal-body">
         <div class="row">
             <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-                <p><strong>From: </strong></p>
+                <p><strong>User: </strong></p>
             </div>
             <div col-lg-8 col-md-8 col-sm-8 col-xs-8>
-                <p ng-bind="transaction.from_reference"></p>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-                <p><strong>To: </strong></p>
-            </div>
-            <div col-lg-8 col-md-8 col-sm-8 col-xs-8>
-                <p ng-bind="transaction.to_reference"></p>
+                <p ng-bind="transaction.user.email || transaction.user.mobile_number"></p>
             </div>
         </div>
         <div class="row">
@@ -43,7 +35,7 @@
                 <p><strong>Account: </strong></p>
             </div>
             <div col-lg-8 col-md-8 col-sm-8 col-xs-8>
-                <p ng-bind="transaction.from_account | capitalizeWord"></p>
+                <p ng-bind="transaction.account | capitalizeWord"></p>
             </div>
         </div>
         <div class="row">
@@ -67,7 +59,7 @@
                 <p><strong>Code: </strong></p>
             </div>
             <div col-lg-8 col-md-8 col-sm-8 col-xs-8>
-                <p ng-bind="transaction.tx_code"></p>
+                <p ng-bind="transaction.id"></p>
             </div>
         </div>
         <div class="row">
@@ -75,7 +67,7 @@
                 <p><strong>Balance: </strong></p>
             </div>
             <div col-lg-8 col-md-8 col-sm-8 col-xs-8>
-                <p ng-bind="transaction.to_balance"></p>
+                <p ng-bind="transaction.balance"></p>
             </div>
         </div>
         <div class="row">

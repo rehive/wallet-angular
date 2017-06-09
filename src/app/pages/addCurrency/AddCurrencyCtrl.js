@@ -48,7 +48,7 @@
             var code = $scope.addCurrency.currencyChoice.code;
 
             $scope.loadingCurrencies = true;
-            $http.patch(API + '/admin/currencies/' + code, {enabled: true}, {
+            $http.patch(API + '/admin/currencies/' + code+'/', {enabled: true}, {
                 headers: {
                     'Content-Type': 'application/json',
                     'Authorization': vm.token
@@ -61,6 +61,7 @@
                     $rootScope.selectedCurrency = res.data.data;
                 }
             }).catch(function (error) {
+                console.log(error);
                 $scope.loadingCurrencies = false;
                 if(error.status == 403){
                     errorHandler.handle403();

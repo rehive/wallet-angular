@@ -18,9 +18,8 @@
         };
 
         $scope.searchParams = {
-            searchTxCode: '',
-            searchUserFrom:'',
-            searchUserTo:'',
+            searchId: '',
+            searchUser:'',
             searchDateFrom: '',
             searchDateTo: '',
             searchType: 'Type',
@@ -53,10 +52,9 @@
                 + '&created__gt=' + ($scope.searchParams.searchDateFrom? Date.parse($scope.searchParams.searchDateFrom) : '')
                 + '&created__lt=' + ($scope.searchParams.searchDateTo? Date.parse($scope.searchParams.searchDateTo) : '')
                 + '&currency=' + ($scope.searchParams.searchCurrency.code ? ($scope.searchParams.searchCurrency.code == 'Currency' ? '' : $scope.searchParams.searchCurrency.code) : '')
-                + '&from_reference=' + $scope.searchParams.searchUserFrom
-                + '&to_reference=' + $scope.searchParams.searchUserTo
+                + '&user=' + $scope.searchParams.searchUser
                 + '&orderby=' + ($scope.searchParams.searchOrderBy == 'Latest' ? '-created' : $scope.searchParams.searchOrderBy == 'Largest' ? '-amount' : $scope.searchParams.searchOrderBy == 'Smallest' ? 'amount' : '')
-                + '&tx_code=' + $scope.searchParams.searchTxCode
+                + '&id=' + $scope.searchParams.searchId
                 + '&tx_type=' + ($scope.searchParams.searchType == 'Type' ? '' : $scope.searchParams.searchType.toLowerCase())
                 + '&status=' + ($scope.searchParams.searchStatus == 'Status' ? '' : $scope.searchParams.searchStatus)
                 + '&subtype=' + $scope.searchParams.searchSubType; // all the params of the filtering

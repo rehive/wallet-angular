@@ -14,7 +14,7 @@ angular.module('BlurAdmin', [
     'BlurAdmin.pages'
 ])
 
-    .constant('API', 'http://staging.rehive.com/api/3')
+    .constant('API', 'https://staging.rehive.com/api/3')
 
     .run(function($cookies,$rootScope,cookieManagement,userVerification,$location,_){
 

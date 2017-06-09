@@ -5,34 +5,41 @@
         .controller('RegisterCtrl', RegisterCtrl);
 
     /** @ngInject */
-    function RegisterCtrl($rootScope,$scope,$http,toastr,API,errorToasts,$location,cookieManagement,stringService) {
+    function RegisterCtrl($rootScope,$scope,$http,toastr,API,errorToasts,$location,cookieManagement) {
 
-        var vm = this;
+        //var vm = this;
+        $scope.registerData = {
+            first_name: '',
+            last_name: '',
+            email: '',
+            mobile_number: '',
+            company: '',
+            password1: '',
+            password2: ''
+        };
 
-        $scope.registerUser = function(first_name,last_name, email, mobile_number, company_id, password1, password2) {
+        $scope.registerUser = function() {
             $rootScope.$pageFinishedLoading = false;
-            $http.post(API + '/auth/company/register/', {
-                first_name: first_name,
-                last_name: last_name,
-                email: email,
-                mobile_number: mobile_number,
-                company_id: company_id,
-                password1: password1,
-                password2: password2
-            }).then(function (res) {
-                if (res.status === 201) {
+            $http.post(API + '/auth/company/register/', $scope.registerData)
+                .then(function (res) {
+                    if (res.status === 201) {
                     cookieManagement.setCookie('TOKEN','Token ' + res.data.data.token);
-                    //cookieManagement.setCookie('COMPANY',companyName);
                     $rootScope.$pageFinishedLoading = true;
                     $rootScope.userVerified = false;
                     $location.path('/verification');
-                } else {
-                 }
+                    } else {
+
+                    }
             }).catch(function (error) {
                 $rootScope.$pageFinishedLoading = true;
                 errorToasts.evaluateErrors(error.data);
             });
         };
+
+        $scope.fixformat = function(){
+            $scope.registerData.company = $scope.registerData.company.toLowerCase();
+            $scope.registerData.company = $scope.registerData.company.replace(/ /g, '_');
+        }
 
     }
 })();

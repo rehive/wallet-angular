@@ -9,12 +9,13 @@
 
         var vm = this;
 
-        $scope.login = function(identifier, company_id, password) {
+        $scope.login = function(user, company, password) {
             $rootScope.$pageFinishedLoading = false;
 
+            console.log(API + '/auth/login/');
             $http.post(API + '/auth/login/', {
-                identifier: identifier,
-                company_id: company_id,
+                user: user,
+                company: company,
                 password: password
             }).then(function (res) {
                 if (res.status === 200) {

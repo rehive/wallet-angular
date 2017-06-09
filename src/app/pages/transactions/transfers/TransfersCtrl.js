@@ -55,7 +55,7 @@
             var sendTransactionData = {
                 user: $scope.transferData.user,
                 amount: currencyModifiers.convertToCents($scope.transferData.amount,$rootScope.selectedCurrency.divisibility),
-                reference: $scope.transferData.reference,
+                recipient: $scope.transferData.recipient,
                 currency: $scope.transferData.currency
             };
 

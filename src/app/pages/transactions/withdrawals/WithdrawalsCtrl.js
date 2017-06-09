@@ -79,7 +79,7 @@
             };
 
             $scope.onGoingTransaction = true;
-            $http.post(API + '/admin/transactions/withdraw/',sendTransactionData, {
+            $http.post(API + '/admin/transactions/debit/',sendTransactionData, {
                 headers: {
                     'Content-Type': 'application/json',
                     'Authorization': vm.token

@@ -82,7 +82,7 @@
             $scope.onGoingTransaction = true;
             // $http.post takes the params as follow post(url, data, {config})
             // https://docs.angularjs.org/api/ng/service/$http#post
-            $http.post(API + '/admin/transactions/deposit/', sendTransactionData, {
+            $http.post(API + '/admin/transactions/credit/', sendTransactionData, {
                 headers: {
                     'Content-Type': 'application/json',
                     'Authorization': vm.token
