@@ -36,6 +36,7 @@
                         $rootScope.newUser = res.data.data.count == 0;
                     }
                 }).catch(function (error) {
+                    console.log(error);
                     if(error.status == 403){
                         errorHandler.handle403();
                         return

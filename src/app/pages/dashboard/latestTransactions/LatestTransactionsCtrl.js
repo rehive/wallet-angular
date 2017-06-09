@@ -29,6 +29,10 @@
                         $scope.transactionsStateMessage = '';
                     }
                 }).catch(function (error) {
+                    if(error.status == 403){
+                        errorHandler.handle403();
+                        return
+                    }
                     $scope.transactionsStateMessage = 'Failed To Load Data';
                     errorToasts.evaluateErrors(error.data);
                 });
