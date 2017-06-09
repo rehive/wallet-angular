@@ -26,10 +26,11 @@
             }).then(function (res) {
                 $scope.$dismiss();
                 $scope.deletingWebhook = false;
-                if (res.status === 204) {
+                if (res.status === 200) {
                     var index = $scope.webhooks.findIndex(vm.findIndexOfWebhooks);
                     $scope.webhooks.splice(index, 1);
                     toastr.success('You have successfully deleted the webhook!');
+                    $scope.$dismiss();
                 }
             }).catch(function (error) {
                 $scope.deletingWebhook = false;

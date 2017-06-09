@@ -24,12 +24,14 @@
                     'Authorization': vm.token
                 }
             }).then(function (res) {
+                console.log(res);
                 $scope.deletingSubtype = false;
                 $scope.$dismiss();
-                if (res.status === 204) {
+                if (res.status === 200) {
                     var index = $scope.subtypes.findIndex(vm.findIndexOfSubtype);
                     $scope.subtypes.splice(index, 1);
                     toastr.success('You have successfully deleted the subtype!');
+                    $scope.$dismiss();
                 }
             }).catch(function (error) {
                 $scope.deletingSubtype = false;

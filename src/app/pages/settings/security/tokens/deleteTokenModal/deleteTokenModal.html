@@ -3,13 +3,13 @@
         <button type="button" class="close" ng-click="$dismiss()" aria-label="Close">
             <em class="ion-ios-close-empty sn-link-close"></em>
         </button>
-        <h4 class="modal-title" id="myModalLabel">Delete Subtype</h4>
+        <h4 class="modal-title" id="myModalLabel">Delete Token</h4>
     </div>
     <div class="modal-body">
-        <p>{{subtype.name}}, ({{subtype.tx_type}})</p>
+        <p><strong>Token:</strong> {{token.token_key}}, <strong>Expires:</strong> {{token.expires || 'Permanent' | date:'mediumDate'}} {{token.expires || 'Key' | date:'shortTime'}}</p>
     </div>
     <div class="modal-footer">
         <button type="button" class="btn btn-primary pull-left" ng-click="$dismiss()">Close</button>
-        <button ng-click="deleteSubtype()" type="button" class="btn btn-danger pull-right">Delete</button>
+        <button ng-click="deleteToken(token.token_key)" type="button" class="btn btn-danger pull-right">Delete</button>
     </div>
 </div>
