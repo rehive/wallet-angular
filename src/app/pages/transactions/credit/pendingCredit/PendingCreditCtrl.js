@@ -8,19 +8,21 @@
     function PendingCreditCtrl($rootScope,$scope,$http,API,cookieManagement,$uibModal,errorToasts) {
 
         var vm = this;
-        $scope.transactions = [];
+        $scope.transactions = {};
+        $scope.transactions.list = [];
         $scope.transactionsStateMessage = '';
         vm.token = cookieManagement.getCookie('TOKEN');
 
         $rootScope.$watch('selectedCurrency',function(){
             if($rootScope.selectedCurrency && $rootScope.selectedCurrency.code) {
               $scope.transactionsStateMessage = '';
-              $scope.transactions.length = 0;
+              $scope.transactions.list.length = 0;
               vm.getPendingTransactions();
             }
         });
 
         vm.getPendingTransactions = function(){
+            $scope.transactions.list = [];
             if(vm.token) {
                 $http.get(API + '/admin/transactions/?tx_type=credit&status=Pending&orderby=-created&currency=' + $rootScope.selectedCurrency.code, {
                     headers: {
@@ -28,13 +30,12 @@
                         'Authorization': vm.token
                     }
                 }).then(function (res) {
-                    console.log(res.data);
                     if (res.status === 200) {
                         if (res.data.data.results.length == 0) {
                             $scope.transactionsStateMessage = 'No Pending Transactions';
                             return;
                         }
-                        $scope.transactions = res.data.data.results;
+                        $scope.transactions.list = res.data.data.results;
                         $scope.transactionsStateMessage = '';
                     }
                 }).catch(function (error) {
@@ -57,6 +58,13 @@
                     }
                 }
             });
+
+            //vm.theModel.result.then(function(){
+            //    setTimeout(function(){vm.getPendingTransactions()}, 2000);
+            //}, function(){
+            //    setTimeout(function(){vm.getPendingTransactions()}, 2000);
+            //});
+
         };
 
     }
