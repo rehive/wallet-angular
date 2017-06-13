@@ -13,7 +13,6 @@
 
         $scope.verifyUser = function(){
             userVerification.verify(function(err,verified){
-
                 if(verified){
                     $rootScope.userVerified = true;
                     $location.path('/company/name_request');
@@ -40,7 +39,7 @@
         vm.getUserInfo();
 
         $scope.resendEmail = function(){
-            $http.post(API + '/auth/email/verify/resend/',{identifier: vm.user.email,company_id: vm.user.company}, {
+            $http.post(API + '/auth/email/verify/resend/',{user: vm.user.email,company: vm.user.company}, {
                 headers: {
                     'Content-Type': 'application/json',
                     'Authorization': vm.token

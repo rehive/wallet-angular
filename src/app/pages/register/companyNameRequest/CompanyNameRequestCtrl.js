@@ -5,7 +5,7 @@
         .controller('CompanyNameRequestCtrl', CompanyNameRequestCtrl);
 
     /** @ngInject */
-    function CompanyNameRequestCtrl($rootScope,$scope,$http,toastr,cookieManagement,API,$location,errorToasts,stringService) {
+    function CompanyNameRequestCtrl($rootScope,$scope,$http,toastr,cookieManagement,API,$location,errorToasts,userVerification) {
 
         var vm = this;
         vm.token = cookieManagement.getCookie('TOKEN');
@@ -23,9 +23,18 @@
             }).then(function (res) {
                 $scope.loadingCompanyInfo = false;
                 if (res.status === 200) {
-                    cookieManagement.setCookie('COMPANY',res.data.data.name);
-                    $location.path('/dashboard');
-                    toastr.success('You have successfully updated the company info!');
+                    $rootScope.haveCompanyName = true;
+                    $rootScope.companyName = res.data.data.name;
+                    userVerification.verify(function(err,verified){
+                        if(verified){
+                            $rootScope.userVerified = true;
+                            $location.path('/dashboard');
+                            toastr.success('You have successfully updated the company info!');
+                        } else {
+                            $location.path('/verification');
+                            toastr.error('Please verify your account','Message');
+                        }
+                    });
                 }
             }).catch(function (error) {
                 $scope.loadingCompanyInfo = false;

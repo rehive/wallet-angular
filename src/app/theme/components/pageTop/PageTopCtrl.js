@@ -5,17 +5,24 @@
         .controller('PageTopCtrl', PageTopCtrl);
 
     /** @ngInject */
-    function PageTopCtrl($rootScope,$scope,$http,cookieManagement,API,$location,errorToasts,$window,errorHandler) {
+    function PageTopCtrl($rootScope,$scope,$http,cookieManagement,API,$location,errorToasts,$window,errorHandler,_) {
         var vm = this;
 
-        $scope.companyName = cookieManagement.getCookie('COMPANY');
         vm.token = cookieManagement.getCookie('TOKEN');
         $scope.currencies = [];
         vm.currentLocation = $location.path();
+        $rootScope.$on('$locationChangeStart', function (event,newUrl) {
+            var newUrlArray = newUrl.split('/'),
+                newUrlLastElement = _.last(newUrlArray);
+            vm.currentLocation = newUrlLastElement;
+        });
+
 
         $rootScope.$watch('selectedCurrency',function(){
             if($rootScope.selectedCurrency && $rootScope.selectedCurrency.code) {
                 vm.getCompanyCurrencies();
+            } else {
+                $rootScope.newUser = true;
             }
         });
 
@@ -45,7 +52,8 @@
                 });
             }
         };
-        if(vm.currentLocation != '/login'){
+
+        if(vm.currentLocation != '/login' && vm.currentLocation != '/verification' && vm.currentLocation != '/company/name_request' && vm.currentLocation != '/register' && vm.currentLocation != '/password/reset'){
             vm.getCompanyCurrencies();
         }
 
@@ -58,8 +66,9 @@
             $rootScope.newUser = false;
             $rootScope.gotToken = false;
             $rootScope.securityConfigured = true;
+            $rootScope.companyName = null;
+            $rootScope.haveCompanyName = false;
             cookieManagement.deleteCookie('TOKEN');
-            cookieManagement.deleteCookie('COMPANY');
             $location.path('/login');
         };
     }

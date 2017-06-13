@@ -22,6 +22,7 @@
             $rootScope.$pageFinishedLoading = false;
             $http.post(API + '/auth/company/register/', $scope.registerData)
                 .then(function (res) {
+                    console.log(res);
                     if (res.status === 201) {
                     cookieManagement.setCookie('TOKEN','Token ' + res.data.data.token);
                     $rootScope.$pageFinishedLoading = true;

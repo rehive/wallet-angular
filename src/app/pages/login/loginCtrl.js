@@ -47,7 +47,7 @@
                 }).then(function (res) {
                     $rootScope.$pageFinishedLoading = true;
                     if(res.data.data && res.data.data.name){
-                        cookieManagement.setCookie('COMPANY',res.data.data.name);
+                        $rootScope.companyName = res.data.data.name;
                         $location.path('/dashboard');
                     } else {
                         $location.path('/company/name_request');

@@ -5,7 +5,7 @@
         .controller('LatestTransactionsCtrl', LatestTransactionsCtrl);
 
     /** @ngInject */
-    function LatestTransactionsCtrl($scope,$uibModal,$http,API,cookieManagement,errorToasts) {
+    function LatestTransactionsCtrl($scope,$uibModal,$http,API,cookieManagement,errorToasts,errorHandler) {
 
         var vm = this;
         $scope.transactions = [];
