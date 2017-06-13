@@ -1,20 +1,20 @@
 (function () {
     'use strict';
 
-    angular.module('BlurAdmin.pages.transactions.deposits', [])
+    angular.module('BlurAdmin.pages.transactions.credit', [])
         .config(routeConfig);
 
     /** @ngInject */
     function routeConfig($stateProvider,$urlRouterProvider) {
         $stateProvider
-            .state('transactions.deposits', {
-                url: '/deposits',
-                templateUrl: 'app/pages/transactions/deposits/deposits.html',
-                controller: "DepositsCtrl",
+            .state('transactions.credit', {
+                url: '/credit',
+                templateUrl: 'app/pages/transactions/credit/credit.html',
+                controller: "CreditCtrl",
                 params: {
                   email: null
                 },
-                title: 'Deposits',
+                title: 'Credit',
                 sidebarMeta: {
                     order: 300
                 }

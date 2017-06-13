@@ -1,11 +1,11 @@
 (function () {
     'use strict';
 
-    angular.module('BlurAdmin.pages.transactions.deposits')
-        .controller('PendingDepositCtrl', PendingDepositCtrl);
+    angular.module('BlurAdmin.pages.transactions.credit')
+        .controller('PendingCreditCtrl', PendingCreditCtrl);
 
     /** @ngInject */
-    function PendingDepositCtrl($rootScope,$scope,$http,API,cookieManagement,$uibModal,errorToasts) {
+    function PendingCreditCtrl($rootScope,$scope,$http,API,cookieManagement,$uibModal,errorToasts) {
 
         var vm = this;
         $scope.transactions = [];
@@ -22,12 +22,13 @@
 
         vm.getPendingTransactions = function(){
             if(vm.token) {
-                $http.get(API + '/admin/transactions/?tx_type=deposit&status=Pending&orderby=-created&currency=' + $rootScope.selectedCurrency.code, {
+                $http.get(API + '/admin/transactions/?tx_type=credit&status=Pending&orderby=-created&currency=' + $rootScope.selectedCurrency.code, {
                     headers: {
                         'Content-Type': 'application/json',
                         'Authorization': vm.token
                     }
                 }).then(function (res) {
+                    console.log(res.data);
                     if (res.status === 200) {
                         if (res.data.data.results.length == 0) {
                             $scope.transactionsStateMessage = 'No Pending Transactions';
@@ -49,7 +50,7 @@
                 animation: true,
                 templateUrl: page,
                 size: size,
-                controller: 'PendingDepositsModalCtrl',
+                controller: 'PendingCreditModalCtrl',
                 resolve: {
                     transaction: function () {
                         return transaction;

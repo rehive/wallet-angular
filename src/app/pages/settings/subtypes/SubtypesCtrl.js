@@ -13,7 +13,7 @@
         $scope.loadingSubtypes = true;
         $scope.editingSubtype = false;
         $scope.editSubtype = {};
-        $scope.typeOptions = ['Transfer','Deposit','Withdraw'];
+        $scope.typeOptions = ['Transfer','Credit','Withdraw'];
         $scope.newSubtype = {
             tx_type: 'Transfer'
         };

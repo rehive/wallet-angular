@@ -1,16 +1,16 @@
 (function () {
     'use strict';
 
-    angular.module('BlurAdmin.pages.transactions.deposits')
-        .controller('DepositsCtrl', DepositsCtrl);
+    angular.module('BlurAdmin.pages.transactions.credit')
+        .controller('CreditCtrl', CreditCtrl);
 
     /** @ngInject */
-    function DepositsCtrl($rootScope,$scope,$http,API,cookieManagement,toastr,errorToasts,errorHandler,$state,currencyModifiers) {
+    function CreditCtrl($rootScope,$scope,$http,API,cookieManagement,toastr,errorToasts,errorHandler,$state,currencyModifiers) {
 
         var vm = this;
         vm.token = cookieManagement.getCookie('TOKEN');
 
-        $scope.depositData = {
+        $scope.creditData = {
             user: null,
             amount: null,
             reference: "",
@@ -20,22 +20,22 @@
         };
 
         if($state.params.email){
-          $scope.depositData.user = $state.params.email;
+          $scope.creditData.user = $state.params.email;
         }
 
         $scope.onGoingTransaction = false;
         $scope.showAdvancedOption = false;
-        $scope.showView = 'createDeposit';
+        $scope.showView = 'createCredit';
 
         $rootScope.$watch('selectedCurrency',function(){
             if($rootScope.selectedCurrency && $rootScope.selectedCurrency.code) {
-                $scope.depositData.currency = $rootScope.selectedCurrency.code;
+                $scope.creditData.currency = $rootScope.selectedCurrency.code;
             }
         });
 
         $scope.goToView = function(view){
-            if($scope.depositData.amount){
-                var validAmount = currencyModifiers.validateCurrency($scope.depositData.amount,$rootScope.selectedCurrency.divisibility);
+            if($scope.creditData.amount){
+                var validAmount = currencyModifiers.validateCurrency($scope.creditData.amount,$rootScope.selectedCurrency.divisibility);
                 if(validAmount){
                     $scope.showView = view;
                 } else {
@@ -50,9 +50,9 @@
             $scope.showAdvancedOption = true;
         };
 
-        $scope.toggleDepositView = function(view) {
+        $scope.toggleCreditView = function(view) {
             $scope.showAdvancedOption = false;
-            $scope.depositData = {
+            $scope.creditData = {
                 user: null,
                 amount: null,
                 reference: "",
@@ -61,22 +61,22 @@
                 currency: $rootScope.selectedCurrency.code
             };
 
-            if(view == 'deposit'){
-                $scope.goToView('createDeposit');
+            if(view == 'credit'){
+                $scope.goToView('createCredit');
             } else{
-                $scope.goToView('pendingDeposit');
+                $scope.goToView('pendingCredit');
             }
         };
 
-        $scope.createDeposit = function () {
+        $scope.createCredit = function () {
 
             var sendTransactionData = {
-                user: $scope.depositData.user,
-                amount: currencyModifiers.convertToCents($scope.depositData.amount,$rootScope.selectedCurrency.divisibility),
-                reference: $scope.depositData.reference,
-                confirm_on_create: $scope.depositData.confirm_on_create,
-                metadata: $scope.depositData.metadata,
-                currency: $scope.depositData.currency
+                user: $scope.creditData.user,
+                amount: currencyModifiers.convertToCents($scope.creditData.amount,$rootScope.selectedCurrency.divisibility),
+                reference: $scope.creditData.reference,
+                confirm_on_create: $scope.creditData.confirm_on_create,
+                metadata: $scope.creditData.metadata,
+                currency: $scope.creditData.currency
             };
 
             $scope.onGoingTransaction = true;
@@ -90,8 +90,8 @@
             }).then(function (res) {
                 $scope.onGoingTransaction = false;
                 if (res.status === 201) {
-                    toastr.success('You have successfully deposited your money!');
-                    $scope.goToView('completeDeposit');
+                    toastr.success('You have successfully credited your account!');
+                    $scope.goToView('completeCredit');
                 }
             }).catch(function (error) {
                 $scope.onGoingTransaction = false;

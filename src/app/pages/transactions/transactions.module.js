@@ -5,7 +5,7 @@
             'BlurAdmin.pages.transactions.overview',
             'BlurAdmin.pages.transactions.history',
             'BlurAdmin.pages.transactions.withdrawals',
-            'BlurAdmin.pages.transactions.deposits',
+            'BlurAdmin.pages.transactions.credit',
             'BlurAdmin.pages.transactions.transfers',
             'BlurAdmin.pages.transactions.settings'
         ])

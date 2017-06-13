@@ -17,7 +17,7 @@
             tx_type: 'Transfer'
         };
 
-        $scope.typeOptions = ['Transfer','Deposit','Withdraw'];
+        $scope.typeOptions = ['Transfer','Credit','Withdraw'];
 
         $scope.toggleWebhooksEditView = function(webhook){
             if(webhook){

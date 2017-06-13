@@ -1,4 +1,4 @@
-<div ba-panel class="row" ba-panel-title="Pending Deposits" ba-panel-class=" with-scroll">
+<div ba-panel class="row" ba-panel-title="Pending Credits" ba-panel-class=" with-scroll">
 
     <table ng-show="transactions.length > 0" class="table table-condensed table-striped table-hover col-lg-12 col-md-12 col-sm-12 col-xs-12 ">
         <tr class="black-muted-bg">
@@ -10,12 +10,12 @@
             <td><strong>Status</strong></td>
         </tr>
         <tr ng-repeat="transaction in transactions " data-toggle="modal"
-            ng-click="openModal('app/pages/transactions/deposits/pendingDeposits/pendingDepositsModal/pendingDepositsModal.html', 'md',transaction)"
+            ng-click="openModal('app/pages/transactions/credit/pendingCredit/pendingCreditModal/pendingCreditModal.html', 'md',transaction)"
             class="editable-row center pointer">
-            <td class="table-row-center transactions-list-element" ng-bind="transaction.tx_code"></td>
-            <td class="table-row-center transactions-list-element" ng-bind="transaction.from_reference | limitTo:14"></td>
+            <td class="table-row-center transactions-list-element" ng-bind="transaction.id"></td>
+            <td class="table-row-center transactions-list-element" ng-bind="transaction.user.email | limitTo:14"></td>
             <td class="table-row-center transactions-list-element" ng-bind="transaction.currency.code"></td>
-            <td class="table-row-center transactions-list-element" ng-bind="transaction.amount"></td>
+            <td class="table-row-center transactions-list-element" ng-bind="transaction.amount  | currencyModifiersFilter: transaction.currency.divisibility"></td>
             <td class="table-row-center transactions-list-element" >{{transaction.created | date:'mediumDate'}} {{transaction.created | date:'shortTime'}}</td>
             <td class="table-row-center transactions-list-element" ng-bind="transaction.status"></td>
         </tr>

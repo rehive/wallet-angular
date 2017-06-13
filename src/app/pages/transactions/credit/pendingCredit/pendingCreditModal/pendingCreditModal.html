@@ -11,7 +11,7 @@
                 <p><strong>From: </strong></p>
             </div>
             <div col-lg-8 col-md-8 col-sm-8 col-xs-8>
-                <p ng-bind="transaction.from_reference">
+                <p ng-bind="transaction.user.email">
             </div>
         </div>
         <div class="row">
@@ -27,7 +27,7 @@
                 <p><strong>Code: </strong></p>
             </div>
             <div col-lg-8 col-md-8 col-sm-8 col-xs-8>
-                <p ng-bind="transaction.tx_code">
+                <p ng-bind="transaction.id">
             </div>
         </div>
         <div class="row">
@@ -51,7 +51,7 @@
                 <p><strong>Account: </strong></p>
             </div>
             <div col-lg-8 col-md-8 col-sm-8 col-xs-8>
-                <p ng-bind="transaction.from_account">
+                <p ng-bind="transaction.account">
             </div>
         </div>
         <div class="row">
@@ -76,7 +76,7 @@
                 <p><strong>Balance: </strong></p>
             </div>
             <div col-lg-8 col-md-8 col-sm-8 col-xs-8>
-                <p ng-bind="transaction.to_balance">
+                <p ng-bind="transaction.balance">
             </div>
         </div>
         <div class="row">
@@ -90,7 +90,7 @@
 
     </div>
     <div class="modal-footer">
-        <button type="button" class="btn transaction-details-button btn-danger pull-left" ng-click="updateTransaction('Failed')">Cancel Deposit</button>
-        <button type="button" class="btn transaction-details-button btn-primary pull-right " ng-click="updateTransaction('Complete')">Complete Deposit</button>
+        <button type="button" class="btn transaction-details-button btn-danger pull-left" ng-click="updateTransaction('Failed')">Cancel Credit</button>
+        <button type="button" class="btn transaction-details-button btn-primary pull-right " ng-click="updateTransaction('Complete')">Complete Credit</button>
     </div>
 </div>

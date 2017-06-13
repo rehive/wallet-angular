@@ -1,0 +1,22 @@
+<div ng-hide="newUser" class="row" >
+    <div class="col-lg-3 col-md-4 col-sm-12 col-xs-12">
+        <credit-menu></credit-menu>
+    </div>
+    <div ng-show="showView == 'createCredit'" class="col-lg-6 col-md-8 col-sm-12 col-xs-12">
+        <create-credit></create-credit>
+    </div>
+    <div ng-show="showView == 'confirmCredit'" class="col-lg-6 col-md-8 col-sm-12 col-xs-12">
+        <confirm-credit></confirm-credit>
+    </div>
+    <div ng-show="showView == 'completeCredit'" class="col-lg-6 col-md-8 col-sm-12 col-xs-12">
+        <complete-credit></complete-credit>
+    </div>
+    <div ng-show="showView == 'pendingCredit'" class="col-lg-9 col-md-8 col-sm-12 col-xs-12">
+        <pending-credit></pending-credit>
+    </div>
+</div>
+<div ng-show="newUser">
+    <div class="row">
+        <initial-add-currency></initial-add-currency>
+    </div>
+</div>

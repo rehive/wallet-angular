@@ -1,11 +1,11 @@
 (function () {
     'use strict';
 
-    angular.module('BlurAdmin.pages.transactions.deposits')
-        .controller('PendingDepositsModalCtrl', PendingDepositsModalCtrl);
+    angular.module('BlurAdmin.pages.transactions.credit')
+        .controller('PendingCreditModalCtrl', PendingCreditModalCtrl);
 
     /** @ngInject */
-    function PendingDepositsModalCtrl($uibModalInstance,$scope,$http,API,cookieManagement,toastr,transaction,errorToasts,errorHandler) {
+    function PendingCreditModalCtrl($uibModalInstance,$scope,$http,API,cookieManagement,toastr,transaction,errorToasts,errorHandler) {
         $scope.transaction = transaction;
 
         var vm = this;

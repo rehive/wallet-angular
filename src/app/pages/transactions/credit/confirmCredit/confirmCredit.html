@@ -1,0 +1,11 @@
+<div ba-panel  ba-panel-title="Confirm Credit" ba-panel-class="light-text">
+    <div class="confirm-transaction">
+        <p>You are about to credit <strong>{{selectedCurrency.symbol}} {{creditData.amount}}</strong> to <strong>{{creditData.user}}</strong></p>
+    </div>
+    <div>
+        <div class="col-sm-offset-2 col-sm-10">
+            <button ng-disabled="onGoingTransaction" ng-click="createCredit()" class="btn btn-primary pull-right">Confirm</button>
+            <button ng-disabled="onGoingTransaction" ng-click="goToView('createCredit')" class="btn btn-primary pull-right margin-right-10">Back</button>
+        </div>
+    </div>
+</div>

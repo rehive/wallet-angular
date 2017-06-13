@@ -17,7 +17,7 @@
         $scope.feesParams = {
             feeType: 'Transfer'
         };
-        $scope.typeOptions = ['Transfer','Deposit','Withdraw'];
+        $scope.typeOptions = ['Transfer','Credit','Withdraw'];
 
         $scope.toggleEditView = function(){
             $scope.editingFee = !$scope.editingFee;

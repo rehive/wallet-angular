@@ -2,8 +2,8 @@
 
 angular.module('BlurAdmin', [
     'ngFileUpload',
+    'ngSanitize',
     'ngCookies',
-    'ngAnimate',
     'ui.bootstrap',
     'ui.router',
     'toastr',
