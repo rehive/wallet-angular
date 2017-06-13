@@ -1,16 +1,16 @@
 (function () {
     'use strict';
 
-    angular.module('BlurAdmin.pages.transactions.withdrawals')
-        .controller('WithdrawalsCtrl', WithdrawalsCtrl);
+    angular.module('BlurAdmin.pages.transactions.debit')
+        .controller('DebitCtrl', DebitCtrl);
 
     /** @ngInject */
-    function WithdrawalsCtrl($rootScope,$scope,$http,API,cookieManagement,toastr,errorToasts,errorHandler,$state,currencyModifiers) {
+    function DebitCtrl($rootScope,$scope,$http,API,cookieManagement,toastr,errorToasts,errorHandler,$state,currencyModifiers) {
 
         var vm = this;
         vm.token = cookieManagement.getCookie('TOKEN');
 
-        $scope.withdrawalData = {
+        $scope.debitData = {
             user: null,
             amount: null,
             reference: "",
@@ -20,21 +20,21 @@
         };
         $scope.onGoingTransaction = false;
         $scope.showAdvancedOption = false;
-        $scope.showView = 'createWithdrawal';
+        $scope.showView = 'createDebit';
 
         if($state.params.email){
-          $scope.withdrawalData.user = $state.params.email;
+          $scope.debitData.user = $state.params.email;
         }
 
         $rootScope.$watch('selectedCurrency',function(){
             if($rootScope.selectedCurrency && $rootScope.selectedCurrency.code) {
-                $scope.withdrawalData.currency = $rootScope.selectedCurrency.code;
+                $scope.debitData.currency = $rootScope.selectedCurrency.code;
             }
         });
 
         $scope.goToView = function(view){
-            if($scope.withdrawalData.amount){
-                var validAmount = currencyModifiers.validateCurrency($scope.withdrawalData.amount,$rootScope.selectedCurrency.divisibility);
+            if($scope.debitData.amount){
+                var validAmount = currencyModifiers.validateCurrency($scope.debitData.amount,$rootScope.selectedCurrency.divisibility);
                 if(validAmount){
                     $scope.showView = view;
                 } else {
@@ -49,9 +49,9 @@
             $scope.showAdvancedOption = true;
         };
 
-        $scope.toggleWithdrawalView = function(view) {
+        $scope.toggleDebitView = function(view) {
             $scope.showAdvancedOption = false;
-            $scope.withdrawalData = {
+            $scope.debitData = {
                 user: null,
                 amount: null,
                 reference: "",
@@ -60,22 +60,22 @@
                 currency: $rootScope.selectedCurrency.code
             };
 
-            if(view == 'withdrawal'){
-                $scope.goToView('createWithdrawal');
+            if(view == 'debit'){
+                $scope.goToView('createDebit');
             } else{
-                $scope.goToView('pendingWithdrawal');
+                $scope.goToView('pendingDebit');
             }
         };
 
-        $scope.createWithdrawal = function () {
+        $scope.createDebit= function () {
 
             var sendTransactionData = {
-                user: $scope.withdrawalData.user,
-                amount: currencyModifiers.convertToCents($scope.withdrawalData.amount,$rootScope.selectedCurrency.divisibility),
-                reference: $scope.withdrawalData.reference,
-                confirm_on_create: $scope.withdrawalData.confirm_on_create,
-                metadata: $scope.withdrawalData.metadata,
-                currency: $scope.withdrawalData.currency
+                user: $scope.debitData.user,
+                amount: currencyModifiers.convertToCents($scope.debitData.amount,$rootScope.selectedCurrency.divisibility),
+                reference: $scope.debitData.reference,
+                confirm_on_create: $scope.debitData.confirm_on_create,
+                metadata: $scope.debitData.metadata,
+                currency: $scope.debitData.currency
             };
 
             $scope.onGoingTransaction = true;
@@ -87,8 +87,8 @@
             }).then(function (res) {
                 $scope.onGoingTransaction = false;
                 if (res.status === 201) {
-                    toastr.success('You have successfully withdrawn the money!');
-                    $scope.goToView('completeWithdrawal');
+                    toastr.success('You have successfully debited the account!');
+                    $scope.goToView('completeDebit');
                 }
             }).catch(function (error) {
                 $scope.onGoingTransaction = false;

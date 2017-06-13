@@ -4,7 +4,7 @@
     angular.module('BlurAdmin.pages.transactions', [
             'BlurAdmin.pages.transactions.overview',
             'BlurAdmin.pages.transactions.history',
-            'BlurAdmin.pages.transactions.withdrawals',
+            'BlurAdmin.pages.transactions.debit',
             'BlurAdmin.pages.transactions.credit',
             'BlurAdmin.pages.transactions.transfers',
             'BlurAdmin.pages.transactions.settings'

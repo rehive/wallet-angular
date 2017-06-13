@@ -12,7 +12,7 @@
         vm.token = cookieManagement.getCookie('TOKEN');
 
         $scope.updateTransaction = function(status){
-            $http.put(API + '/admin/transactions/' + $scope.transaction.tx_code + '/', { status: status },
+            $http.put(API + '/admin/transactions/' + $scope.transaction.id + '/', { status: status },
                 {
                     headers: {
                         'Content-Type': 'application/json',
