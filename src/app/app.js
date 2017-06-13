@@ -23,15 +23,6 @@ angular.module('BlurAdmin', [
 
 
         var locationChangeStart = $rootScope.$on('$locationChangeStart', function (event,newUrl) {
-            routeManagement(event,newUrl);
-        });
-
-        function routeManagement(event,newUrl){
-
-            console.log($rootScope);
-
-            var token = cookieManagement.getCookie('TOKEN');
-
             //using to check if user has a verified email address
             userVerification.verify(function(err,verified){
                 if(verified){
@@ -39,10 +30,13 @@ angular.module('BlurAdmin', [
                 } else {
                     $rootScope.userVerified = false;
                 }
+
+                getCompanyInfo();
             });
 
             //using to check if user has a company name
             var getCompanyInfo = function () {
+                var token = cookieManagement.getCookie('TOKEN');
                 if(token && $rootScope.userVerified) {
                     $http.get(API + '/admin/company/', {
                         headers: {
@@ -54,16 +48,25 @@ angular.module('BlurAdmin', [
                             if(res.data.data && res.data.data.name){
                                 $rootScope.haveCompanyName = true;
                                 $rootScope.companyName = res.data.data.name;
+                                routeManagement(event,newUrl);
                             }
                         }
                     }).catch(function (error) {
                         $rootScope.haveCompanyName = false;
+                        routeManagement(event,newUrl);
                     });
+                } else {
+                    routeManagement(event,newUrl);
                 }
             };
-            getCompanyInfo();
+        });
 
-            var newUrlArray = newUrl.split('/'),
+        function routeManagement(event,newUrl){
+
+            console.log($rootScope);
+
+            var token = cookieManagement.getCookie('TOKEN'),
+                newUrlArray = newUrl.split('/'),
                 newUrlLastElement = _.last(newUrlArray);
 
             if(newUrlLastElement == 'login'){

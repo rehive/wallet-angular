@@ -39,7 +39,7 @@
         vm.getUserInfo();
 
         $scope.resendEmail = function(){
-            $http.post(API + '/auth/email/verify/resend/',{user: vm.user.email,company: vm.user.company}, {
+            $http.post(API + '/auth/email/verify/resend/',{email: vm.user.email,company: vm.user.company}, {
                 headers: {
                     'Content-Type': 'application/json',
                     'Authorization': vm.token

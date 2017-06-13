@@ -9,7 +9,7 @@
 
         var vm = this;
         vm.token = cookieManagement.getCookie('TOKEN');
-        vm.currenciesList = JSON.parse($window.sessionStorage.currenciesList);
+        vm.currenciesList = JSON.parse($window.sessionStorage.currenciesList) || [];
 
         $scope.pagination = {
             itemsPerPage: 26,
@@ -86,6 +86,7 @@
                 }).then(function (res) {
                     $scope.loadingTransactions = false;
                     if (res.status === 200) {
+                        console.log(res);
                         $scope.transactionsData = res.data.data;
                         $scope.transactions = $scope.transactionsData.results;
                         if ($scope.transactions == 0) {
