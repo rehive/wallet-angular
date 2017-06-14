@@ -22,6 +22,7 @@
                     cookieManagement.setCookie('TOKEN','Token ' + res.data.data.token);
                     userVerification.verify(function(err,verified){
                         if(verified){
+                            $rootScope.userVerified = true;
                             vm.getCompanyInfo(res.data.data.token);
                         } else {
                             $rootScope.$pageFinishedLoading = true;
@@ -48,6 +49,7 @@
                     $rootScope.$pageFinishedLoading = true;
                     if(res.data.data && res.data.data.name){
                         $rootScope.companyName = res.data.data.name;
+                        $rootScope.haveCompanyName = true;
                         $location.path('/dashboard');
                     } else {
                         $location.path('/company/name_request');
