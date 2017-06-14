@@ -21,8 +21,6 @@
         $rootScope.$watch('selectedCurrency',function(){
             if($rootScope.selectedCurrency && $rootScope.selectedCurrency.code) {
                 vm.getCompanyCurrencies();
-            } else {
-                $rootScope.newUser = true;
             }
         });
 
