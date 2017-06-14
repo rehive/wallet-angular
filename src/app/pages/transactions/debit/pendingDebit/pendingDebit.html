@@ -1,6 +1,6 @@
 <div ba-panel class="row" ba-panel-title="Pending Debit" ba-panel-class="with-scroll">
 
-    <table ng-show="transactions.length > 0" class="table table-condensed table-striped table-hover col-lg-12 col-md-12 col-sm-12 col-xs-12 ">
+    <table ng-show="transactions.list.length > 0" class="table table-condensed table-striped table-hover col-lg-12 col-md-12 col-sm-12 col-xs-12 ">
         <tr class="black-muted-bg">
             <td><strong>Code</strong></td>
             <td><strong>User</strong></td>
@@ -9,7 +9,7 @@
             <td><strong>Date</strong></td>
             <td><strong>Status</strong></td>
         </tr>
-        <tr ng-repeat="transaction in transactions " data-toggle="modal"
+        <tr ng-repeat="transaction in transactions.list " data-toggle="modal"
             ng-click="openModal('app/pages/transactions/debit/pendingDebit/pendingDebitModal/pendingDebitModal.html', 'md',transaction)"
             class="editable-row center pointer">
             <td class="table-row-center transactions-list-element" ng-bind="transaction.id"></td>
@@ -20,7 +20,7 @@
             <td class="table-row-center transactions-list-element" ng-bind="transaction.status"></td>
         </tr>
     </table>
-    <div ng-show="transactions.length == 0">
+    <div ng-show="transactions.list.length == 0">
         <h4 ng-hide="transactionsStateMessage == ''" ng-bind="transactionsStateMessage"></h4>
         <loading-image ng-show="transactionsStateMessage == ''"></loading-image>
     </div>

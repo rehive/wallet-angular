@@ -5,7 +5,7 @@
         .factory('userVerification', userVerification);
 
     /** @ngInject */
-    function userVerification($http,cookieManagement,API) {
+    function userVerification($http,cookieManagement,API,$location) {
 
         return {
             verify: function (cb) {
@@ -32,6 +32,8 @@
                     }).catch(function (error) {
                         cb(error,null);
                     });
+                } else {
+                    $location.path('/login');
                 }
             }
         }

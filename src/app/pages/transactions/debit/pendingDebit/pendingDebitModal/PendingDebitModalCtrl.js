@@ -25,7 +25,7 @@
                     } else {
                         toastr.success('Transaction successfully updated, marked as Failed');
                     }
-                    $uibModalInstance.dismiss('cancel');
+                    $uibModalInstance.close($scope.transaction);
                 }
             }).catch(function (error) {
                 if(error.status == 403){

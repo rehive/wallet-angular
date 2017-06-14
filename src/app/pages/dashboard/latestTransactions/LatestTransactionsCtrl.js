@@ -20,6 +20,7 @@
                         'Authorization': vm.token
                     }
                 }).then(function (res) {
+                    console.log(res.data.data);
                     if (res.status === 200) {
                         if (res.data.data.results.length == 0) {
                             $scope.transactionsStateMessage = 'No Transactions Have Been Made';

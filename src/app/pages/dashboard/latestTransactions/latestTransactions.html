@@ -3,7 +3,6 @@
     <table class="table table-condensed table-striped table-hover ">
         <tr class="black-muted-bg">
             <td><strong>From</strong></td>
-            <td><strong>To</strong></td>
             <td><strong>Type</strong></td>
             <td><strong>Subtype</strong></td>
             <td><strong>Currency</strong></td>
@@ -15,8 +14,7 @@
         <tr ng-repeat="transaction in transactions" data-toggle="modal"
             ng-click="openModal('app/pages/dashboard/latestTransactions/transactionModal/transactionModal.html', 'md',transaction)"
             class="editable-row pointer">
-            <td><div title="{{transaction.from_reference}}" class="transactions-list-element" ng-bind="transaction.from_reference"></div></td>
-            <td><div title="{{transaction.to_reference}}" class="transactions-list-element" ng-bind="transaction.to_reference"></div></td>
+            <td><div title="{{transaction.user.name}}" class="transactions-list-element" ng-bind="transaction.user.name"></div></td>
             <td><div title="{{transaction.tx_type}}" class="transactions-list-element" ng-bind="transaction.tx_type | capitalizeWord"></div></td>
             <td><div title="{{transaction.subtype}}" class="transactions-list-element" ng-bind="transaction.subtype || 'None'"></div></td>
             <td><div title="{{transaction.currency.code}}" class="transactions-list-element" ng-bind="transaction.currency.code"></div></td>
