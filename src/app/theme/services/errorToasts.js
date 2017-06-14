@@ -16,7 +16,7 @@
                             toastr.error(error, (key.charAt(0).toUpperCase() + key.slice(1)));
                         })
                     }
-                };
+                }
               } else{
                   if(errors && errors.message){
                       toastr.error(errors.message, 'Message');

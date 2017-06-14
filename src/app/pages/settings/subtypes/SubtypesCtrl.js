@@ -13,9 +13,9 @@
         $scope.loadingSubtypes = true;
         $scope.editingSubtype = false;
         $scope.editSubtype = {};
-        $scope.typeOptions = ['Transfer','Credit','Withdraw'];
+        $scope.subtypeOptions = ['Credit','Debit'];
         $scope.newSubtype = {
-            tx_type: 'Transfer'
+            tx_type: 'Credit'
         };
 
         $scope.toggleSubtypeEditView = function(subtype){
@@ -78,7 +78,7 @@
             $window.scrollTo(0, 0);
             $scope.editingSubtype = !$scope.editingSubtype;
             $scope.loadingSubtypes = true;
-            $http.patch(API + '/admin/subtypes/'+ $scope.editSubtype.id, vm.updatedSubtype, {
+            $http.patch(API + '/admin/subtypes/'+ $scope.editSubtype.id + '/', vm.updatedSubtype, {
                 headers: {
                     'Content-Type': 'application/json',
                     'Authorization': vm.token

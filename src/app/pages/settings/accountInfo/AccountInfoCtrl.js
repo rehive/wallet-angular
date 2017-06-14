@@ -37,8 +37,9 @@
         vm.getAdminAccountInfo();
 
         $scope.updateAdministratorAccount = function(){
+            console.log(vm.updatedAdministrator);
             $scope.loadingAccountInfo = true;
-            $http.patch(API + '/user', vm.updatedAdministrator ,{
+            $http.patch(API + '/user/', vm.updatedAdministrator ,{
                 headers: {
                     'Content-Type': 'application/json',
                     'Authorization': vm.token
@@ -51,6 +52,7 @@
                 }
                 vm.updatedAdministrator = {};
             }).catch(function (error) {
+                console.log(error);
                 vm.updatedAdministrator = {};
                 $scope.loadingAccountInfo = false;
                 if(error.status == 403){

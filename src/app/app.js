@@ -35,6 +35,7 @@ angular.module('BlurAdmin', [
         //using to check if user has a company name
         var getCompanyInfo = function () {
             var token = cookieManagement.getCookie('TOKEN');
+            console.log('should have token '+ token);
             if(token && $rootScope.userVerified) {
                 $http.get(API + '/admin/company/', {
                     headers: {

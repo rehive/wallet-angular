@@ -33,7 +33,7 @@
         vm.getCompanyNotifications();
 
         $scope.saveNotifications = function(notification){
-            $http.patch(API + '/admin/notifications/' + notification.id, {enabled: notification.enabled}, {
+            $http.patch(API + '/admin/notifications/' + notification.id + '/', {enabled: notification.enabled}, {
                 headers: {
                     'Content-Type': 'application/json',
                     'Authorization': vm.token

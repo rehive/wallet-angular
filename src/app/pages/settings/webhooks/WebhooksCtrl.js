@@ -14,10 +14,10 @@
         $scope.editWebhook = {};
 
         $scope.webhooksParams = {
-            tx_type: 'Transfer'
+            tx_type: 'Credit'
         };
 
-        $scope.typeOptions = ['Transfer','Credit','Withdraw'];
+        $scope.typeOptions = ['Credit','Debit'];
 
         $scope.toggleWebhooksEditView = function(webhook){
             if(webhook){
@@ -85,7 +85,7 @@
             $scope.editingWebhooks = !$scope.editingWebhooks;
             $scope.loadingWebhooks = true;
             vm.updatedWebhook.tx_type = $scope.editWebhook.tx_type.toLowerCase();
-            $http.patch(API + '/admin/webhooks/'+ $scope.editWebhook.id, vm.updatedWebhook, {
+            $http.patch(API + '/admin/webhooks/'+ $scope.editWebhook.id + '/', vm.updatedWebhook, {
                 headers: {
                     'Content-Type': 'application/json',
                     'Authorization': vm.token
