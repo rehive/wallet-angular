@@ -5,7 +5,7 @@
         .controller('BitcoinServiceUsersCtrl', BitcoinServiceUsersCtrl);
 
     /** @ngInject */
-    function BitcoinServiceUsersCtrl($scope,$http,cookieManagement,$uibModal,errorToasts,$window,stringService) {
+    function BitcoinServiceUsersCtrl($scope,$http,cookieManagement,$uibModal,errorToasts,$location) {
         var vm = this;
         vm.token = cookieManagement.getCookie('TOKEN');
 
@@ -66,7 +66,7 @@
             }).catch(function (error) {
                 $scope.loadingUsers = false;
                 if(error.status == 403){
-                    errorHandler.handle403();
+                    $location.path('/services');
                     return
                 }
                 $scope.usersStateMessage = 'Failed To Load Data';

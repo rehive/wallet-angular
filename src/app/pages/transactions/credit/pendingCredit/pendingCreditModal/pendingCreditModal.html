@@ -83,8 +83,8 @@
             <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
                 <p><strong>Metadata: </strong></p>
             </div>
-            <div col-lg-8 col-md-8 col-sm-8 col-xs-8>
-                <p ng-bind="transaction.metadata">
+            <div ng-show="metadata" class="metadata" col-lg-8 col-md-8 col-sm-8 col-xs-8>
+                <pre ng-bind="metadata"></pre>
             </div>
         </div>
 

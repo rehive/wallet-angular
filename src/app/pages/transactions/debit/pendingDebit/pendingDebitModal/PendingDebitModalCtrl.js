@@ -5,7 +5,8 @@
         .controller('PendingDebitModalCtrl', PendingDebitModalCtrl);
 
     /** @ngInject */
-    function PendingDebitModalCtrl($uibModalInstance,$scope,$http,API,cookieManagement,toastr,transaction,errorToasts,errorHandler) {
+    function PendingDebitModalCtrl($uibModalInstance,$scope,$http,API,cookieManagement,toastr,transaction,errorToasts,errorHandler,metadataTextService) {
+        $scope.metadata = metadataTextService.convertToText(transaction.metadata);
         $scope.transaction = transaction;
 
         var vm = this;

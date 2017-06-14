@@ -5,7 +5,8 @@
         .controller('PendingCreditModalCtrl', PendingCreditModalCtrl);
 
     /** @ngInject */
-    function PendingCreditModalCtrl($uibModalInstance,$scope,$http,API,cookieManagement,toastr,transaction,errorToasts,errorHandler) {
+    function PendingCreditModalCtrl($uibModalInstance,$scope,$http,API,cookieManagement,toastr,transaction,errorToasts,errorHandler,metadataTextService) {
+        $scope.metadata = metadataTextService.convertToText(transaction.metadata);
         $scope.transaction = transaction;
 
         var vm = this;

@@ -13,7 +13,7 @@
         $scope.transferData = {
             user: null,
             amount: null,
-            reference: "",
+            recipient: "",
             currency: null
         };
 
@@ -43,7 +43,7 @@
             $scope.transferData = {
                 user: null,
                 amount: null,
-                reference: null,
+                recipient: null,
                 currency: $rootScope.selectedCurrency.code
             };
 

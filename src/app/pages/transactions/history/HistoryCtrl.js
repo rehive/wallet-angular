@@ -33,9 +33,8 @@
         $scope.transactionsStateMessage = '';
         $scope.transactionsData = {};
         $scope.loadingTransactions = false;
-        $scope.typeOptions = ['Type','Credit','Transfer','Withdraw'];
-        $scope.statusOptions = ['Status','Cancelled','Claimed','Complete','Denied','Expired','Failed','Incoming',
-                                'Incomplete','Pending','Processing','Reversed','Unclaimed','Uncredited','Waiting'];
+        $scope.typeOptions = ['Type','Credit','Debit']; //Transfer
+        $scope.statusOptions = ['Status','Initiating','Processing','Pending','Complete','Failed'];
         $scope.currencyOptions = [];
         $scope.orderByOptions = ['Largest','Latest','Smallest'];
 
