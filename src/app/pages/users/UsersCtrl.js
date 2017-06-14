@@ -47,8 +47,8 @@
         };
 
         vm.getUsersUrl = function(){
-            vm.filterParams = '?page=' + $scope.usersPagination.pageNo + '&page_size=' + $scope.usersPagination.itemsPerPage
-            + '&currency=' + ($scope.usersSearchParams.searchCurrency.code ?  $scope.usersSearchParams.searchCurrency.code : '');
+            vm.filterParams = '?page=' + $scope.usersPagination.pageNo + '&page_size=' + $scope.usersPagination.itemsPerPage;
+            //+ '&currency=' + ($scope.usersSearchParams.searchCurrency.code ?  $scope.usersSearchParams.searchCurrency.code : '');
                 //+ '&created__gt=' + ($scope.usersSearchParams.searchDateFrom? Date.parse($scope.usersSearchParams.searchDateFrom) : '')
                 //+ '&created__lt=' + ($scope.usersSearchParams.searchDateTo? Date.parse($scope.usersSearchParams.searchDateTo) : '')
                 //+ '&user=' + ($scope.usersSearchParams.searchUser? $scope.usersSearchParams.searchUser : '')
@@ -98,6 +98,6 @@
                 errorToasts.evaluateErrors(error.data);
             });
         };
-
+        $scope.getAllUsers();
     }
 })();
