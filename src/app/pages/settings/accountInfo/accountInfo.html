@@ -31,7 +31,7 @@
         <div>
             <div class="form-group">
                 <label><strong>Mobile Number</strong></label>
-                <input type="text" ng-change="accountInfoChanged('mobile_number')" ng-model="administrator.mobile_number" class="form-control" placeholder="E.g +27842380806">
+                <p class="text-muted" ng-bind="administrator.mobile_number || 'N/A'"></p>
             </div>
             <div class="form-group">
                 <label><strong>Skype Name</strong></label>
