@@ -1,14 +1,14 @@
 (function () {
     'use strict';
 
-    angular.module('BlurAdmin.pages.services.bitcoinService.bitcoinServiceTransactions')
-        .directive('bitcoinServiceTransactionsTable', bitcoinServiceTransactionsTable);
+    angular.module('BlurAdmin.pages.services.stellarService.stellarServiceTransactions')
+        .directive('stellarServiceTransactionsTable', stellarServiceTransactionsTable);
 
     /** @ngInject */
-    function bitcoinServiceTransactionsTable() {
+    function stellarServiceTransactionsTable() {
         return {
             restrict: 'E',
-            templateUrl: 'app/pages/services/bitcoinService/bitcoinServiceTransactions/bitcoinServiceTransactionsTable/bitcoinServiceTransactionsTable.html'
+            templateUrl: 'app/pages/services/stellarService/stellarServiceTransactions/stellarServiceTransactionsTable/stellarServiceTransactionsTable.html'
         };
     }
 })();

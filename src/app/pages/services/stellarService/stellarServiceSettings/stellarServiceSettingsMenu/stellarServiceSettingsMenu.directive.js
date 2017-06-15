@@ -1,14 +1,14 @@
 (function () {
     'use strict';
 
-    angular.module('BlurAdmin.pages.services.bitcoinService.bitcoinServiceSettings')
-        .directive('bitcoinServiceSettingsMenu', bitcoinServiceSettingsMenu);
+    angular.module('BlurAdmin.pages.services.stellarService.stellarServiceSettings')
+        .directive('stellarServiceSettingsMenu', stellarServiceSettingsMenu);
 
     /** @ngInject */
-    function bitcoinServiceSettingsMenu() {
+    function stellarServiceSettingsMenu() {
         return {
             restrict: 'E',
-            templateUrl: 'app/pages/services/bitcoinService/bitcoinServiceSettings/bitcoinServiceSettingsMenu/bitcoinServiceSettingsMenu.html'
+            templateUrl: 'app/pages/services/stellarService/stellarServiceSettings/stellarServiceSettingsMenu/stellarServiceSettingsMenu.html'
         };
     }
 })();

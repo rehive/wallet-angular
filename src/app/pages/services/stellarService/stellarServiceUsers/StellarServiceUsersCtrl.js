@@ -1,11 +1,11 @@
 (function () {
     'use strict';
 
-    angular.module('BlurAdmin.pages.services.bitcoinService.bitcoinServiceUsers')
-        .controller('BitcoinServiceUsersCtrl', BitcoinServiceUsersCtrl);
+    angular.module('BlurAdmin.pages.services.stellarService.stellarServiceUsers')
+        .controller('StellarServiceUsersCtrl', StellarServiceUsersCtrl);
 
     /** @ngInject */
-    function BitcoinServiceUsersCtrl($scope,$http,cookieManagement,$uibModal,errorToasts,$location) {
+    function StellarServiceUsersCtrl($scope,$http,cookieManagement,errorToasts,$location) {
         var vm = this;
         vm.token = cookieManagement.getCookie('TOKEN');
 
@@ -30,7 +30,7 @@
             + '&identifier=' + $scope.usersSearchParams.searchIdentifier
             + '&address=' + $scope.usersSearchParams.searchAddress;
 
-            return 'https://rehive.com/services/bitcoin/users/' + vm.filterParams;
+            return 'https://rehive.com/services/crypto/users/' + vm.filterParams;
         };
 
         $scope.getAllUsers = function(applyFilter){

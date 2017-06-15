@@ -78,7 +78,7 @@ angular.module('BlurAdmin', [
 
             if(newUrlLastElement == 'login'){
                 console.log('from if');
-                cookieManagement.deleteCookie('TOKEN');
+                //cookieManagement.deleteCookie('TOKEN');
                 $rootScope.gotToken = false;
                 $rootScope.securityConfigured = true;
                 $location.path('/login');
@@ -91,7 +91,7 @@ angular.module('BlurAdmin', [
                     $rootScope.securityConfigured = true;
                 } else {
                     console.log('from else');
-                    cookieManagement.deleteCookie('TOKEN');
+                    //cookieManagement.deleteCookie('TOKEN');
                     $rootScope.securityConfigured = true;
                     $rootScope.gotToken = false;
                     $location.path('/login');

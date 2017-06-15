@@ -1,16 +1,16 @@
 (function () {
     'use strict';
 
-    angular.module('BlurAdmin.pages.services.bitcoinService.bitcoinServiceUsers', [])
+    angular.module('BlurAdmin.pages.services.stellarService.stellarServiceUsers', [])
         .config(routeConfig);
 
     /** @ngInject */
     function routeConfig($stateProvider,$urlRouterProvider) {
         $stateProvider
-            .state('bitcoinServiceUsers', {
-                url: '/services/bitcoin/users',
-                templateUrl: 'app/pages/services/bitcoinService/bitcoinServiceUsers/bitcoinServiceUsers.html',
-                controller: "BitcoinServiceUsersCtrl",
+            .state('stellarServiceUsers', {
+                url: '/services/stellar/users',
+                templateUrl: 'app/pages/services/stellarService/stellarServiceUsers/stellarServiceUsers.html',
+                controller: "StellarServiceUsersCtrl",
                 title: 'Users'
             });
     }

@@ -1,11 +1,11 @@
 (function () {
     'use strict';
 
-    angular.module('BlurAdmin.pages.services.bitcoinService.bitcoinServiceTransactions')
-        .controller('BitcoinServiceTransactionsCtrl', BitcoinServiceTransactionsCtrl);
+    angular.module('BlurAdmin.pages.services.stellarService.stellarServiceTransactions')
+        .controller('StellarServiceTransactionsCtrl', StellarServiceTransactionsCtrl);
 
     /** @ngInject */
-    function BitcoinServiceTransactionsCtrl($scope,$http,cookieManagement,$uibModal,errorToasts,$window,$location) {
+    function StellarServiceTransactionsCtrl($scope,$http,cookieManagement,$uibModal,errorToasts,$window,$location) {
 
         var vm = this;
         vm.token = cookieManagement.getCookie('TOKEN');
@@ -47,7 +47,7 @@
                 + '&status=' + ($scope.searchParams.searchStatus == 'Status' ? '' : $scope.searchParams.searchStatus)
                 + '&orderby=' + ($scope.searchParams.searchOrderBy == 'Latest' ? '-created' : $scope.searchParams.searchOrderBy == 'Largest' ? '-amount' : $scope.searchParams.searchOrderBy == 'Smallest' ? 'amount' : '');
 
-            return 'https://rehive.com/services/bitcoin/transactions/' + vm.filterParams;
+            return 'https://rehive.com/services/crypto/transactions/' + vm.filterParams;
         };
 
         $scope.getLatestTransactions = function(applyFilter){
@@ -101,7 +101,7 @@
                 animation: true,
                 templateUrl: page,
                 size: size,
-                controller: 'BitcoinServiceTransactionsModalCtrl',
+                controller: 'StellarServiceTransactionsModalCtrl',
                 resolve: {
                     transaction: function () {
                         return transaction;

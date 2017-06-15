@@ -11,7 +11,7 @@
             <td><strong>Created</strong></td>
         </tr>
         <tr ng-repeat="transaction in transactions " data-toggle="modal"
-            ng-click="openModal('app/pages/services/bitcoinService/bitcoinServiceTransactions/bitcoinServiceTransactionsModal/bitcoinServiceTransactionsModal.html', 'lg',transaction)"
+            ng-click="openModal('app/pages/services/stellarService/stellarServiceTransactions/stellarServiceTransactionsModal/stellarServiceTransactionsModal.html', 'lg',transaction)"
             class="editable-row pointer">
             <td width="10%"><div title="{{transaction.user.email}}" class="transactions-list-element" ng-bind="transaction.user.email"></div></td>
             <td width="4%"><div title="{{transaction.amount}}" class="transactions-list-element" ng-bind="transaction.amount"></div></td>
