@@ -9,6 +9,7 @@
 
         return {
             handle403: function () {
+                console.log('deletingcookie from errorhandler');
                 cookieManagement.deleteCookie('TOKEN');
                 cookieManagement.deleteCookie('COMPANY');
                 $location.path('/login');

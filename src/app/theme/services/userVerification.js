@@ -33,6 +33,8 @@
                         cb(error,null);
                     });
                 } else {
+                    console.log('token' + token);
+                    console.log('am i causing this?');
                     $location.path('/login');
                 }
             }

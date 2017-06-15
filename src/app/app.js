@@ -53,6 +53,7 @@ angular.module('BlurAdmin', [
                     $rootScope.haveCompanyName = false;
                 });
             } else {
+                console.log('from apps.js comppany info function' + token);
                 $location.path('/login');
             }
         };
@@ -76,6 +77,7 @@ angular.module('BlurAdmin', [
                 newUrlLastElement = _.last(newUrlArray);
 
             if(newUrlLastElement == 'login'){
+                console.log('from if');
                 cookieManagement.deleteCookie('TOKEN');
                 $rootScope.gotToken = false;
                 $rootScope.securityConfigured = true;
@@ -88,6 +90,7 @@ angular.module('BlurAdmin', [
                     || newUrlLastElement == 'verification' || newUrlLastElement == 'name_request'){
                     $rootScope.securityConfigured = true;
                 } else {
+                    console.log('from else');
                     cookieManagement.deleteCookie('TOKEN');
                     $rootScope.securityConfigured = true;
                     $rootScope.gotToken = false;
