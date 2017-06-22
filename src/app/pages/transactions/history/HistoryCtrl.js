@@ -5,7 +5,7 @@
         .controller('HistoryCtrl', HistoryCtrl);
 
     /** @ngInject */
-    function HistoryCtrl($scope,API,$http,cookieManagement,$uibModal,errorToasts,$window,stringService,$state,errorHandler) {
+    function HistoryCtrl($scope,API,$http,cookieManagement,$uibModal,errorToasts,$state,$window,errorHandler) {
 
         var vm = this;
         vm.token = cookieManagement.getCookie('TOKEN');
@@ -19,7 +19,7 @@
 
         $scope.searchParams = {
             searchId: '',
-            searchUser:'',
+            searchUser: $state.params.code || '',
             searchDateFrom: '',
             searchDateTo: '',
             searchType: 'Type',
