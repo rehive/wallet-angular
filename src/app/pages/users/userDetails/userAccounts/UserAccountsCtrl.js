@@ -23,8 +23,8 @@
                 }).then(function (res) {
                     $scope.loadingUserAccounts = false;
                     if (res.status === 200) {
-                        $scope.account = res.data.data.results[0];
-                        $scope.balances = res.data.data.results[0].balances;
+                        $scope.account = res.data.data.results[0].user;
+                        $scope.currencies = res.data.data.results[0].currencies;
                     }
                 }).catch(function (error) {
                     $scope.loadingUserAccounts = false;
