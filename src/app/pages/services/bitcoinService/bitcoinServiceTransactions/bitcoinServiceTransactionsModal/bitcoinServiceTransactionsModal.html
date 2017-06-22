@@ -10,15 +10,15 @@
             <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
                 <p><strong>Email: </strong></p>
             </div>
-            <div col-lg-8 col-md-8 col-sm-8 col-xs-8>
-                <p ng-bind="transaction.user.email"></p>
+            <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+                <a class="pointer" ng-click="goToUser()" ng-bind="transaction.user.email"></a>
             </div>
         </div>
         <div class="row">
             <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
                 <p><strong>Amount: </strong></p>
             </div>
-            <div col-lg-8 col-md-8 col-sm-8 col-xs-8>
+            <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
                 <p ng-bind="transaction.amount"></p>
             </div>
         </div>
@@ -26,7 +26,7 @@
             <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
                 <p><strong>Type: </strong></p>
             </div>
-            <div col-lg-8 col-md-8 col-sm-8 col-xs-8>
+            <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
                 <p ng-bind="transaction.tx_type | capitalizeWord"></p>
             </div>
         </div>
@@ -34,7 +34,7 @@
             <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
                 <p><strong>Transaction Hash: </strong></p>
             </div>
-            <div col-lg-8 col-md-8 col-sm-8 col-xs-8>
+            <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
                 <p ng-bind="transaction.transaction_hash"></p>
             </div>
         </div>
@@ -42,7 +42,7 @@
             <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
                 <p><strong>Confirmations: </strong></p>
             </div>
-            <div col-lg-8 col-md-8 col-sm-8 col-xs-8>
+            <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
                 <p ng-bind="transaction.confirmations"></p>
             </div>
         </div>
@@ -50,7 +50,7 @@
             <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
                 <p><strong>Rehive Code: </strong></p>
             </div>
-            <div col-lg-8 col-md-8 col-sm-8 col-xs-8>
+            <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
                 <p ng-bind="transaction.rehive_code"></p>
             </div>
         </div>
@@ -58,7 +58,7 @@
             <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
                 <p><strong>Status: </strong></p>
             </div>
-            <div col-lg-8 col-md-8 col-sm-8 col-xs-8>
+            <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
                 <p ng-bind="transaction.status"></p>
             </div>
         </div>
@@ -66,7 +66,7 @@
             <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
                 <p><strong>Created: </strong></p>
             </div>
-            <div col-lg-8 col-md-8 col-sm-8 col-xs-8>
+            <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
                 <p>{{transaction.created | date:'mediumDate'}} {{transaction.created | date:'shortTime'}}</p>
             </div>
         </div>
@@ -74,7 +74,7 @@
             <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
                 <p><strong>Completed: </strong></p>
             </div>
-            <div col-lg-8 col-md-8 col-sm-8 col-xs-8>
+            <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
                 <p>{{transaction.completed | date:'mediumDate'}} {{transaction.completed | date:'shortTime'}}</p>
             </div>
         </div>

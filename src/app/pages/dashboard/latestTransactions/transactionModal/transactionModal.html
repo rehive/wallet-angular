@@ -10,15 +10,15 @@
             <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
                 <p><strong>User: </strong></p>
             </div>
-            <div col-lg-8 col-md-8 col-sm-8 col-xs-8>
-                <p ng-bind="transaction.user.email">
+            <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+                <a class="pointer" ng-click="goToUser()" ng-bind="transaction.user.email"></a>
             </div>
         </div>
         <div class="row">
             <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
                 <p><strong>Type: </strong></p>
             </div>
-            <div col-lg-8 col-md-8 col-sm-8 col-xs-8>
+            <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
                 <p ng-bind="transaction.tx_type | capitalizeWord">
             </div>
         </div>
@@ -26,7 +26,7 @@
             <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
                 <p><strong>Currency: </strong></p>
             </div>
-            <div col-lg-8 col-md-8 col-sm-8 col-xs-8>
+            <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
                 <p ng-bind="transaction.currency.code">
             </div>
         </div>
@@ -34,7 +34,7 @@
             <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
                 <p><strong>Account: </strong></p>
             </div>
-            <div col-lg-8 col-md-8 col-sm-8 col-xs-8>
+            <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
                 <p ng-bind="transaction.account | capitalizeWord">
             </div>
         </div>
@@ -42,7 +42,7 @@
             <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
                 <p><strong>Amount: </strong></p>
             </div>
-            <div col-lg-8 col-md-8 col-sm-8 col-xs-8>
+            <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
                 <p ng-bind="transaction.amount | currencyModifiersFilter: transaction.currency.divisibility | preciseRound: transaction.currency.divisibility">
             </div>
         </div>
@@ -50,7 +50,7 @@
             <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
                 <p><strong>Fee: </strong></p>
             </div>
-            <div col-lg-8 col-md-8 col-sm-8 col-xs-8>
+            <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
                 <p ng-bind="transaction.fee">
             </div>
         </div>
@@ -58,7 +58,7 @@
             <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
                 <p><strong>Code: </strong></p>
             </div>
-            <div col-lg-8 col-md-8 col-sm-8 col-xs-8>
+            <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
                 <p ng-bind="transaction.id">
             </div>
         </div>
@@ -66,7 +66,7 @@
             <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
                 <p><strong>Balance: </strong></p>
             </div>
-            <div col-lg-8 col-md-8 col-sm-8 col-xs-8>
+            <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
                 <p ng-bind="transaction.balance">
             </div>
         </div>
@@ -74,7 +74,7 @@
             <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
                 <p><strong>Metadata: </strong></p>
             </div>
-            <div ng-show="metadata" class="metadata" col-lg-8 col-md-8 col-sm-8 col-xs-8>
+            <div ng-show="metadata" class="metadata col-lg-8 col-md-8 col-sm-8 col-xs-8">
                 <pre ng-bind="metadata"></pre>
             </div>
         </div>
@@ -82,7 +82,7 @@
             <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
                 <p><strong>Date: </strong></p>
             </div>
-            <div col-lg-8 col-md-8 col-sm-8 col-xs-8>
+            <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
                 <p>{{transaction.created | date:'mediumDate'}} {{transaction.created | date:'shortTime'}}</p>
             </div>
         </div>
