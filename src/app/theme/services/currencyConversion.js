@@ -38,7 +38,7 @@
             var multipliedByDecimalString = multipliedByDecimalNumber.toString();
             if(multipliedByDecimalString[0] == '-'){
                 multipliedByDecimalString = multipliedByDecimalString.slice(1);
-                finalString = '-' + insertDot(multipliedByDecimalString,decimals);;
+                finalString = '-' + insertDot(multipliedByDecimalString,decimals);
             } else {
                 finalString = insertDot(multipliedByDecimalString,decimals);
             }
@@ -48,6 +48,9 @@
                 indexOfDot = multipliedByDecimalString.length - decimals;
                 array = multipliedByDecimalString.split('');
                 array.splice(indexOfDot,0,'.');
+                if(array[0] == '.'){
+                    array.splice(0,0,'0');
+                }
                 return array.join('');
             }
 
