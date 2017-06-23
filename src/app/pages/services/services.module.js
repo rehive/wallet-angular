@@ -22,7 +22,6 @@
                 controller: "ServicesCtrl",
                 title: 'Services',
                 sidebarMeta: {
-                    icon: 'ion-briefcase',
                     order: 300
                 }
             });

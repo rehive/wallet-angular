@@ -109,8 +109,8 @@
 .top-dropdown-menu {
   width: 316px;
   left: auto;
-  right: -47px;
-  top: 40px;
+  right: -1px;
+  top: 31px;
   @include scrollbars(.4em, rgba(0,0,0,0.5), #fff);
   .header {
     padding: 10px 12px;
@@ -205,8 +205,8 @@
 
   &.profile-dropdown {
     width: 145px;
-    top: 55px;
-    right: -25px;
+    top: 50px;
+    right: -17px;
     a {
       text-align: left;
       border: none;

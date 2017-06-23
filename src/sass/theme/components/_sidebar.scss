@@ -63,7 +63,6 @@ $angle-right: "\f101";
 a.al-sidebar-list-link {
   display: block;
   height: 42px;
-  padding-left: 18px;
   text-shadow: none;
   font-size: 13px;
   text-decoration: none;
@@ -79,7 +78,7 @@ a.al-sidebar-list-link {
     }
   }
   i {
-    margin-right: 18px;
+    margin-right: 3px;
     width: 16px;
     display: inline-block;
   }
@@ -93,7 +92,7 @@ a.al-sidebar-list-link {
     font-size: 18px;
     position: absolute;
     right: 10px;
-    top: 12px;
+    top: 14px;
     padding: 0;
     text-align: center;
     color: $sidebar-text;
@@ -136,12 +135,12 @@ a.al-sidebar-list-link {
       text-shadow: none;
       font-size: 13px;
       text-decoration: none;
-      color: $sidebar-text;
-      padding-left: 52px;
+      color: #8aa4af;
+      padding-left: 20px;
       height: auto;
       line-height: 29px;
       &:hover {
-        color: $primary;
+        color: #ffffff;
       }
     }
     &.selected:not(.with-sub-menu) > a {

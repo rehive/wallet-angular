@@ -20,7 +20,6 @@
                 abstract: true,
                 title: 'Transactions',
                 sidebarMeta: {
-                    icon: 'ion-arrow-swap',
                     order: 100
                 }
             });

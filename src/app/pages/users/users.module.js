@@ -13,7 +13,6 @@
                 controller: "UsersCtrl",
                 title: 'Users',
                 sidebarMeta: {
-                    icon: 'ion-person-stalker',
                     order: 200
                 }
             });

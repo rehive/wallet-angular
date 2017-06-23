@@ -3,10 +3,10 @@
   position: fixed;
   z-index: 904;
   box-shadow: 2px 0px 3px rgba(0, 0, 0, 0.5);
-  height: 66px;
+  height: 50px;
   width: 100%;
   min-width: $resMin;
-  padding: 0 32px 0 17px;
+  padding: 0 4px 0 17px;
 
   &.scrolled {
     background-color: rgba(60, 141, 188, 0.85)
@@ -16,12 +16,13 @@
 a.al-logo {
   color: $sidebar-text;
   display: block;
-  font-size: 20px;
+  font-size: 18px;
+  font-weight: $font-normal;
   font-family: $font-family;
   white-space: nowrap;
   float: left;
   outline: none !important;
-  line-height: 66px;
+  line-height: 50px;
 
   &:hover{
     color:#84c9f1;
@@ -35,7 +36,7 @@ a.al-logo {
 .user-profile {
   float: right;
   min-width: 50px;
-  margin-top: 10px;
+  margin-top: 7px;
 }
 
 .al-user-profile {
@@ -52,8 +53,8 @@ a.al-logo {
     display: block;
   }
   img {
-    width: 45px;
-    height: 45px;
+    width: 35px;
+    height: 35px;
     border-radius: 50%;
     background-color: white;
     font-color: green;
@@ -159,7 +160,7 @@ a.collapse-menu-link {
 
 @media (max-width: $resXXS) {
   .user-profile{
-    min-width: 40px;
+    min-width: 35px;
   }
   a.refresh-data {
     margin-right: 10px;

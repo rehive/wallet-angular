@@ -13,7 +13,6 @@
                 controller: "SettingsCtrl",
                 title: 'Settings',
                 sidebarMeta: {
-                    icon: 'ion-settings',
                     order: 400
                 }
             });
