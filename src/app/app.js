@@ -35,7 +35,6 @@ angular.module('BlurAdmin', [
         //using to check if user has a company name
         var getCompanyInfo = function () {
             var token = cookieManagement.getCookie('TOKEN');
-            console.log('should have token '+ token);
             if(token && $rootScope.userVerified) {
                 $http.get(API + '/admin/company/', {
                     headers: {
@@ -53,7 +52,6 @@ angular.module('BlurAdmin', [
                     $rootScope.haveCompanyName = false;
                 });
             } else {
-                console.log('from apps.js comppany info function' + token);
                 $location.path('/login');
             }
         };
@@ -70,15 +68,11 @@ angular.module('BlurAdmin', [
 
         function routeManagement(event,newUrl){
 
-            console.log($rootScope);
-
             var token = cookieManagement.getCookie('TOKEN'),
                 newUrlArray = newUrl.split('/'),
                 newUrlLastElement = _.last(newUrlArray);
 
             if(newUrlLastElement == 'login'){
-                console.log('from if');
-                //cookieManagement.deleteCookie('TOKEN');
                 $rootScope.gotToken = false;
                 $rootScope.securityConfigured = true;
                 $location.path('/login');
@@ -90,8 +84,6 @@ angular.module('BlurAdmin', [
                     || newUrlLastElement == 'verification' || newUrlLastElement == 'name_request'){
                     $rootScope.securityConfigured = true;
                 } else {
-                    console.log('from else');
-                    //cookieManagement.deleteCookie('TOKEN');
                     $rootScope.securityConfigured = true;
                     $rootScope.gotToken = false;
                     $location.path('/login');

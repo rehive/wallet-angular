@@ -33,25 +33,16 @@
 
     function preciseRound(){
         return function (num,decimals){
-            var finalString;
-            var multipliedByDecimalNumber = num*Math.pow(10, decimals);
-            var multipliedByDecimalString = multipliedByDecimalNumber.toString();
-            if(multipliedByDecimalString[0] == '-'){
-                multipliedByDecimalString = multipliedByDecimalString.slice(1);
-                finalString = '-' + insertDot(multipliedByDecimalString,decimals);
+            var numString,numStringAfterDecimal,finalString,indexOfDot,diff;
+            num = num.toFixed(decimals);
+            numString = num.toString();
+            indexOfDot = numString.indexOf('.');
+            if(indexOfDot > 0) {
+                numStringAfterDecimal = numString.slice(indexOfDot + 1);
+                diff = decimals - numStringAfterDecimal.length;
+                finalString = numString + '0'.repeat(diff);
             } else {
-                finalString = insertDot(multipliedByDecimalString,decimals);
-            }
-
-            function insertDot(multipliedByDecimalString,decimals){
-                var array,indexOfDot;
-                indexOfDot = multipliedByDecimalString.length - decimals;
-                array = multipliedByDecimalString.split('');
-                array.splice(indexOfDot,0,'.');
-                if(array[0] == '.'){
-                    array.splice(0,0,'0');
-                }
-                return array.join('');
+                finalString = numString + '.' + '0'.repeat(decimals);
             }
 
             return finalString;

@@ -8,11 +8,11 @@
     function LoginCtrl($rootScope,$scope,$http,cookieManagement,API,$location,errorToasts,userVerification) {
 
         var vm = this;
+        cookieManagement.deleteCookie('TOKEN');
 
         $scope.login = function(user, company, password) {
             $rootScope.$pageFinishedLoading = false;
 
-            console.log(API + '/auth/login/');
             $http.post(API + '/auth/login/', {
                 user: user,
                 company: company,
