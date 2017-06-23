@@ -8,8 +8,8 @@
     function userBankAccount() {
         return {
             restrict: 'E',
-            controller: 'UserBankAccountCtrl',
-            templateUrl: 'app/pages/users/userDetails/userBankAccount/userBankAccount.html'
+            controller: 'UserBankAccountsCtrl',
+            templateUrl: 'app/pages/users/userDetails/userBankAccounts/userBankAccounts.html'
         };
     }
 })();

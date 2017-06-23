@@ -1,15 +1,14 @@
 .content-top {
-  padding-top: 4px;
+  padding-top: 2px;
   padding-bottom: 10px;
 }
 
 h1.al-title {
   font-weight: $font-normal;
   color: $default-text;
-  float: left;
   width: auto;
-  margin: 0;
   padding: 0;
+  margin: 0 0 0 -2px;
   font-size: 19px;
   opacity: 0.9;
 }
