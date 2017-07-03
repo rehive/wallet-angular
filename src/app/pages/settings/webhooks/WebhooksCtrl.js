@@ -30,13 +30,14 @@
         vm.getWebhooks = function () {
             if(vm.token) {
                 $scope.loadingWebhooks = true;
-                $http.get(API + '/admin/webhooks/', {
+                $http.get(API + '/admin/webhooks/users/', {
                     headers: {
                         'Content-Type': 'application/json',
                         'Authorization': vm.token
                     }
                 }).then(function (res) {
                     $scope.loadingWebhooks = false;
+                    console.log(res);
                     if (res.status === 200) {
                         $scope.webhooks = res.data.data;
                         $window.scrollTo(0, 0);

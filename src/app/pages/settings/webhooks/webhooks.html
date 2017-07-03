@@ -2,13 +2,13 @@
     <div ba-panel class="setting-bank-accounts" ba-panel-title="Transaction Webhooks" ba-panel-class="light-text with-scroll">
         <table class="table fees-table table-striped setting-bank-accounts-table">
             <tr class="black-muted-bg divider">
-                <th><strong>Type</strong></th>
+                <th><strong>Event</strong></th>
                 <th><strong>URL</strong></th>
                 <th><strong>Secret</strong></th>
                 <th></th>
             </tr>
             <tr ng-repeat="webhook in webhooks">
-                <th title="{{webhook.tx_type}}" ng-bind="webhook.tx_type | capitalizeWord"></th>
+                <th title="{{webhook.event}}" ng-bind="webhook.event | capitalizeWord"></th>
                 <th title="{{webhook.url}}" ng-bind="webhook.url | limitTo: '14'"></th>
                 <th title="{{webhook.secret}}" ng-bind="webhook.secret | limitTo: '14'"></th>
                 <th class="rehive-table-row-last-child">
