@@ -37,7 +37,6 @@
                     }
                 }).then(function (res) {
                     $scope.loadingWebhooks = false;
-                    console.log(res);
                     if (res.status === 200) {
                         $scope.webhooks = res.data.data;
                         $window.scrollTo(0, 0);

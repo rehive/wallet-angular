@@ -4,7 +4,7 @@
     angular.module('BlurAdmin.pages.settings')
         .controller('BankAccountModalCtrl', BankAccountModalCtrl);
 
-    function BankAccountModalCtrl($scope,bankAccount,toastr,$http,API,cookieManagement,errorToasts,errorHandler) {
+    function BankAccountModalCtrl($scope,$uibModalInstance,bankAccount,toastr,$http,API,cookieManagement,errorToasts,errorHandler) {
 
         var vm= this;
 
@@ -12,9 +12,6 @@
         vm.token = cookieManagement.getCookie('TOKEN');
         $scope.deletingBankAccount = false;
 
-        vm.findIndexOfBankAccount = function(element){
-            return $scope.bankAccount.id == element.id;
-        };
 
         $scope.deleteBankAccount = function () {
             $scope.deletingBankAccount = true;
@@ -24,12 +21,10 @@
                     'Authorization': vm.token
                 }
             }).then(function (res) {
-                $scope.$dismiss();
                 $scope.deletingBankAccount = false;
-                if (res.status === 204) {
-                    var index = $scope.bankAccounts.findIndex(vm.findIndexOfBankAccount);
-                    $scope.bankAccounts.splice(index, 1);
-                    toastr.success('You have successfully deleted the bank account!');
+                if (res.status === 200) {
+                    toastr.success('Bank account successfully deleted');
+                    $uibModalInstance.close($scope.bankAccount);
                 }
             }).catch(function (error) {
                 $scope.deletingBankAccount = false;

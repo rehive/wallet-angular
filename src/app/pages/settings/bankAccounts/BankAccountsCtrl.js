@@ -94,8 +94,12 @@
             });
         };
 
+        vm.findIndexOfBankAccount = function(element){
+            return this.id == element.id;
+        };
+
         $scope.openBankAccountModal = function (page, size,bankAccount) {
-            $uibModal.open({
+            vm.theModal = $uibModal.open({
                 animation: true,
                 templateUrl: page,
                 size: size,
@@ -106,6 +110,12 @@
                         return bankAccount;
                     }
                 }
+            });
+
+            vm.theModal.result.then(function(bankAccount){
+                var index = $scope.bankAccounts.findIndex(vm.findIndexOfBankAccount,bankAccount);
+                $scope.bankAccounts.splice(index, 1);
+            }, function(){
             });
         };
     }
