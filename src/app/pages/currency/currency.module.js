@@ -1,22 +1,20 @@
 (function () {
     'use strict';
 
-    angular.module('BlurAdmin.pages.transactions', [
-            'BlurAdmin.pages.transactions.history',
-            'BlurAdmin.pages.transactions.debit',
-            'BlurAdmin.pages.transactions.credit',
-            'BlurAdmin.pages.transactions.transfers'
+    angular.module('BlurAdmin.pages.currency', [
+            'BlurAdmin.pages.currency.overview',
+            'BlurAdmin.pages.currency.settings'
         ])
         .config(routeConfig);
 
     /** @ngInject */
     function routeConfig($stateProvider) {
         $stateProvider
-            .state('transactions', {
-                url: '/transactions',
+            .state('currency', {
+                url: '/currency',
                 template : '<ui-view  autoscroll="true" autoscroll-body-top></ui-view>',
                 abstract: true,
-                title: 'Transactions',
+                title: 'Currency',
                 sidebarMeta: {
                     order: 100
                 }

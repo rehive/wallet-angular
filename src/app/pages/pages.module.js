@@ -13,6 +13,7 @@
     'BlurAdmin.pages.addCurrency',
     'BlurAdmin.pages.dashboard',
     'BlurAdmin.pages.transactions',
+    'BlurAdmin.pages.currency',
     'BlurAdmin.pages.users',
     'BlurAdmin.pages.userDetails',
     'BlurAdmin.pages.services',
