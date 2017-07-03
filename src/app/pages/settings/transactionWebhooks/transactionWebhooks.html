@@ -1,4 +1,4 @@
-<div ng-hide="editingWebhooks || loadingWebhooks">
+<div ng-hide="editingTransactionWebhook || loadingTransactionWebhooks">
     <div ba-panel class="setting-bank-accounts" ba-panel-title="Transaction Webhooks" ba-panel-class="light-text with-scroll">
         <table class="table fees-table table-striped setting-bank-accounts-table">
             <tr class="black-muted-bg divider">
@@ -7,42 +7,42 @@
                 <th><strong>Secret</strong></th>
                 <th></th>
             </tr>
-            <tr ng-repeat="webhook in webhooks">
-                <th title="{{webhook.event}}" ng-bind="webhook.event | capitalizeWord"></th>
+            <tr ng-repeat="webhook in transactionWebhooks">
+                <th title="{{webhook.tx_type}}" ng-bind="webhook.tx_type | capitalizeWord"></th>
                 <th title="{{webhook.url}}" ng-bind="webhook.url | limitTo: '14'"></th>
                 <th title="{{webhook.secret}}" ng-bind="webhook.secret | limitTo: '14'"></th>
                 <th class="rehive-table-row-last-child">
-                    <button ng-click="openWebhooksModal('app/pages/settings/webhooks/webhooksModal/webhooksModal.html','md',webhook)" class="btn btn-danger pull-right rehive-settings-buttons">Delete</button>
-                    <button ng-click="toggleWebhooksEditView(webhook)" class="btn btn-primary pull-right rehive-settings-buttons">Edit</button>
+                    <button ng-click="openTransactionWebhooksModal('app/pages/settings/transactionWebhooks/transactionWebhooksModal/transactionWebhooksModal.html','md',webhook)" class="btn btn-danger pull-right rehive-settings-buttons">Delete</button>
+                    <button ng-click="toggleTransactionWebhooksEditView(webhook)" class="btn btn-primary pull-right rehive-settings-buttons">Edit</button>
                 </th>
             </tr>
         </table>
     </div>
     <div ba-panel ba-panel-title="Add Webhook" ba-panel-class="light-text with-scroll">
-        <form name="webhooksForm" class="custom-form">
+        <form name="transactionWebhooksForm" class="custom-form">
             <div class="form-group">
                 <label><strong>Transaction Type</strong> <span class="required-icon">*</span></label>
                 <br>
-                <select class="form-control pointer" ng-model="webhooksParams.tx_type" ng-options="type for type in typeOptions" required>
+                <select class="form-control pointer" ng-model="transactionWebhooksParams.tx_type" ng-options="type for type in typeOptions" required>
                 </select>
             </div>
             <div class="form-group">
                 <label><strong>Webhook URL</strong> <span class="required-icon">*</span></label>
-                <input type="text" ng-model="webhooksParams.url" class="form-control"  placeholder="URL" required>
+                <input type="text" ng-model="transactionWebhooksParams.url" class="form-control"  placeholder="URL" required>
             </div>
             <div class="form-group">
                 <label><strong>Webhook Secret</strong> <span class="required-icon">*</span></label>
-                <input type="text" ng-model="webhooksParams.secret" class="form-control"  placeholder="Secret" required>
+                <input type="text" ng-model="transactionWebhooksParams.secret" class="form-control"  placeholder="Secret" required>
             </div>
             <div class="form-group">
-                <button ng-click="addWebhooks(webhooksParams)" ng-disabled="!webhooksForm.$valid" class="btn btn-primary pull-right">Add</button>
+                <button ng-click="addTransactionWebhooks(transactionWebhooksParams)" ng-disabled="!transactionWebhooksForm.$valid" class="btn btn-primary pull-right">Add</button>
             </div>
         </form>
     </div>
 </div>
-<div ng-show="editingWebhooks">
-    <edit-webhook></edit-webhook>
+<div ng-show="editingTransactionWebhook">
+    <edit-transaction-webhook></edit-transaction-webhook>
 </div>
-<div ba-panel ng-show="loadingWebhooks">
+<div ba-panel ng-show="loadingTransactionWebhooks">
     <loading-image></loading-image>
 </div>

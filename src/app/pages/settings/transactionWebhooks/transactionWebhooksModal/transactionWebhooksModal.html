@@ -6,10 +6,10 @@
         <h4 class="modal-title" id="myModalLabel">Delete Webhook</h4>
     </div>
     <div class="modal-body">
-        <p>{{webhook.tx_type}}, {{webhook.url}}</p>
+        <p>{{transactionWebhook.tx_type}}, {{transactionWebhook.url}}</p>
     </div>
     <div class="modal-footer">
         <button type="button" class="btn btn-primary pull-left" ng-click="$dismiss()">Close</button>
-        <button ng-click="deleteWebhook()" ng-disabled="deletingWebhook" type="button" class="btn btn-danger pull-right" ng-click="">Delete</button>
+        <button ng-click="deleteTransactionWebhook()" ng-disabled="deletingTransactionWebhook" type="button" class="btn btn-danger pull-right" ng-click="">Delete</button>
     </div>
 </div>
