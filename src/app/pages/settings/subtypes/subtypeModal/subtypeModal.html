@@ -10,6 +10,6 @@
     </div>
     <div class="modal-footer">
         <button type="button" class="btn btn-primary pull-left" ng-click="$dismiss()">Close</button>
-        <button ng-click="deleteSubtype()" type="button" class="btn btn-danger pull-right">Delete</button>
+        <button ng-disabled="deletingSubtype" ng-click="deleteSubtype()" type="button" class="btn btn-danger pull-right">Delete</button>
     </div>
 </div>

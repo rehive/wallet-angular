@@ -1,4 +1,4 @@
-<div ng-hide="editingSubtype">
+<div ng-hide="editingSubtype || loadingSubtypes">
     <div ba-panel class="setting-bank-accounts" ba-panel-title="Transaction Subtypes" ba-panel-class="light-text with-scroll">
         <table class="table fees-table table-striped setting-bank-accounts-table">
             <tr class="black-muted-bg divider">
@@ -45,6 +45,9 @@
             </div>
         </form>
     </div>
+</div>
+<div ba-panel ng-show="loadingSubtypes">
+    <loading-image></loading-image>
 </div>
 <div ng-show="editingSubtype">
     <edit-subtype></edit-subtype>

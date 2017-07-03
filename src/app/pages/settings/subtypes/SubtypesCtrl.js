@@ -87,7 +87,7 @@
                 $scope.loadingSubtypes = false;
                 if (res.status === 200) {
                     vm.getSubtypes();
-                    toastr.success('You have successfully updated the bank account!');
+                    toastr.success('You have successfully updated the subtype!');
                 }
             }).catch(function (error) {
                 $scope.loadingSubtypes = false;
