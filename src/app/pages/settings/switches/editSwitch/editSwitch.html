@@ -1,0 +1,22 @@
+<div ng-hide="loadingUserWebhooks" ba-panel ba-panel-title="Edit Webhook" ba-panel-class="light-text with-scroll">
+    <form name="editUserWebhooksForm" class="custom-form" novalidate>
+        <div class="form-group">
+            <label><strong>User Event</strong> <span class="required-icon">*</span></label>
+            <br>
+            <select class="form-control pointer" ng-change="userWebhookChanged('event')" ng-model="editUserWebhook.event" ng-options="event for event in eventOptions" required>
+            </select>
+        </div>
+        <div class="form-group">
+            <label><strong>Webhook URL</strong> <span class="required-icon">*</span></label>
+            <input ng-change="userWebhookChanged('url')" type="text" ng-model="editUserWebhook.url" class="form-control"  placeholder="URL" required>
+        </div>
+        <div class="form-group">
+            <label><strong>Webhook Secret</strong> <span class="required-icon">*</span></label>
+            <input ng-change="userWebhookChanged('secret')" type="text" ng-model="editUserWebhook.secret" class="form-control"  placeholder="Secret" required>
+        </div>
+        <div class="form-group">
+            <button ng-click="updateUserWebhook()" ng-disabled="!editUserWebhooksForm.$valid" class="btn btn-primary pull-right">Save</button>
+            <button ng-click="toggleUserWebhooksEditView()" class="btn btn-primary pull-right margin-right-10">Back</button>
+        </div>
+    </form>
+</div>
