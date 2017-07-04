@@ -17,7 +17,7 @@
             event: 'User Create'
         };
 
-        $scope.eventOptions = ['User Create','User Update','User Delete'];
+        // $scope.eventOptions = ['User Create','User Update','User Delete'];
 
         $scope.toggleSwitchesEditView = function(webhook){
             webhook ? $scope.editSwitches = webhook : $scope.editSwitches = {};
