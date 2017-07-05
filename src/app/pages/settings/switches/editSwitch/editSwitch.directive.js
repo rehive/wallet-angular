@@ -8,7 +8,7 @@
     function editSwitch() {
         return {
             restrict: 'E',
-            templateUrl: 'app/pages/settings/switches/editSwitches/editSwitches.html'
+            templateUrl: 'app/pages/settings/switches/editSwitch/editSwitch.html'
         };
     }
 })();

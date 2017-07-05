@@ -16,7 +16,13 @@
 
 
         $scope.toggleEditBankAccountsView = function(bankAccount){
-            bankAccount ? $scope.editBankData = bankAccount : $scope.editBankData = {};
+            if(bankAccount){
+                $scope.editBankData = bankAccount
+            } else {
+                $scope.editBankData = {};
+                vm.getBankAccounts();
+            }
+
             $scope.editingBankAccounts = !$scope.editingBankAccounts;
         };
 

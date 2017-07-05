@@ -14,13 +14,23 @@
         $scope.editSwitches = {};
 
         $scope.switchesParams = {
-            event: 'User Create'
+            switch_type: 'Allow transactions',
+            enabled: 'False'
         };
 
-        // $scope.eventOptions = ['User Create','User Update','User Delete'];
+        $scope.switchesOptions = ['Allow transactions','Allow transactions for unverified users','Allow unlimited overdrafts',
+            'Automatically confirm transactions on creation','Allow custom session durations on login'];
+        $scope.boolOptions = ['True','False'];
 
-        $scope.toggleSwitchesEditView = function(webhook){
-            webhook ? $scope.editSwitches = webhook : $scope.editSwitches = {};
+        $scope.toggleSwitchesEditView = function(switches){
+            if(switches) {
+                $scope.editSwitches = switches;
+                $scope.editSwitches.enabled == true ? $scope.editSwitches.enabled = 'True' : $scope.editSwitches.enabled = 'False';
+            } else {
+                $scope.editSwitches.enabled == 'True' ? $scope.editSwitches.enabled = true : $scope.editSwitches.enabled = false;
+                $scope.editSwitches = {};
+                vm.getSwitches();
+            }
             $scope.editingSwitches = !$scope.editingSwitches;
         };
 
@@ -35,7 +45,7 @@
                 }).then(function (res) {
                     $scope.loadingSwitches = false;
                     if (res.status === 200) {
-                        $scope.switches = res.data.data;
+                        $scope.switchesList = res.data.data;
                         $window.scrollTo(0, 0);
                     }
                 }).catch(function (error) {
@@ -46,65 +56,81 @@
         };
         vm.getSwitches();
 
-        // $scope.addSwitches = function (switchesParams) {
-        //     $scope.loadingSwitches = true;
-        //     switchesParams.event = switchesParams.event == 'User Create' ?
-        //      'user.create' : switchesParams.event == 'User Update' ? 'user.update' : 'user.delete';
-        //     $http.post(API + '/admin/switches/', switchesParams, {
-        //         headers: {
-        //             'Content-Type': 'application/json',
-        //             'Authorization': vm.token
-        //         }
-        //     }).then(function (res) {
-        //         $scope.loadingSwitches = false;
-        //         if (res.status === 201) {
-        //             vm.getSwitches();
-        //             toastr.success('You have successfully added the Switch!');
-        //             $scope.switchesParams = {event: 'User Create'};
-        //             $window.scrollTo(0, 0);
-        //         }
-        //     }).catch(function (error) {
-        //         $scope.switchesParams = {event: 'User Create'};
-        //         $scope.loadingSwitches = false;
-        //         if(error.status == 403){
-        //             errorHandler.handle403();
-        //             return
-        //         }
-        //         errorToasts.evaluateErrors(error.data);
-        //     });
-        // };
+        vm.getSwitchesApiValues = function (switchesParams) {
+
+            if(switchesParams.switch_type == 'Allow transactions'){
+                switchesParams.switch_type = "transactions";
+            } else if(switchesParams.switch_type == 'Allow transactions for unverified users') {
+                switchesParams.switch_type = "verification";
+            } else if(switchesParams.switch_type == 'Allow unlimited overdrafts') {
+                switchesParams.switch_type = "overdraft";
+            } else if(switchesParams.switch_type == 'Automatically confirm transactions on creation') {
+                switchesParams.switch_type = "auto_confirm";
+            } else if(switchesParams.switch_type == 'Allow custom session durations on login') {
+                switchesParams.switch_type = "session_duration";
+            }
+
+            switchesParams.enabled == 'True' ? switchesParams.enabled = true : switchesParams.enabled = false;
+
+            return switchesParams;
+        };
+
+         $scope.addSwitches = function (switchesParams) {
+             $scope.loadingSwitches = true;
+             switchesParams = vm.getSwitchesApiValues(switchesParams);
+             $http.post(API + '/admin/switches/', switchesParams, {
+                 headers: {
+                     'Content-Type': 'application/json',
+                     'Authorization': vm.token
+                 }
+             }).then(function (res) {
+                 $scope.loadingSwitches = false;
+                 if (res.status === 201) {
+                     vm.getSwitches();
+                     toastr.success('You have successfully added the Switch!');
+                     $scope.switchesParams = {switch_type: 'Allow transactions', enabled: 'False'};
+                     $window.scrollTo(0, 0);
+                 }
+             }).catch(function (error) {
+                 $scope.switchesParams = {switch_type: 'Allow transactions', enabled: 'False'};
+                 $scope.loadingSwitches = false;
+                 if(error.status == 403){
+                     errorHandler.handle403();
+                     return
+                 }
+                 errorToasts.evaluateErrors(error.data);
+             });
+         };
 
         $scope.switchesChanged = function(field){
             vm.updatedSwitches[field] = $scope.editSwitches[field];
         };
 
-        // $scope.updateSwitches = function () {
-        //     $window.scrollTo(0, 0);
-        //     $scope.editingSwitches = !$scope.editingSwitches;
-        //     $scope.loadingSwitches = true;
-        //     vm.updatedSwitches.event = vm.updatedSwitches.event == 'User Create' ?
-        //      'user.create' : vm.updatedSwitches.event == 'User Update' ? 'user.update' : 'user.delete';
-        //     $http.patch(API + '/admin/switches/'+ $scope.editSwitches.id + '/', vm.updatedSwitches, {
-        //         headers: {
-        //             'Content-Type': 'application/json',
-        //             'Authorization': vm.token
-        //         }
-        //     }).then(function (res) {
-        //         $scope.loadingSwitches = false;
-        //         if (res.status === 200) {
-        //             vm.getSwitches();
-        //             $scope.toggleSwitchesEditView();
-        //             toastr.success('You have successfully updated the Switch!');
-        //         }
-        //     }).catch(function (error) {
-        //         $scope.loadingSwitches = false;
-        //         if(error.status == 403){
-        //             errorHandler.handle403();
-        //             return
-        //         }
-        //         errorToasts.evaluateErrors(error.data);
-        //     });
-        // };
+         $scope.updateSwitches = function () {
+             $window.scrollTo(0, 0);
+             $scope.loadingSwitches = true;
+             $scope.editingSwitches = !$scope.editingSwitches;
+             vm.updatedSwitches = vm.getSwitchesApiValues(vm.updatedSwitches);
+             $http.patch(API + '/admin/switches/'+ $scope.editSwitches.id + '/', vm.updatedSwitches, {
+                 headers: {
+                     'Content-Type': 'application/json',
+                     'Authorization': vm.token
+                 }
+             }).then(function (res) {
+                 $scope.loadingSwitches = false;
+                 if (res.status === 200) {
+                     vm.getSwitches();
+                     toastr.success('You have successfully updated the Switch!');
+                 }
+             }).catch(function (error) {
+                 $scope.loadingSwitches = false;
+                 if(error.status == 403){
+                     errorHandler.handle403();
+                     return
+                 }
+                 errorToasts.evaluateErrors(error.data);
+             });
+         };
 
         vm.findIndexOfSwitches = function(element){
             return this.id == element.id;
@@ -125,8 +151,8 @@
             });
 
             vm.theModal.result.then(function(switches){
-                var index = $scope.switches.findIndex(vm.findIndexOfSwitches,switches);
-                $scope.switches.splice(index, 1);
+                var index = $scope.switchesList.findIndex(vm.findIndexOfSwitches,switches);
+                $scope.switchesList.splice(index, 1);
             }, function(){
             });
         };

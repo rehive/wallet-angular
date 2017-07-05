@@ -11,6 +11,7 @@
     /** @ngInject */
     function capitalizeWord() {
         return function(text) {
+            text = text.toString();
             return  text ? text.charAt(0).toUpperCase() + text.slice(1): text;
         };
     }

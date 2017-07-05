@@ -26,6 +26,7 @@
                     'User Create' : $scope.editUserWebhook.event == 'user.update' ? 'User Update' : 'User Delete';
             } else{
                 $scope.editUserWebhook = {};
+                vm.getUserWebhooks();
             }
             $scope.editingUserWebhook = !$scope.editingUserWebhook;
         };

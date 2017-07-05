@@ -19,7 +19,12 @@
         };
 
         $scope.toggleSubtypeEditView = function(subtype){
-            subtype ? $scope.editSubtype = subtype : $scope.editSubtype = {};
+            if(subtype) {
+                $scope.editSubtype = subtype
+            } else {
+                $scope.editSubtype = {};
+                vm.getSubtypes();
+            }
             $scope.editingSubtype = !$scope.editingSubtype;
         };
 

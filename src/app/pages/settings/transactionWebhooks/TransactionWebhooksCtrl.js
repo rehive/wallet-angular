@@ -22,8 +22,11 @@
         $scope.toggleTransactionWebhooksEditView = function(webhook){
             if(webhook){
                 webhook.tx_type = stringService.capitalizeWord(webhook.tx_type);
+                $scope.editTransactionWebhook = webhook
+            } else {
+                $scope.editTransactionWebhook = {};
+                vm.getTransactionWebhooks();
             }
-            webhook ? $scope.editTransactionWebhook = webhook : $scope.editTransactionWebhook = {};
             $scope.editingTransactionWebhook = !$scope.editingTransactionWebhook;
         };
 
