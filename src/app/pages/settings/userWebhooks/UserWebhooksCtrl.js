@@ -20,7 +20,13 @@
         $scope.eventOptions = ['User Create','User Update','User Delete'];
 
         $scope.toggleUserWebhooksEditView = function(webhook){
-            webhook ? $scope.editUserWebhook = webhook : $scope.editUserWebhook = {};
+            if(webhook){
+                $scope.editUserWebhook = webhook;
+                $scope.editUserWebhook.event = $scope.editUserWebhook.event == 'user.create' ?
+                    'User Create' : $scope.editUserWebhook.event == 'user.update' ? 'User Update' : 'User Delete';
+            } else{
+                $scope.editUserWebhook = {};
+            }
             $scope.editingUserWebhook = !$scope.editingUserWebhook;
         };
 

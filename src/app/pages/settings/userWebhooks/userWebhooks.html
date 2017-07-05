@@ -8,7 +8,7 @@
                 <th></th>
             </tr>
             <tr ng-repeat="webhook in userWebhooks">
-                <th title="{{webhook.event}}" ng-bind="webhook.event | capitalizeWord"></th>
+                <th title="{{webhook.event}}" ng-bind="webhook.event | userWebhookEventParse"></th>
                 <th title="{{webhook.url}}" ng-bind="webhook.url | limitTo: '14'"></th>
                 <th title="{{webhook.secret}}" ng-bind="webhook.secret | limitTo: '14'"></th>
                 <th class="rehive-table-row-last-child">
