@@ -47,6 +47,7 @@
                         $scope.createTokenData.tokenPassword = '';
                         $scope.addingToken = false;
                         vm.getTokensList();
+                        vm.openShowTokenModal('app/pages/settings/security/tokens/showTokenModal/showTokenModal.html','md',res.data.data.token);
                     }
                 }).catch(function (error) {
                     errorToasts.evaluateErrors(error.data);
@@ -60,6 +61,21 @@
                 templateUrl: page,
                 size: size,
                 controller: 'DeleteTokenModalCtrl',
+                scope: $scope,
+                resolve: {
+                    token: function () {
+                        return token;
+                    }
+                }
+            });
+        };
+
+        vm.openShowTokenModal = function (page, size,token) {
+            $uibModal.open({
+                animation: true,
+                templateUrl: page,
+                size: size,
+                controller: 'ShowTokenModalCtrl',
                 scope: $scope,
                 resolve: {
                     token: function () {
