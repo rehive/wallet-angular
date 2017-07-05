@@ -5,7 +5,7 @@
         .controller('CurrencySettingsCtrl', CurrencySettingsCtrl);
 
     /** @ngInject */
-    function CurrencySettingsCtrl($rootScope,$scope) {
+    function CurrencySettingsCtrl($scope) {
 
         $scope.goToCurrencySetting = function(settingView){
             $scope.settingView = settingView;

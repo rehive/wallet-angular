@@ -1,6 +1,6 @@
 <div ng-hide="loadingCompanyNotifications" ba-panel ba-panel-title="Notifications">
     <div>
-        <div class="margin-bottom-ten-px" ng-repeat="notification in notifications">
+        <div class="divider" ng-repeat="notification in notifications">
             <label  class="checkbox-inline custom-checkbox nowrap">
                 <input type="checkbox" ng-change="saveNotifications(notification)" ng-model="notification.enabled" ng-checked="notification.enabled">
                 <span>{{notification.description}}</span>
