@@ -35,7 +35,6 @@
                 });
             }
         };
-        vm.getCompanyBankAccounts();
 
         vm.getSingleCurrencyBankAccounts = function(companyBankAccounts){
             if(vm.token) {
