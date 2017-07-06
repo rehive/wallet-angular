@@ -62,7 +62,7 @@
                 if (res.status === 201) {
                     vm.getSubtypes();
                     toastr.success('You have successfully added a new subtype!');
-                    $scope.newSubtype = {};
+                    $scope.newSubtype = {tx_type: 'Credit'};
                     $window.scrollTo(0, 0);
                 }
             }).catch(function (error) {
@@ -104,8 +104,12 @@
             });
         };
 
+        vm.findIndexOfSubtype = function(element){
+            return this.id == element.id;
+        };
+
         $scope.openSubtypeModal = function (page, size,subtype) {
-            $uibModal.open({
+            vm.theModal = $uibModal.open({
                 animation: true,
                 templateUrl: page,
                 size: size,
@@ -116,6 +120,12 @@
                         return subtype;
                     }
                 }
+            });
+
+            vm.theModal.result.then(function(subtype){
+                var index = $scope.subtypes.findIndex(vm.findIndexOfSubtype,subtype);
+                $scope.subtypes.splice(index, 1);
+            }, function(){
             });
         };
     }

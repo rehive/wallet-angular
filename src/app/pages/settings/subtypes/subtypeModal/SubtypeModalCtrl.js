@@ -4,7 +4,7 @@
     angular.module('BlurAdmin.pages.settings')
         .controller('SubtypeModalCtrl', SubtypeModalCtrl);
 
-    function SubtypeModalCtrl($scope,subtype,toastr,$http,API,cookieManagement,errorToasts,errorHandler) {
+    function SubtypeModalCtrl($scope,$uibModalInstance,subtype,toastr,$http,API,cookieManagement,errorToasts,errorHandler) {
 
         var vm = this;
 
@@ -12,26 +12,18 @@
         vm.token = cookieManagement.getCookie('TOKEN');
         $scope.deletingSubtype = false;
 
-        vm.findIndexOfSubtype = function(element){
-            return $scope.subtype.id == element.id;
-        };
-
         $scope.deleteSubtype = function () {
             $scope.deletingSubtype = true;
-            $http.delete(API + '/admin/subtypes/' + $scope.subtype.id, {
+            $http.delete(API + '/admin/subtypes/' + $scope.subtype.id + '/', {
                 headers: {
                     'Content-Type': 'application/json',
                     'Authorization': vm.token
                 }
             }).then(function (res) {
-                console.log(res);
                 $scope.deletingSubtype = false;
-                $scope.$dismiss();
                 if (res.status === 200) {
-                    var index = $scope.subtypes.findIndex(vm.findIndexOfSubtype);
-                    $scope.subtypes.splice(index, 1);
-                    toastr.success('You have successfully deleted the subtype!');
-                    $scope.$dismiss();
+                  toastr.success('You have successfully deleted the subtype!');
+                  $uibModalInstance.close($scope.subtype);
                 }
             }).catch(function (error) {
                 $scope.deletingSubtype = false;
