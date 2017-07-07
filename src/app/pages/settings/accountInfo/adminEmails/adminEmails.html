@@ -1,0 +1,40 @@
+<div class="row">
+    <div ng-hide="loadingAdminEmails || addingEmail" class="col-lg-6 col-md-6 col-sm-6 col-xs-6" ba-panel ba-panel-title="Admin Emails">
+        <div class="divider">
+            <table class="table table-striped setting-bank-accounts-table">
+                <tr class="black-muted-bg divider">
+                    <th>Status</th>
+                    <th>Email</th>
+                    <th>Primary</th>
+                    <th>Verified</th>
+                    <th></th>
+                </tr>
+                <tr  ng-repeat="email in adminEmailsList">
+                    <th><label  class="checkbox-inline custom-checkbox nowrap">
+                        <input type="checkbox" ng-change="updateEmail(email)" ng-model="email.primary" ng-checked="email.primary">
+                        <span></span>
+                        </label>
+                    </th>
+                    <th title="{{email.email}}" ng-bind="email.email | limitTo: '24'"></th>
+                    <th ng-bind="email.primary"></th>
+                    <th ng-bind="email.verified"></th>
+                    <th class="rehive-table-row-last-child">
+                        <button ng-click="deleteEmail(email)" class="btn btn-danger pull-right rehive-settings-buttons">Delete</button>
+                    </th>
+                </tr>
+            </table>
+        </div>
+        <div>
+            <button ng-click="goToSettings()" class="btn btn-primary pull-left">Back</button>
+            <button ng-click="toggleAddEmailView()" class="btn btn-primary pull-right divider">Add</button>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div ba-panel class="col-lg-6 col-md-6 col-sm-6 col-xs-6" ng-show="loadingAdminEmails">
+        <loading-image></loading-image>
+    </div>
+</div>
+<div ng-show="addingEmail">
+    <add-email></add-email>
+</div>

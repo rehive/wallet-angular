@@ -5,11 +5,12 @@
         .controller('AccountInfoCtrl', AccountInfoCtrl);
 
     /** @ngInject */
-    function AccountInfoCtrl($scope,API,errorHandler,$http,cookieManagement,errorToasts,toastr) {
+    function AccountInfoCtrl($scope,API,errorHandler,$http,cookieManagement,errorToasts,toastr,$location) {
 
         var vm = this;
         vm.token = cookieManagement.getCookie('TOKEN');
         $scope.loadingAccountInfo = true;
+        $scope.showAdminEmails = false;
         vm.updatedAdministrator = {};
 
         $scope.accountInfoChanged = function(field){
@@ -36,8 +37,27 @@
         };
         vm.getAdminAccountInfo();
 
+        vm.getUserEmails = function () {
+            if(vm.token) {
+                $http.get(API + '/user/emails', {
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': vm.token
+                    }
+                }).then(function (res) {
+                    $scope.loadingAccountInfo = false;
+                    if (res.status === 200) {
+                        console.log(res);
+                    }
+                }).catch(function (error) {
+                    $scope.loadingAccountInfo = false;
+                    errorToasts.evaluateErrors(error.data);
+                });
+            }
+        };
+        vm.getUserEmails();
+
         $scope.updateAdministratorAccount = function(){
-            console.log(vm.updatedAdministrator);
             $scope.loadingAccountInfo = true;
             $http.patch(API + '/user/', vm.updatedAdministrator ,{
                 headers: {
@@ -61,6 +81,10 @@
                 }
                 errorToasts.evaluateErrors(error.data);
             });
+        };
+
+        $scope.viewAllEmails = function (){
+            $location.path('admin/emails');
         };
 
     }

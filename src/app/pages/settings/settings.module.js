@@ -1,7 +1,9 @@
 (function () {
     'use strict';
 
-    angular.module('BlurAdmin.pages.settings', [])
+    angular.module('BlurAdmin.pages.settings', [
+        'BlurAdmin.pages.settings.adminEmails'
+    ])
         .config(routeConfig);
 
     /** @ngInject */
