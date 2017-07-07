@@ -8,9 +8,10 @@
 
       var vm = this;
       vm.token = cookieManagement.getCookie('TOKEN');
-      $scope.loadingTiers = true;
-      $scope.newTier = {};
-      vm.updatedTier = {};
+        $scope.loadingTiers = true;
+        $scope.newTier = {level: 1};
+        $scope.tierLevels = [1,2,3,4,5,6,7];
+        vm.updatedTier = {};
 
       $rootScope.$watch('selectedCurrency',function(){
           if($rootScope.selectedCurrency && $rootScope.selectedCurrency.code) {
@@ -60,7 +61,7 @@
               }).then(function (res) {
                 $scope.loadingTiers = false;
                   if (res.status === 201) {
-                    $scope.newTier = {currency: $rootScope.selectedCurrency.code};
+                    $scope.newTier = {currency: $rootScope.selectedCurrency.code,level: 1};
                     toastr.success('You have successfully added a tier!');
                       vm.getTiers();
                   }
@@ -94,6 +95,7 @@
                       vm.getTiers();
                   }
               }).catch(function (error) {
+                  vm.getTiers();
                   $scope.loadingTiers = false;
                   errorToasts.evaluateErrors(error.data);
               });
