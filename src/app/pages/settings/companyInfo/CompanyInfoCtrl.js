@@ -20,6 +20,7 @@
 
         vm.getCompanyInfo = function () {
             if(vm.token) {
+                $scope.loadingCompanyInfo = true;
                 $http.get(API + '/admin/company/', {
                     headers: {
                         'Content-Type': 'application/json',

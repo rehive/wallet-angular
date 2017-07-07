@@ -35,27 +35,7 @@
                 });
             }
         };
-        vm.getAdminAccountInfo();
-
-        vm.getUserEmails = function () {
-            if(vm.token) {
-                $http.get(API + '/user/emails', {
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'Authorization': vm.token
-                    }
-                }).then(function (res) {
-                    $scope.loadingAccountInfo = false;
-                    if (res.status === 200) {
-                        console.log(res);
-                    }
-                }).catch(function (error) {
-                    $scope.loadingAccountInfo = false;
-                    errorToasts.evaluateErrors(error.data);
-                });
-            }
-        };
-        vm.getUserEmails();
+        vm.getAdminAccountInfo();32
 
         $scope.updateAdministratorAccount = function(){
             $scope.loadingAccountInfo = true;
@@ -72,7 +52,6 @@
                 }
                 vm.updatedAdministrator = {};
             }).catch(function (error) {
-                console.log(error);
                 vm.updatedAdministrator = {};
                 $scope.loadingAccountInfo = false;
                 if(error.status == 403){

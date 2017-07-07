@@ -1,0 +1,50 @@
+<div ng-hide="editingCompanySwitches || loadingCompanySwitches">
+    <div ba-panel class="setting-bank-accounts" ba-panel-title="Company Switches" ba-panel-class="light-text with-scroll">
+        <table class="table fees-table table-striped setting-bank-accounts-table">
+            <tr class="black-muted-bg divider">
+                <th><strong>Type</strong></th>
+                <th><strong>Subtype</strong></th>
+                <th><strong>Enabled</strong></th>
+                <th></th>
+            </tr>
+            <tr ng-repeat="companySwitch in companySwitchesList">
+                <th title="{{companySwitch.tx_type}}" ng-bind="companySwitch.tx_type | capitalizeWord | limitTo: '35'"></th>
+                <th title="{{companySwitch.subtype ? companySwitch.subtype.name : 'None'}}" ng-bind="companySwitch.subtype ? companySwitch.subtype.name : 'None'| limitTo: '35'"></th>
+                <th title="{{companySwitch.enabled}}" ng-bind="companySwitch.enabled | capitalizeWord"></th>
+                <th class="rehive-table-row-last-child">
+                    <button ng-click="openCompanySwitchesModal('app/pages/settings/companySwitches/companySwitchModal/companySwitchModal.html','md',companySwitch)" class="btn btn-danger pull-right rehive-settings-buttons">Delete</button>
+                    <button ng-click="toggleCompanySwitchesEditView(companySwitch)" class="btn btn-primary pull-right rehive-settings-buttons">Edit</button>
+                </th>
+            </tr>
+        </table>
+    </div>
+    <div ba-panel ba-panel-title="Add Company Switch" ba-panel-class="light-text with-scroll">
+        <form name="companySwitchesForm" class="custom-form">
+            <div class="form-group">
+                <label><strong>Transaction Type</strong> <span class="required-icon">*</span></label>
+                <br>
+                <select class="form-control pointer" ng-model="companySwitchParams.tx_type" ng-options="option for option in companySwitchesOptions" required>
+                </select>
+            </div>
+            <div class="form-group">
+                <label><strong>Subtype</strong></label>
+                <input type="text" class="form-control" ng-model="companySwitchParams.subtype" placeholder="Enter subtype name"/>
+            </div>
+            <div class="form-group">
+                <label><strong>Enabled</strong> <span class="required-icon">*</span></label>
+                <br>
+                <select class="form-control pointer" ng-model="companySwitchParams.enabled" ng-options="bool for bool in boolOptions" required>
+                </select>
+            </div>
+            <div class="form-group">
+                <button ng-click="addCompanySwitch(companySwitchParams)" ng-disabled="!companySwitchesForm.$valid" class="btn btn-primary pull-right">Add</button>
+            </div>
+        </form>
+    </div>
+</div>
+<div ng-show="editingCompanySwitches">
+    <edit-company-switch></edit-company-switch>
+</div>
+<div ba-panel ng-show="loadingCompanySwitches">
+    <loading-image></loading-image>
+</div>

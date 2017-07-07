@@ -9,7 +9,7 @@
                     <th>Verified</th>
                     <th></th>
                 </tr>
-                <tr  ng-repeat="email in adminEmailsList">
+                <tr ng-repeat="email in adminEmailsList">
                     <th><label  class="checkbox-inline custom-checkbox nowrap">
                         <input type="checkbox" ng-change="updateEmail(email)" ng-model="email.primary" ng-checked="email.primary">
                         <span></span>

@@ -1,5 +1,5 @@
-<div ng-hide="loadingUserWebhooks" ba-panel ba-panel-title="Edit Switch" ba-panel-class="light-text with-scroll">
-    <form name="editUserWebhooksForm" class="custom-form" novalidate>
+<div ng-hide="loadingSwitches" ba-panel ba-panel-title="Edit Switch" ba-panel-class="light-text with-scroll">
+    <form name="editSwitchForm" class="custom-form" novalidate>
         <div class="form-group">
             <label><strong>Switch Type</strong> <span class="required-icon">*</span></label>
             <br>
@@ -13,7 +13,7 @@
             </select>
         </div>
         <div class="form-group">
-            <button ng-click="updateSwitches()" ng-disabled="!editUserWebhooksForm.$valid" class="btn btn-primary pull-right">Save</button>
+            <button ng-click="updateSwitches()" ng-disabled="!editSwitchForm.$valid" class="btn btn-primary pull-right">Save</button>
             <button ng-click="toggleSwitchesEditView()" class="btn btn-primary pull-right margin-right-10">Back</button>
         </div>
     </form>

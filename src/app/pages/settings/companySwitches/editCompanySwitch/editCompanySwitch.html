@@ -1,0 +1,24 @@
+<div ng-hide="loadingCompanySwitches" ba-panel ba-panel-title="Edit Company Switch" ba-panel-class="light-text with-scroll">
+    <form name="editCompanySwitchForm" class="custom-form" novalidate>
+        <div class="form-group">
+            <label><strong>Transaction Type</strong> <span class="required-icon">*</span></label>
+            <br>
+            <select class="form-control pointer" ng-model="editCompanySwitch.tx_type" ng-options="option for option in companySwitchesOptions" disabled>
+            </select>
+        </div>
+        <div class="form-group">
+            <label><strong>Subtype</strong></label>
+            <input type="text" class="form-control" ng-model="editCompanySwitch.subtype.name" placeholder="None" disabled/>
+        </div>
+        <div class="form-group">
+            <label><strong>Enabled</strong></label>
+            <br>
+            <select class="form-control pointer" ng-change="companySwitchChanged('enabled')" ng-model="editCompanySwitch.enabled" ng-options="bool for bool in boolOptions">
+            </select>
+        </div>
+        <div class="form-group">
+            <button ng-click="updateCompanySwitch()" ng-disabled="!editCompanySwitchForm.$valid" class="btn btn-primary pull-right">Save</button>
+            <button ng-click="toggleCompanySwitchesEditView()" class="btn btn-primary pull-right margin-right-10">Back</button>
+        </div>
+    </form>
+</div>
