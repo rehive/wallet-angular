@@ -26,7 +26,6 @@
                     }
                 }).catch(function (error) {
                   $scope.loadingCurrencies = false;
-                    console.log(error);
                     if(error.status == 403){
                         errorHandler.handle403();
                         return;

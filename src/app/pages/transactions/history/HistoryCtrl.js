@@ -85,7 +85,6 @@
                 }).then(function (res) {
                     $scope.loadingTransactions = false;
                     if (res.status === 200) {
-                        console.log(res);
                         $scope.transactionsData = res.data.data;
                         $scope.transactions = $scope.transactionsData.results;
                         if ($scope.transactions == 0) {

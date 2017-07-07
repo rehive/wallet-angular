@@ -67,7 +67,23 @@
                 <p><strong>Balance: </strong></p>
             </div>
             <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
-                <p ng-bind="transaction.balance">
+                <p ng-bind="transaction.balance | currencyModifiersFilter: transaction.currency.divisibility | preciseRound: transaction.currency.divisibility">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                <p><strong>Reference: </strong></p>
+            </div>
+            <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+                <p ng-bind="transaction.reference">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                <p><strong>Note: </strong></p>
+            </div>
+            <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+                <p ng-bind="transaction.note">
             </div>
         </div>
         <div class="row">
