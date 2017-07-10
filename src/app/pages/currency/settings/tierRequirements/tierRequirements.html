@@ -1,12 +1,6 @@
 <div class="tier-limits">
-    <uib-tabset active="activeTier">
-        <uib-tab ng-click="selectTier('Tier 1')" heading="Tier 1">
-            <tier-requirements-form></tier-requirements-form>
-        </uib-tab>
-        <uib-tab ng-click="selectTier('Tier 2')" heading="Tier 2">
-            <tier-requirements-form></tier-requirements-form>
-        </uib-tab>
-        <uib-tab ng-click="selectTier('Tier 3')" heading="Tier 3">
+    <uib-tabset>
+        <uib-tab ng-repeat="tierLevel in tierLevelsForRequirements" select="getAllTiers(tierLevel)" heading="Tier {{tierLevel}}">
             <tier-requirements-form></tier-requirements-form>
         </uib-tab>
     </uib-tabset>
