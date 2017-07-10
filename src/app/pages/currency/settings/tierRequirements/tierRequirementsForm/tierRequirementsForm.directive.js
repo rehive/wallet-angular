@@ -8,7 +8,6 @@
     function tierRequirementsForm() {
         return {
             restrict: 'E',
-            controller: 'TierRequirementsCtrl',
             templateUrl: 'app/pages/currency/settings/tierRequirements/tierRequirementsForm/tierRequirementsForm.html'
         };
     }
