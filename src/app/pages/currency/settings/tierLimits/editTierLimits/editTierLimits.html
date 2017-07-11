@@ -1,0 +1,28 @@
+<div ng-hide="loadingTierLimits" ba-panel ba-panel-title="Edit Tier Limit" >
+    <form name="editTierLimitForm" class="custom-form" novalidate>
+      <div class="form-group">
+          <label><strong>Transaction Type</strong> <span class="required-icon">*</span></label>
+          <br>
+          <select class="form-control pointer" ng-change="tierLimitChanged('tx_type')" ng-model="editTierLimit.tx_type" ng-options="option for option in txTypeOptions" required>
+          </select>
+      </div>
+      <div class="form-group">
+          <label><strong>Value</strong> <span class="required-icon">*</span></label>
+          <input type="number" class="form-control" ng-change="tierLimitChanged('value')" ng-model="editTierLimit.value" placeholder="Enter value" required/>
+      </div>
+      <div class="form-group">
+          <label><strong>Type</strong> <span class="required-icon">*</span></label>
+          <br>
+          <select class="form-control pointer" ng-change="tierLimitChanged('type')" ng-model="editTierLimit.type" ng-options="typeOption for typeOption in typeOptions" required>
+          </select>
+      </div>
+      <div class="form-group">
+          <label><strong>Subtype</strong></label>
+          <input type="text" class="form-control" ng-change="tierLimitChanged('subtype')" ng-model="editTierLimit.subtype" placeholder="Enter subtype name"/>
+      </div>
+        <div class="form-group">
+            <button ng-click="updateTierLimit()" ng-disabled="!editTierLimitForm.$valid" class="btn btn-primary pull-right">Save</button>
+            <button ng-click="toggleTierLimitEditView()" class="btn btn-primary pull-right margin-right-10">Back</button>
+        </div>
+    </form>
+</div>

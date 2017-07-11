@@ -4,7 +4,8 @@
     angular.module('BlurAdmin.pages.currency.settings', [
       'BlurAdmin.pages.currency.settings.companyBankAccounts',
       'BlurAdmin.pages.currency.settings.tiers',
-      'BlurAdmin.pages.currency.settings.tierRequirements'
+      'BlurAdmin.pages.currency.settings.tierRequirements',
+      'BlurAdmin.pages.currency.settings.tierLimits'
     ])
         .config(routeConfig);
 

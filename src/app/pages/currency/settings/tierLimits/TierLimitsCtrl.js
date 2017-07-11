@@ -1,21 +1,181 @@
 (function () {
     'use strict';
 
-    angular.module('BlurAdmin.pages.currency.settings')
+    angular.module('BlurAdmin.pages.currency.settings.tierLimits')
         .controller('TierLimitsCtrl', TierLimitsCtrl);
 
     /** @ngInject */
-    function TierLimitsCtrl($rootScope,$scope) {
+    function TierLimitsCtrl($rootScope,$scope,cookieManagement,$http,API,$timeout,errorToasts,toastr) {
 
-        $scope.selectedLimitsTier = 'Tier 1';
-        $scope.activeLimitsTier = 0;
+            var vm = this;
+            vm.token = cookieManagement.getCookie('TOKEN');
+            $scope.activeTabIndex = 0;
+            $scope.loadingTierLimits = true;
+            $scope.editingTierLimits = false;
+            vm.updatedTierLimit = {};
+            $scope.tierLimitsParams = {
+                tx_type: 'Credit',
+                type: 'Maximum'
+            };
+            $scope.txTypeOptions = ['Credit','Debit'];
+            $scope.typeOptions = ['Maximum','Maximum per day','Maximum per month','Minimum','Overdraft'];
 
-        $scope.selectLimitsTier= function(tier){
-            $scope.selectedLimitsTier = tier;
-        };
+            $rootScope.$watch('selectedCurrency',function(){
+                if($rootScope.selectedCurrency && $rootScope.selectedCurrency.code) {
+                    $scope.getAllTiers();
+                }
+            });
 
-        $scope.saveLimitsTierRequirements = function(){
-            alert('$scope.selectedLimitsTier ' + $scope.activeLimitsTier);
-        };
+            $scope.toggleTierLimitEditView = function(tierLimit){
+                if(tierLimit) {
+                    $scope.editTierLimit = tierLimit;
+                    $scope.editTierLimit.tx_type == 'credit' ? $scope.editTierLimit.tx_type = 'Credit' : $scope.editTierLimit.tx_type = 'Debit';
+                    $scope.editTierLimit.subtype ? $scope.editTierLimit.subtype = $scope.editTierLimit.subtype.name : $scope.editTierLimit.subtype = '';
+                } else {
+                    $scope.editTierLimit = {};
+                      $scope.getAllTiers($scope.selectedTier.level);
+                }
+                $scope.editingTierLimits = !$scope.editingTierLimits;
+            };
+
+            $scope.getAllTiers = function(tierLevel){
+                if(vm.token) {
+                    $scope.loadingTierLimits = true;
+                    $http.get(API + '/admin/tiers/?currency=' + $rootScope.selectedCurrency.code, {
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'Authorization': vm.token
+                        }
+                    }).then(function (res) {
+                        $scope.loadingTierLimits = false;
+                        if (res.status === 200) {
+                            vm.unsortedTierLevelsArray = _.pluck(res.data.data ,'level');
+                            vm.sortedTierLevelsArray = vm.unsortedTierLevelsArray.sort(function(a, b) {
+                                return a - b;
+                            });
+                            $scope.tierLevelsForLimits = vm.sortedTierLevelsArray;
+                            $scope.allTiers = res.data.data.sort(function(a, b) {
+                                return parseFloat(a.level) - parseFloat(b.level);
+                            });
+                            if(tierLevel){
+                              $scope.activeTabIndex = 0;
+                              $scope.selectTier(tierLevel);
+                            } else {
+                              $timeout(function(){
+                                  $scope.activeTabIndex = 0;
+                                });
+                              $scope.selectTier($scope.tierLevelsForLimits[0]);
+                            }
+                        }
+                    }).catch(function (error) {
+                        $scope.loadingTierLimits = false;
+                        errorToasts.evaluateErrors(error.data);
+                    });
+                }
+            };
+
+            vm.findIndexOfTier = function(element){
+                return this == element.level;
+            };
+
+            $scope.selectTier = function(tierLevel){
+                var index = $scope.allTiers.findIndex(vm.findIndexOfTier,tierLevel);
+                $scope.selectedTier = $scope.allTiers[index];
+                if($scope.selectedTier){
+                    $scope.getTierLimits();
+                }
+            };
+
+            $scope.getTierLimits = function(){
+                if(vm.token) {
+                    $scope.loadingTierLimits = true;
+                    $http.get(API + '/admin/tiers/' + $scope.selectedTier.id + '/limits/',{
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'Authorization': vm.token
+                        }
+                    }).then(function (res) {
+                        $scope.loadingTierLimits = false;
+                        if (res.status === 200) {
+                            $scope.tiersLimitsList = res.data.data;
+                        }
+                    }).catch(function (error) {
+                        $scope.loadingTierLimits = false;
+                        errorToasts.evaluateErrors(error.data);
+                    });
+                }
+            };
+
+            $scope.addTierLimit = function(tierLimitsParams){
+                if(vm.token) {
+                    $scope.loadingTierLimits = true;
+                    tierLimitsParams.tx_type = tierLimitsParams.tx_type.toLowerCase();
+                    tierLimitsParams.type = tierLimitsParams.type == 'Maximum' ? 'max': tierLimitsParams.type == 'Maximum per day' ? 'day_max':
+                                                                      tierLimitsParams.type == 'Maximum per month' ? 'month_max': tierLimitsParams.type == 'Minimum' ? 'min': 'overdraft';
+                    $http.post(API + '/admin/tiers/' + $scope.selectedTier.id + '/limits/',tierLimitsParams,{
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'Authorization': vm.token
+                        }
+                    }).then(function (res) {
+                        $scope.loadingTierLimits = false;
+                        if (res.status === 201) {
+                            console.log(res.data);
+                            toastr.success('Limit added successfully to tier');
+                            $scope.tierLimitsParams = {
+                                tx_type: 'Credit',
+                                type: 'Maximum'
+                            };
+                            $scope.getAllTiers($scope.selectedTier.level);
+                        }
+                    }).catch(function (error) {
+                        $scope.tierLimitsParams = {
+                            tx_type: 'Credit',
+                            type: 'Maximum'
+                        };
+                        $scope.loadingTierLimits = false;
+                        errorToasts.evaluateErrors(error.data);
+                    });
+                }
+            };
+
+            $scope.tierLimitChanged = function(field){
+                vm.updatedTierLimit[field] = $scope.editTierLimit[field];
+            };
+
+            $scope.updateTierLimit = function(){
+                if(vm.token) {
+                    $scope.loadingTierLimits = true;
+                    $scope.editingTierLimits = !$scope.editingTierLimits;
+                    vm.updatedTierLimit.tx_type = vm.updatedTierLimit.tx_type.toLowerCase();
+                    vm.updatedTierLimit.type = vm.updatedTierLimit.type == 'Maximum' ? 'max': vm.updatedTierLimit.type == 'Maximum per day' ? 'day_max':
+                                                                      vm.updatedTierLimit.type == 'Maximum per month' ? 'month_max': vm.updatedTierLimit.type == 'Minimum' ? 'min': 'overdraft';
+
+                    $http.patch(API + '/admin/tiers/' + $scope.selectedTier.id + '/limits/' + $scope.editTierLimit.id + '/',vm.updatedTierLimit,{
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'Authorization': vm.token
+                        }
+                    }).then(function (res) {
+                        $scope.loadingTierLimits = false;
+                        if (res.status === 200) {
+                            toastr.success('Limit updated successfully');
+                            $scope.tierLimitsParams = {
+                                tx_type: 'Credit',
+                                type: 'Maximum'
+                            };
+                            $scope.getAllTiers($scope.selectedTier.level);
+                        }
+                    }).catch(function (error) {
+                        $scope.tierLimitsParams = {
+                            tx_type: 'Credit',
+                            type: 'Maximum'
+                        };
+                        $scope.loadingTierLimits = false;
+                        errorToasts.evaluateErrors(error.data);
+                    });
+                }
+            };
+
     }
 })();
