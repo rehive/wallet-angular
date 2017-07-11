@@ -5,10 +5,11 @@
         .controller('TierRequirementsCtrl', TierRequirementsCtrl);
 
     /** @ngInject */
-    function TierRequirementsCtrl($rootScope,$scope,cookieManagement,$http,API,errorToasts,_,toastr,$window) {
+    function TierRequirementsCtrl($rootScope,$scope,cookieManagement,$http,API,errorToasts,_,toastr,$window,$timeout) {
 
         var vm = this;
         vm.token = cookieManagement.getCookie('TOKEN');
+        $scope.activeTabIndex = 0;
         $scope.loadingTierRequirements = true;
 
         $rootScope.$watch('selectedCurrency',function(){
@@ -36,7 +37,15 @@
                         $scope.allTiers = res.data.data.sort(function(a, b) {
                             return parseFloat(a.level) - parseFloat(b.level);
                         });
-                        $scope.selectTier(tierLevel);
+                        if(tierLevel){
+                          $scope.activeTabIndex = 0;
+                          $scope.selectTier(tierLevel);
+                        } else {
+                          $timeout(function(){
+                              $scope.activeTabIndex = 0;
+                            });
+                          $scope.selectTier($scope.tierLevelsForRequirements[0]);
+                        }
                     }
                 }).catch(function (error) {
                     $scope.loadingTierRequirements = false;
@@ -50,21 +59,11 @@
         };
 
         $scope.selectTier = function(tierLevel){
-
             var index = $scope.allTiers.findIndex(vm.findIndexOfTier,tierLevel);
             $scope.selectedTier = $scope.allTiers[index];
             if($scope.selectedTier){
                 $scope.getTierRequirements();
             }
-        };
-
-        vm.checkRequirementsInTier = function(requirementsArray){
-            $scope.tierRequirementFields = {};
-            requirementsArray.forEach(function(element){
-                var fieldString = element.requirement.toLowerCase().trim();
-                var fieldName = fieldString.replace(/ /g,'_');
-                $scope.tierRequirementFields[fieldName] = true;
-            });
         };
 
         $scope.getTierRequirements = function(){
@@ -85,6 +84,15 @@
                     errorToasts.evaluateErrors(error.data);
                 });
             }
+        };
+
+        vm.checkRequirementsInTier = function(requirementsArray){
+            $scope.tierRequirementFields = {};
+            requirementsArray.forEach(function(element){
+                var fieldString = element.requirement.toLowerCase().trim();
+                var fieldName = fieldString.replace(/ /g,'_');
+                $scope.tierRequirementFields[fieldName] = true;
+            });
         };
 
         $scope.toggleTierRequirements = function(fieldName){
