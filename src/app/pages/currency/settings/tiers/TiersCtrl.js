@@ -1,7 +1,7 @@
 (function () {
     'use strict';
 
-    angular.module('BlurAdmin.pages.currency.settings')
+    angular.module('BlurAdmin.pages.currency.settings.tiers')
         .controller('TiersCtrl', TiersCtrl);
 
     function TiersCtrl($rootScope,$scope,$uibModal,$http,cookieManagement,API,toastr,errorToasts,$window) {

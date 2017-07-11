@@ -5,10 +5,10 @@
         .controller('CurrencySettingsCtrl', CurrencySettingsCtrl);
 
     /** @ngInject */
-    function CurrencySettingsCtrl($scope) {
+    function CurrencySettingsCtrl($scope,$location) {
 
-        $scope.goToCurrencySetting = function(settingView){
-            $scope.settingView = settingView;
+        $scope.goToCurrencySetting = function(settingPath){
+            $location.path(settingPath);
         };
 
     }

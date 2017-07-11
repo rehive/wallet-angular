@@ -2,24 +2,9 @@
     <div class="col-lg-3 col-md-4 col-sm-12 col-xs-12">
         <currency-settings-menu></currency-settings-menu>
     </div>
-    <div ng-show="settingView == 'bankaccounts'" class="col-lg-6 col-md-8 col-sm-12 col-xs-12">
-         <company-bank-accounts></company-bank-accounts>
+    <div class="col-lg-6 col-md-8 col-sm-12 col-xs-12">
+         <div ui-view></div>
     </div>
-    <div ng-show="settingView == 'tiers'" class="col-lg-6 col-md-8 col-sm-12 col-xs-12">
-         <tiers></tiers>
-    </div>
-    <div ng-show="settingView == 'tierrequirements'" class="col-lg-6 col-md-8 col-sm-12 col-xs-12">
-    <tier-requirements></tier-requirements>
-    </div>
-    <!--<div ng-show="settingView == 'fees'" class="col-lg-6 col-md-8 col-sm-12 col-xs-12">-->
-        <!--<fees></fees>-->
-    <!--</div>-->
-    <!--<div ng-show="settingView == 'tierlimits'" class="col-lg-6 col-md-8 col-sm-12 col-xs-12">-->
-        <!--<tier-limits></tier-limits>-->
-    <!--</div>-->
-    <!--<div ng-show="settingView == 'controls'" class="col-lg-6 col-md-8 col-sm-12 col-xs-12">-->
-        <!--<currency-controls></currency-controls>-->
-    <!--</div>-->
 </div>
 <div ng-show="newUser">
     <div class="row">

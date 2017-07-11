@@ -1,7 +1,11 @@
 (function () {
     'use strict';
 
-    angular.module('BlurAdmin.pages.currency.settings', [])
+    angular.module('BlurAdmin.pages.currency.settings', [
+      'BlurAdmin.pages.currency.settings.companyBankAccounts',
+      'BlurAdmin.pages.currency.settings.tiers',
+      'BlurAdmin.pages.currency.settings.tierRequirements'
+    ])
         .config(routeConfig);
 
     /** @ngInject */

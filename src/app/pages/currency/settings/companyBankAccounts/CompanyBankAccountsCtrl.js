@@ -1,7 +1,7 @@
 (function () {
     'use strict';
 
-    angular.module('BlurAdmin.pages.currency.settings')
+    angular.module('BlurAdmin.pages.currency.settings.companyBankAccounts')
         .controller('CompanyBankAccountsCtrl', CompanyBankAccountsCtrl);
 
     /** @ngInject */
@@ -90,6 +90,7 @@
                     }
                 }).then(function (res) {
                     $scope.loadingCompanyBankAccounts = false;
+                    toastr.success('Bank successfully added');
                 }).catch(function (error) {
                     $scope.loadingCompanyBankAccounts = false;
                     errorToasts.evaluateErrors(error.data);
@@ -107,6 +108,7 @@
                     }
                 }).then(function (res) {
                     $scope.loadingCompanyBankAccounts = false;
+                    toastr.success('Bank successfully removed');
                 }).catch(function (error) {
                     $scope.loadingCompanyBankAccounts = false;
                     errorToasts.evaluateErrors(error.data);

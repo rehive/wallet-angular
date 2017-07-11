@@ -1,7 +1,7 @@
 (function () {
     'use strict';
 
-    angular.module('BlurAdmin.pages.currency.settings')
+    angular.module('BlurAdmin.pages.currency.settings.tierRequirements')
         .directive('tierRequirementsForm', tierRequirementsForm);
 
     /** @ngInject */
