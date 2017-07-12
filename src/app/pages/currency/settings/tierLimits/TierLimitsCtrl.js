@@ -5,7 +5,7 @@
         .controller('TierLimitsCtrl', TierLimitsCtrl);
 
     /** @ngInject */
-    function TierLimitsCtrl($rootScope,$scope,cookieManagement,$http,API,$timeout,errorToasts,toastr) {
+    function TierLimitsCtrl($rootScope,$scope,cookieManagement,$http,API,$timeout,errorToasts,toastr,$uibModal) {
 
             var vm = this;
             vm.token = cookieManagement.getCookie('TOKEN');
@@ -176,6 +176,34 @@
                     });
                 }
             };
+
+        vm.findIndexOfTierLimit = function(element){
+            return this.id == element.id;
+        };
+
+        $scope.openTierLimitsModal = function (page, size,tierLimit) {
+            vm.theModal = $uibModal.open({
+                animation: true,
+                templateUrl: page,
+                size: size,
+                controller: 'TierLimitsModalCtrl',
+                scope: $scope,
+                resolve: {
+                    tierLimit: function () {
+                        return tierLimit;
+                    },
+                    selectedTier: function () {
+                        return $scope.selectedTier;
+                    }
+                }
+            });
+
+            vm.theModal.result.then(function(tierLimit){
+                var index = $scope.tiersLimitsList.findIndex(vm.findIndexOfTierLimit,tierLimit);
+                $scope.tiersLimitsList.splice(index, 1);
+            }, function(){
+            });
+        };
 
     }
 })();
