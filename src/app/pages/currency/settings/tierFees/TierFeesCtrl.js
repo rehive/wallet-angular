@@ -162,7 +162,6 @@
                     };
                     vm.updatedTierFee = {};
                     $scope.getAllTiers($scope.selectedTier.level);
-                    $scope.loadingTierFees = false;
                     errorToasts.evaluateErrors(error.data);
                 });
             }

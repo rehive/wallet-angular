@@ -172,7 +172,6 @@
                     };
                     vm.updatedTierSwitch = {};
                     $scope.getAllTiers($scope.selectedTier.level);
-                    $scope.loadingTierSwitches = false;
                     errorToasts.evaluateErrors(error.data);
                 });
             }

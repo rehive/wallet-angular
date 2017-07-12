@@ -98,7 +98,6 @@
               }).catch(function (error) {
                   vm.updatedTier = {};
                   vm.getTiers();
-                  $scope.loadingTiers = false;
                   errorToasts.evaluateErrors(error.data);
               });
           }

@@ -13,6 +13,9 @@
             convertToCents: function (amount,divisibility) {
                 return  amount * Math.pow(10,divisibility);
             },
+            convertFromCents: function (amount,divisibility) {
+                return  amount / Math.pow(10,divisibility);
+            },
             validateCurrency: function (amount,divisibility) {
                 var amountInArray = amount.toString().split('.');
                 var afterDecimalValue = amountInArray[1];
