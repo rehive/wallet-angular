@@ -78,6 +78,7 @@
             };
 
             $scope.selectTier = function(tierLevel){
+                $scope.editingTierLimits = false;
                 var index = $scope.allTiers.findIndex(vm.findIndexOfTier,tierLevel);
                 $scope.selectedTier = $scope.allTiers[index];
                 if($scope.selectedTier){

@@ -2,7 +2,7 @@
     <uib-tabset active="activeTabIndex">
         <uib-tab ng-repeat="tierLevel in tierLevelsForFees" select="selectTier(tierLevel)" heading="Tier {{tierLevel}}">
             <div ng-hide="editingTierFees">
-                <div ng-show="tiersFeesList.length > 0" ba-panel class="setting-bank-accounts" ba-panel-title="Tier Fees Switches" ba-panel-class="light-text with-scroll">
+                <div ng-show="tiersFeesList.length > 0" ba-panel class="setting-bank-accounts" ba-panel-title="Tier Fees" ba-panel-class="light-text with-scroll">
                     <table class="table fees-table table-striped setting-bank-accounts-table">
                         <tr class="black-muted-bg divider">
                             <th><strong>Tx Type</strong></th>

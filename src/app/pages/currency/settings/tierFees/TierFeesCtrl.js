@@ -76,6 +76,7 @@
         };
 
         $scope.selectTier = function(tierLevel){
+            $scope.editingTierFees = false;
             var index = $scope.allTiers.findIndex(vm.findIndexOfTier,tierLevel);
             $scope.selectedTier = $scope.allTiers[index];
             if($scope.selectedTier){
@@ -107,8 +108,6 @@
             if(vm.token) {
                 $scope.loadingTierFees = true;
                 tierFeesParams.tx_type = tierFeesParams.tx_type.toLowerCase();
-                tierFeesParams.type = tierFeesParams.type == 'Maximum' ? 'max': tierFeesParams.type == 'Maximum per day' ? 'day_max':
-                    tierFeesParams.type == 'Maximum per month' ? 'month_max': tierFeesParams.type == 'Minimum' ? 'min': 'overdraft';
                 $http.post(API + '/admin/tiers/' + $scope.selectedTier.id + '/fees/',tierFeesParams,{
                     headers: {
                         'Content-Type': 'application/json',
@@ -119,15 +118,13 @@
                     if (res.status === 201) {
                         toastr.success('Fee added successfully to tier');
                         $scope.tierFeesParams = {
-                            tx_type: 'Credit',
-                            type: 'Maximum'
+                            tx_type: 'Credit'
                         };
                         $scope.getAllTiers($scope.selectedTier.level);
                     }
                 }).catch(function (error) {
                     $scope.tierFeesParams = {
-                        tx_type: 'Credit',
-                        type: 'Maximum'
+                        tx_type: 'Credit'
                     };
                     $scope.loadingTierFees = false;
                     errorToasts.evaluateErrors(error.data);
@@ -155,16 +152,14 @@
                     if (res.status === 200) {
                         toastr.success('Fee updated successfully');
                         $scope.tierFeesParams = {
-                            tx_type: 'Credit',
-                            type: 'Maximum'
+                            tx_type: 'Credit'
                         };
                         vm.updatedTierFee = {};
                         $scope.getAllTiers($scope.selectedTier.level);
                     }
                 }).catch(function (error) {
                     $scope.tierFeesParams = {
-                        tx_type: 'Credit',
-                        type: 'Maximum'
+                        tx_type: 'Credit'
                     };
                     vm.updatedTierFee = {};
                     $scope.getAllTiers($scope.selectedTier.level);
