@@ -119,11 +119,13 @@
              }).then(function (res) {
                  $scope.loadingSwitches = false;
                  if (res.status === 200) {
+                     vm.updatedSwitches = {};
                      vm.getSwitches();
                      toastr.success('You have successfully updated the Switch!');
                  }
              }).catch(function (error) {
                  $scope.loadingSwitches = false;
+                 vm.updatedSwitches = {};
                  if(error.status == 403){
                      errorHandler.handle403();
                      return

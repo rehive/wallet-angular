@@ -99,12 +99,13 @@
             }).then(function (res) {
                 $scope.loadingUserWebhooks = false;
                 if (res.status === 200) {
+                    vm.updatedUserWebhook = {};
                     vm.getUserWebhooks();
-                    $scope.toggleUserWebhooksEditView();
                     toastr.success('You have successfully updated the Webhook!');
                 }
             }).catch(function (error) {
                 $scope.loadingUserWebhooks = false;
+                vm.updatedUserWebhook = {};
                 if(error.status == 403){
                     errorHandler.handle403();
                     return

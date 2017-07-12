@@ -69,12 +69,14 @@
             }).then(function (res) {
                 $scope.loadingCompanyInfo = false;
                 if (res.status === 200) {
+                    vm.updatedCompanyInfo = {};
                     $scope.company = res.data.data;
                     $rootScope.companyName = res.data.data.name;
                     toastr.success('You have successfully updated the company info!');
                 }
             }).catch(function (error) {
                 $scope.loadingCompanyInfo = false;
+                vm.updatedCompanyInfo = {};
                 if(error.status == 403){
                     errorHandler.handle403();
                     return

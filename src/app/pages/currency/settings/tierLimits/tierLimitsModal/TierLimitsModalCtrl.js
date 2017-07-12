@@ -8,7 +8,6 @@
 
         var vm = this;
 
-        console.log(selectedTier);
         $scope.tierLimit = tierLimit;
         $scope.selectedTier = selectedTier;
         $scope.deletingTierLimits = false;

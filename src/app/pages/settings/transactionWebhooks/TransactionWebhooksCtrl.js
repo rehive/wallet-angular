@@ -96,12 +96,14 @@
             }).then(function (res) {
                 $scope.loadingTransactionWebhooks = false;
                 if (res.status === 200) {
+                    vm.updatedTransactionWebhook = {};
                     vm.getTransactionWebhooks();
                     $scope.toggleTransactionWebhooksEditView();
                     toastr.success('You have successfully updated the Webhook!');
                 }
             }).catch(function (error) {
                 $scope.loadingTransactionWebhooks = false;
+                vm.updatedTransactionWebhook = {};
                 if(error.status == 403){
                     errorHandler.handle403();
                     return

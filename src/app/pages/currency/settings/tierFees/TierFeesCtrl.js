@@ -14,11 +14,9 @@
         $scope.editingTierFees = false;
         vm.updatedTierFee = {};
         $scope.tierFeesParams = {
-            tx_type: 'Credit',
-            type: 'Maximum'
+            tx_type: 'Credit'
         };
         $scope.txTypeOptions = ['Credit','Debit'];
-        $scope.typeOptions = ['Maximum','Maximum per day','Maximum per month','Minimum','Overdraft'];
 
         $rootScope.$watch('selectedCurrency',function(){
             if($rootScope.selectedCurrency && $rootScope.selectedCurrency.code) {
@@ -58,7 +56,6 @@
                             return parseFloat(a.level) - parseFloat(b.level);
                         });
                         if(tierLevel){
-                            $scope.activeTabIndex = 0;
                             $scope.selectTier(tierLevel);
                         } else {
                             $timeout(function(){
@@ -120,7 +117,6 @@
                 }).then(function (res) {
                     $scope.loadingTierFees = false;
                     if (res.status === 201) {
-                        console.log(res.data);
                         toastr.success('Fee added successfully to tier');
                         $scope.tierFeesParams = {
                             tx_type: 'Credit',
@@ -147,9 +143,7 @@
             if(vm.token) {
                 $scope.loadingTierFees = true;
                 $scope.editingTierFees = !$scope.editingTierFees;
-                vm.updatedTierFee.tx_type = vm.updatedTierFee.tx_type.toLowerCase();
-                vm.updatedTierFee.type = vm.updatedTierFee.type == 'Maximum' ? 'max': vm.updatedTierFee.type == 'Maximum per day' ? 'day_max':
-                    vm.updatedTierFee.type == 'Maximum per month' ? 'month_max': vm.updatedTierFee.type == 'Minimum' ? 'min': 'overdraft';
+                vm.updatedTierFee.tx_type ? vm.updatedTierFee.tx_type = vm.updatedTierFee.tx_type.toLowerCase() : '';
 
                 $http.patch(API + '/admin/tiers/' + $scope.selectedTier.id + '/fees/' + $scope.editTierFee.id + '/',vm.updatedTierFee,{
                     headers: {
@@ -164,6 +158,7 @@
                             tx_type: 'Credit',
                             type: 'Maximum'
                         };
+                        vm.updatedTierFee = {};
                         $scope.getAllTiers($scope.selectedTier.level);
                     }
                 }).catch(function (error) {
@@ -171,6 +166,8 @@
                         tx_type: 'Credit',
                         type: 'Maximum'
                     };
+                    vm.updatedTierFee = {};
+                    $scope.getAllTiers($scope.selectedTier.level);
                     $scope.loadingTierFees = false;
                     errorToasts.evaluateErrors(error.data);
                 });

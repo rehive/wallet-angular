@@ -96,10 +96,12 @@
                 }).then(function (res) {
                     $scope.loadingTransactionsSwitches = false;
                     if (res.status === 200) {
+                        vm.updatedTransactionsSwitch = {};
                         toastr.success('Successfully updated the transactions switch!');
                         vm.getTransactionsSwitches();
                     }
                 }).catch(function (error) {
+                    vm.updatedTransactionsSwitch = {};
                     $scope.loadingTransactionsSwitches = false;
                     errorToasts.evaluateErrors(error.data);
                 });

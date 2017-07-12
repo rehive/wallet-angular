@@ -87,11 +87,13 @@
             }).then(function (res) {
                 $scope.loadingBankAccounts = false;
                 if (res.status === 200) {
+                    vm.updatedBankAccount = {};
                     vm.getBankAccounts();
                     toastr.success('You have successfully updated the bank account!');
                 }
             }).catch(function (error) {
                 $scope.loadingBankAccounts = false;
+                vm.updatedBankAccount = {};
                 if(error.status == 403){
                     errorHandler.handle403();
                     return

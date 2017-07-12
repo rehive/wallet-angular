@@ -7,9 +7,10 @@
     </div>
     <div class="modal-body">
         <p>Tx Type: {{tierFee.tx_type | capitalizeWord}}</p>
-        <p>Type: {{tierFee.type | capitalizeWord}}</p>
-        <p>Subtype: {{tierFee.subtype ? companySwitches.subtype.name : 'None'}}</p>
         <p>Value: {{tierFee.value}}</p>
+        <p>Percenage: {{tierFee.percentage ? tierFee.percentage + '%' : 'None'}}</p>
+        <p>Subtype: {{tierFee.subtype ? tierFee.subtype.name : 'None'}}</p>
+
     </div>
     <div class="modal-footer">
         <button type="button" class="btn btn-primary pull-left" ng-click="$dismiss()">Close</button>

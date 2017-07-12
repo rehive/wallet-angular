@@ -90,11 +90,13 @@
               }).then(function (res) {
                 $scope.loadingTiers = false;
                   if (res.status === 200) {
-                    $scope.newTier = {currency: $rootScope.selectedCurrency.code};
-                    toastr.success('You have successfully updated a tier!');
+                      vm.updatedTier = {};
+                      $scope.newTier = {currency: $rootScope.selectedCurrency.code};
+                      toastr.success('You have successfully updated a tier!');
                       vm.getTiers();
                   }
               }).catch(function (error) {
+                  vm.updatedTier = {};
                   vm.getTiers();
                   $scope.loadingTiers = false;
                   errorToasts.evaluateErrors(error.data);

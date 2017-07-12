@@ -58,7 +58,6 @@
                                 return parseFloat(a.level) - parseFloat(b.level);
                             });
                             if(tierLevel){
-                              $scope.activeTabIndex = 0;
                               $scope.selectTier(tierLevel);
                             } else {
                               $timeout(function(){
@@ -120,7 +119,6 @@
                     }).then(function (res) {
                         $scope.loadingTierLimits = false;
                         if (res.status === 201) {
-                            console.log(res.data);
                             toastr.success('Limit added successfully to tier');
                             $scope.tierLimitsParams = {
                                 tx_type: 'Credit',
@@ -147,9 +145,9 @@
                 if(vm.token) {
                     $scope.loadingTierLimits = true;
                     $scope.editingTierLimits = !$scope.editingTierLimits;
-                    vm.updatedTierLimit.tx_type = vm.updatedTierLimit.tx_type.toLowerCase();
-                    vm.updatedTierLimit.type = vm.updatedTierLimit.type == 'Maximum' ? 'max': vm.updatedTierLimit.type == 'Maximum per day' ? 'day_max':
-                                                                      vm.updatedTierLimit.type == 'Maximum per month' ? 'month_max': vm.updatedTierLimit.type == 'Minimum' ? 'min': 'overdraft';
+                    vm.updatedTierLimit.tx_type ? vm.updatedTierLimit.tx_type = vm.updatedTierLimit.tx_type.toLowerCase() : '';
+                    vm.updatedTierLimit.type ? vm.updatedTierLimit.type = vm.updatedTierLimit.type == 'Maximum' ? 'max': vm.updatedTierLimit.type == 'Maximum per day' ? 'day_max':
+                        vm.updatedTierLimit.type == 'Maximum per month' ? 'month_max': vm.updatedTierLimit.type == 'Minimum' ? 'min': 'overdraft' : '';
 
                     $http.patch(API + '/admin/tiers/' + $scope.selectedTier.id + '/limits/' + $scope.editTierLimit.id + '/',vm.updatedTierLimit,{
                         headers: {
@@ -164,13 +162,17 @@
                                 tx_type: 'Credit',
                                 type: 'Maximum'
                             };
+                            vm.updatedTierLimit = {};
                             $scope.getAllTiers($scope.selectedTier.level);
+
                         }
                     }).catch(function (error) {
                         $scope.tierLimitsParams = {
                             tx_type: 'Credit',
                             type: 'Maximum'
                         };
+                        vm.updatedTierLimit = {};
+                        $scope.getAllTiers($scope.selectedTier.level);
                         $scope.loadingTierLimits = false;
                         errorToasts.evaluateErrors(error.data);
                     });

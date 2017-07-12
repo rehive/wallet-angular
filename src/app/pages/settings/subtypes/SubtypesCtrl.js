@@ -91,11 +91,13 @@
             }).then(function (res) {
                 $scope.loadingSubtypes = false;
                 if (res.status === 200) {
+                    vm.updatedSubtype = {};
                     vm.getSubtypes();
                     toastr.success('You have successfully updated the subtype!');
                 }
             }).catch(function (error) {
                 $scope.loadingSubtypes = false;
+                vm.updatedSubtype = {};
                 if(error.status == 403){
                     errorHandler.handle403();
                     return
