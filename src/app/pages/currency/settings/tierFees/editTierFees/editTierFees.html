@@ -1,21 +1,28 @@
-<div ba-panel ba-panel-title="Edit Fee" ba-panel-class="light-text with-scroll">
-    <form class="custom-form">
+<div ng-hide="loadingTierFees" ba-panel ba-panel-title="Edit Tier Fee" >
+    <form name="editTierFeeForm" class="custom-form" novalidate>
         <div class="form-group">
-            <label><strong>Transaction Type</strong></label>
+            <label><strong>Transaction Type</strong> <span class="required-icon">*</span></label>
             <br>
-            <select class="form-control pointer" ng-model="editFees.feeType" ng-options="type for type in typeOptions">
+            <select class="form-control pointer" ng-change="tierFeeChanged('tx_type')" ng-model="editTierFee.tx_type" ng-options="option for option in txTypeOptions" required>
             </select>
         </div>
         <div class="form-group">
-            <label><strong>Fee Amount(Fixed value)</strong> <span class="required-icon"></span></label>
-            <input type="number" ng-model="editFees.feeAmount" class="form-control"  placeholder="0.00">
+            <label><strong>Value</strong> <span class="required-icon">*</span></label>
+            <input type="number" class="form-control" ng-change="tierFeeChanged('value')" ng-model="editTierFee.value" placeholder="Enter value" required/>
         </div>
         <div class="form-group">
-            <label><strong>Percentage (Calculated on transaction amount)</strong> <span class="required-icon"></span></label>
-            <input type="number" ng-model="editFees.feePercentage" class="form-control"  placeholder="%">
+            <label><strong>Type</strong> <span class="required-icon">*</span></label>
+            <br>
+            <select class="form-control pointer" ng-change="tierFeeChanged('type')" ng-model="editTierFee.type" ng-options="typeOption for typeOption in typeOptions" required>
+            </select>
         </div>
         <div class="form-group">
-            <button ng-click="toggleEditView()" class="btn btn-primary pull-right">Edit</button>
+            <label><strong>Subtype</strong></label>
+            <input type="text" class="form-control" ng-change="tierFeeChanged('subtype')" ng-model="editTierFee.subtype" placeholder="Enter subtype name"/>
+        </div>
+        <div class="form-group">
+            <button ng-click="updateTierFee()" ng-disabled="!editTierFeeForm.$valid" class="btn btn-primary pull-right">Save</button>
+            <button ng-click="toggleTierFeeEditView()" class="btn btn-primary pull-right margin-right-10">Back</button>
         </div>
     </form>
 </div>

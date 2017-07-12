@@ -1,14 +1,14 @@
 (function () {
     'use strict';
 
-    angular.module('BlurAdmin.pages.currency.settings')
-        .directive('editFees', editFees);
+    angular.module('BlurAdmin.pages.currency.settings.tierFees')
+        .directive('editTierFees', editTierFees);
 
     /** @ngInject */
-    function editFees() {
+    function editTierFees() {
         return {
             restrict: 'E',
-            templateUrl: 'app/pages/currency/settings/fees/editFees/editFees.html'
+            templateUrl: 'app/pages/currency/settings/tierFees/editTierFees/editTierFees.html'
         };
     }
 })();

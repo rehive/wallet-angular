@@ -1,0 +1,18 @@
+<div class="modal-content">
+    <div class="modal-header">
+        <button type="button" class="close" ng-click="$dismiss()" aria-label="Close">
+            <em class="ion-ios-close-empty sn-link-close"></em>
+        </button>
+        <h4 class="modal-title" id="myModalLabel">Delete Tier Fees</h4>
+    </div>
+    <div class="modal-body">
+        <p>Tx Type: {{tierFee.tx_type | capitalizeWord}}</p>
+        <p>Type: {{tierFee.type | capitalizeWord}}</p>
+        <p>Subtype: {{tierFee.subtype ? companySwitches.subtype.name : 'None'}}</p>
+        <p>Value: {{tierFee.value}}</p>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-primary pull-left" ng-click="$dismiss()">Close</button>
+        <button ng-click="deleteTierFee()" ng-disabled="deletingTierFees" type="button" class="btn btn-danger pull-right">Delete</button>
+    </div>
+</div>

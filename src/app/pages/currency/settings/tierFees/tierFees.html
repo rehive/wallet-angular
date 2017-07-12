@@ -1,45 +1,68 @@
-<div ng-show="editingFee == false">
-    <div ba-panel ba-panel-title="Transaction Fees" ba-panel-class="light-text with-scroll">
-        <table class="table fees-table table-striped ">
-            <tr class="black-muted-bg divider">
-                <th><strong>Type</strong></th>
-                <th><strong>Amount</strong></th>
-                <th><strong>Percentage</strong></th>
-                <th></th>
-            </tr>
-            <tr>
-                <td>Withdraw</td>
-                <td>2.00</td>
-                <td>10.00%</td>
-                <td class="rehive-table-row-last-child">
-                    <button class="btn btn-danger pull-right rehive-settings-buttons">Delete</button>
-                    <button ng-click="toggleEditView()" class="btn btn-primary pull-right rehive-settings-buttons">Edit</button>
-                </td>
-            </tr>
-        </table>
-    </div>
-    <div ba-panel ba-panel-title="Add Fee" ba-panel-class="light-text with-scroll">
-        <form name="feesForm" class="custom-form">
-            <div class="form-group">
-                <label><strong>Transaction Type</strong></label>
-                <br>
-                <select class="form-control pointer" ng-model="feesParams.feeType" ng-options="type for type in typeOptions">
-                </select>
+<div ng-hide="loadingTierFees && (tierLevelsForFees.length > 0)" class="tier-limits">
+    <uib-tabset active="activeTabIndex">
+        <uib-tab ng-repeat="tierLevel in tierLevelsForFees" select="selectTier(tierLevel)" heading="Tier {{tierLevel}}">
+            <div ng-hide="editingTierFees">
+                <div ng-show="tiersFeesList.length > 0" ba-panel class="setting-bank-accounts" ba-panel-title="Tier Fees Switches" ba-panel-class="light-text with-scroll">
+                    <table class="table fees-table table-striped setting-bank-accounts-table">
+                        <tr class="black-muted-bg divider">
+                            <th><strong>Tx Type</strong></th>
+                            <th><strong>Type</strong></th>
+                            <th><strong>Amount</strong></th>
+                            <th><strong>Percentage</strong></th>
+                            <th></th>
+                        </tr>
+                        <tr ng-repeat="tierFee in tiersFeesList">
+                            <th title="{{tierFee.tx_type}}" ng-bind="tierFee.tx_type | capitalizeWord | limitTo: '35'"></th>
+                            <th title="{{tierFee.value}}" ng-bind="tierFee.value"></th>
+                            <th title="{{tierFee.type}}" ng-bind="tierFee.type | capitalizeWord | limitTo: '35'"></th>
+                            <th title="{{tierFee.subtype ? tierFee.subtype.name : 'None'}}" ng-bind="tierFee.subtype ? tierFee.subtype.name : 'None'| limitTo: '35'"></th>
+                            <th class="rehive-table-row-last-child">
+                                <button ng-click="openTierFeesModal('app/pages/currency/settings/tierFees/tierFeesModal/tierFeesModal.html','md',tierFee)" class="btn btn-danger pull-right rehive-settings-buttons">Delete</button>
+                                <button ng-click="toggleTierFeeEditView(tierFee)" class="btn btn-primary pull-right rehive-settings-buttons">Edit</button>
+                            </th>
+                        </tr>
+                    </table>
+                </div>
+                <div ba-panel ng-show="tiersFeesList.length == 0">
+                    <h3>No limits are available for this tier.</h3>
+                </div>
+                <div ba-panel ba-panel-title="Add Tier Fee" ba-panel-class="light-text with-scroll">
+                    <form name="tierFeeForm" class="custom-form">
+                        <div class="form-group">
+                            <label><strong>Transaction Type</strong> <span class="required-icon">*</span></label>
+                            <br>
+                            <select class="form-control pointer" ng-model="tierFeesParams.tx_type" ng-options="option for option in txTypeOptions" required>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label><strong>Value</strong> <span class="required-icon">*</span></label>
+                            <input type="number" class="form-control" ng-model="tierFeesParams.value" placeholder="Enter value" required/>
+                        </div>
+                        <div class="form-group">
+                            <label><strong>Type</strong> <span class="required-icon">*</span></label>
+                            <br>
+                            <select class="form-control pointer" ng-model="tierFeesParams.type" ng-options="typeOption for typeOption in typeOptions" required>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label><strong>Subtype</strong></label>
+                            <input type="text" class="form-control" ng-model="tierFeesParams.subtype" placeholder="Enter subtype name"/>
+                        </div>
+                        <div class="form-group">
+                            <button ng-click="addTierFee(tierFeesParams)" ng-disabled="!tierFeeForm.$valid" class="btn btn-primary pull-right">Add</button>
+                        </div>
+                    </form>
+                </div>
             </div>
-            <div class="form-group">
-                <label><strong>Fee Amount(Fixed value)</strong> <span class="required-icon"></span></label>
-                <input type="number" ng-model="debitData.amount" class="form-control"  placeholder="0.00">
+            <div ng-show="editingTierFees">
+                <edit-tier-limits></edit-tier-limits>
             </div>
-            <div class="form-group">
-                <label><strong>Percentage (Calculated on transaction amount)</strong> <span class="required-icon"></span></label>
-                <input type="number" ng-model="debitData.percentage" class="form-control"  placeholder="%">
-            </div>
-            <div class="form-group">
-                <button class="btn btn-primary pull-right">Add</button>
-            </div>
-        </form>
-    </div>
+        </uib-tab>
+    </uib-tabset>
 </div>
-<div ng-hide="editingFee == false">
-    <edit-fees></edit-fees>
+<div ba-panel ng-show="!loadingTierFees && tierLevelsForFees.length == 0">
+    <h3>No tiers are available for this currency.</h3>
+</div>
+<div ba-panel ng-show="loadingTierFees">
+    <loading-image></loading-image>
 </div>
