@@ -28,7 +28,6 @@
             if(tierFee) {
                 $scope.editTierFee = tierFee;
                 $scope.editTierFee.tx_type == 'credit' ? $scope.editTierFee.tx_type = 'Credit' : $scope.editTierFee.tx_type = 'Debit';
-                $scope.editTierFee.subtype ? $scope.editTierFee.subtype = $scope.editTierFee.subtype.name : $scope.editTierFee.subtype = '';
             } else {
                 $scope.editTierFee = {};
                 $scope.getAllTiers($scope.selectedTier.level);

@@ -30,7 +30,6 @@
                 if(tierLimit) {
                     $scope.editTierLimit = tierLimit;
                     $scope.editTierLimit.tx_type == 'credit' ? $scope.editTierLimit.tx_type = 'Credit' : $scope.editTierLimit.tx_type = 'Debit';
-                    $scope.editTierLimit.subtype ? $scope.editTierLimit.subtype = $scope.editTierLimit.subtype.name : $scope.editTierLimit.subtype = '';
                 } else {
                     $scope.editTierLimit = {};
                       $scope.getAllTiers($scope.selectedTier.level);

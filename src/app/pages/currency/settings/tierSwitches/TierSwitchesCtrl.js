@@ -30,7 +30,6 @@
             if(tierSwitch) {
                 $scope.editTierSwitch = tierSwitch;
                 $scope.editTierSwitch.tx_type == 'credit' ? $scope.editTierSwitch.tx_type = 'Credit' : $scope.editTierSwitch.tx_type = 'Debit';
-                $scope.editTierSwitch.subtype ? $scope.editTierSwitch.subtype = $scope.editTierSwitch.subtype.name : $scope.editTierSwitch.subtype = '';
                 $scope.editTierSwitch.enabled == true ? $scope.editTierSwitch.enabled = 'True' : $scope.editTierSwitch.enabled = 'False';
             } else {
                 $scope.editTierSwitch.enabled == 'True' ? $scope.editTierSwitch.enabled = true : $scope.editTierSwitch.enabled = false;

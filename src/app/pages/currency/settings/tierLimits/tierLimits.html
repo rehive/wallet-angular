@@ -15,7 +15,7 @@
                         <th title="{{tierLimit.tx_type}}" ng-bind="tierLimit.tx_type | capitalizeWord | limitTo: '35'"></th>
                         <th title="{{tierLimit.value}}" ng-bind="tierLimit.value"></th>
                         <th title="{{tierLimit.type}}" ng-bind="tierLimit.type | capitalizeWord | limitTo: '35'"></th>
-                        <th title="{{tierLimit.subtype ? tierLimit.subtype.name : 'None'}}" ng-bind="tierLimit.subtype ? tierLimit.subtype.name : 'None'| limitTo: '35'"></th>
+                        <th title="{{tierLimit.subtype ? tierLimit.subtype : 'None'}}" ng-bind="tierLimit.subtype ? tierLimit.subtype : 'None'| limitTo: '35'"></th>
                         <th class="rehive-table-row-last-child">
                             <button ng-click="openTierLimitsModal('app/pages/currency/settings/tierLimits/tierLimitsModal/tierLimitsModal.html','md',tierLimit)" class="btn btn-danger pull-right rehive-settings-buttons">Delete</button>
                             <button ng-click="toggleTierLimitEditView(tierLimit)" class="btn btn-primary pull-right rehive-settings-buttons">Edit</button>

@@ -15,7 +15,7 @@
                             <th title="{{tierFee.tx_type}}" ng-bind="tierFee.tx_type | capitalizeWord | limitTo: '35'"></th>
                             <th title="{{tierFee.value}}" ng-bind="tierFee.value"></th>
                             <th title="{{tierFee.percentage}}" ng-bind="tierFee.percentage ? tierFee.percentage + '%' : 'None'"></th>
-                            <th title="{{tierFee.subtype ? tierFee.subtype.name : 'None'}}" ng-bind="tierFee.subtype ? tierFee.subtype.name : 'None'| limitTo: '35'"></th>
+                            <th title="{{tierFee.subtype ? tierFee.subtype : 'None'}}" ng-bind="tierFee.subtype ? tierFee.subtype : 'None'| limitTo: '35'"></th>
                             <th class="rehive-table-row-last-child">
                                 <button ng-click="openTierFeesModal('app/pages/currency/settings/tierFees/tierFeesModal/tierFeesModal.html','md',tierFee)" class="btn btn-danger pull-right rehive-settings-buttons">Delete</button>
                                 <button ng-click="toggleTierFeeEditView(tierFee)" class="btn btn-primary pull-right rehive-settings-buttons">Edit</button>
