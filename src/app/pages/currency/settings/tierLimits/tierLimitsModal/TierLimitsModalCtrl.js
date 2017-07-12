@@ -14,7 +14,7 @@
         $scope.deletingTierLimits = false;
         vm.token = cookieManagement.getCookie('TOKEN');
 
-        $scope.deleteCompanySwitch = function () {
+        $scope.deleteTierLimit = function () {
             $scope.deletingTierLimits = true;
             $http.delete(API + '/admin/tiers/' + $scope.selectedTier.id + '/limits/' + $scope.tierLimit.id + '/', {
                 headers: {
