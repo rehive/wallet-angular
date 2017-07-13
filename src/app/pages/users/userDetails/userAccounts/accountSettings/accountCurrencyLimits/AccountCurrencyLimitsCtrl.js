@@ -21,6 +21,18 @@
         $scope.txTypeOptions = ['Credit','Debit'];
         $scope.typeOptions = ['Maximum','Maximum per day','Maximum per month','Minimum','Overdraft'];
 
+        $scope.toggleAccountCurrencyLimitEditView = function(accountCurrencyLimit){
+            if(accountCurrencyLimit) {
+                $scope.editAccountCurrencyLimit = accountCurrencyLimit;
+                $scope.editAccountCurrencyLimit.value = currencyModifiers.convertFromCents($scope.editAccountCurrencyLimit.value,$rootScope.selectedCurrency.divisibility);
+                $scope.editAccountCurrencyLimit.tx_type == 'credit' ? $scope.editAccountCurrencyLimit.tx_type = 'Credit' : $scope.editAccountCurrencyLimit.tx_type = 'Debit';
+            } else {
+                $scope.editAccountCurrencyLimit = {};
+                $scope.getAccountCurrencyLimits();
+            }
+            $scope.editingAccountCurrencyLimits = !$scope.editingAccountCurrencyLimits;
+        };
+
         $scope.getAccountCurrencyLimits = function(){
             if(vm.token) {
                 $scope.loadingAccountCurrencyLimits = true;
@@ -76,6 +88,53 @@
                         type: 'Maximum'
                     };
                     $scope.loadingAccountCurrencyLimits = false;
+                    errorToasts.evaluateErrors(error.data);
+                });
+            }
+        };
+
+        $scope.accountCurrencyLimitChanged = function(field){
+            vm.updatedAccountCurrencyLimit[field] = $scope.editAccountCurrencyLimit[field];
+        };
+
+        $scope.updateAccountCurrencyLimit = function(){
+            if(currencyModifiers.validateCurrency($scope.editAccountCurrencyLimit.value,$rootScope.selectedCurrency.divisibility)){
+                vm.updatedAccountCurrencyLimit.value = currencyModifiers.convertToCents($scope.editAccountCurrencyLimit.value,$rootScope.selectedCurrency.divisibility);
+            } else {
+                toastr.error('Please input amount to ' + $rootScope.selectedCurrency.divisibility + ' decimal places');
+                return;
+            }
+            if(vm.token) {
+                $scope.loadingAccountCurrencyLimits = true;
+                $scope.editingAccountCurrencyLimits = !$scope.editingAccountCurrencyLimits;
+                vm.updatedAccountCurrencyLimit.tx_type ? vm.updatedAccountCurrencyLimit.tx_type = vm.updatedAccountCurrencyLimit.tx_type.toLowerCase() : '';
+                vm.updatedAccountCurrencyLimit.type ? vm.updatedAccountCurrencyLimit.type = vm.updatedAccountCurrencyLimit.type == 'Maximum' ? 'max': vm.updatedAccountCurrencyLimit.type == 'Maximum per day' ? 'day_max':
+                    vm.updatedAccountCurrencyLimit.type == 'Maximum per month' ? 'month_max': vm.updatedAccountCurrencyLimit.type == 'Minimum' ? 'min': 'overdraft' : '';
+
+                $http.patch(API + '/admin/accounts/' + vm.reference + '/currencies/' + vm.currencyCode + '/limits/' + $scope.editAccountCurrencyLimit.id +'/',vm.updatedAccountCurrencyLimit,{
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': vm.token
+                    }
+                }).then(function (res) {
+                    $scope.loadingAccountCurrencyLimits = false;
+                    if (res.status === 200) {
+                        toastr.success('Limit updated successfully');
+                        $scope.accountCurrencyLimitsParams = {
+                            tx_type: 'Credit',
+                            type: 'Maximum'
+                        };
+                        vm.updatedAccountCurrencyLimit = {};
+                        $scope.getAccountCurrencyLimits();
+
+                    }
+                }).catch(function (error) {
+                    $scope.accountCurrencyLimitsParams = {
+                        tx_type: 'Credit',
+                        type: 'Maximum'
+                    };
+                    vm.updatedAccountCurrencyLimit = {};
+                    $scope.getAccountCurrencyLimits();
                     errorToasts.evaluateErrors(error.data);
                 });
             }

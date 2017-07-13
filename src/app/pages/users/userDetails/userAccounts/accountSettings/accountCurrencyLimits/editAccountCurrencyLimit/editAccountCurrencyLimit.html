@@ -1,0 +1,28 @@
+<div ng-hide="loadingAccountCurrencyLimits" ba-panel ba-panel-title="Edit AccountCurrency Limit" >
+    <form name="editAccountCurrencyLimitForm" class="custom-form" novalidate>
+        <div class="form-group">
+            <label><strong>Transaction Type</strong> <span class="required-icon">*</span></label>
+            <br>
+            <select class="form-control pointer" ng-change="accountCurrencyLimitChanged('tx_type')" ng-model="editAccountCurrencyLimit.tx_type" ng-options="option for option in txTypeOptions" required>
+            </select>
+        </div>
+        <div class="form-group">
+            <label><strong>Amount</strong> <span class="required-icon">*</span></label>
+            <input type="text" class="form-control" ng-change="accountCurrencyLimitChanged('value')" ng-model="editAccountCurrencyLimit.value" placeholder="Enter value" required/>
+        </div>
+        <div class="form-group">
+            <label><strong>Type</strong> <span class="required-icon">*</span></label>
+            <br>
+            <select class="form-control pointer" ng-change="accountCurrencyLimitChanged('type')" ng-model="editAccountCurrencyLimit.type" ng-options="typeOption for typeOption in typeOptions" required>
+            </select>
+        </div>
+        <div class="form-group">
+            <label><strong>Subtype</strong></label>
+            <input type="text" class="form-control" ng-change="accountCurrencyLimitChanged('subtype')" ng-model="editAccountCurrencyLimit.subtype" placeholder="Enter subtype name"/>
+        </div>
+        <div class="form-group">
+            <button ng-click="updateAccountCurrencyLimit()" ng-disabled="!editAccountCurrencyLimitForm.$valid" class="btn btn-primary pull-right">Save</button>
+            <button ng-click="toggleAccountCurrencyLimitEditView()" class="btn btn-primary pull-right margin-right-10">Back</button>
+        </div>
+    </form>
+</div>
