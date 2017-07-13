@@ -10,6 +10,7 @@
         var vm = this;
         vm.token = cookieManagement.getCookie('TOKEN');
         vm.uuid = $stateParams.uuid;
+        vm.reference = '';
         $scope.loadingUserAccounts = true;
 
         vm.getUser = function(){
@@ -23,6 +24,7 @@
                 }).then(function (res) {
                     $scope.loadingUserAccounts = false;
                     if (res.status === 200) {
+                        vm.reference = res.data.data.results[0].reference;
                         $scope.account = res.data.data.results[0].user;
                         $scope.currencies = res.data.data.results[0].currencies;
                     }
@@ -40,7 +42,7 @@
         };
 
         $scope.goToSettings = function(currencyCode){
-            $location.path('account/settings/'+ currencyCode)
+            $location.path('account/'+vm.reference+'/settings/'+ currencyCode)
         }
 
     }

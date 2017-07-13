@@ -8,7 +8,7 @@
     function routeConfig($stateProvider) {
         $stateProvider
             .state('accountSettings', {
-                url: '/account/settings/:currencyCode',
+                url: '/account/:reference/settings/:currencyCode',
                 templateUrl: 'app/pages/users/userDetails/userAccounts/accountSettings/accountSettings.html',
                 controller: "AccountSettingsCtrl",
                 title: 'Account Settings'
