@@ -5,7 +5,7 @@
         .controller('TierFeesCtrl', TierFeesCtrl);
 
     /** @ngInject */
-    function TierFeesCtrl($rootScope,$scope,cookieManagement,$http,API,$timeout,errorToasts,toastr,$uibModal) {
+    function TierFeesCtrl($rootScope,$scope,cookieManagement,$http,API,$timeout,errorToasts,toastr,$uibModal,currencyModifiers) {
 
         var vm = this;
         vm.token = cookieManagement.getCookie('TOKEN');
@@ -27,6 +27,7 @@
         $scope.toggleTierFeeEditView = function(tierFee){
             if(tierFee) {
                 $scope.editTierFee = tierFee;
+                $scope.editTierFee.value = currencyModifiers.convertFromCents($scope.editTierFee.value,$rootScope.selectedCurrency.divisibility);
                 $scope.editTierFee.tx_type == 'credit' ? $scope.editTierFee.tx_type = 'Credit' : $scope.editTierFee.tx_type = 'Debit';
             } else {
                 $scope.editTierFee = {};
@@ -104,6 +105,12 @@
         };
 
         $scope.addTierFee = function(tierFeesParams){
+            if(currencyModifiers.validateCurrency(tierFeesParams.value,$rootScope.selectedCurrency.divisibility)){
+                tierFeesParams.value = currencyModifiers.convertToCents(tierFeesParams.value,$rootScope.selectedCurrency.divisibility);
+            } else {
+                toastr.error('Please input amount to ' + $rootScope.selectedCurrency.divisibility + ' decimal places');
+                return;
+            }
             if(vm.token) {
                 $scope.loadingTierFees = true;
                 tierFeesParams.tx_type = tierFeesParams.tx_type.toLowerCase();
@@ -136,6 +143,12 @@
         };
 
         $scope.updateTierFee = function(){
+            if(currencyModifiers.validateCurrency($scope.editTierFee.value,$rootScope.selectedCurrency.divisibility)){
+                vm.updatedTierFee.value = currencyModifiers.convertToCents($scope.editTierFee.value,$rootScope.selectedCurrency.divisibility);
+            } else {
+                toastr.error('Please input amount to ' + $rootScope.selectedCurrency.divisibility + ' decimal places');
+                return;
+            }
             if(vm.token) {
                 $scope.loadingTierFees = true;
                 $scope.editingTierFees = !$scope.editingTierFees;

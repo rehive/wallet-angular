@@ -108,8 +108,8 @@
         };
 
         $scope.addTierLimit = function(tierLimitsParams){
-            if(currencyModifiers.validateCurrency($scope.tierLimitsParams.value,$rootScope.selectedCurrency.divisibility)){
-                $scope.tierLimitsParams.value = currencyModifiers.convertToCents($scope.tierLimitsParams.value,$rootScope.selectedCurrency.divisibility);
+            if(currencyModifiers.validateCurrency(tierLimitsParams.value,$rootScope.selectedCurrency.divisibility)){
+                tierLimitsParams.value = currencyModifiers.convertToCents(tierLimitsParams.value,$rootScope.selectedCurrency.divisibility);
             } else {
                 toastr.error('Please input amount to ' + $rootScope.selectedCurrency.divisibility + ' decimal places');
                 return;

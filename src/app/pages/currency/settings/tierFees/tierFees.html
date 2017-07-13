@@ -13,7 +13,8 @@
                         </tr>
                         <tr ng-repeat="tierFee in tiersFeesList">
                             <th title="{{tierFee.tx_type}}" ng-bind="tierFee.tx_type | capitalizeWord | limitTo: '35'"></th>
-                            <th title="{{tierFee.value}}" ng-bind="tierFee.value"></th>
+                            <th title="{{tierFee.value | currencyModifiersFilter: selectedCurrency.divisibility | preciseRound: selectedCurrency.divisibility}}"
+                                ng-bind="tierFee.value | currencyModifiersFilter: selectedCurrency.divisibility | preciseRound: selectedCurrency.divisibility"></th>
                             <th title="{{tierFee.percentage}}" ng-bind="tierFee.percentage ? tierFee.percentage + '%' : 'None'"></th>
                             <th title="{{tierFee.subtype ? tierFee.subtype : 'None'}}" ng-bind="tierFee.subtype ? tierFee.subtype : 'None'| limitTo: '35'"></th>
                             <th class="rehive-table-row-last-child">
@@ -36,12 +37,12 @@
                         </div>
                         <div class="form-group">
                             <label><strong>Amount</strong></label>
-                            <input type="number" class="form-control" ng-model="tierFeesParams.value" placeholder="Enter value" />
+                            <input type="text" class="form-control" ng-model="tierFeesParams.value" placeholder="Enter value" />
                         </div>
                         <div class="form-group">
                             <label><strong>Percentage</strong></span></label>
                             <br>
-                            <input type="number" class="form-control" ng-model="tierFeesParams.percentage" placeholder="Enter percentage" />
+                            <input type="text" class="form-control" ng-model="tierFeesParams.percentage" placeholder="Enter percentage" />
                         </div>
                         <div class="form-group">
                             <label><strong>Subtype</strong></label>
