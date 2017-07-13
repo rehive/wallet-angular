@@ -1,0 +1,57 @@
+<div ng-hide="loadingAccountCurrencyFees || editingAccountCurrencyFees" ba-panel class="setting-bank-accounts" ba-panel-title="Account Currency Fees" ba-panel-class="light-text with-scroll">
+    <table ng-show="accountCurrencyFeesList.length > 0" class="table fees-table table-striped setting-bank-accounts-table">
+        <tr class="black-muted-bg divider">
+            <th><strong>Tx Type</strong></th>
+            <th><strong>Amount</strong></th>
+            <th><strong>Type</strong></th>
+            <th><strong>Subtype</strong></th>
+            <th></th>
+        </tr>
+        <tr ng-repeat="accountCurrencyFee in accountCurrencyFeesList">
+            <th title="{{accountCurrencyFee.tx_type}}" ng-bind="accountCurrencyFee.tx_type | capitalizeWord | limitTo: '35'"></th>
+            <th title="{{accountCurrencyFee.value | currencyModifiersFilter: selectedCurrency.divisibility | preciseRound: selectedCurrency.divisibility}}"
+                ng-bind="accountCurrencyFee.value | currencyModifiersFilter: selectedCurrency.divisibility | preciseRound: selectedCurrency.divisibility"></th>
+            <th title="{{accountCurrencyFee.percentage}}" ng-bind="accountCurrencyFee.percentage ? accountCurrencyFee.percentage + '%' : 'None'"></th>
+            <th title="{{accountCurrencyFee.subtype ? accountCurrencyFee.subtype : 'None'}}" ng-bind="accountCurrencyFee.subtype ? accountCurrencyFee.subtype : 'None'| limitTo: '35'"></th>
+            <th class="rehive-table-row-last-child">
+                <button ng-click="openAccountCurrencyFeesModal('app/pages/users/userDetails/userAccounts/accountSettings/accountCurrencyFees/accountCurrencyFeesModal/accountCurrencyFeesModal.html','md',accountCurrencyFee)" class="btn btn-danger pull-right rehive-settings-buttons">Delete</button>
+                <button ng-click="toggleAccountCurrencyFeeEditView(accountCurrencyFee)" class="btn btn-primary pull-right rehive-settings-buttons">Edit</button>
+            </th>
+        </tr>
+    </table>
+    <div ng-show="accountCurrencyFeesList.length == 0">
+        <h4>No fees are available.</h4>
+    </div>
+</div>
+<div ng-hide="loadingAccountCurrencyFees || editingAccountCurrencyFees" ba-panel ba-panel-title="Add Account Currency Fee" ba-panel-class="light-text with-scroll">
+    <form name="accountCurrencyFeeForm" class="custom-form">
+        <div class="form-group">
+            <label><strong>Transaction Type</strong> <span class="required-icon">*</span></label>
+            <br>
+            <select class="form-control pointer" ng-model="accountCurrencyFeesParams.tx_type" ng-options="option for option in txTypeOptions" required>
+            </select>
+        </div>
+        <div class="form-group">
+            <label><strong>Amount</strong> <span class="required-icon">*</span></label>
+            <input type="text" class="form-control" ng-model="accountCurrencyFeesParams.value" placeholder="Enter value" required/>
+        </div>
+        <div class="form-group">
+            <label><strong>Percentage</strong></span></label>
+            <br>
+            <input type="text" class="form-control" ng-model="accountCurrencyFeesParams.percentage" placeholder="Enter percentage" />
+        </div>
+        <div class="form-group">
+            <label><strong>Subtype</strong></label>
+            <input type="text" class="form-control" ng-model="accountCurrencyFeesParams.subtype" placeholder="Enter subtype name"/>
+        </div>
+        <div class="form-group">
+            <button ng-click="addAccountCurrencyFee(accountCurrencyFeesParams)" ng-disabled="!accountCurrencyFeeForm.$valid" class="btn btn-primary pull-right">Add</button>
+        </div>
+    </form>
+</div>
+<div ng-show="editingAccountCurrencyFees">
+    <edit-account-currency-fee></edit-account-currency-fee>
+</div>
+<div ba-panel ng-show="loadingAccountCurrencyFees">
+    <loading-image></loading-image>
+</div>
