@@ -22,7 +22,7 @@
                     </table>
                 </div>
                 <div ba-panel ng-show="tiersSwitchesList.length == 0">
-                    <h3>No switches are available for this tier.</h3>
+                    <h4>No switches are available for this tier.</h4>
                 </div>
                 <div ba-panel ba-panel-title="Add Tier Switch" ba-panel-class="light-text with-scroll">
                     <form name="tierSwitchForm" class="custom-form">
@@ -55,7 +55,7 @@
     </uib-tabset>
 </div>
 <div ba-panel ng-show="!loadingTierSwitches && tierLevelsForSwitches.length == 0">
-    <h3>No tiers are available for this currency.</h3>
+    <h4>No tiers are available for this currency.</h4>
 </div>
 <div ba-panel ng-show="loadingTierSwitches">
     <loading-image></loading-image>
