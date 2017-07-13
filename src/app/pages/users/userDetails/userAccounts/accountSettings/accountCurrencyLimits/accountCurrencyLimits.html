@@ -14,7 +14,7 @@
             <th title="{{accountCurrencyLimit.type}}" ng-bind="accountCurrencyLimit.type | capitalizeWord | limitTo: '35'"></th>
             <th title="{{accountCurrencyLimit.subtype ? accountCurrencyLimit.subtype : 'None'}}" ng-bind="accountCurrencyLimit.subtype ? accountCurrencyLimit.subtype : 'None'| limitTo: '35'"></th>
             <th class="rehive-table-row-last-child">
-                <button ng-click="openAccountCurrencyLimitsModal('app/pages/currency/settings/accountCurrencyLimits/accountCurrencyLimitsModal/accountCurrencyLimitsModal.html','md',accountCurrencyLimit)" class="btn btn-danger pull-right rehive-settings-buttons">Delete</button>
+                <button ng-click="openAccountCurrencyLimitsModal('app/pages/users/userDetails/userAccounts/accountSettings/accountCurrencyLimits/accountCurrencyLimitsModal/accountCurrencyLimitsModal.html','md',accountCurrencyLimit)" class="btn btn-danger pull-right rehive-settings-buttons">Delete</button>
                 <button ng-click="toggleAccountCurrencyLimitEditView(accountCurrencyLimit)" class="btn btn-primary pull-right rehive-settings-buttons">Edit</button>
             </th>
         </tr>

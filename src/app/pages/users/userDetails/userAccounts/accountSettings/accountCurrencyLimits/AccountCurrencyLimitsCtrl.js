@@ -5,7 +5,7 @@
         .controller('AccountCurrencyLimitsCtrl', AccountCurrencyLimitsCtrl);
 
     /** @ngInject */
-    function AccountCurrencyLimitsCtrl($rootScope,$scope,$stateParams,$http,API,cookieManagement,errorToasts,currencyModifiers,toastr) {
+    function AccountCurrencyLimitsCtrl($rootScope,$scope,$stateParams,$http,$uibModal,API,cookieManagement,errorToasts,currencyModifiers,toastr) {
 
         var vm = this;
         vm.token = cookieManagement.getCookie('TOKEN');
@@ -79,6 +79,37 @@
                     errorToasts.evaluateErrors(error.data);
                 });
             }
+        };
+
+        vm.findIndexOfAccountCurrencyLimit = function(element){
+            return this.id == element.id;
+        };
+
+        $scope.openAccountCurrencyLimitsModal = function (page, size,accountCurrencyLimit) {
+            vm.theModal = $uibModal.open({
+                animation: true,
+                templateUrl: page,
+                size: size,
+                controller: 'AccountCurrencyLimitsModalCtrl',
+                scope: $scope,
+                resolve: {
+                    accountCurrencyLimit: function () {
+                        return accountCurrencyLimit;
+                    },
+                    currencyCode: function () {
+                        return vm.currencyCode
+                    },
+                    reference: function () {
+                        return vm.reference
+                    }
+                }
+            });
+
+            vm.theModal.result.then(function(accountCurrencyLimit){
+                var index = $scope.accountCurrencyLimitsList.findIndex(vm.findIndexOfAccountCurrencyLimit,accountCurrencyLimit);
+                $scope.accountCurrencyLimitsList.splice(index, 1);
+            }, function(){
+            });
         };
 
 
