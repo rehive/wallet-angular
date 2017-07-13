@@ -9,7 +9,7 @@
             </tr>
             <tr ng-repeat="transactionsSwitch in transactionsSwitchesList">
                 <th title="{{transactionsSwitch.tx_type}}" ng-bind="transactionsSwitch.tx_type | capitalizeWord | limitTo: '35'"></th>
-                <th title="{{transactionsSwitch.subtype ? transactionsSwitch.subtype.name : 'None'}}" ng-bind="transactionsSwitch.subtype ? transactionsSwitch.subtype.name : 'None'| limitTo: '35'"></th>
+                <th title="{{transactionsSwitch.subtype ? transactionsSwitch.subtype : 'None'}}" ng-bind="transactionsSwitch.subtype ? transactionsSwitch.subtype : 'None'| limitTo: '35'"></th>
                 <th title="{{transactionsSwitch.enabled}}" ng-bind="transactionsSwitch.enabled | capitalizeWord"></th>
                 <th class="rehive-table-row-last-child">
                     <button ng-click="openTransactionsSwitchesModal('app/pages/settings/transactionsSwitches/transactionsSwitchModal/transactionsSwitchModal.html','md',transactionsSwitch)" class="btn btn-danger pull-right rehive-settings-buttons">Delete</button>
@@ -27,14 +27,14 @@
                 </select>
             </div>
             <div class="form-group">
+                <label><strong>Subtype</strong></label>
+                <input type="text" class="form-control" ng-model="transactionsSwitchParams.subtype" placeholder="Enter subtype name"/>
+            </div>
+            <div class="form-group">
                 <label><strong>Enabled</strong> <span class="required-icon">*</span></label>
                 <br>
                 <select class="form-control pointer" ng-model="transactionsSwitchParams.enabled" ng-options="bool for bool in boolOptions" required>
                 </select>
-            </div>
-            <div class="form-group">
-                <label><strong>Subtype</strong></label>
-                <input type="text" class="form-control" ng-model="transactionsSwitchParams.subtype" placeholder="Enter subtype name"/>
             </div>
             <div class="form-group">
                 <button ng-click="addTransactionsSwitch(transactionsSwitchParams)" ng-disabled="!transactionsSwitchesForm.$valid" class="btn btn-primary pull-right">Add</button>

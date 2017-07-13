@@ -4,15 +4,15 @@
             <th><strong>Currency</strong></th>
             <th><strong>Balance</strong></th>
             <th></th>
-            <th></th>
-            <th></th>
         </tr>
         <tr ng-repeat="accountBalance in currencies">
             <th ng-bind="accountBalance.currency.code"></th>
             <th title="{{accountBalance.balance  | currencyModifiersFilter: accountBalance.currency.divisibility | preciseRound: accountBalance.currency.divisibility}}"><div class="user-account-balance-overflow" ng-bind="accountBalance.balance  | currencyModifiersFilter: accountBalance.currency.divisibility | preciseRound: accountBalance.currency.divisibility"></div></th>
-            <th><button ng-click="goToView('transactions.debit',accountBalance.currency,account.email)" class="btn btn-primary pull-right user-accounts-btn">Debit</button></th>
-            <th><button ng-click="goToView('transactions.credit',accountBalance.currency,account.email)" class="btn btn-primary pull-right user-accounts-btn">Credit</button></th>
-            <th><button ng-click="goToSettings(accountBalance.currency.code)" class="btn btn-primary pull-right user-accounts-btn">Settings</button></th>
+            <th>
+                <button ng-click="goToSettings(accountBalance.currency.code)" class="btn btn-primary pull-right user-accounts-btn">Settings</button>
+                <button ng-click="goToView('transactions.credit',accountBalance.currency,account.email)" class="btn btn-primary pull-right user-accounts-btn margin-right-10">Credit</button>
+                <button ng-click="goToView('transactions.debit',accountBalance.currency,account.email)" class="btn btn-primary pull-right user-accounts-btn margin-right-10">Debit</button>
+            </th>
         </tr>
     </table>
 </div>

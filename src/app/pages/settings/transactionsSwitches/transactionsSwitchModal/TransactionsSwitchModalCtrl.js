@@ -22,7 +22,7 @@
             }).then(function (res) {
                 $scope.deletingTransactionsSwitches = false;
                 if (res.status === 200) {
-                    toastr.success('Transactions Switch successfully deleted');
+                    toastr.success('Transactions switch successfully deleted');
                     $uibModalInstance.close($scope.transactionsSwitches);
                 }
             }).catch(function (error) {

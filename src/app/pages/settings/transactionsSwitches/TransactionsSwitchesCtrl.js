@@ -41,7 +41,6 @@
                 }).then(function (res) {
                     $scope.loadingTransactionsSwitches = false;
                     if (res.status === 200) {
-                        console.log(res.data.data);
                         $scope.transactionsSwitchesList = res.data.data;
                     }
                 }).catch(function (error) {
@@ -54,8 +53,8 @@
 
         $scope.addTransactionsSwitch = function (transactionsSwitchParams) {
             $window.scrollTo(0,0);
-            transactionsSwitchParams.tx_type = transactionsSwitchParams.tx_type.toLowerCase();
-            transactionsSwitchParams.enabled = transactionsSwitchParams.enabled == 'True' ? true: false;
+            transactionsSwitchParams.tx_type ? transactionsSwitchParams.tx_type = transactionsSwitchParams.tx_type.toLowerCase() : '';
+            transactionsSwitchParams.enabled ? transactionsSwitchParams.enabled = transactionsSwitchParams.enabled == 'True' ? true: false : '';
             if(vm.token) {
                 $scope.loadingTransactionsSwitches = true;
                 $http.post(API + '/admin/company/switches/', transactionsSwitchParams, {
@@ -84,8 +83,7 @@
 
         $scope.updateTransactionsSwitch = function () {
             $window.scrollTo(0,0);
-            vm.updatedTransactionsSwitch.enabled = vm.updatedTransactionsSwitch.enabled == 'True' ? true: false;
-            $scope.editingTransactionsSwitches = !$scope.editingTransactionsSwitches;
+            vm.updatedTransactionsSwitch.enabled ? vm.updatedTransactionsSwitch.enabled = vm.updatedTransactionsSwitch.enabled == 'True' ? true: false : '';
             if(vm.token) {
                 $scope.loadingTransactionsSwitches = true;
                 $http.patch(API + '/admin/company/switches/' + $scope.editTransactionsSwitch.id + '/', vm.updatedTransactionsSwitch, {
@@ -96,6 +94,7 @@
                 }).then(function (res) {
                     $scope.loadingTransactionsSwitches = false;
                     if (res.status === 200) {
+                        $scope.editingTransactionsSwitches = !$scope.editingTransactionsSwitches;
                         vm.updatedTransactionsSwitch = {};
                         toastr.success('Successfully updated the transactions switch!');
                         vm.getTransactionsSwitches();
@@ -107,6 +106,7 @@
                 });
             }
         };
+
         vm.findIndexOfTransactionsSwitches = function(element){
             return this.id == element.id;
         };
