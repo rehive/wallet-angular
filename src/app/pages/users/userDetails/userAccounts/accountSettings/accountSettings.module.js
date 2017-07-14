@@ -1,7 +1,11 @@
 (function () {
     'use strict';
 
-    angular.module('BlurAdmin.pages.accountSettings', [])
+    angular.module('BlurAdmin.pages.accountSettings', [
+            'BlurAdmin.pages.accountSettings.accountCurrencyLimits',
+            'BlurAdmin.pages.accountSettings.accountCurrencyFees',
+            'BlurAdmin.pages.accountSettings.accountCurrencySwitches'
+    ])
         .config(routeConfig);
 
     /** @ngInject */

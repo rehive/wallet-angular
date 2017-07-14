@@ -1,7 +1,7 @@
 (function () {
     'use strict';
 
-    angular.module('BlurAdmin.pages.accountSettings')
+    angular.module('BlurAdmin.pages.accountSettings.accountCurrencyFees')
         .directive('editAccountCurrencyFee', editAccountCurrencyFee);
 
     /** @ngInject */

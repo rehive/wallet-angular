@@ -1,7 +1,7 @@
 (function () {
     'use strict';
 
-    angular.module('BlurAdmin.pages.accountSettings')
+    angular.module('BlurAdmin.pages.accountSettings.accountCurrencyFees')
         .controller('AccountCurrencyFeesModalCtrl', AccountCurrencyFeesModalCtrl);
 
     function AccountCurrencyFeesModalCtrl($scope,$uibModalInstance,accountCurrencyFee,currencyCode,reference,toastr,$http,API,cookieManagement,errorToasts,errorHandler) {

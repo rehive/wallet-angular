@@ -1,7 +1,7 @@
 (function () {
     'use strict';
 
-    angular.module('BlurAdmin.pages.accountSettings')
+    angular.module('BlurAdmin.pages.accountSettings.accountCurrencyLimits')
         .controller('AccountCurrencyLimitsModalCtrl', AccountCurrencyLimitsModalCtrl);
 
     function AccountCurrencyLimitsModalCtrl($scope,$uibModalInstance,accountCurrencyLimit,currencyCode,reference,toastr,$http,API,cookieManagement,errorToasts,errorHandler) {

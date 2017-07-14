@@ -1,7 +1,7 @@
 (function () {
     'use strict';
 
-    angular.module('BlurAdmin.pages.currency.settings.tierSwitches')
+    angular.module('BlurAdmin.pages.accountSettings.accountCurrencySwitches')
         .controller('AccountCurrencySwitchesModalCtrl', AccountCurrencySwitchesModalCtrl);
 
     function AccountCurrencySwitchesModalCtrl($scope,$uibModalInstance,accountCurrencySwitch,currencyCode,reference,toastr,$http,API,cookieManagement,errorToasts,errorHandler) {

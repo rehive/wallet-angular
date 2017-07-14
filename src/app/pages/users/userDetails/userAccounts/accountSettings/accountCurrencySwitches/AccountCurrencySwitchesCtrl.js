@@ -1,7 +1,7 @@
 (function () {
     'use strict';
 
-    angular.module('BlurAdmin.pages.accountSettings')
+    angular.module('BlurAdmin.pages.accountSettings.accountCurrencySwitches')
         .controller('AccountCurrencySwitchesCtrl', AccountCurrencySwitchesCtrl);
 
     /** @ngInject */
