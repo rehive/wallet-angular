@@ -21,6 +21,7 @@
     'BlurAdmin.pages.register',
     'BlurAdmin.pages.resetPassword',
     'BlurAdmin.pages.resetPasswordConfirmation',
+    'BlurAdmin.pages.verifyAdminEmail',
     'BlurAdmin.pages.accountSettings',
     'BlurAdmin.pages.verification',
     'BlurAdmin.pages.companyNameRequest'
