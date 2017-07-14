@@ -7,10 +7,10 @@
     /** @ngInject */
     function ResetPasswordCtrl($scope,$http,toastr,$location,API,errorToasts) {
 
-        $scope.resetPassword = function(identifier,company_id){
+        $scope.resetPassword = function(user,company){
             $http.post(API + '/auth/password/reset/', {
-                identifier: identifier,
-                company_id: company_id
+                user: user,
+                company: company
             }).then(function (res) {
                 if (res.status === 200) {
                     toastr.success(res.data.message);

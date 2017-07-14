@@ -23,11 +23,10 @@ angular.module('BlurAdmin', [
             userVerification.verify(function(err,verified){
                 if(verified){
                     $rootScope.userVerified = true;
+                    getCompanyInfo();
                 } else {
                     $rootScope.userVerified = false;
                 }
-
-                getCompanyInfo();
             });
         };
         verifyUser();
@@ -82,6 +81,8 @@ angular.module('BlurAdmin', [
                     $rootScope.securityConfigured = true;
                 } else if(newUrlLastElement == 'register' || newUrlLastElement == 'reset'
                     || newUrlLastElement == 'verification' || newUrlLastElement == 'name_request'){
+                    $rootScope.securityConfigured = true;
+                } else if(newUrl.indexOf('reset/confirm') > 0 || newUrl.indexOf('email/verify') > 0){
                     $rootScope.securityConfigured = true;
                 } else {
                     $rootScope.securityConfigured = true;

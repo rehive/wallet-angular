@@ -20,6 +20,7 @@
     'BlurAdmin.pages.login',
     'BlurAdmin.pages.register',
     'BlurAdmin.pages.resetPassword',
+    'BlurAdmin.pages.resetPasswordConfirmation',
     'BlurAdmin.pages.accountSettings',
     'BlurAdmin.pages.verification',
     'BlurAdmin.pages.companyNameRequest'

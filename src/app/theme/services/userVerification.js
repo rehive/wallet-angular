@@ -33,7 +33,7 @@
                         cb(error,null);
                     });
                 } else {
-                    $location.path('/login');
+                    cb(null,false);
                 }
             }
         }
