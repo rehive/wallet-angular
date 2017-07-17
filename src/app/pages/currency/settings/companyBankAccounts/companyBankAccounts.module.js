@@ -9,8 +9,12 @@
         $stateProvider
             .state('currency.settings.companyBankAccounts', {
                 url: '/bank-accounts',
-                templateUrl: 'app/pages/currency/settings/companyBankAccounts/companyBankAccounts.html',
-                controller: "CompanyBankAccountsCtrl",
+                views:{
+                    'currencySettings':{
+                      templateUrl: 'app/pages/currency/settings/companyBankAccounts/companyBankAccounts.html',
+                      controller: "CompanyBankAccountsCtrl",
+                    }
+                },
                 title: 'Bank Accounts'
             });
     }

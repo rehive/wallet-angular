@@ -9,8 +9,12 @@
         $stateProvider
             .state('currency.settings.tierLimits', {
                 url: '/tier/limits',
-                templateUrl: 'app/pages/currency/settings/tierLimits/tierLimits.html',
-                controller: "TierLimitsCtrl",
+                views:{
+                    'currencySettings':{
+                      templateUrl: 'app/pages/currency/settings/tierLimits/tierLimits.html',
+                      controller: "TierLimitsCtrl",
+                    }
+                },
                 title: 'Tier Limits'
             });
     }

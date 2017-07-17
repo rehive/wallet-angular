@@ -9,8 +9,12 @@
         $stateProvider
             .state('currency.settings.tierRequirements', {
                 url: '/tier/requirements',
-                templateUrl: 'app/pages/currency/settings/tierRequirements/tierRequirements.html',
-                controller: "TierRequirementsCtrl",
+                views:{
+                    'currencySettings':{
+                      templateUrl: 'app/pages/currency/settings/tierRequirements/tierRequirements.html',
+                      controller: "TierRequirementsCtrl",
+                    }
+                },
                 title: 'Tier Requirements'
             });
     }

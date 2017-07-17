@@ -9,8 +9,12 @@
         $stateProvider
             .state('currency.settings.tiers', {
                 url: '/tiers',
-                templateUrl: 'app/pages/currency/settings/tiers/tiers.html',
-                controller: "TiersCtrl",
+                views:{
+                    'currencySettings':{
+                      templateUrl: 'app/pages/currency/settings/tiers/tiers.html',
+                      controller: "TiersCtrl",
+                    }
+                },
                 title: 'Tiers'
             });
     }
