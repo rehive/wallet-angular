@@ -1,5 +1,5 @@
 <div class="row">
-    <div ng-hide="loadingAdminEmails || addingEmail" class="col-lg-6 col-md-6 col-sm-6 col-xs-6" ba-panel ba-panel-title="Admin Emails">
+    <div ng-hide="loadingAdminEmails || addingEmail" ba-panel ba-panel-title="Admin Emails">
         <div class="divider admin-emails">
             <table class="table table-striped admin-emails-table">
                 <tr class="black-muted-bg divider">
@@ -25,13 +25,13 @@
             </table>
         </div>
         <div>
-            <button ng-click="goToSettings()" class="btn btn-primary pull-left">Back</button>
             <button ng-click="toggleAddEmailView()" class="btn btn-primary pull-right divider">Add</button>
+            <button ng-click="goToAccountInfo()" class="btn btn-primary pull-right margin-right-10">Back</button>
         </div>
     </div>
 </div>
 <div class="row">
-    <div ba-panel class="col-lg-6 col-md-6 col-sm-6 col-xs-6" ng-show="loadingAdminEmails">
+    <div ba-panel ng-show="loadingAdminEmails">
         <loading-image></loading-image>
     </div>
 </div>

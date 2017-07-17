@@ -5,37 +5,7 @@
     <div ng-show="settingView == 'companyLogo'" class="col-lg-6 col-md-8 col-sm-12 col-xs-12">
         <company-logo></company-logo>
     </div>
-    <div ng-show="settingView == 'accountInfo'" class="col-lg-6 col-md-8 col-sm-12 col-xs-12">
-        <account-info></account-info>
-    </div>
-    <div ng-show="settingView == 'companyInfo'" class="col-lg-6 col-md-8 col-sm-12 col-xs-12">
-        <company-info></company-info>
-    </div>
-    <div ng-show="settingView == 'bankaccounts'" class="col-lg-6 col-md-8 col-sm-12 col-xs-12">
-        <bank-accounts></bank-accounts>
-    </div>
-    <div ng-show="settingView == 'subtypes'" class="col-lg-6 col-md-8 col-sm-12 col-xs-12">
-        <subtypes></subtypes>
-    </div>
-    <div ng-show="settingView == 'transactionWebhooks'" class="col-lg-6 col-md-8 col-sm-12 col-xs-12">
-        <transaction-webhooks></transaction-webhooks>
-    </div>
-    <div ng-show="settingView == 'userWebhooks'" class="col-lg-6 col-md-8 col-sm-12 col-xs-12">
-        <user-webhooks></user-webhooks>
-    </div>
-   <div ng-show="settingView == 'permissionsAndManagement'" class="col-lg-6 col-md-8 col-sm-12 col-xs-12">
-        <permissions-and-management></permissions-and-management>
-    </div>
-    <div ng-show="settingView == 'notifications'" class="col-lg-6 col-md-8 col-sm-12 col-xs-12">
-       <notifications></notifications>
-   </div>
-    <div ng-show="settingView == 'switches'" class="col-lg-6 col-md-8 col-sm-12 col-xs-12">
-        <switches></switches>
-    </div>
-    <div ng-show="settingView == 'companySwitches'" class="col-lg-6 col-md-8 col-sm-12 col-xs-12">
-        <transactions-switches></transactions-switches>
-    </div>
-    <div ng-show="settingView == 'security'" class="col-lg-6 col-md-8 col-sm-12 col-xs-12">
-        <security></security>
+    <div class="col-lg-6 col-md-8 col-sm-12 col-xs-12">
+        <div ui-view="generalSettings"></div>
     </div>
 </div>

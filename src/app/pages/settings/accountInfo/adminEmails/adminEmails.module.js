@@ -7,14 +7,16 @@
     /** @ngInject */
     function routeConfig($stateProvider,$urlRouterProvider) {
         $stateProvider
-            .state('adminEmails', {
+            .state('settings.adminEmails', {
                 url: '/admin/emails',
-                templateUrl: 'app/pages/settings/accountInfo/adminEmails/adminEmails.html',
-                controller: "AdminEmailsCtrl",
+                views: {
+                  'generalSettings': {
+                    templateUrl: 'app/pages/settings/accountInfo/adminEmails/adminEmails.html',
+                    controller: "AdminEmailsCtrl",
+                  }
+                },
                 title: "Admin Emails"
             });
     }
 
 })();
-
-

@@ -1,7 +1,7 @@
 (function () {
     'use strict';
 
-    angular.module('BlurAdmin.pages.settings')
+    angular.module('BlurAdmin.pages.settings.adminEmails')
         .controller('AdminEmailsCtrl', AdminEmailsCtrl);
 
     /** @ngInject */
@@ -18,7 +18,7 @@
         vm.getUserEmails = function () {
             $scope.loadingAdminEmails = true;
             if(vm.token) {
-                $http.get(API + '/user/emails', {
+                $http.get(API + '/user/emails/', {
                     headers: {
                         'Content-Type': 'application/json',
                         'Authorization': vm.token
@@ -104,8 +104,8 @@
             $scope.addingEmail = !$scope.addingEmail;
         };
 
-        $scope.goToSettings = function(){
-            $location.path('/settings');
+        $scope.goToAccountInfo = function(){
+            $location.path('/settings/account-info');
         }
 
     }

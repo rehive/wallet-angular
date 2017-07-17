@@ -1,7 +1,7 @@
 (function () {
     'use strict';
 
-    angular.module('BlurAdmin.pages.settings')
+    angular.module('BlurAdmin.pages.settings.accountInfo')
         .controller('AccountInfoCtrl', AccountInfoCtrl);
 
     /** @ngInject */
@@ -35,7 +35,7 @@
                 });
             }
         };
-        vm.getAdminAccountInfo();32
+        vm.getAdminAccountInfo();
 
         $scope.updateAdministratorAccount = function(){
             $scope.loadingAccountInfo = true;
@@ -63,7 +63,7 @@
         };
 
         $scope.viewAllEmails = function (){
-            $location.path('admin/emails');
+            $location.path('/settings/admin/emails');
         };
 
     }

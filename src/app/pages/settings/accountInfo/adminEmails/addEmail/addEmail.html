@@ -1,5 +1,5 @@
 <div ng-hide="loadingAdminEmails" class="row">
-    <div ba-panel ba-panel-title="Add Email" ba-panel-class="light-text with-scroll" class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+    <div ba-panel ba-panel-title="Add Email" ba-panel-class="light-text with-scroll">
         <form name="emailForm" class="custom-form">
             <div class="form-group">
                 <label><strong>Email</strong> <span class="required-icon">*</span></label>
@@ -13,6 +13,7 @@
             </div>
             <div class="form-group">
                 <button ng-disabled="!emailForm.$valid" ng-click="createEmail(newEmail)" class="btn btn-primary pull-right">Add</button>
+                <button ng-click="toggleAddEmailView()" class="btn btn-primary pull-right margin-right-10">Back</button>
             </div>
         </form>
     </div>

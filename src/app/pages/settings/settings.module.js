@@ -2,7 +2,8 @@
     'use strict';
 
     angular.module('BlurAdmin.pages.settings', [
-        'BlurAdmin.pages.settings.adminEmails'
+      'BlurAdmin.pages.settings.accountInfo',
+      'BlurAdmin.pages.settings.adminEmails'
     ])
         .config(routeConfig);
 

@@ -5,7 +5,7 @@
         .controller('SettingsCtrl', SettingsCtrl);
 
     /** @ngInject */
-    function SettingsCtrl($scope,API,Upload,$http,cookieManagement,errorToasts,$window,$timeout) {
+    function SettingsCtrl($scope,API,Upload,$http,cookieManagement,errorToasts,$window,$timeout,$location) {
 
         var vm = this;
         vm.token = cookieManagement.getCookie('TOKEN');
@@ -35,8 +35,14 @@
           };
           vm.getCompanyDetails();
 
-        $scope.goToSetting = function(view){
+        $scope.goToCompanyLogo = function(view){
+            $location.path('settings');
             $scope.settingView = view;
+        };
+
+        $scope.goToSetting = function(path){
+            $scope.settingView = '';
+            $location.path(path);
         };
 
         $scope.upload = function (file) {
