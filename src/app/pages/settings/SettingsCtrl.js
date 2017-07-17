@@ -5,7 +5,7 @@
         .controller('SettingsCtrl', SettingsCtrl);
 
     /** @ngInject */
-    function SettingsCtrl($scope,API,Upload,$http,cookieManagement,errorToasts,$window) {
+    function SettingsCtrl($scope,API,Upload,$http,cookieManagement,errorToasts,$window,$timeout) {
 
         var vm = this;
         vm.token = cookieManagement.getCookie('TOKEN');
@@ -13,8 +13,9 @@
         $scope.companyImageUrl = "https://storage.googleapis.com/rehive-static/dashboard/dist/img/default_company_icon.png";
         $scope.currencyOptions = JSON.parse($window.sessionStorage.currenciesList || '[]');
         $scope.updatingLogo = false;
-        $scope.file = {};
-
+        $scope.imageFile = {
+          file: {}
+        };
 
         vm.getCompanyDetails = function(){
             if(vm.token) {
@@ -43,7 +44,7 @@
             Upload.upload({
                 url: API +'/admin/company/',
                 data: {
-                    logo: file
+                    logo: $scope.imageFile.file
                 },
                 headers: {
                     'Content-Type': 'application/json',
@@ -51,8 +52,11 @@
                 method: "PATCH"
             }).then(function (res) {
                 if (res.status === 200) {
+                  $timeout(function(){
                     $scope.companyImageUrl = res.data.data.logo;
                     $scope.updatingLogo = false;
+                  },0);
+                    //$window.location.reload();
                 }
             }).catch(function (error) {
                 $scope.updatingLogo = false;

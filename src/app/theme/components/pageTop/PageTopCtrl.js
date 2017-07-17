@@ -38,7 +38,7 @@
                         }
                         $scope.currencies = res.data.data.results;
                         $window.sessionStorage.currenciesList = JSON.stringify(res.data.data.results);
-                        $rootScope.newUser = res.data.data.count == 0;
+                        $rootScope.newUser = res.data.data.count == 0 ? true : false;
                     }
                 }).catch(function (error) {
                     if(error.status == 403){
