@@ -1,7 +1,7 @@
 (function () {
     'use strict';
 
-    angular.module('BlurAdmin.pages.settings')
+    angular.module('BlurAdmin.pages.settings.bankAccounts')
         .directive('editBankAccount', editBankAccount);
 
     /** @ngInject */

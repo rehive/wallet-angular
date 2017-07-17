@@ -3,7 +3,9 @@
 
     angular.module('BlurAdmin.pages.settings', [
       'BlurAdmin.pages.settings.accountInfo',
-      'BlurAdmin.pages.settings.adminEmails'
+      'BlurAdmin.pages.settings.adminEmails',
+      'BlurAdmin.pages.settings.companyInfo',
+      'BlurAdmin.pages.settings.bankAccounts'
     ])
         .config(routeConfig);
 
