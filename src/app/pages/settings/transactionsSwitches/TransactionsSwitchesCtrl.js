@@ -1,7 +1,7 @@
 (function () {
     'use strict';
 
-    angular.module('BlurAdmin.pages.settings')
+    angular.module('BlurAdmin.pages.settings.transactionsSwitches')
         .controller('TransactionsSwitchesCtrl', TransactionsSwitchesCtrl);
 
     function TransactionsSwitchesCtrl($scope,API,$uibModal,$rootScope,toastr,$http,cookieManagement,errorToasts,$window,errorHandler) {

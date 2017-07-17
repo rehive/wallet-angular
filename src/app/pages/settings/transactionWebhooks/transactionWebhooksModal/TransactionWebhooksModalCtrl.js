@@ -1,7 +1,7 @@
 (function () {
     'use strict';
 
-    angular.module('BlurAdmin.pages.settings')
+    angular.module('BlurAdmin.pages.settings.transactionWebhooks')
         .controller('TransactionWebhooksModalCtrl', TransactionWebhooksModalCtrl);
 
     function TransactionWebhooksModalCtrl($scope,$uibModalInstance,transactionWebhook,toastr,$http,API,cookieManagement,errorToasts,errorHandler) {

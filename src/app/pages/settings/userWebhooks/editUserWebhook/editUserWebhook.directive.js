@@ -1,7 +1,7 @@
 (function () {
     'use strict';
 
-    angular.module('BlurAdmin.pages.settings')
+    angular.module('BlurAdmin.pages.settings.userWebhooks')
         .directive('editUserWebhook', editUserWebhook);
 
     /** @ngInject */

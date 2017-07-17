@@ -1,7 +1,7 @@
 (function () {
     'use strict';
 
-    angular.module('BlurAdmin.pages.settings')
+    angular.module('BlurAdmin.pages.settings.security')
         .controller('SecurityCtrl', SecurityCtrl);
 
     /** @ngInject */
@@ -37,6 +37,7 @@
 
         $scope.addToken = function(){
             if(vm.token) {
+              $scope.loadingAPITokens = true;
                 $http.post(API + '/auth/tokens/',{password: $scope.createTokenData.tokenPassword}, {
                     headers: {
                         'Content-Type': 'application/json',
@@ -50,6 +51,7 @@
                         vm.openShowTokenModal('app/pages/settings/security/tokens/showTokenModal/showTokenModal.html','md',res.data.data.token);
                     }
                 }).catch(function (error) {
+                    $scope.loadingAPITokens = false;
                     errorToasts.evaluateErrors(error.data);
                 });
             }

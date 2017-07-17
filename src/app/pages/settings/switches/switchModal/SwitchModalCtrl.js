@@ -1,7 +1,7 @@
 (function () {
     'use strict';
 
-    angular.module('BlurAdmin.pages.settings')
+    angular.module('BlurAdmin.pages.settings.switches')
         .controller('SwitchModalCtrl', SwitchModalCtrl);
 
     function SwitchModalCtrl($scope,$uibModalInstance,switches,toastr,$http,API,cookieManagement,errorToasts,errorHandler) {

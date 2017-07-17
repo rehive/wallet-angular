@@ -1,7 +1,7 @@
 (function () {
     'use strict';
 
-    angular.module('BlurAdmin.pages.settings')
+    angular.module('BlurAdmin.pages.settings.userWebhooks')
         .controller('UserWebhooksModalCtrl', UserWebhooksModalCtrl);
 
     function UserWebhooksModalCtrl($scope,$uibModalInstance,userWebhook,toastr,$http,API,cookieManagement,errorToasts,errorHandler) {
