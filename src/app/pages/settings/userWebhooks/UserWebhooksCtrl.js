@@ -93,10 +93,12 @@
             $window.scrollTo(0, 0);
             $scope.editingUserWebhook = !$scope.editingUserWebhook;
             $scope.loadingUserWebhooks = true;
+            if(vm.updatedUserWebhook.event){
             vm.updatedUserWebhook.event = vm.updatedUserWebhook.event == 'User Create' ?
-             'user.create' : vm.updatedUserWebhook.event == 'User Update' ? 'user.update' : vm.updatedUserWebhook.event == 'User Delete' ?
-             'user.delete' : vm.updatedUserWebhook.event == 'User Password Reset' ? 'user.password.reset' : vm.updatedUserWebhook.event == 'User Email Verify' ?
-             'user.email.verify' : vm.updatedUserWebhook.event == 'User Mobile Verify' ? 'user.mobile.verify' : '';
+               'user.create' : vm.updatedUserWebhook.event == 'User Update' ? 'user.update' : vm.updatedUserWebhook.event == 'User Delete' ?
+               'user.delete' : vm.updatedUserWebhook.event == 'User Password Reset' ? 'user.password.reset' : vm.updatedUserWebhook.event == 'User Email Verify' ?
+               'user.email.verify' : vm.updatedUserWebhook.event == 'User Mobile Verify' ? 'user.mobile.verify' : '';
+           }
             $http.patch(API + '/admin/webhooks/users/'+ $scope.editUserWebhook.id + '/', vm.updatedUserWebhook, {
                 headers: {
                     'Content-Type': 'application/json',

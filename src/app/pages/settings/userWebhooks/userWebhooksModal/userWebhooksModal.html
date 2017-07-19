@@ -6,7 +6,7 @@
         <h4 class="modal-title" id="myModalLabel">Delete Webhook</h4>
     </div>
     <div class="modal-body">
-        <p>{{userWebhook.event | userWebhookEventParse}}, {{userWebhook.url}}</p>
+        <p>{{userWebhook.event | capitalizeDottedSentence}}, {{userWebhook.url}}</p>
     </div>
     <div class="modal-footer">
         <button type="button" class="btn btn-primary pull-left" ng-click="$dismiss()">Close</button>

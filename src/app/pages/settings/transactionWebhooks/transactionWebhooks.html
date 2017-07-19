@@ -3,12 +3,14 @@
         <table class="table fees-table table-striped setting-bank-accounts-table">
             <tr class="black-muted-bg divider">
                 <th><strong>Event</strong></th>
+                <th><strong>Tx Type</strong></th>
                 <th><strong>URL</strong></th>
                 <th><strong>Secret</strong></th>
                 <th></th>
             </tr>
             <tr ng-repeat="webhook in transactionWebhooks">
-                <th title="{{webhook.tx_type}}" ng-bind="webhook.tx_type | capitalizeWord"></th>
+                <th title="{{webhook.event}}" ng-bind="webhook.event | capitalizeDottedSentence"></th>
+                <th title="{{webhook.tx_type ? webhook.tx_type : 'all' | capitalizeWord}}" ng-bind="webhook.tx_type ? webhook.tx_type : 'All' | capitalizeWord"></th>
                 <th title="{{webhook.url}}" ng-bind="webhook.url | limitTo: '14'"></th>
                 <th title="{{webhook.secret}}" ng-bind="webhook.secret | limitTo: '14'"></th>
                 <th class="rehive-table-row-last-child">
@@ -20,6 +22,12 @@
     </div>
     <div ba-panel ba-panel-title="Add Webhook" ba-panel-class="light-text with-scroll">
         <form name="transactionWebhooksForm" class="custom-form">
+          <div class="form-group">
+              <label><strong>Event</strong> <span class="required-icon">*</span></label>
+              <br>
+              <select class="form-control pointer" ng-model="transactionWebhooksParams.event" ng-options="event for event in txEventOptions" required>
+              </select>
+          </div>
             <div class="form-group">
                 <label><strong>Transaction Type</strong> <span class="required-icon">*</span></label>
                 <br>

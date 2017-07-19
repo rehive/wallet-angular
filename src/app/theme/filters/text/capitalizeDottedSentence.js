@@ -6,10 +6,10 @@
     'use strict';
 
     angular.module('BlurAdmin.theme')
-        .filter('userWebhookEventParse', userWebhookEventParse);
+        .filter('capitalizeDottedSentence', capitalizeDottedSentence);
 
     /** @ngInject */
-    function userWebhookEventParse() {
+    function capitalizeDottedSentence() {
         return function(text) {
           var formattedText = '';
             var textArray = text.split('.');

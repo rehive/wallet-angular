@@ -1,5 +1,11 @@
 <div ng-hide="loadingTransactionWebhooks" ba-panel ba-panel-title="Edit Webhook" ba-panel-class="light-text with-scroll">
     <form name="editTransactionWebhooksForm" class="custom-form" novalidate>
+      <div class="form-group">
+          <label><strong>Transaction Type</strong> <span class="required-icon">*</span></label>
+          <br>
+          <select class="form-control pointer" ng-change="transactionWebhookChanged('event')" ng-model="editTransactionWebhook.event" ng-options="type for type in txEventOptions" required>
+          </select>
+      </div>
         <div class="form-group">
             <label><strong>Transaction Type</strong> <span class="required-icon">*</span></label>
             <br>

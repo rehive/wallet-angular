@@ -5,24 +5,29 @@
         .controller('TransactionWebhooksCtrl', TransactionWebhooksCtrl);
 
     /** @ngInject */
-    function TransactionWebhooksCtrl($scope,API,$uibModal,toastr,$http,cookieManagement,errorToasts,$window,stringService,errorHandler) {
+    function TransactionWebhooksCtrl($scope,API,$uibModal,toastr,$http,cookieManagement,errorToasts,$window,errorHandler) {
 
         var vm = this;
         vm.updatedTransactionWebhook = {};
         vm.token = cookieManagement.getCookie('TOKEN');
         $scope.loadingTransactionWebhooks = true;
         $scope.editTransactionWebhook = {};
-
         $scope.transactionWebhooksParams = {
-            tx_type: 'Credit'
+            tx_type: 'All',
+            event: 'Transaction Create'
         };
 
-        $scope.typeOptions = ['Credit','Debit'];
+        $scope.typeOptions = ['All','Credit','Debit'];
+        $scope.txEventOptions = ['Transaction Create','Transaction Update','Transaction Delete','Transaction Initiate','Transaction Execute'];
 
         $scope.toggleTransactionWebhooksEditView = function(webhook){
             if(webhook){
-                webhook.tx_type = stringService.capitalizeWord(webhook.tx_type);
-                $scope.editTransactionWebhook = webhook
+                webhook.tx_type = webhook.tx_type == null ? 'All' : webhook.tx_type == 'credit' ? 'Credit' : 'Debit';
+                webhook.event = webhook.event == 'transaction.create' ?
+                 'Transaction Create' : webhook.event == 'transaction.update' ? 'Transaction Update' : webhook.event == 'transaction.delete' ?
+                 'Transaction Delete' : webhook.event == 'transaction.initiate' ? 'Transaction Initiate' : webhook.event == 'transaction.execute' ?
+                 'Transaction Execute' : '';
+                $scope.editTransactionWebhook = webhook;
             } else {
                 $scope.editTransactionWebhook = {};
                 vm.getTransactionWebhooks();
@@ -54,7 +59,17 @@
 
         $scope.addTransactionWebhooks = function (transactionWebhooksParams) {
             $scope.loadingTransactionWebhooks = true;
-            transactionWebhooksParams.tx_type = transactionWebhooksParams.tx_type.toLowerCase();
+
+            if(transactionWebhooksParams.tx_type == 'All'){
+                transactionWebhooksParams.tx_type = null;
+            } else {
+              transactionWebhooksParams.tx_type = transactionWebhooksParams.tx_type.toLowerCase();
+            }
+
+            transactionWebhooksParams.event = transactionWebhooksParams.event == 'Transaction Create' ?
+             'transaction.create' : transactionWebhooksParams.event == 'Transaction Update' ? 'transaction.update' : transactionWebhooksParams.event == 'Transaction Delete' ?
+             'transaction.delete' : transactionWebhooksParams.event == 'Transaction Initiate' ? 'transaction.initiate' : transactionWebhooksParams.event == 'Transaction Execute' ?
+             'transaction.execute' : '';
             $http.post(API + '/admin/webhooks/transactions/', transactionWebhooksParams, {
                 headers: {
                     'Content-Type': 'application/json',
@@ -65,11 +80,11 @@
                 if (res.status === 201) {
                     vm.getTransactionWebhooks();
                     toastr.success('You have successfully added the Webhook!');
-                    $scope.transactionWebhooksParams = {tx_type: 'Credit'};
+                    $scope.transactionWebhooksParams = {tx_type: 'All',event: 'Transaction Create'};
                     $window.scrollTo(0, 0);
                 }
             }).catch(function (error) {
-                $scope.transactionWebhooksParams = {tx_type: 'Credit'};
+                $scope.transactionWebhooksParams = {tx_type: 'All',event: 'Transaction Create'};
                 $scope.loadingTransactionWebhooks = false;
                 if(error.status == 403){
                     errorHandler.handle403();
@@ -87,7 +102,19 @@
             $window.scrollTo(0, 0);
             $scope.editingTransactionWebhooks = !$scope.editingTransactionWebhooks;
             $scope.loadingTransactionWebhooks = true;
-            vm.updatedTransactionWebhook.tx_type = $scope.editTransactionWebhook.tx_type.toLowerCase();
+            if(vm.updatedTransactionWebhook.tx_type == 'All'){
+                vm.updatedTransactionWebhook.tx_type = null;
+            } else {
+              vm.updatedTransactionWebhook.tx_type = $scope.editTransactionWebhook.tx_type.toLowerCase();
+            }
+
+            if(vm.updatedTransactionWebhook.event){
+              vm.updatedTransactionWebhook.event = vm.updatedTransactionWebhook.event == 'Transaction Create' ?
+               'transaction.create' : vm.updatedTransactionWebhook.event == 'Transaction Update' ? 'transaction.update' : vm.updatedTransactionWebhook.event == 'Transaction Delete' ?
+               'transaction.delete' : vm.updatedTransactionWebhook.event == 'Transaction Initiate' ? 'transaction.initiate' : vm.updatedTransactionWebhook.event == 'Transaction Execute' ?
+               'transaction.execute' : '';
+             }
+
             $http.patch(API + '/admin/webhooks/transactions/'+ $scope.editTransactionWebhook.id + '/', vm.updatedTransactionWebhook, {
                 headers: {
                     'Content-Type': 'application/json',
