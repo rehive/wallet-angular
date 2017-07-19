@@ -3,13 +3,8 @@
 
     angular.module('BlurAdmin.pages.services', [
         "BlurAdmin.pages.services.bitcoinService",
-        "BlurAdmin.pages.services.bitcoinService.bitcoinServiceTransactions",
-        "BlurAdmin.pages.services.bitcoinService.bitcoinServiceUsers",
-        "BlurAdmin.pages.services.bitcoinService.bitcoinServiceSettings",
         "BlurAdmin.pages.services.stellarService",
-        "BlurAdmin.pages.services.stellarService.stellarServiceTransactions",
-        "BlurAdmin.pages.services.stellarService.stellarServiceUsers",
-        "BlurAdmin.pages.services.stellarService.stellarServiceSettings"
+        'BlurAdmin.pages.services.notificationService'
     ])
         .config(routeConfig);
 

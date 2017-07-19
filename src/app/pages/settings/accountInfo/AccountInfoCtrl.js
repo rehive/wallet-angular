@@ -6,7 +6,6 @@
 
     /** @ngInject */
     function AccountInfoCtrl($scope,API,errorHandler,$http,cookieManagement,errorToasts,toastr,$location) {
-
         var vm = this;
         vm.token = cookieManagement.getCookie('TOKEN');
         $scope.loadingAccountInfo = true;
