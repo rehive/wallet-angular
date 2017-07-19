@@ -72,6 +72,7 @@ angular.module('BlurAdmin', [
                 newUrlLastElement = _.last(newUrlArray);
 
             if(newUrlLastElement == 'login'){
+                cookieManagement.deleteCookie('TOKEN');
                 $rootScope.gotToken = false;
                 $rootScope.securityConfigured = true;
                 $location.path('/login');

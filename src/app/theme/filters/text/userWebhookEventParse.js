@@ -11,9 +11,14 @@
     /** @ngInject */
     function userWebhookEventParse() {
         return function(text) {
+          var formattedText = '';
             var textArray = text.split('.');
-            if(textArray.length == 2){
-                return textArray[0].charAt(0).toUpperCase() + textArray[0].slice(1) + ' ' + textArray[1].charAt(0).toUpperCase() + textArray[1].slice(1);
+            if(textArray.length > 0){
+              for(var i = 0; i < textArray.length ; i ++){
+                formattedText = formattedText + textArray[i].charAt(0).toUpperCase() + textArray[i].slice(1) + ' '
+              }
+
+              return formattedText.trim();
             } else {
                 return text;
             }
