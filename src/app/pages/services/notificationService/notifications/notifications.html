@@ -1,4 +1,36 @@
 <notification-service-navigation></notification-service-navigation>
-<div ba-panel>
-    <h1 style="margin-top: 10px">Coming Soon</h1>
+<div ng-hide="addingNotifications || editingNotifications || loadingNotifications" ba-panel ba-panel-title="Notifications List">
+    <div>
+        <button class="btn btn-success pull-right divider" ng-click="toggleAddCurrencyView()">Add</button>
+    </div>
+    <div ng-show="notificationsList.length > 0" class="divider">
+        <table class="table table-condensed table-striped">
+            <tr class="black-muted-bg">
+                <td><strong>Name</strong></td>
+                <td><strong>Subject</strong></td>
+                <td><strong>Enabled</strong></td>
+                <td><strong>Event</strong></td>
+                <td><strong></strong></td>
+            </tr>
+            <tr ng-repeat="notification in notificationsList" class="editable-row">
+                <td><div title="{{notification.name}}" class="notifications-list-element" ng-bind="notification.name | limitTo: '20'"></div></td>
+                <td><div title="{{notification.subject || 'None'}}" class="notifications-list-element" ng-bind="notification.subject || 'None' | limitTo: '20'"></div></td>
+                <td><div title="{{notification.enabled | capitalizeWord}}" class="notifications-list-element" ng-bind="notification.enabled | capitalizeWord"></div></td>
+                <td><div title="{{notification.event | capitalizeDottedSentence}}" class="notifications-list-element" ng-bind="notification.event | capitalizeDottedSentence"></div></td>
+                <td class="rehive-table-row-last-child">
+                    <button ng-click="openNotificationModal('app/pages/services/notificationService/notifications/notificationModal/notificationModal.html','md',notification)" class="btn btn-danger pull-right rehive-button-no-right-margin">Delete</button>
+                    <button ng-click="toggleNotificationsEditView(notification)" class="btn btn-primary pull-right rehive-button-no-right-margin">Edit</button>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+<div ng-show="addingNotifications" ba-panel ba-panel-title="Create Notification">
+    <create-notification></create-notification>
+</div>
+<div ng-show="editingNotifications" ba-panel ba-panel-title="Create Notification">
+    <edit-notification></edit-notification>
+</div>
+<div ng-show="loadingNotifications" ba-panel>
+    <loading-image></loading-image>
 </div>
