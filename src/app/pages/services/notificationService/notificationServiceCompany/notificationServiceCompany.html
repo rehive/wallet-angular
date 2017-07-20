@@ -7,7 +7,9 @@
       </div>
     </div>
     <div ng-hide="updatingCompanyDetails" ba-panel ba-panel-title="Webhook Shortcuts" class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-        <p>something meaningful that tells the user they can and need to create webhooks relating webhook ,secret and notifications</p>
+        <p>Notifications are triggered by Rehive webhooks. In order to correctly trigger a notification you should ensure you have at least one webhook of the same
+            event type as the notification event. All notification webhooks should be configured with the company secret
+            shown above because it ensures secure communication between Rehive and the service.</p>
         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 rehive-webhook-div-left">
             <button ng-click="goToUsersWebhooks(company.secret)" class="btn notification-webhooks-buttons btn-primary btn-block">Users Webhooks</button>
         </div>
