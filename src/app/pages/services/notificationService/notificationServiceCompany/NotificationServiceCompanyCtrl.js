@@ -5,7 +5,7 @@
         .controller('NotificationServiceCompanyCtrl', NotificationServiceCompanyCtrl);
 
     /** @ngInject */
-    function NotificationServiceCompanyCtrl($scope,$http,cookieManagement,toastr,errorToasts,$window,$location) {
+    function NotificationServiceCompanyCtrl($scope,$http,cookieManagement,toastr,errorToasts,$state) {
 
         var vm = this;
         vm.token = cookieManagement.getCookie('TOKEN');
@@ -52,6 +52,14 @@
                     errorToasts.evaluateErrors(error.data);
                 });
             }
+        };
+
+        $scope.goToTransactionsWebhooks = function(secret){
+            $state.go('settings.transactionWebhooks',{"secret": secret});
+        };
+
+        $scope.goToUsersWebhooks = function(secret){
+            $state.go('settings.userWebhooks',{"secret": secret});
         };
 
 

@@ -5,7 +5,7 @@
         .controller('UserWebhooksCtrl', UserWebhooksCtrl);
 
     /** @ngInject */
-    function UserWebhooksCtrl($scope,API,$uibModal,toastr,$http,cookieManagement,errorToasts,$window,stringService,errorHandler) {
+    function UserWebhooksCtrl($scope,API,$uibModal,toastr,$http,cookieManagement,errorToasts,$window,$state,errorHandler) {
 
         var vm = this;
         vm.updatedUserWebhook = {};
@@ -14,7 +14,8 @@
         $scope.editUserWebhook = {};
 
         $scope.userWebhooksParams = {
-            event: 'User Create'
+            event: 'User Create',
+            secret: $state.params.secret || ''
         };
 
         $scope.eventOptions = ['User Create','User Update','User Delete','User Password Reset','User Email Verify','User Mobile Verify'];

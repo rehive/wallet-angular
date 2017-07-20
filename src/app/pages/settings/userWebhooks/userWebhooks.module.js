@@ -15,6 +15,9 @@
                     templateUrl: 'app/pages/settings/userWebhooks/userWebhooks.html'
                   }
                 },
+                params: {
+                    secret: null
+                },
                 title: "User Webhooks"
             });
     }
