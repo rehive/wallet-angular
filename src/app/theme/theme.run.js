@@ -11,7 +11,7 @@
   /** @ngInject */
   function themeRun($timeout, $rootScope, layoutPaths, preloader, $q, baSidebarService, themeLayoutSettings) {
     var whatToWait = [
-      $timeout(1000)
+      $timeout(2000)
     ];
 
     var theme = themeLayoutSettings;
@@ -32,7 +32,7 @@
       if (!$rootScope.$pageFinishedLoading) {
         $rootScope.$pageFinishedLoading = true;
       }
-    }, 1000);
+    }, 2000);
 
     $rootScope.$baSidebarService = baSidebarService;
   }

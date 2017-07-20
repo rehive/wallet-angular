@@ -16,7 +16,11 @@ angular.module('BlurAdmin', [
 
     .constant('API', 'https://rehive.com/api/3')
 
-    .run(function($cookies,$rootScope,cookieManagement,userVerification,$http,API,$location,_){
+    .run(function($cookies,$rootScope,cookieManagement,$state,$stateParams,userVerification,$http,API,$window,$location,_){
+
+        $window.onload = function(){
+            $rootScope.$pageFinishedLoading = true;
+        };
 
         //using to check if user has a verified email address
         var verifyUser = function (){
