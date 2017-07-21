@@ -5,7 +5,7 @@
         .controller('DebitCtrl', DebitCtrl);
 
     /** @ngInject */
-    function DebitCtrl($rootScope,$scope,$http,API,cookieManagement,toastr,errorToasts,errorHandler,$state,currencyModifiers) {
+    function DebitCtrl($rootScope,$scope,$http,API,cookieManagement,toastr,errorToasts,errorHandler,$location,$state,currencyModifiers) {
 
         var vm = this;
         vm.token = cookieManagement.getCookie('TOKEN');
@@ -62,8 +62,10 @@
 
             if(view == 'debit'){
                 $scope.goToView('createDebit');
+                $location.path('/transactions/debit');
             } else{
                 $scope.goToView('pendingDebit');
+                $location.path('/transactions/debit/pending');
             }
         };
 

@@ -1,7 +1,9 @@
 (function () {
     'use strict';
 
-    angular.module('BlurAdmin.pages.transactions.credit', [])
+    angular.module('BlurAdmin.pages.transactions.credit', [
+            'BlurAdmin.pages.transactions.credit.pendingCredit'
+    ])
         .config(routeConfig);
 
     /** @ngInject */

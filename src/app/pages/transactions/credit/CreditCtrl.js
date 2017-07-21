@@ -5,7 +5,7 @@
         .controller('CreditCtrl', CreditCtrl);
 
     /** @ngInject */
-    function CreditCtrl($rootScope,$scope,$http,API,cookieManagement,toastr,errorToasts,errorHandler,$state,currencyModifiers) {
+    function CreditCtrl($rootScope,$scope,$http,API,cookieManagement,toastr,errorToasts,errorHandler,$location,$state,currencyModifiers) {
 
         var vm = this;
         vm.token = cookieManagement.getCookie('TOKEN');
@@ -62,9 +62,11 @@
             };
 
             if(view == 'credit'){
+                $location.path('/transactions/credit');
                 $scope.goToView('createCredit');
             } else{
                 $scope.goToView('pendingCredit');
+                $location.path('/transactions/credit/pending');
             }
         };
 

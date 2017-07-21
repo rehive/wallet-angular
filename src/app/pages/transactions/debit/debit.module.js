@@ -1,7 +1,9 @@
 (function () {
     'use strict';
 
-    angular.module('BlurAdmin.pages.transactions.debit', [])
+    angular.module('BlurAdmin.pages.transactions.debit', [
+            'BlurAdmin.pages.transactions.debit.pendingDebit'
+    ])
         .config(routeConfig);
 
     /** @ngInject */

@@ -12,7 +12,7 @@
         <complete-debit></complete-debit>
     </div>
     <div ng-show="showView == 'pendingDebit'" class="col-lg-9 col-md-8 col-sm-12 col-xs-12">
-        <pending-debit></pending-debit>
+        <div ui-view="pendingDebitView"></div>
     </div>
 </div>
 <div ng-show="newUser">

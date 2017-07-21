@@ -12,7 +12,7 @@
         <complete-credit></complete-credit>
     </div>
     <div ng-show="showView == 'pendingCredit'" class="col-lg-9 col-md-8 col-sm-12 col-xs-12">
-        <pending-credit></pending-credit>
+        <div ui-view="pendingCreditView"></div>
     </div>
 </div>
 <div ng-show="newUser">
