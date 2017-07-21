@@ -5,8 +5,10 @@
         .controller('TransactionWebhooksCtrl', TransactionWebhooksCtrl);
 
     /** @ngInject */
-    function TransactionWebhooksCtrl($scope,API,$uibModal,toastr,$http,cookieManagement,errorToasts,$window,errorHandler) {
+    function TransactionWebhooksCtrl($scope,API,$uibModal,toastr,$http,cookieManagement,$state,errorToasts,$window,errorHandler) {
 
+
+        console.log($state.params.secret);
         var vm = this;
         vm.updatedTransactionWebhook = {};
         vm.token = cookieManagement.getCookie('TOKEN');
@@ -14,7 +16,8 @@
         $scope.editTransactionWebhook = {};
         $scope.transactionWebhooksParams = {
             tx_type: 'All',
-            event: 'Transaction Create'
+            event: 'Transaction Create',
+            secret: $state.params.secret || ''
         };
 
         $scope.typeOptions = ['All','Credit','Debit'];

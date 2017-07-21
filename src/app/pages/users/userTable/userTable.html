@@ -6,7 +6,7 @@
             <td><strong>Joined</strong></td>
             <td><strong>Last Login</strong></td>
         </tr>
-        <tr ng-repeat="user in users | orderBy: '-date_joined'" class="editable-row center">
+        <tr ng-repeat="user in users | orderBy: '-last_login'" class="editable-row center">
             <td><a href="/#/user/{{user.identifier}}"><div title="{{user.email}}" class="transactions-list-element" ng-bind="user.email"></div></a></td>
             <td><div title="{{user.currency.code}}" class="transactions-list-element" ng-bind="user.currency.code"></div></td>
             <td><div title="{{user.date_joined | date:'mediumDate'}}, {{user.date_joined | date:'shortTime'}}" class="transactions-list-element">

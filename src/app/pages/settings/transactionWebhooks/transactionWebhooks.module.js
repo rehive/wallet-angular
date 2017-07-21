@@ -15,6 +15,9 @@
                     templateUrl: 'app/pages/settings/transactionWebhooks/transactionWebhooks.html'
                   }
                 },
+                params: {
+                    secret: null
+                },
                 title: "Transaction Webhooks"
             });
     }
