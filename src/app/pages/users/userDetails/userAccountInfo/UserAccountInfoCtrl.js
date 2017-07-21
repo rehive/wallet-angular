@@ -52,24 +52,6 @@
             }
         };
 
-        $scope.verifyEmail = function(email){
-            if(vm.token) {
-                $http.get(API + '/admin/users/emails/' + email.id + '/', {
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'Authorization': vm.token
-                    }
-                }).then(function (res) {
-                    if (res.status === 200) {
-                        toastr.success('Email successfully verified.');
-                    }
-                }).catch(function (error) {
-                    $scope.loadingUserAccountInfo = false;
-                    errorToasts.evaluateErrors(error.data);
-                });
-            }
-        };
-
         vm.getUserMobileNumbers = function(){
             if(vm.token) {
                 $scope.loadingUserAccountInfo = true;
@@ -90,7 +72,7 @@
             }
         };
 
-        $scope.openUserEmailModal = function (page, size,email) {
+        $scope.openUserEmailModal = function (page,size,email) {
             vm.theModal = $uibModal.open({
                 animation: true,
                 templateUrl: page,
@@ -100,56 +82,44 @@
                 resolve: {
                     email: function () {
                         return email;
+                    },
+                    user: function () {
+                        return $scope.user;
                     }
                 }
             });
 
             vm.theModal.result.then(function(email){
                 if(email){
-                    vm.getUserEmails
+                    vm.getUserEmails();
                 }
             }, function(){
             });
         };
 
-        $scope.openUserMobileModal = function (page, size,bankAccount) {
+        $scope.openUserMobileModal = function (page, size,mobile) {
             vm.theModal = $uibModal.open({
                 animation: true,
                 templateUrl: page,
                 size: size,
-                controller: 'BankAccountModalCtrl',
+                controller: 'UserMobileModalCtrl',
                 scope: $scope,
                 resolve: {
-                    bankAccount: function () {
-                        return bankAccount;
+                    mobile: function () {
+                        return mobile;
+                    },
+                    user: function () {
+                        return $scope.user;
                     }
                 }
             });
 
-            vm.theModal.result.then(function(bankAccount){
-                var index = $scope.bankAccounts.findIndex(vm.findIndexOfBankAccount,bankAccount);
-                $scope.bankAccounts.splice(index, 1);
+            vm.theModal.result.then(function(mobile){
+                if(mobile){
+                    vm.getUserMobileNumbers();
+                }
             }, function(){
             });
-        };
-
-        $scope.verifyMobile = function(mobile){
-            if(vm.token) {
-                $scope.loadingUserAccountInfo = true;
-                $http.get(API + '/admin/users/emails/' + mobile.id + '/', {
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'Authorization': vm.token
-                    }
-                }).then(function (res) {
-                    if (res.status === 200) {
-                        toastr.success('Mobile number successfully verified.');
-                    }
-                }).catch(function (error) {
-                    $scope.loadingUserAccountInfo = false;
-                    errorToasts.evaluateErrors(error.data);
-                });
-            }
         };
 
     }
