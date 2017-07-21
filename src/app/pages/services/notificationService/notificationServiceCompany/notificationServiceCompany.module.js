@@ -12,7 +12,7 @@
                 views: {
                   'notificationServiceViews' : {
                     templateUrl:'app/pages/services/notificationService/notificationServiceCompany/notificationServiceCompany.html',
-                    controller: "NotificationServiceCompanyCtrl",
+                    controller: "NotificationServiceCompanyCtrl"
                   }
                 },
                 title: 'Company Details'

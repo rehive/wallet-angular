@@ -3,7 +3,8 @@
 
     angular.module('BlurAdmin.pages.services.notificationService', [
       'BlurAdmin.pages.services.notificationService.notificationServiceCompany',
-      'BlurAdmin.pages.services.notificationService.notificationServiceNotifications'
+      'BlurAdmin.pages.services.notificationService.notificationServiceNotifications',
+      'BlurAdmin.pages.services.notificationService.notificationServiceLogs'
     ])
         .config(routeConfig);
 
