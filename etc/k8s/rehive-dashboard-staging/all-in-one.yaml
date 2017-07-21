@@ -1,13 +1,13 @@
 apiVersion: v1
 kind: Namespace
 metadata:
-  name: rehive-dashboard-beta
+  name: rehive-dashboard-staging
 ---
 apiVersion: v1
 kind: Service
 metadata:
   name: rehive-dashboard
-  namespace: rehive-dashboard-beta
+  namespace: rehive-dashboard-staging
 spec:
   ports:
   - port: 80
@@ -21,7 +21,7 @@ apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
   name: rehive-dashboard
-  namespace: rehive-dashboard-beta
+  namespace: rehive-dashboard-staging
 spec:
   replicas: 1
   template:
@@ -30,7 +30,7 @@ spec:
         app: rehive-dashboard
     spec:
       containers:
-      - image: rehive/dashboard:v0.01
+      - image: rehive/dashboard:0.7.0
         imagePullPolicy: Always
         name: rehive-dashboard
         ports:
@@ -40,29 +40,29 @@ apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
   name: rehive-dashboard
-  namespace: rehive-dashboard-beta
+  namespace: rehive-dashboard-staging
   annotations:
     kubernetes.io/tls-acme: "true"
-    kubernetes.io/ingress.class: "gce"
+    kubernetes.io/ingress.class: "nginx"
     ingress.kubernetes.io/ssl-redirect: "true"
 spec:
   tls:
   - hosts:
-    - beta.dashboard.rehive.com
-    - www.beta.dashboard.rehive.com
+    - staging.dashboard.rehive.com
+    - www.staging.dashboard.rehive.com
     secretName: rehive-dashboard-tls
   rules:
-  - host: beta.dashboard.rehive.com
+  - host: staging.dashboard.rehive.com
     http:
       paths:
-      - path: /*
+      - path: /
         backend:
           serviceName: rehive-dashboard
           servicePort: 80
-  - host: www.beta.dashboard.rehive.com
+  - host: www.staging.dashboard.rehive.com
     http:
       paths:
-      - path: /*
+      - path: /
         backend:
           serviceName: rehive-dashboard
           servicePort: 80
