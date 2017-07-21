@@ -74,16 +74,16 @@
             <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
                 <p><strong>Reference: </strong></p>
             </div>
-            <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
-                <p ng-bind="transaction.reference">
+            <div ng-show="transaction.reference" class="metadata col-lg-8 col-md-8 col-sm-8 col-xs-8">
+                <pre ng-bind="transaction.reference"></pre>
             </div>
         </div>
         <div class="row">
             <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
                 <p><strong>Note: </strong></p>
             </div>
-            <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
-                <p ng-bind="transaction.note">
+            <div ng-show="transaction.note" class="metadata col-lg-8 col-md-8 col-sm-8 col-xs-8">
+                <pre ng-bind="transaction.note"></pre>
             </div>
         </div>
         <div class="row">

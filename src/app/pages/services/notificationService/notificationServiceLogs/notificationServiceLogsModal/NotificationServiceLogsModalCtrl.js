@@ -5,9 +5,9 @@
         .controller('NotificationServiceLogsModalCtrl', NotificationServiceLogsModalCtrl);
 
     /** @ngInject */
-    function NotificationServiceLogsModalCtrl($scope,log) {
-
+    function NotificationServiceLogsModalCtrl($scope,log,$sce) {
         $scope.log = log;
+        $scope.log.html_message = $sce.trustAsHtml($scope.log.html_message);
 
     }
 })();
