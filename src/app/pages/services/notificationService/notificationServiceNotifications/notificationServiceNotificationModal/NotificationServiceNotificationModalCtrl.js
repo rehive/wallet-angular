@@ -2,9 +2,9 @@
     'use strict';
 
     angular.module('BlurAdmin.pages.services.notificationService.notificationServiceNotifications')
-        .controller('NotificationModalCtrl', NotificationModalCtrl);
+        .controller('NotificationServiceNotificationModalCtrl', NotificationServiceNotificationModalCtrl);
 
-    function NotificationModalCtrl($scope,$uibModalInstance,notification,toastr,$http,API,cookieManagement,errorToasts,errorHandler) {
+    function NotificationServiceNotificationModalCtrl($scope,$uibModalInstance,notification,toastr,$http,cookieManagement,errorToasts,errorHandler) {
 
         var vm = this;
 

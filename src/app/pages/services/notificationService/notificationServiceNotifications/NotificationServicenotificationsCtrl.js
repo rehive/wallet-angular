@@ -2,10 +2,10 @@
     'use strict';
 
     angular.module('BlurAdmin.pages.services.notificationService.notificationServiceNotifications')
-        .controller('NotificationsCtrl', NotificationsCtrl);
+        .controller('NotificationServiceNotificationsCtrl', NotificationServiceNotificationsCtrl);
 
     /** @ngInject */
-    function NotificationsCtrl($scope,$http,cookieManagement,$uibModal,errorToasts,$window,toastr) {
+    function NotificationServiceNotificationsCtrl($scope,$http,cookieManagement,$uibModal,errorToasts,$window,toastr) {
 
         var vm = this;
         vm.token = cookieManagement.getCookie('TOKEN');
@@ -120,7 +120,7 @@
                 animation: true,
                 templateUrl: page,
                 size: size,
-                controller: 'NotificationModalCtrl',
+                controller: 'NotificationServiceNotificationModalCtrl',
                 scope: $scope,
                 resolve: {
                     notification: function () {

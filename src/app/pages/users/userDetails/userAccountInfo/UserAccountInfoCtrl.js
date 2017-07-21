@@ -5,7 +5,7 @@
         .controller('UserAccountInfoCtrl', UserAccountInfoCtrl);
 
     /** @ngInject */
-    function UserAccountInfoCtrl($scope,API,$stateParams,$http,cookieManagement,errorToasts,toastr) {
+    function UserAccountInfoCtrl($scope,API,$stateParams,$uibModal,$http,cookieManagement,errorToasts,toastr) {
 
         var vm = this;
         vm.token = cookieManagement.getCookie('TOKEN');
@@ -88,6 +88,49 @@
                     errorToasts.evaluateErrors(error.data);
                 });
             }
+        };
+
+        $scope.openUserEmailModal = function (page, size,email) {
+            vm.theModal = $uibModal.open({
+                animation: true,
+                templateUrl: page,
+                size: size,
+                controller: 'UserEmailModalCtrl',
+                scope: $scope,
+                resolve: {
+                    email: function () {
+                        return email;
+                    }
+                }
+            });
+
+            vm.theModal.result.then(function(email){
+                if(email){
+                    vm.getUserEmails
+                }
+            }, function(){
+            });
+        };
+
+        $scope.openUserMobileModal = function (page, size,bankAccount) {
+            vm.theModal = $uibModal.open({
+                animation: true,
+                templateUrl: page,
+                size: size,
+                controller: 'BankAccountModalCtrl',
+                scope: $scope,
+                resolve: {
+                    bankAccount: function () {
+                        return bankAccount;
+                    }
+                }
+            });
+
+            vm.theModal.result.then(function(bankAccount){
+                var index = $scope.bankAccounts.findIndex(vm.findIndexOfBankAccount,bankAccount);
+                $scope.bankAccounts.splice(index, 1);
+            }, function(){
+            });
         };
 
         $scope.verifyMobile = function(mobile){

@@ -18,7 +18,8 @@
                 <td><div title="{{notification.enabled | capitalizeWord}}" class="notifications-list-element" ng-bind="notification.enabled | capitalizeWord"></div></td>
                 <td><div title="{{notification.event | capitalizeDottedSentence}}" class="notifications-list-element" ng-bind="notification.event | capitalizeDottedSentence"></div></td>
                 <td class="rehive-table-row-last-child">
-                    <button ng-click="openNotificationModal('app/pages/services/notificationService/notifications/notificationModal/notificationModal.html','md',notification)" class="btn btn-danger pull-right rehive-button-no-right-margin">Delete</button>
+                    <button ng-click="openNotificationModal('app/pages/services/notificationService/notificationServiceNotifications/notificationServiceNotificationModal/notificationServiceNotificationModal.html','md',notification)"
+                            class="btn btn-danger pull-right rehive-button-no-right-margin">Delete</button>
                     <button ng-click="toggleNotificationsEditView(notification)" class="btn btn-primary pull-right rehive-button-no-right-margin">Edit</button>
                 </td>
             </tr>
@@ -26,10 +27,10 @@
     </div>
 </div>
 <div ng-show="addingNotifications" ba-panel ba-panel-title="Create Notification">
-    <create-notification></create-notification>
+    <create-notification-service-notification></create-notification-service-notification>
 </div>
 <div ng-show="editingNotifications" ba-panel ba-panel-title="Create Notification">
-    <edit-notification></edit-notification>
+    <edit-notification-service-notification></edit-notification-service-notification>
 </div>
 <div ng-show="loadingNotifications" ba-panel>
     <loading-image></loading-image>

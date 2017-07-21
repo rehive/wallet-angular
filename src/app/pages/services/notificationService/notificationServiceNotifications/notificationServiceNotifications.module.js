@@ -11,8 +11,8 @@
                 url: '/list',
                 views: {
                   'notificationServiceViews' : {
-                    templateUrl:'app/pages/services/notificationService/notifications/notifications.html',
-                    controller: "NotificationsCtrl"
+                    templateUrl:'app/pages/services/notificationService/notificationServiceNotifications/notificationServiceNotifications.html',
+                    controller: "NotificationServiceNotificationsCtrl"
                   }
                 },
                 title: 'Notifications'
