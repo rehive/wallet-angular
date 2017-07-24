@@ -108,7 +108,7 @@
         $scope.getLatestTransactions();
 
         $scope.openModal = function (page, size,transaction) {
-            $uibModal.open({
+            vm.theModal = $uibModal.open({
                 animation: true,
                 templateUrl: page,
                 size: size,
@@ -118,6 +118,24 @@
                         return transaction;
                     }
                 }
+            });
+
+            vm.theModal.result.then(function(transaction){
+                if(transaction){
+                    $scope.searchParams = {
+                        searchId: '',
+                        searchUser: $state.params.code || '',
+                        searchDateFrom: '',
+                        searchDateTo: '',
+                        searchType: 'Type',
+                        searchStatus: 'Status',
+                        searchCurrency: {code: 'Currency'},
+                        searchOrderBy: 'Latest',
+                        searchSubType: ''
+                    };
+                    $scope.getLatestTransactions();
+                }
+            }, function(){
             });
         };
 

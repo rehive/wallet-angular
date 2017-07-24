@@ -64,7 +64,6 @@
             });
 
             vm.theModal.result.then(function(transaction){
-                console.log(transaction);
                 var index = $scope.transactions.list.findIndex(vm.findIndexOfTransaction,transaction);
                 $scope.transactions.list.splice(index, 1);
                 if($scope.transactions.list.length == 0){
