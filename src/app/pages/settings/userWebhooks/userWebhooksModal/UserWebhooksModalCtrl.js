@@ -4,7 +4,7 @@
     angular.module('BlurAdmin.pages.settings.userWebhooks')
         .controller('UserWebhooksModalCtrl', UserWebhooksModalCtrl);
 
-    function UserWebhooksModalCtrl($scope,$uibModalInstance,userWebhook,toastr,$http,API,cookieManagement,errorToasts,errorHandler) {
+    function UserWebhooksModalCtrl($scope,$uibModalInstance,userWebhook,toastr,$http,environmentConfig,cookieManagement,errorToasts,errorHandler) {
 
         var vm = this;
 
@@ -14,7 +14,7 @@
 
         $scope.deleteUserWebhook = function () {
             $scope.deletingUserWebhook = true;
-            $http.delete(API + '/admin/webhooks/users/' + $scope.userWebhook.id + '/', {
+            $http.delete(environmentConfig.API + '/admin/webhooks/users/' + $scope.userWebhook.id + '/', {
                 headers: {
                     'Content-Type': 'application/json',
                     'Authorization': vm.token

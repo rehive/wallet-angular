@@ -4,7 +4,7 @@
     angular.module('BlurAdmin.pages.settings.security')
         .controller('DeleteTokenModalCtrl', DeleteTokenModalCtrl);
 
-    function DeleteTokenModalCtrl($scope,token,$http,API,cookieManagement,errorToasts,toastr) {
+    function DeleteTokenModalCtrl($scope,token,$http,environmentConfig,cookieManagement,errorToasts,toastr) {
 
         var vm = this;
 
@@ -19,7 +19,7 @@
         $scope.deleteToken = function (tokenKey) {
             if(vm.token) {
                 $scope.deletingToken = true;
-                $http.delete(API + '/auth/tokens/' + tokenKey, {
+                $http.delete(environmentConfig.API + '/auth/tokens/' + tokenKey, {
                     headers: {
                         'Content-Type': 'application/json',
                         'Authorization': vm.token

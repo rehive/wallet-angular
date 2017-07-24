@@ -5,7 +5,7 @@
         .controller('AccountInfoCtrl', AccountInfoCtrl);
 
     /** @ngInject */
-    function AccountInfoCtrl($scope,API,errorHandler,$http,cookieManagement,errorToasts,toastr,$location) {
+    function AccountInfoCtrl($scope,environmentConfig,errorHandler,$http,cookieManagement,errorToasts,toastr,$location) {
         var vm = this;
         vm.token = cookieManagement.getCookie('TOKEN');
         $scope.loadingAccountInfo = true;
@@ -18,7 +18,7 @@
 
         vm.getAdminAccountInfo = function () {
             if(vm.token) {
-                $http.get(API + '/user/', {
+                $http.get(environmentConfig.API + '/user/', {
                     headers: {
                         'Content-Type': 'application/json',
                         'Authorization': vm.token
@@ -38,7 +38,7 @@
 
         $scope.updateAdministratorAccount = function(){
             $scope.loadingAccountInfo = true;
-            $http.patch(API + '/user/', vm.updatedAdministrator ,{
+            $http.patch(environmentConfig.API + '/user/', vm.updatedAdministrator ,{
                 headers: {
                     'Content-Type': 'application/json',
                     'Authorization': vm.token

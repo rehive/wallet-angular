@@ -5,7 +5,7 @@
         .controller('LoginCtrl', LoginCtrl);
 
     /** @ngInject */
-    function LoginCtrl($rootScope,$scope,$http,cookieManagement,API,$location,errorToasts,userVerification) {
+    function LoginCtrl($rootScope,$scope,$http,cookieManagement,environmentConfig,$location,errorToasts,userVerification) {
 
         var vm = this;
         cookieManagement.deleteCookie('TOKEN');
@@ -13,7 +13,7 @@
         $scope.login = function(user, company, password) {
             $rootScope.$pageFinishedLoading = false;
 
-            $http.post(API + '/auth/login/', {
+            $http.post(environmentConfig.API + '/auth/login/', {
                 user: user,
                 company: company,
                 password: password
@@ -40,7 +40,7 @@
 
         vm.getCompanyInfo = function (token) {
             if(token) {
-                $http.get(API + '/admin/company/', {
+                $http.get(environmentConfig.API + '/admin/company/', {
                     headers: {
                         'Content-Type': 'application/json',
                         'Authorization': 'Token ' + token

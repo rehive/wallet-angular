@@ -4,7 +4,7 @@
     angular.module('BlurAdmin.pages.accountSettings.accountCurrencySwitches')
         .controller('AccountCurrencySwitchesModalCtrl', AccountCurrencySwitchesModalCtrl);
 
-    function AccountCurrencySwitchesModalCtrl($scope,$uibModalInstance,accountCurrencySwitch,currencyCode,reference,toastr,$http,API,cookieManagement,errorToasts,errorHandler) {
+    function AccountCurrencySwitchesModalCtrl($scope,$uibModalInstance,accountCurrencySwitch,currencyCode,reference,toastr,$http,environmentConfig,cookieManagement,errorToasts,errorHandler) {
 
         var vm = this;
         vm.currencyCode = currencyCode;
@@ -15,7 +15,7 @@
 
         $scope.deleteAccountCurrencySwitch = function () {
             $scope.deletingAccountCurrencySwitches = true;
-            $http.delete(API + '/admin/accounts/' + vm.reference + '/currencies/' + vm.currencyCode + '/switches/' + $scope.accountCurrencySwitch.id +'/', {
+            $http.delete(environmentConfig.API + '/admin/accounts/' + vm.reference + '/currencies/' + vm.currencyCode + '/switches/' + $scope.accountCurrencySwitch.id +'/', {
                 headers: {
                     'Content-Type': 'application/json',
                     'Authorization': vm.token

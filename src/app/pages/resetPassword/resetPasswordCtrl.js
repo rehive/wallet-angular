@@ -5,10 +5,10 @@
         .controller('ResetPasswordCtrl', ResetPasswordCtrl);
 
     /** @ngInject */
-    function ResetPasswordCtrl($scope,$http,toastr,$location,API,errorToasts) {
+    function ResetPasswordCtrl($scope,$http,toastr,$location,environmentConfig,errorToasts) {
 
         $scope.resetPassword = function(user,company){
-            $http.post(API + '/auth/password/reset/', {
+            $http.post(environmentConfig.API + '/auth/password/reset/', {
                 user: user,
                 company: company
             }).then(function (res) {

@@ -5,7 +5,7 @@
         .controller('TransfersCtrl', TransfersCtrl);
 
     /** @ngInject */
-    function TransfersCtrl($rootScope,$scope,$http,API,cookieManagement,toastr,errorToasts,errorHandler,currencyModifiers) {
+    function TransfersCtrl($rootScope,$scope,$http,environmentConfig,cookieManagement,toastr,errorToasts,errorHandler,currencyModifiers) {
 
         var vm = this;
         vm.token = cookieManagement.getCookie('TOKEN');
@@ -60,7 +60,7 @@
             };
 
             $scope.onGoingTransaction = true;
-            $http.post(API + '/admin/transactions/transfer/',sendTransactionData, {
+            $http.post(environmentConfig.API + '/admin/transactions/transfer/',sendTransactionData, {
                 headers: {
                     'Content-Type': 'application/json',
                     'Authorization': vm.token

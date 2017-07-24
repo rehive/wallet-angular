@@ -5,7 +5,7 @@
         .controller('ChangePasswordCtrl', ChangePasswordCtrl);
 
     /** @ngInject */
-    function ChangePasswordCtrl($rootScope,$scope,$http,API,cookieManagement,errorToasts,$location,toastr) {
+    function ChangePasswordCtrl($rootScope,$scope,$http,environmentConfig,cookieManagement,errorToasts,$location,toastr) {
 
         var vm = this;
         vm.token = cookieManagement.getCookie('TOKEN');
@@ -14,11 +14,11 @@
         $scope.goToDashboard = function(){
             $rootScope.securityConfigured = true;
             $location.path('/dashboard');
-        }
+        };
 
         $scope.changePassword = function (passwordChangeParams) {
             $scope.changingPassword = true;
-            $http.post(API + '/auth/password/change/', passwordChangeParams, {
+            $http.post(environmentConfig.API + '/auth/password/change/', passwordChangeParams, {
                 headers: {
                     'Content-Type': 'application/json',
                     'Authorization': vm.token

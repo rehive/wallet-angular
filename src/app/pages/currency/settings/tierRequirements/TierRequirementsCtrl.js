@@ -5,7 +5,7 @@
         .controller('TierRequirementsCtrl', TierRequirementsCtrl);
 
     /** @ngInject */
-    function TierRequirementsCtrl($rootScope,$scope,cookieManagement,$http,API,errorToasts,_,toastr,$window,$timeout) {
+    function TierRequirementsCtrl($rootScope,$scope,cookieManagement,$http,environmentConfig,errorToasts,_,toastr,$window,$timeout) {
 
         var vm = this;
         vm.token = cookieManagement.getCookie('TOKEN');
@@ -21,7 +21,7 @@
         $scope.getAllTiers = function(tierLevel){
             if(vm.token) {
                 $scope.loadingTierRequirements = true;
-                $http.get(API + '/admin/tiers/?currency=' + $rootScope.selectedCurrency.code, {
+                $http.get(environmentConfig.API + '/admin/tiers/?currency=' + $rootScope.selectedCurrency.code, {
                     headers: {
                         'Content-Type': 'application/json',
                         'Authorization': vm.token
@@ -69,7 +69,7 @@
         $scope.getTierRequirements = function(){
             if(vm.token) {
                 $scope.loadingTierRequirements = true;
-                $http.get(API + '/admin/tiers/' + $scope.selectedTier.id + '/requirements/',{
+                $http.get(environmentConfig.API + '/admin/tiers/' + $scope.selectedTier.id + '/requirements/',{
                     headers: {
                         'Content-Type': 'application/json',
                         'Authorization': vm.token
@@ -107,7 +107,7 @@
         $scope.saveTierRequirements = function(fieldName){
             if(vm.token) {
                 $scope.loadingTierRequirements = true;
-                $http.post(API + '/admin/tiers/' + $scope.selectedTier.id + '/requirements/' , {"requirement": fieldName} ,{
+                $http.post(environmentConfig.API + '/admin/tiers/' + $scope.selectedTier.id + '/requirements/' , {"requirement": fieldName} ,{
                     headers: {
                         'Content-Type': 'application/json',
                         'Authorization': vm.token
@@ -141,7 +141,7 @@
             var requirementId = vm.findRequirementId(fieldName);
             if(vm.token) {
                 $scope.loadingTierRequirements = true;
-                $http.delete(API + '/admin/tiers/' + $scope.selectedTier.id + '/requirements/' + requirementId + '/',{
+                $http.delete(environmentConfig.API + '/admin/tiers/' + $scope.selectedTier.id + '/requirements/' + requirementId + '/',{
                     headers: {
                         'Content-Type': 'application/json',
                         'Authorization': vm.token

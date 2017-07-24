@@ -5,10 +5,10 @@
         .controller('VerifyAdminEmailCtrl', VerifyAdminEmailCtrl);
 
     /** @ngInject */
-    function VerifyAdminEmailCtrl($scope,$stateParams,$http,toastr,$location,API,errorToasts) {
+    function VerifyAdminEmailCtrl($scope,$stateParams,$http,toastr,$location,environmentConfig,errorToasts) {
 
         $scope.verifyAdminEmail = function(){
-            $http.post(API + '/auth/email/verify/', {
+            $http.post(environmentConfig.API + '/auth/email/verify/', {
                 key: $stateParams.key
             }).then(function (res) {
                 if (res.status === 200) {

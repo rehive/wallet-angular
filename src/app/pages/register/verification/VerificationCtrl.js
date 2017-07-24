@@ -5,7 +5,7 @@
         .controller('VerificationCtrl', VerificationCtrl);
 
     /** @ngInject */
-    function VerificationCtrl($rootScope,$scope,$http,toastr,cookieManagement,API,$location,errorToasts,userVerification,_) {
+    function VerificationCtrl($rootScope,$scope,$http,toastr,cookieManagement,environmentConfig,$location,errorToasts,userVerification,_) {
 
         var vm = this;
         vm.user = {};
@@ -23,7 +23,7 @@
         };
 
         vm.getUserInfo = function(){
-            $http.get(API + '/user/', {
+            $http.get(environmentConfig.API + '/user/', {
                 headers: {
                     'Content-Type': 'application/json',
                     'Authorization': vm.token
@@ -39,7 +39,7 @@
         vm.getUserInfo();
 
         $scope.resendEmail = function(){
-            $http.post(API + '/auth/email/verify/resend/',{email: vm.user.email,company: vm.user.company}, {
+            $http.post(environmentConfig.API + '/auth/email/verify/resend/',{email: vm.user.email,company: vm.user.company}, {
                 headers: {
                     'Content-Type': 'application/json',
                     'Authorization': vm.token

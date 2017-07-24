@@ -5,7 +5,7 @@
         .controller('LatestTransactionsCtrl', LatestTransactionsCtrl);
 
     /** @ngInject */
-    function LatestTransactionsCtrl($scope,$uibModal,$http,API,cookieManagement,errorToasts,errorHandler) {
+    function LatestTransactionsCtrl($scope,$uibModal,$http,environmentConfig,cookieManagement,errorToasts,errorHandler) {
 
         var vm = this;
         $scope.transactions = [];
@@ -14,7 +14,7 @@
 
         vm.getLatestTransactions = function(){
             if(vm.token) {
-                $http.get(API + '/admin/transactions/?page_size=4&orderby=-created', {
+                $http.get(environmentConfig.API + '/admin/transactions/?page_size=4&orderby=-created', {
                     headers: {
                         'Content-Type': 'application/json',
                         'Authorization': vm.token

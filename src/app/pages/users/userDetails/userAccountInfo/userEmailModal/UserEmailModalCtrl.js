@@ -4,7 +4,7 @@
     angular.module('BlurAdmin.pages.userDetails')
         .controller('UserEmailModalCtrl', UserEmailModalCtrl);
 
-    function UserEmailModalCtrl($scope,$uibModalInstance,email,user,toastr,$http,API,cookieManagement,errorToasts,errorHandler) {
+    function UserEmailModalCtrl($scope,$uibModalInstance,email,user,toastr,$http,environmentConfig,cookieManagement,errorToasts,errorHandler) {
 
         var vm= this;
 
@@ -16,7 +16,7 @@
 
         $scope.verifyEmail = function () {
             $scope.verifyingEmail = true;
-            $http.patch(API + '/admin/users/emails/' + email.id + '/', {verified: true}, {
+            $http.patch(environmentConfig.API + '/admin/users/emails/' + email.id + '/', {verified: true}, {
                 headers: {
                     'Content-Type': 'application/json',
                     'Authorization': vm.token

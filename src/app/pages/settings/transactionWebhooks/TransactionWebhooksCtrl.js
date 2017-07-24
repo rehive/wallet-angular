@@ -5,7 +5,7 @@
         .controller('TransactionWebhooksCtrl', TransactionWebhooksCtrl);
 
     /** @ngInject */
-    function TransactionWebhooksCtrl($scope,API,$uibModal,toastr,$http,cookieManagement,$state,errorToasts,$window,errorHandler) {
+    function TransactionWebhooksCtrl($scope,environmentConfig,$uibModal,toastr,$http,cookieManagement,$state,errorToasts,$window,errorHandler) {
 
 
         console.log($state.params.secret);
@@ -41,7 +41,7 @@
         vm.getTransactionWebhooks = function () {
             if(vm.token) {
                 $scope.loadingTransactionWebhooks = true;
-                $http.get(API + '/admin/webhooks/transactions/', {
+                $http.get(environmentConfig.API + '/admin/webhooks/transactions/', {
                     headers: {
                         'Content-Type': 'application/json',
                         'Authorization': vm.token
@@ -73,7 +73,7 @@
              'transaction.create' : transactionWebhooksParams.event == 'Transaction Update' ? 'transaction.update' : transactionWebhooksParams.event == 'Transaction Delete' ?
              'transaction.delete' : transactionWebhooksParams.event == 'Transaction Initiate' ? 'transaction.initiate' : transactionWebhooksParams.event == 'Transaction Execute' ?
              'transaction.execute' : '';
-            $http.post(API + '/admin/webhooks/transactions/', transactionWebhooksParams, {
+            $http.post(environmentConfig.API + '/admin/webhooks/transactions/', transactionWebhooksParams, {
                 headers: {
                     'Content-Type': 'application/json',
                     'Authorization': vm.token
@@ -118,7 +118,7 @@
                'transaction.execute' : '';
              }
 
-            $http.patch(API + '/admin/webhooks/transactions/'+ $scope.editTransactionWebhook.id + '/', vm.updatedTransactionWebhook, {
+            $http.patch(environmentConfig.API + '/admin/webhooks/transactions/'+ $scope.editTransactionWebhook.id + '/', vm.updatedTransactionWebhook, {
                 headers: {
                     'Content-Type': 'application/json',
                     'Authorization': vm.token

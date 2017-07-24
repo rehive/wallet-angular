@@ -5,7 +5,7 @@
         .controller('SubtypesCtrl', SubtypesCtrl);
 
     /** @ngInject */
-    function SubtypesCtrl($scope,API,$uibModal,toastr,$http,cookieManagement,errorToasts,$window,errorHandler) {
+    function SubtypesCtrl($scope,environmentConfig,$uibModal,toastr,$http,cookieManagement,errorToasts,$window,errorHandler) {
 
         var vm = this;
         vm.token = cookieManagement.getCookie('TOKEN');
@@ -31,7 +31,7 @@
         vm.getSubtypes = function () {
             if(vm.token) {
                 $scope.loadingSubtypes = true;
-                $http.get(API + '/admin/subtypes/', {
+                $http.get(environmentConfig.API + '/admin/subtypes/', {
                     headers: {
                         'Content-Type': 'application/json',
                         'Authorization': vm.token
@@ -52,7 +52,7 @@
         $scope.addSubtype = function(){
             $scope.loadingSubtypes = true;
             $scope.newSubtype.tx_type = $scope.newSubtype.tx_type.toLowerCase();
-            $http.post(API + '/admin/subtypes/', $scope.newSubtype, {
+            $http.post(environmentConfig.API + '/admin/subtypes/', $scope.newSubtype, {
                 headers: {
                     'Content-Type': 'application/json',
                     'Authorization': vm.token
@@ -83,7 +83,7 @@
             $window.scrollTo(0, 0);
             $scope.editingSubtype = !$scope.editingSubtype;
             $scope.loadingSubtypes = true;
-            $http.patch(API + '/admin/subtypes/'+ $scope.editSubtype.id + '/', vm.updatedSubtype, {
+            $http.patch(environmentConfig.API + '/admin/subtypes/'+ $scope.editSubtype.id + '/', vm.updatedSubtype, {
                 headers: {
                     'Content-Type': 'application/json',
                     'Authorization': vm.token

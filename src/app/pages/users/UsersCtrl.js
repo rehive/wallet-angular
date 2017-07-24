@@ -5,7 +5,7 @@
         .controller('UsersCtrl', UsersCtrl);
 
     /** @ngInject */
-    function UsersCtrl($rootScope,$scope,API,$http,cookieManagement,errorToasts,$window,errorHandler) {
+    function UsersCtrl($rootScope,$scope,environmentConfig,$http,cookieManagement,errorToasts,$window,errorHandler) {
 
         var vm = this;
         vm.token = cookieManagement.getCookie('TOKEN');
@@ -63,7 +63,7 @@
                 + '&verified=' + ($scope.usersSearchParams.searchStatus == 'Status' ? '' : $scope.usersSearchParams.searchStatus);
                 //+ '&currency__code=' + ($scope.usersSearchParams.searchCurrency.code ? ($scope.usersSearchParams.searchCurrency.code == 'Currency' ? '' : $scope.usersSearchParams.searchCurrency.code) : '');
 
-            return API + '/admin/users/' + vm.filterParams;
+            return environmentConfig.API + '/admin/users/' + vm.filterParams;
         };
 
         $scope.getAllUsers = function(applyFilter){

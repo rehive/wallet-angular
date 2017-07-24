@@ -5,7 +5,7 @@
         .controller('HistoryCtrl', HistoryCtrl);
 
     /** @ngInject */
-    function HistoryCtrl($scope,API,$http,cookieManagement,$uibModal,errorToasts,$state,$window,errorHandler) {
+    function HistoryCtrl($scope,environmentConfig,$http,cookieManagement,$uibModal,errorToasts,$state,$window,errorHandler) {
 
         var vm = this;
         vm.token = cookieManagement.getCookie('TOKEN');
@@ -58,7 +58,7 @@
                 + '&status=' + ($scope.searchParams.searchStatus == 'Status' ? '' : $scope.searchParams.searchStatus)
                 + '&subtype=' + $scope.searchParams.searchSubType; // all the params of the filtering
 
-            return API + '/admin/transactions/' + vm.filterParams;
+            return environmentConfig.API + '/admin/transactions/' + vm.filterParams;
         };
 
         $scope.getLatestTransactions = function(applyFilter){

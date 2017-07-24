@@ -5,7 +5,7 @@
         .controller('AccountCurrencyFeesCtrl', AccountCurrencyFeesCtrl);
 
     /** @ngInject */
-    function AccountCurrencyFeesCtrl($rootScope,$scope,$stateParams,$http,$uibModal,API,cookieManagement,errorToasts,currencyModifiers,toastr) {
+    function AccountCurrencyFeesCtrl($rootScope,$scope,$stateParams,$http,$uibModal,environmentConfig,cookieManagement,errorToasts,currencyModifiers,toastr) {
 
         var vm = this;
         vm.token = cookieManagement.getCookie('TOKEN');
@@ -34,7 +34,7 @@
         $scope.getAccountCurrencyFees = function(){
             if(vm.token) {
                 $scope.loadingAccountCurrencyFees = true;
-                $http.get(API + '/admin/accounts/' + vm.reference + '/currencies/' + vm.currencyCode + '/fees/',{
+                $http.get(environmentConfig.API + '/admin/accounts/' + vm.reference + '/currencies/' + vm.currencyCode + '/fees/',{
                     headers: {
                         'Content-Type': 'application/json',
                         'Authorization': vm.token
@@ -62,7 +62,7 @@
             if(vm.token) {
                 $scope.loadingAccountCurrencyFees = true;
                 accountCurrencyFeesParams.tx_type = accountCurrencyFeesParams.tx_type.toLowerCase();
-                $http.post(API + '/admin/accounts/' + vm.reference + '/currencies/' + vm.currencyCode + '/fees/',accountCurrencyFeesParams,{
+                $http.post(environmentConfig.API + '/admin/accounts/' + vm.reference + '/currencies/' + vm.currencyCode + '/fees/',accountCurrencyFeesParams,{
                     headers: {
                         'Content-Type': 'application/json',
                         'Authorization': vm.token
@@ -102,7 +102,7 @@
                 $scope.editingAccountCurrencyFees = !$scope.editingAccountCurrencyFees;
                 vm.updatedAccountCurrencyFee.tx_type ? vm.updatedAccountCurrencyFee.tx_type = vm.updatedAccountCurrencyFee.tx_type.toLowerCase() : '';
 
-                $http.patch(API + '/admin/accounts/' + vm.reference + '/currencies/' + vm.currencyCode + '/fees/' + $scope.editAccountCurrencyFee.id +'/',vm.updatedAccountCurrencyFee,{
+                $http.patch(environmentConfig.API + '/admin/accounts/' + vm.reference + '/currencies/' + vm.currencyCode + '/fees/' + $scope.editAccountCurrencyFee.id +'/',vm.updatedAccountCurrencyFee,{
                     headers: {
                         'Content-Type': 'application/json',
                         'Authorization': vm.token

@@ -5,7 +5,7 @@
         .controller('PendingCreditCtrl', PendingCreditCtrl);
 
     /** @ngInject */
-    function PendingCreditCtrl($rootScope,$scope,$http,API,cookieManagement,$uibModal,errorToasts) {
+    function PendingCreditCtrl($rootScope,$scope,$http,environmentConfig,cookieManagement,$uibModal,errorToasts) {
 
         var vm = this;
         $scope.transactions = {};
@@ -24,7 +24,7 @@
         vm.getPendingTransactions = function(){
             $scope.transactions.list = [];
             if(vm.token) {
-                $http.get(API + '/admin/transactions/?tx_type=credit&status=Pending&orderby=-created&currency=' + $rootScope.selectedCurrency.code, {
+                $http.get(environmentConfig.API + '/admin/transactions/?tx_type=credit&status=Pending&orderby=-created&currency=' + $rootScope.selectedCurrency.code, {
                     headers: {
                         'Content-Type': 'application/json',
                         'Authorization': vm.token

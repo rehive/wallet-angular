@@ -4,7 +4,7 @@
     angular.module('BlurAdmin.pages.userDetails')
         .controller('UserMobileModalCtrl', UserMobileModalCtrl);
 
-    function UserMobileModalCtrl($scope,$uibModalInstance,mobile,user,toastr,$http,API,cookieManagement,errorToasts,errorHandler) {
+    function UserMobileModalCtrl($scope,$uibModalInstance,mobile,user,toastr,$http,environmentConfig,cookieManagement,errorToasts,errorHandler) {
 
         var vm= this;
 
@@ -15,7 +15,7 @@
 
         $scope.verifyMobile = function () {
             $scope.verifyingMobile = true;
-            $http.patch(API + '/admin/users/mobiles/' + mobile.id + '/', {verified: true}, {
+            $http.patch(environmentConfig.API + '/admin/users/mobiles/' + mobile.id + '/', {verified: true}, {
                 headers: {
                     'Content-Type': 'application/json',
                     'Authorization': vm.token

@@ -5,7 +5,7 @@
         .controller('UserSwitchesCtrl', UserSwitchesCtrl);
 
     /** @ngInject */
-    function UserSwitchesCtrl($scope,API,$stateParams,$http,cookieManagement,errorToasts,toastr,$uibModal) {
+    function UserSwitchesCtrl($scope,environmentConfig,$stateParams,$http,cookieManagement,errorToasts,toastr,$uibModal) {
 
         var vm = this;
         vm.token = cookieManagement.getCookie('TOKEN');
@@ -24,7 +24,7 @@
         vm.getUserSwitches = function(){
             if(vm.token) {
                 $scope.loadingUserSwitches = true;
-                $http.get(API + '/admin/users/' + vm.uuid + '/switches/', {
+                $http.get(environmentConfig.API + '/admin/users/' + vm.uuid + '/switches/', {
                     headers: {
                         'Content-Type': 'application/json',
                         'Authorization': vm.token
@@ -47,7 +47,7 @@
             userSwitchParams.enabled ? userSwitchParams.enabled = userSwitchParams.enabled == 'True' ? true: false : '';
             if(vm.token) {
                 $scope.loadingUserSwitches = true;
-                $http.post(API + '/admin/users/' + vm.uuid + '/switches/', userSwitchParams, {
+                $http.post(environmentConfig.API + '/admin/users/' + vm.uuid + '/switches/', userSwitchParams, {
                     headers: {
                         'Content-Type': 'application/json',
                         'Authorization': vm.token
@@ -93,7 +93,7 @@
             vm.updatedUserSwitch.enabled ? vm.updatedUserSwitch.enabled = vm.updatedUserSwitch.enabled == 'True' ? true: false : '';
             if(vm.token) {
                 $scope.loadingUserSwitches = true;
-                $http.patch(API + '/admin/users/' + vm.uuid + '/switches/' + $scope.editUserSwitch.id + '/', vm.updatedUserSwitch, {
+                $http.patch(environmentConfig.API + '/admin/users/' + vm.uuid + '/switches/' + $scope.editUserSwitch.id + '/', vm.updatedUserSwitch, {
                     headers: {
                         'Content-Type': 'application/json',
                         'Authorization': vm.token

@@ -5,7 +5,7 @@
         .factory('userVerification', userVerification);
 
     /** @ngInject */
-    function userVerification($http,cookieManagement,API,$location) {
+    function userVerification($http,cookieManagement,environmentConfig,$location) {
 
         return {
             verify: function (cb) {
@@ -13,7 +13,7 @@
                 var emailVerified = false;
 
                 if(token) {
-                    $http.get(API + '/user/emails/', {
+                    $http.get(environmentConfig.API + '/user/emails/', {
                         headers: {
                             'Content-Type': 'application/json',
                             'Authorization': token

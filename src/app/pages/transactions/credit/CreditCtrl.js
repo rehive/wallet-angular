@@ -5,7 +5,7 @@
         .controller('CreditCtrl', CreditCtrl);
 
     /** @ngInject */
-    function CreditCtrl($rootScope,$scope,$http,API,cookieManagement,toastr,errorToasts,errorHandler,$location,$state,currencyModifiers) {
+    function CreditCtrl($rootScope,$scope,$http,environmentConfig,cookieManagement,toastr,errorToasts,errorHandler,$location,$state,currencyModifiers) {
 
         var vm = this;
         vm.token = cookieManagement.getCookie('TOKEN');
@@ -84,7 +84,7 @@
             $scope.onGoingTransaction = true;
             // $http.post takes the params as follow post(url, data, {config})
             // https://docs.angularjs.org/api/ng/service/$http#post
-            $http.post(API + '/admin/transactions/credit/', sendTransactionData, {
+            $http.post(environmentConfig.API + '/admin/transactions/credit/', sendTransactionData, {
                 headers: {
                     'Content-Type': 'application/json',
                     'Authorization': vm.token

@@ -5,7 +5,7 @@
         .controller('SettingsCtrl', SettingsCtrl);
 
     /** @ngInject */
-    function SettingsCtrl($scope,API,Upload,$http,cookieManagement,errorToasts,$window,$timeout,$location) {
+    function SettingsCtrl($scope,environmentConfig,Upload,$http,cookieManagement,errorToasts,$window,$timeout,$location) {
 
         var vm = this;
         vm.token = cookieManagement.getCookie('TOKEN');
@@ -19,7 +19,7 @@
 
         vm.getCompanyDetails = function(){
             if(vm.token) {
-                $http.get(API + '/admin/company/', {
+                $http.get(environmentConfig.API + '/admin/company/', {
                     headers: {
                         'Content-Type': 'application/json',
                         'Authorization': vm.token
@@ -48,7 +48,7 @@
         $scope.upload = function (file) {
             $scope.updatingLogo = true;
             Upload.upload({
-                url: API +'/admin/company/',
+                url: environmentConfig.API +'/admin/company/',
                 data: {
                     logo: $scope.imageFile.file
                 },

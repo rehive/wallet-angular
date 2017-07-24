@@ -5,7 +5,7 @@
         .controller('UserAddressCtrl', UserAddressCtrl);
 
     /** @ngInject */
-    function UserAddressCtrl($scope,API,$stateParams,$http,cookieManagement,errorToasts,toastr) {
+    function UserAddressCtrl($scope,environmentConfig,$stateParams,$http,cookieManagement,errorToasts,toastr) {
 
         var vm = this;
         vm.token = cookieManagement.getCookie('TOKEN');

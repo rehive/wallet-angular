@@ -5,7 +5,7 @@
         .controller('PageTopCtrl', PageTopCtrl);
 
     /** @ngInject */
-    function PageTopCtrl($rootScope,$scope,$http,cookieManagement,API,$location,errorToasts,$window,errorHandler,_) {
+    function PageTopCtrl($rootScope,$scope,$http,cookieManagement,environmentConfig,$location,errorToasts,$window,errorHandler,_) {
         var vm = this;
 
         vm.token = cookieManagement.getCookie('TOKEN');
@@ -26,7 +26,7 @@
 
         vm.getCompanyCurrencies = function(){
             if(vm.token){
-                $http.get(API + '/admin/currencies/?enabled=true', {
+                $http.get(environmentConfig.API + '/admin/currencies/?enabled=true', {
                     headers: {
                         'Content-Type': 'application/json',
                         'Authorization': vm.token

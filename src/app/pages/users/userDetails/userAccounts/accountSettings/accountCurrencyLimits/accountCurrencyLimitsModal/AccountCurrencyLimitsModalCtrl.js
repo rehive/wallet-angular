@@ -4,7 +4,7 @@
     angular.module('BlurAdmin.pages.accountSettings.accountCurrencyLimits')
         .controller('AccountCurrencyLimitsModalCtrl', AccountCurrencyLimitsModalCtrl);
 
-    function AccountCurrencyLimitsModalCtrl($scope,$uibModalInstance,accountCurrencyLimit,currencyCode,reference,toastr,$http,API,cookieManagement,errorToasts,errorHandler) {
+    function AccountCurrencyLimitsModalCtrl($scope,$uibModalInstance,accountCurrencyLimit,currencyCode,reference,toastr,$http,environmentConfig,cookieManagement,errorToasts,errorHandler) {
 
         var vm = this;
         vm.currencyCode = currencyCode;
@@ -15,7 +15,7 @@
 
         $scope.deleteAccountCurrencyLimit = function () {
             $scope.deletingAccountCurrencyLimits = true;
-            $http.delete(API + '/admin/accounts/' + vm.reference + '/currencies/' + vm.currencyCode + '/limits/' + $scope.accountCurrencyLimit.id +'/', {
+            $http.delete(environmentConfig.API + '/admin/accounts/' + vm.reference + '/currencies/' + vm.currencyCode + '/limits/' + $scope.accountCurrencyLimit.id +'/', {
                 headers: {
                     'Content-Type': 'application/json',
                     'Authorization': vm.token

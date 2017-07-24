@@ -5,7 +5,7 @@
         .controller('CompanyBankAccountsCtrl', CompanyBankAccountsCtrl);
 
     /** @ngInject */
-    function CompanyBankAccountsCtrl($rootScope,$scope,API,$http,cookieManagement,errorToasts,toastr,_) {
+    function CompanyBankAccountsCtrl($rootScope,$scope,environmentConfig,$http,cookieManagement,errorToasts,toastr,_) {
 
         var vm = this;
         vm.token = cookieManagement.getCookie('TOKEN');
@@ -20,7 +20,7 @@
         vm.getCompanyBankAccounts = function(){
             if(vm.token) {
                 $scope.loadingCompanyBankAccounts = true;
-                $http.get(API + '/admin/bank-accounts/', {
+                $http.get(environmentConfig.API + '/admin/bank-accounts/', {
                     headers: {
                         'Content-Type': 'application/json',
                         'Authorization': vm.token
@@ -38,7 +38,7 @@
 
         vm.getSingleCurrencyBankAccounts = function(companyBankAccounts){
             if(vm.token) {
-                $http.get(API + '/admin/currencies/' + $rootScope.selectedCurrency.code + '/bank-accounts/', {
+                $http.get(environmentConfig.API + '/admin/currencies/' + $rootScope.selectedCurrency.code + '/bank-accounts/', {
                     headers: {
                         'Content-Type': 'application/json',
                         'Authorization': vm.token
@@ -83,7 +83,7 @@
         vm.activateBankAccountForCurrency = function(id){
             $scope.loadingCompanyBankAccounts = true;
             if(vm.token) {
-                $http.post(API + '/admin/currencies/' + $rootScope.selectedCurrency.code + '/bank-accounts/', {id: id} ,{
+                $http.post(environmentConfig.API + '/admin/currencies/' + $rootScope.selectedCurrency.code + '/bank-accounts/', {id: id} ,{
                     headers: {
                         'Content-Type': 'application/json',
                         'Authorization': vm.token
@@ -101,7 +101,7 @@
         vm.deleteBankAccountForCurrency = function(id){
             $scope.loadingCompanyBankAccounts = true;
             if(vm.token) {
-                $http.delete(API + '/admin/currencies/' + $rootScope.selectedCurrency.code + '/bank-accounts/' +id +'/',{
+                $http.delete(environmentConfig.API + '/admin/currencies/' + $rootScope.selectedCurrency.code + '/bank-accounts/' +id +'/',{
                     headers: {
                         'Content-Type': 'application/json',
                         'Authorization': vm.token

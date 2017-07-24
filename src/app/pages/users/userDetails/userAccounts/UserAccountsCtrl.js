@@ -5,7 +5,7 @@
         .controller('UserAccountsCtrl', UserAccountsCtrl);
 
     /** @ngInject */
-    function UserAccountsCtrl($rootScope,$scope,API,$stateParams,$http,cookieManagement,errorToasts,$location,$state) {
+    function UserAccountsCtrl($rootScope,$scope,environmentConfig,$stateParams,$http,cookieManagement,errorToasts,$location,$state) {
 
         var vm = this;
         vm.token = cookieManagement.getCookie('TOKEN');
@@ -16,7 +16,7 @@
         vm.getUser = function(){
             if(vm.token) {
                 $scope.loadingUserAccounts = true;
-                $http.get(API + '/admin/accounts/?user=' + vm.uuid, {
+                $http.get(environmentConfig.API + '/admin/accounts/?user=' + vm.uuid, {
                     headers: {
                         'Content-Type': 'application/json',
                         'Authorization': vm.token

@@ -5,7 +5,7 @@
         .controller('AccountCurrencySwitchesCtrl', AccountCurrencySwitchesCtrl);
 
     /** @ngInject */
-    function AccountCurrencySwitchesCtrl($rootScope,$scope,$stateParams,$http,$uibModal,API,cookieManagement,errorToasts,currencyModifiers,toastr) {
+    function AccountCurrencySwitchesCtrl($rootScope,$scope,$stateParams,$http,$uibModal,environmentConfig,cookieManagement,errorToasts,currencyModifiers,toastr) {
 
         var vm = this;
         vm.token = cookieManagement.getCookie('TOKEN');
@@ -37,7 +37,7 @@
         $scope.getAccountCurrencySwitches = function(){
             if(vm.token) {
                 $scope.loadingAccountCurrencySwitches = true;
-                $http.get(API + '/admin/accounts/' + vm.reference + '/currencies/' + vm.currencyCode + '/switches/',{
+                $http.get(environmentConfig.API + '/admin/accounts/' + vm.reference + '/currencies/' + vm.currencyCode + '/switches/',{
                     headers: {
                         'Content-Type': 'application/json',
                         'Authorization': vm.token
@@ -60,7 +60,7 @@
                 $scope.loadingAccountCurrencySwitches = true;
                 accountCurrencySwitchesParams.tx_type = accountCurrencySwitchesParams.tx_type.toLowerCase();
                 accountCurrencySwitchesParams.enabled == 'True' ? accountCurrencySwitchesParams.enabled = true : accountCurrencySwitchesParams.enabled = false;
-                $http.post(API + '/admin/accounts/' + vm.reference + '/currencies/' + vm.currencyCode + '/switches/',accountCurrencySwitchesParams,{
+                $http.post(environmentConfig.API + '/admin/accounts/' + vm.reference + '/currencies/' + vm.currencyCode + '/switches/',accountCurrencySwitchesParams,{
                     headers: {
                         'Content-Type': 'application/json',
                         'Authorization': vm.token
@@ -97,7 +97,7 @@
                 vm.updatedAccountCurrencySwitch.tx_type ? vm.updatedAccountCurrencySwitch.tx_type = vm.updatedAccountCurrencySwitch.tx_type.toLowerCase() : '';
                 vm.updatedAccountCurrencySwitch.enabled == 'True' ? vm.updatedAccountCurrencySwitch.enabled = true : vm.updatedAccountCurrencySwitch.enabled = false;
 
-                $http.patch(API + '/admin/accounts/' + vm.reference + '/currencies/' + vm.currencyCode + '/switches/' + $scope.editAccountCurrencySwitch.id + '/',vm.updatedAccountCurrencySwitch,{
+                $http.patch(environmentConfig.API + '/admin/accounts/' + vm.reference + '/currencies/' + vm.currencyCode + '/switches/' + $scope.editAccountCurrencySwitch.id + '/',vm.updatedAccountCurrencySwitch,{
                     headers: {
                         'Content-Type': 'application/json',
                         'Authorization': vm.token

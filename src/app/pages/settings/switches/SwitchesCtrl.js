@@ -5,7 +5,7 @@
         .controller('SwitchesCtrl', SwitchesCtrl);
 
     /** @ngInject */
-    function SwitchesCtrl($scope,API,$uibModal,toastr,$http,cookieManagement,errorToasts,$window,stringService,errorHandler) {
+    function SwitchesCtrl($scope,environmentConfig,$uibModal,toastr,$http,cookieManagement,errorToasts,$window,stringService,errorHandler) {
 
         var vm = this;
         vm.updatedSwitches = {};
@@ -37,7 +37,7 @@
         vm.getSwitches = function () {
             if(vm.token) {
                 $scope.loadingSwitches = true;
-                $http.get(API + '/admin/switches/', {
+                $http.get(environmentConfig.API + '/admin/switches/', {
                     headers: {
                         'Content-Type': 'application/json',
                         'Authorization': vm.token
@@ -78,7 +78,7 @@
          $scope.addSwitches = function (switchesParams) {
              $scope.loadingSwitches = true;
              switchesParams = vm.getSwitchesApiValues(switchesParams);
-             $http.post(API + '/admin/switches/', switchesParams, {
+             $http.post(environmentConfig.API + '/admin/switches/', switchesParams, {
                  headers: {
                      'Content-Type': 'application/json',
                      'Authorization': vm.token
@@ -111,7 +111,7 @@
              $scope.loadingSwitches = true;
              $scope.editingSwitches = !$scope.editingSwitches;
              vm.updatedSwitches = vm.getSwitchesApiValues(vm.updatedSwitches);
-             $http.patch(API + '/admin/switches/'+ $scope.editSwitches.id + '/', vm.updatedSwitches, {
+             $http.patch(environmentConfig.API + '/admin/switches/'+ $scope.editSwitches.id + '/', vm.updatedSwitches, {
                  headers: {
                      'Content-Type': 'application/json',
                      'Authorization': vm.token

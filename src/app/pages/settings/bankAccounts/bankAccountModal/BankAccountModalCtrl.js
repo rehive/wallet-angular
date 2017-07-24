@@ -4,7 +4,7 @@
     angular.module('BlurAdmin.pages.settings.bankAccounts')
         .controller('BankAccountModalCtrl', BankAccountModalCtrl);
 
-    function BankAccountModalCtrl($scope,$uibModalInstance,bankAccount,toastr,$http,API,cookieManagement,errorToasts,errorHandler) {
+    function BankAccountModalCtrl($scope,$uibModalInstance,bankAccount,toastr,$http,environmentConfig,cookieManagement,errorToasts,errorHandler) {
 
         var vm= this;
 
@@ -15,7 +15,7 @@
 
         $scope.deleteBankAccount = function () {
             $scope.deletingBankAccount = true;
-            $http.delete(API + '/admin/bank-accounts/' + $scope.bankAccount.id + '/', {
+            $http.delete(environmentConfig.API + '/admin/bank-accounts/' + $scope.bankAccount.id + '/', {
                 headers: {
                     'Content-Type': 'application/json',
                     'Authorization': vm.token

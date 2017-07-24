@@ -5,7 +5,7 @@
         .controller('UserDocumentsCtrl', UserDocumentsCtrl);
 
     /** @ngInject */
-    function UserDocumentsCtrl($scope,API,$stateParams,$http,cookieManagement,errorToasts,toastr) {
+    function UserDocumentsCtrl($scope,environmentConfig,$stateParams,$http,cookieManagement,errorToasts,toastr) {
 
         var vm = this;
         vm.token = cookieManagement.getCookie('TOKEN');

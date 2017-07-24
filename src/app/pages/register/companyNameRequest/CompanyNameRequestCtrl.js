@@ -5,7 +5,7 @@
         .controller('CompanyNameRequestCtrl', CompanyNameRequestCtrl);
 
     /** @ngInject */
-    function CompanyNameRequestCtrl($rootScope,$scope,$http,toastr,cookieManagement,API,$location,errorToasts,userVerification) {
+    function CompanyNameRequestCtrl($rootScope,$scope,$http,toastr,cookieManagement,environmentConfig,$location,errorToasts,userVerification) {
 
         var vm = this;
         vm.token = cookieManagement.getCookie('TOKEN');
@@ -15,7 +15,7 @@
 
         $scope.updateCompanyInfo = function () {
             $scope.loadingCompanyInfo = true;
-            $http.patch(API + '/admin/company/',{name: $scope.company.name}, {
+            $http.patch(environmentConfig.API + '/admin/company/',{name: $scope.company.name}, {
                 headers: {
                     'Content-Type': 'application/json',
                     'Authorization': vm.token
