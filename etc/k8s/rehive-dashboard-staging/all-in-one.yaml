@@ -30,7 +30,7 @@ spec:
         app: rehive-dashboard
     spec:
       containers:
-      - image: rehive/dashboard:0.7.0
+      - image: rehive/rehive-dashboard:0.8.0
         imagePullPolicy: Always
         name: rehive-dashboard
         ports:

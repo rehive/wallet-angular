@@ -99,7 +99,7 @@ def prebuild():
     Pre-build steps
     """
     with cd(env.project_dir):
-        run('rm -rf release')
+        run('rm -rf release || true')
         run('docker run --rm -v $(pwd):/src:rw mkenney/npm:latest "gulp build"')
 
 
