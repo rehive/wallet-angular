@@ -10,13 +10,17 @@
         var vm = this;
         vm.user = {};
         vm.token = cookieManagement.getCookie('TOKEN');
+        $scope.verifyingEmail = false;
 
         $scope.verifyUser = function(){
+            $scope.verifyingEmail = true;
             userVerification.verify(function(err,verified){
                 if(verified){
+                    $scope.verifyingEmail = false;
                     $rootScope.userVerified = true;
                     $location.path('/company/name_request');
                 } else {
+                    $scope.verifyingEmail = false;
                     toastr.error('Please verify your account','Message');
                 }
             });

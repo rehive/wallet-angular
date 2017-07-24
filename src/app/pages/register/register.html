@@ -3,20 +3,20 @@
         <h1>Sign Up</h1>
         <a href="/#/login" class="auth-link">Already have a Rehive account? Sign in!</a>
 
-        <form class="form-horizontal">
+        <form name="registerForm" class="form-horizontal">
             <div class="form-group">
                 <div class="col-sm-12">
-                    <input type="text" ng-model="registerData.first_name" class="form-control" id="firstName" placeholder="First name*">
+                    <input type="text" ng-model="registerData.first_name" class="form-control" id="firstName" placeholder="First name*" required>
                 </div>
             </div>
             <div class="form-group">
                 <div class="col-sm-12">
-                    <input type="text" ng-model="registerData.last_name" class="form-control" id="lastName" placeholder="Last name*">
+                    <input type="text" ng-model="registerData.last_name" class="form-control" id="lastName" placeholder="Last name*" required>
                 </div>
             </div>
             <div class="form-group">
                 <div class="col-sm-12">
-                    <input type="email" ng-model="registerData.email" class="form-control" id="inputEmail1" placeholder="Email*">
+                    <input type="email" ng-model="registerData.email" class="form-control" id="inputEmail1" placeholder="Email*" required>
                 </div>
             </div>
             <div class="form-group">
@@ -26,22 +26,22 @@
             </div>
             <div class="form-group">
                 <div class="col-sm-12">
-                    <input type="text" ng-change="fixformat(company)" ng-model="registerData.company" class="form-control" id="inputName1" placeholder="Choose a unique ID for your company*">
+                    <input type="text" ng-change="fixformat(company)" ng-model="registerData.company" class="form-control" id="inputName1" placeholder="Choose a unique ID for your company*" required>
                 </div>
             </div>
             <div class="form-group">
                 <div class="col-sm-12">
-                    <input type="password" ng-model="registerData.password1" class="form-control" id="inputPassword1" placeholder="Password*">
+                    <input type="password" ng-model="registerData.password1" class="form-control" id="inputPassword1" placeholder="Password*" required>
                 </div>
             </div>
             <div class="form-group">
                 <div class="col-sm-12">
-                    <input type="password" ng-model="registerData.password2" class="form-control" id="inputPassword2" placeholder="Retype password*">
+                    <input type="password" ng-model="registerData.password2" class="form-control" id="inputPassword2" placeholder="Retype password*" required>
                 </div>
             </div>
             <div class="form-group">
                 <div class="col-sm-12">
-                    <button ng-click="registerUser()" class="btn btn-primary btn-auth pull-right">Sign up</button>
+                    <button ng-disabled="!registerForm.$valid" ng-click="registerUser()" class="btn btn-primary btn-auth pull-right">Sign up</button>
                 </div>
             </div>
         </form>
