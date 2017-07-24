@@ -1,0 +1,12 @@
+FROM node:latest
+RUN npm install -g \
+     gulp-cli \
+     bower
+COPY package.json bower.json gulpfile.js /app/
+COPY gulp /app/gulp/
+# TODO: combine two commands above
+WORKDIR /app
+# TODO: figure out user/ permission issues
+RUN npm install && bower install --allow-root
+COPY src/ /app/src/
+

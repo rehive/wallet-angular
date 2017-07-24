@@ -3,4 +3,3 @@ HOST_NAME: rehive-build-server
 NAMESPACE: rehive-dashboard-staging
 IMAGE: rehive/dashboard-staging
 VIRTUAL_HOST: staging.dashboard.rehive.com
-ENV_FILE: .staging.env

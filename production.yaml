@@ -1,4 +1,4 @@
-PROJECT_NAME: dashboard
-NAMESPACE: dashboard
+PROJECT_NAME: rehive-dashboard
+NAMESPACE: rehive-dashboard
 IMAGE: rehive/dashboard
 VIRTUAL_HOST: dashboard.rehive.com

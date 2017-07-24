@@ -64,7 +64,7 @@ def upload():
         env.project_dir, './',
         exclude=(
             '.git', '.gitignore', '__pycache__', '*.pyc', '.DS_Store', 'environment.yml',
-            'fabfile.py', 'Makefile', '.idea',
+            'fabfile.py', 'Makefile', '.idea', 'node_modules', 'bower_components', 'release',
             '.env.example', 'README.md', 'var'
         ), delete=True)
 
@@ -94,13 +94,31 @@ def gcloud_login():
         run('gcloud auth login')
 
 
+def create_build_image():
+    """Create image for compiling js"""
+    image = '{}:{}'.format(env.image_name+'-js-build', env.version_tag)
+    with cd(env.project_dir):
+        run('rm -rf release || true')
+        run('docker build -f etc/docker/jsbuild -t {image} .'.format(image=image))
+
+
+def push_build_image():
+    """
+    Build, tag and push docker image
+    """
+    image = '{}:{}'.format(env.image_name+'-js-build', env.version_tag)
+    build()
+    with cd(env.project_dir):
+        run('gcloud docker -- push %s' % image)
+
+
 def prebuild():
     """
     Pre-build steps
     """
+    image = '{}:{}'.format(env.image_name + '-js-build', env.version_tag)
     with cd(env.project_dir):
-        run('rm -rf release || true')
-        run('docker run --rm -v $(pwd):/src:rw mkenney/npm:latest "gulp build"')
+        run('docker run --rm -v release:/app/release:rw {image} gulp -c build'.format(image=image))
 
 
 def build():

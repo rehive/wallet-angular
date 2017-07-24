@@ -45,6 +45,11 @@ def upload(ctx, config):
     execute(fab.set_env, config)
     execute(fab.upload)
 
+@task
+def create_build_image(ctx, config, version_tag):
+    upload(ctx, config)
+    execute(fab.set_env, config, version_tag)
+    execute(fab.create_build_image)
 
 @task
 def build(ctx, config, version_tag, packages=False):

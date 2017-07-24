@@ -77,12 +77,43 @@ def build(ctx, config, version_tag):
     return image
 
 @task
+def create_build_image(ctx, config, version_tag):
+    """
+    Build project's docker image
+    """
+    config_dict = get_config(config)
+    image_name = config_dict['IMAGE'].split(':')[0]
+    image = '{}:{}'.format(image_name+'-js-build', version_tag)
+
+    cmd = 'docker build -f etc/docker/jsbuild -t {image} .'.format(image=image)
+    ctx.run(cmd, echo=True)
+    return image
+
+
+@task
+def push_build_image(ctx, config, version_tag):
+    """
+    Build, tag and push docker image
+    """
+    config_dict = get_config(config)
+    image_name = config_dict['IMAGE'].split(':')[0]
+    image = '{}:{}'.format(image_name+'-js-build', version_tag)
+
+    ctx.run('gcloud docker -- push %s' % image, echo=True)
+
+
+@task
 def prebuild(ctx, config, version_tag):
     """
     Pre-build steps
     """
-    ctx.run('rm -rf release', echo=True)
-    ctx.run('gulp build', echo=True)
+    config_dict = get_config(config)
+    image_name = config_dict['IMAGE'].split(':')[0]
+    image = '{}:{}'.format(image_name + '-js-build', version_tag)
+    env_string = ':staging' if 'staging' in config else ''
+    ctx.run('docker run --rm -v release:/app/release:rw {image} gulp -c build{env_string}'.format(image=image,
+                                                                                                  env_string=env_string),
+            echo=True)
 
 @task
 def push(ctx, config, version_tag):
