@@ -5,7 +5,7 @@
         .controller('ControlsCtrl', ControlsCtrl);
 
     /** @ngInject */
-    function ControlsCtrl($scope,API,toastr,$http,cookieManagement,errorToasts,errorHandler) {
+    function ControlsCtrl($scope,environmentConfig,toastr,$http,cookieManagement,errorToasts,errorHandler) {
 
         var vm = this;
         vm.token = cookieManagement.getCookie('TOKEN');
@@ -14,7 +14,7 @@
         vm.getCompanyControls = function () {
             if(vm.token) {
                 $scope.loadingCompanyControls = true;
-                $http.get(API + '/admin/controls/', {
+                $http.get(environmentConfig.API + '/admin/controls/', {
                     headers: {
                         'Content-Type': 'application/json',
                         'Authorization': vm.token
@@ -33,7 +33,7 @@
         vm.getCompanyControls();
 
         $scope.saveControls = function(control){
-            $http.patch(API + '/admin/controls/' + control.id, {enabled: control.enabled}, {
+            $http.patch(environmentConfig.API + '/admin/controls/' + control.id, {enabled: control.enabled}, {
                 headers: {
                     'Content-Type': 'application/json',
                     'Authorization': vm.token

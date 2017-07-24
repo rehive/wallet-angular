@@ -5,7 +5,7 @@
         .controller('DebitCtrl', DebitCtrl);
 
     /** @ngInject */
-    function DebitCtrl($rootScope,$scope,$http,API,cookieManagement,toastr,errorToasts,errorHandler,$location,$state,currencyModifiers) {
+    function DebitCtrl($rootScope,$scope,$http,environmentConfig,cookieManagement,toastr,errorToasts,errorHandler,$location,$state,currencyModifiers) {
 
         var vm = this;
         vm.token = cookieManagement.getCookie('TOKEN');
@@ -81,7 +81,7 @@
             };
 
             $scope.onGoingTransaction = true;
-            $http.post(API + '/admin/transactions/debit/',sendTransactionData, {
+            $http.post(environmentConfig.API + '/admin/transactions/debit/',sendTransactionData, {
                 headers: {
                     'Content-Type': 'application/json',
                     'Authorization': vm.token

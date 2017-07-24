@@ -3,6 +3,7 @@
 var path = require('path');
 var gulp = require('gulp');
 var conf = require('./conf');
+var gulpNgConfig = require('gulp-ng-config');
 
 var browserSync = require('browser-sync');
 var browserSyncSpa = require('browser-sync-spa');
@@ -47,11 +48,27 @@ browserSync.use(browserSyncSpa({
   selector: '[ng-app]'// Only needed for angular apps
 }));
 
-gulp.task('serve', ['watch'], function () {
+gulp.task('stagingEnv', function () {
+  gulp.src('./src/app/config/configFile.json')
+      .pipe(gulpNgConfig('BlurAdmin.config',{environment: 'staging'}))
+      .pipe(gulp.dest('./src/app/config/'))
+});
+
+gulp.task('productionEnv', function () {
+  gulp.src('./src/app/config/configFile.json')
+      .pipe(gulpNgConfig('BlurAdmin.config',{environment: 'production'}))
+      .pipe(gulp.dest('./src/app/config/'))
+});
+
+gulp.task('serve', ['productionEnv','watch'], function () {
   browserSyncInit([path.join(conf.paths.tmp, '/serve'), conf.paths.src]);
 });
 
-gulp.task('serve:dist', ['build'], function () {
+gulp.task('serve:staging', ['stagingEnv','build'], function () {
+  browserSyncInit([path.join(conf.paths.tmp, '/serve'), conf.paths.src]);
+});
+
+gulp.task('serve:dist', ['productionEnv','build'], function () {
   browserSyncInit(conf.paths.dist);
 });
 

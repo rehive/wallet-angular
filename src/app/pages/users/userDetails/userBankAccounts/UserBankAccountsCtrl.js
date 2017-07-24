@@ -5,7 +5,7 @@
         .controller('UserBankAccountsCtrl', UserBankAccountsCtrl);
 
     /** @ngInject */
-    function UserBankAccountsCtrl($scope,API,$stateParams,$http,cookieManagement,errorToasts,toastr) {
+    function UserBankAccountsCtrl($scope,environmentConfig,$stateParams,$http,cookieManagement,errorToasts,toastr) {
 
         var vm = this;
         vm.token = cookieManagement.getCookie('TOKEN');

@@ -5,7 +5,7 @@
         .controller('PendingDebitCtrl', PendingDebitCtrl);
 
     /** @ngInject */
-    function PendingDebitCtrl($rootScope,$scope,$http,API,cookieManagement,$uibModal,errorToasts,errorHandler) {
+    function PendingDebitCtrl($rootScope,$scope,$http,environmentConfig,cookieManagement,$uibModal,errorToasts,errorHandler) {
 
         var vm = this;
         $scope.transactions = {};
@@ -22,7 +22,7 @@
         });
 
         vm.getPendingTransactions = function(){
-            $http.get(API + '/admin/transactions/?tx_type=debit&status=Pending&orderby=-created&currency=' + $rootScope.selectedCurrency.code, {
+            $http.get(environmentConfig.API + '/admin/transactions/?tx_type=debit&status=Pending&orderby=-created&currency=' + $rootScope.selectedCurrency.code, {
                 headers: {
                     'Content-Type': 'application/json',
                     'Authorization': vm.token
@@ -64,7 +64,6 @@
             });
 
             vm.theModal.result.then(function(transaction){
-                console.log(transaction);
                 var index = $scope.transactions.list.findIndex(vm.findIndexOfTransaction,transaction);
                 $scope.transactions.list.splice(index, 1);
                 if($scope.transactions.list.length == 0){

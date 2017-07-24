@@ -4,7 +4,7 @@
     angular.module('BlurAdmin.pages.userDetails')
         .controller('UserSwitchModalCtrl', UserSwitchModalCtrl);
 
-    function UserSwitchModalCtrl($scope,$uibModalInstance,userSwitches,uuid,toastr,$http,API,cookieManagement,errorToasts,errorHandler) {
+    function UserSwitchModalCtrl($scope,$uibModalInstance,userSwitches,uuid,toastr,$http,environmentConfig,cookieManagement,errorToasts,errorHandler) {
 
         var vm = this;
 
@@ -15,7 +15,7 @@
 
         $scope.deleteUserSwitch = function () {
             $scope.deletingUserSwitches = true;
-            $http.delete(API + '/admin/users/' + vm.uuid + '/switches/' + $scope.userSwitches.id + '/', {
+            $http.delete(environmentConfig.API + '/admin/users/' + vm.uuid + '/switches/' + $scope.userSwitches.id + '/', {
                 headers: {
                     'Content-Type': 'application/json',
                     'Authorization': vm.token

@@ -5,7 +5,7 @@
         .controller('AccountCurrencyLimitsCtrl', AccountCurrencyLimitsCtrl);
 
     /** @ngInject */
-    function AccountCurrencyLimitsCtrl($rootScope,$scope,$stateParams,$http,$uibModal,API,cookieManagement,errorToasts,currencyModifiers,toastr) {
+    function AccountCurrencyLimitsCtrl($rootScope,$scope,$stateParams,$http,$uibModal,environmentConfig,cookieManagement,errorToasts,currencyModifiers,toastr) {
 
         var vm = this;
         vm.token = cookieManagement.getCookie('TOKEN');
@@ -36,7 +36,7 @@
         $scope.getAccountCurrencyLimits = function(){
             if(vm.token) {
                 $scope.loadingAccountCurrencyLimits = true;
-                $http.get(API + '/admin/accounts/' + vm.reference + '/currencies/' + vm.currencyCode + '/limits/',{
+                $http.get(environmentConfig.API + '/admin/accounts/' + vm.reference + '/currencies/' + vm.currencyCode + '/limits/',{
                     headers: {
                         'Content-Type': 'application/json',
                         'Authorization': vm.token
@@ -67,7 +67,7 @@
                 accountCurrencyLimitsParams.type = accountCurrencyLimitsParams.type == 'Maximum' ? 'max': accountCurrencyLimitsParams.type == 'Maximum per day' ? 'day_max':
                     accountCurrencyLimitsParams.type == 'Maximum per month' ? 'month_max': accountCurrencyLimitsParams.type == 'Minimum' ? 'min': 'overdraft';
 
-                $http.post(API + '/admin/accounts/' + vm.reference + '/currencies/' + vm.currencyCode + '/limits/',accountCurrencyLimitsParams,{
+                $http.post(environmentConfig.API + '/admin/accounts/' + vm.reference + '/currencies/' + vm.currencyCode + '/limits/',accountCurrencyLimitsParams,{
                     headers: {
                         'Content-Type': 'application/json',
                         'Authorization': vm.token
@@ -111,7 +111,7 @@
                 vm.updatedAccountCurrencyLimit.type ? vm.updatedAccountCurrencyLimit.type = vm.updatedAccountCurrencyLimit.type == 'Maximum' ? 'max': vm.updatedAccountCurrencyLimit.type == 'Maximum per day' ? 'day_max':
                     vm.updatedAccountCurrencyLimit.type == 'Maximum per month' ? 'month_max': vm.updatedAccountCurrencyLimit.type == 'Minimum' ? 'min': 'overdraft' : '';
 
-                $http.patch(API + '/admin/accounts/' + vm.reference + '/currencies/' + vm.currencyCode + '/limits/' + $scope.editAccountCurrencyLimit.id +'/',vm.updatedAccountCurrencyLimit,{
+                $http.patch(environmentConfig.API + '/admin/accounts/' + vm.reference + '/currencies/' + vm.currencyCode + '/limits/' + $scope.editAccountCurrencyLimit.id +'/',vm.updatedAccountCurrencyLimit,{
                     headers: {
                         'Content-Type': 'application/json',
                         'Authorization': vm.token

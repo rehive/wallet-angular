@@ -4,7 +4,7 @@
     angular.module('BlurAdmin.pages.currency.settings.tierFees')
         .controller('TierFeesModalCtrl', TierFeesModalCtrl);
 
-    function TierFeesModalCtrl($scope,$uibModalInstance,tierFee,selectedTier,toastr,$http,API,cookieManagement,errorToasts,errorHandler) {
+    function TierFeesModalCtrl($scope,$uibModalInstance,tierFee,selectedTier,toastr,$http,environmentConfig,cookieManagement,errorToasts,errorHandler) {
 
         var vm = this;
 
@@ -16,7 +16,7 @@
 
         $scope.deleteTierFee = function () {
             $scope.deletingTierFees = true;
-            $http.delete(API + '/admin/tiers/' + $scope.selectedTier.id + '/fees/' + $scope.tierFee.id + '/', {
+            $http.delete(environmentConfig.API + '/admin/tiers/' + $scope.selectedTier.id + '/fees/' + $scope.tierFee.id + '/', {
                 headers: {
                     'Content-Type': 'application/json',
                     'Authorization': vm.token

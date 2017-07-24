@@ -5,7 +5,7 @@
         .controller('UserBasicInfoCtrl', UserBasicInfoCtrl);
 
     /** @ngInject */
-    function UserBasicInfoCtrl($scope,API,$stateParams,$http,cookieManagement,errorToasts,toastr) {
+    function UserBasicInfoCtrl($scope,environmentConfig,$stateParams,$http,cookieManagement,errorToasts,toastr) {
 
         var vm = this;
         vm.token = cookieManagement.getCookie('TOKEN');
@@ -15,7 +15,7 @@
         vm.getUser = function(){
             if(vm.token) {
                 $scope.loadingUser = true;
-                $http.get(API + '/admin/users/' + vm.uuid + '/', {
+                $http.get(environmentConfig.API + '/admin/users/' + vm.uuid + '/', {
                     headers: {
                         'Content-Type': 'application/json',
                         'Authorization': vm.token

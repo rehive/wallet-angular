@@ -3,6 +3,7 @@
 var path = require('path');
 var gulp = require('gulp');
 var conf = require('./conf');
+var gulpNgConfig = require('gulp-ng-config');
 
 var $ = require('gulp-load-plugins')({
   pattern: ['gulp-*', 'main-bower-files', 'uglify-save-license', 'del']
@@ -95,4 +96,18 @@ gulp.task('clean', function () {
   return $.del([path.join(conf.paths.dist, '/'), path.join(conf.paths.tmp, '/')]);
 });
 
-gulp.task('build', ['html', 'fonts', 'other']);
+gulp.task('stagingEnv', function () {
+  gulp.src('./src/app/config/configFile.json')
+      .pipe(gulpNgConfig('BlurAdmin.config',{environment: 'staging'}))
+      .pipe(gulp.dest('./src/app/config/'))
+});
+
+gulp.task('productionEnv', function () {
+  gulp.src('./src/app/config/configFile.json')
+      .pipe(gulpNgConfig('BlurAdmin.config',{environment: 'production'}))
+      .pipe(gulp.dest('./src/app/config/'))
+});
+
+gulp.task('build', ['productionEnv','html', 'fonts', 'other']);
+
+gulp.task('build:staging', ['stagingEnv','html', 'fonts', 'other']);

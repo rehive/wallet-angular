@@ -5,7 +5,7 @@
         .controller('CurrenciesCtrl', CurrenciesCtrl);
 
     /** @ngInject */
-    function CurrenciesCtrl($rootScope,$scope,$location,cookieManagement,API,$http,errorToasts,errorHandler) {
+    function CurrenciesCtrl($rootScope,$scope,$location,cookieManagement,environmentConfig,$http,errorToasts,errorHandler) {
 
         var vm = this;
         vm.token = cookieManagement.getCookie('TOKEN');
@@ -14,7 +14,7 @@
         vm.getCompanyCurrencies = function(){
             if(vm.token) {
               $scope.loadingCurrencies = true;
-                $http.get(API + '/admin/currencies/?enabled=true', {
+                $http.get(environmentConfig.API + '/admin/currencies/?enabled=true', {
                     headers: {
                         'Content-Type': 'application/json',
                         'Authorization': vm.token

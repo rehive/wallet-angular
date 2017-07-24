@@ -5,7 +5,7 @@
         .controller('RegisterCtrl', RegisterCtrl);
 
     /** @ngInject */
-    function RegisterCtrl($rootScope,$scope,$http,toastr,API,errorToasts,$location,cookieManagement) {
+    function RegisterCtrl($rootScope,$scope,$http,toastr,environmentConfig,errorToasts,$location,cookieManagement) {
 
         //var vm = this;
         $scope.registerData = {
@@ -20,7 +20,7 @@
 
         $scope.registerUser = function() {
             $rootScope.$pageFinishedLoading = false;
-            $http.post(API + '/auth/company/register/', $scope.registerData)
+            $http.post(environmentConfig.API + '/auth/company/register/', $scope.registerData)
                 .then(function (res) {
                     if (res.status === 201) {
                         cookieManagement.setCookie('TOKEN','Token ' + res.data.data.token);

@@ -4,7 +4,7 @@
     angular.module('BlurAdmin.pages.settings.subtypes')
         .controller('SubtypeModalCtrl', SubtypeModalCtrl);
 
-    function SubtypeModalCtrl($scope,$uibModalInstance,subtype,toastr,$http,API,cookieManagement,errorToasts,errorHandler) {
+    function SubtypeModalCtrl($scope,$uibModalInstance,subtype,toastr,$http,environmentConfig,cookieManagement,errorToasts,errorHandler) {
 
         var vm = this;
 
@@ -14,7 +14,7 @@
 
         $scope.deleteSubtype = function () {
             $scope.deletingSubtype = true;
-            $http.delete(API + '/admin/subtypes/' + $scope.subtype.id + '/', {
+            $http.delete(environmentConfig.API + '/admin/subtypes/' + $scope.subtype.id + '/', {
                 headers: {
                     'Content-Type': 'application/json',
                     'Authorization': vm.token

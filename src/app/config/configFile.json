@@ -1,0 +1,12 @@
+{
+  "staging": {
+    "environmentConfig": {
+      "API": "https://staging.rehive.com/api/3"
+    }
+  },
+  "production": {
+    "environmentConfig": {
+      "API": "https://rehive.com/api/3"
+    }
+  }
+}

@@ -4,7 +4,7 @@
     angular.module('BlurAdmin.pages.currency.settings.tierSwitches')
         .controller('TierSwitchesModalCtrl', TierSwitchesModalCtrl);
 
-    function TierSwitchesModalCtrl($scope,$uibModalInstance,tierSwitch,selectedTier,toastr,$http,API,cookieManagement,errorToasts,errorHandler) {
+    function TierSwitchesModalCtrl($scope,$uibModalInstance,tierSwitch,selectedTier,toastr,$http,environmentConfig,cookieManagement,errorToasts,errorHandler) {
 
         var vm = this;
 
@@ -16,7 +16,7 @@
 
         $scope.deleteTierSwitch = function () {
             $scope.deletingTierSwitches = true;
-            $http.delete(API + '/admin/tiers/' + $scope.selectedTier.id + '/switches/' + $scope.tierSwitch.id + '/', {
+            $http.delete(environmentConfig.API + '/admin/tiers/' + $scope.selectedTier.id + '/switches/' + $scope.tierSwitch.id + '/', {
                 headers: {
                     'Content-Type': 'application/json',
                     'Authorization': vm.token

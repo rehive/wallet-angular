@@ -5,7 +5,7 @@
         .controller('CompanyInfoCtrl', CompanyInfoCtrl);
 
     /** @ngInject */
-    function CompanyInfoCtrl($scope,API,$rootScope,toastr,$http,cookieManagement,errorToasts,_,errorHandler) {
+    function CompanyInfoCtrl($scope,environmentConfig,$rootScope,toastr,$http,cookieManagement,errorToasts,_,errorHandler) {
 
         var vm = this;
         vm.token = cookieManagement.getCookie('TOKEN');
@@ -21,7 +21,7 @@
         vm.getCompanyInfo = function () {
             if(vm.token) {
                 $scope.loadingCompanyInfo = true;
-                $http.get(API + '/admin/company/', {
+                $http.get(environmentConfig.API + '/admin/company/', {
                     headers: {
                         'Content-Type': 'application/json',
                         'Authorization': vm.token
@@ -41,7 +41,7 @@
         vm.getCompanyInfo();
 
         vm.getCurrencies = function(){
-            $http.get(API + '/admin/currencies/?page_size=250', {
+            $http.get(environmentConfig.API + '/admin/currencies/?page_size=250', {
                 headers: {
                     'Content-Type': 'application/json',
                     'Authorization': vm.token
@@ -61,7 +61,7 @@
 
         $scope.updateCompanyInfo = function () {
             $scope.loadingCompanyInfo = true;
-            $http.patch(API + '/admin/company/',vm.updatedCompanyInfo, {
+            $http.patch(environmentConfig.API + '/admin/company/',vm.updatedCompanyInfo, {
                 headers: {
                     'Content-Type': 'application/json',
                     'Authorization': vm.token

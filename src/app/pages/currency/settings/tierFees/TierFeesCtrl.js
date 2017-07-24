@@ -5,7 +5,7 @@
         .controller('TierFeesCtrl', TierFeesCtrl);
 
     /** @ngInject */
-    function TierFeesCtrl($rootScope,$scope,cookieManagement,$http,API,$timeout,errorToasts,toastr,$uibModal,currencyModifiers) {
+    function TierFeesCtrl($rootScope,$scope,cookieManagement,$http,environmentConfig,$timeout,errorToasts,toastr,$uibModal,currencyModifiers) {
 
         var vm = this;
         vm.token = cookieManagement.getCookie('TOKEN');
@@ -39,7 +39,7 @@
         $scope.getAllTiers = function(tierLevel){
             if(vm.token) {
                 $scope.loadingTierFees = true;
-                $http.get(API + '/admin/tiers/?currency=' + $rootScope.selectedCurrency.code, {
+                $http.get(environmentConfig.API + '/admin/tiers/?currency=' + $rootScope.selectedCurrency.code, {
                     headers: {
                         'Content-Type': 'application/json',
                         'Authorization': vm.token
@@ -87,7 +87,7 @@
         $scope.getTierFees = function(){
             if(vm.token) {
                 $scope.loadingTierFees = true;
-                $http.get(API + '/admin/tiers/' + $scope.selectedTier.id + '/fees/',{
+                $http.get(environmentConfig.API + '/admin/tiers/' + $scope.selectedTier.id + '/fees/',{
                     headers: {
                         'Content-Type': 'application/json',
                         'Authorization': vm.token
@@ -114,7 +114,7 @@
             if(vm.token) {
                 $scope.loadingTierFees = true;
                 tierFeesParams.tx_type = tierFeesParams.tx_type.toLowerCase();
-                $http.post(API + '/admin/tiers/' + $scope.selectedTier.id + '/fees/',tierFeesParams,{
+                $http.post(environmentConfig.API + '/admin/tiers/' + $scope.selectedTier.id + '/fees/',tierFeesParams,{
                     headers: {
                         'Content-Type': 'application/json',
                         'Authorization': vm.token
@@ -154,7 +154,7 @@
                 $scope.editingTierFees = !$scope.editingTierFees;
                 vm.updatedTierFee.tx_type ? vm.updatedTierFee.tx_type = vm.updatedTierFee.tx_type.toLowerCase() : '';
 
-                $http.patch(API + '/admin/tiers/' + $scope.selectedTier.id + '/fees/' + $scope.editTierFee.id + '/',vm.updatedTierFee,{
+                $http.patch(environmentConfig.API + '/admin/tiers/' + $scope.selectedTier.id + '/fees/' + $scope.editTierFee.id + '/',vm.updatedTierFee,{
                     headers: {
                         'Content-Type': 'application/json',
                         'Authorization': vm.token

@@ -5,7 +5,7 @@
         .controller('SecurityCtrl', SecurityCtrl);
 
     /** @ngInject */
-    function SecurityCtrl($scope,$uibModal,$location,API,$http,cookieManagement,errorToasts) {
+    function SecurityCtrl($scope,$uibModal,$location,environmentConfig,$http,cookieManagement,errorToasts) {
 
         var vm = this;
         vm.token = cookieManagement.getCookie('TOKEN');
@@ -17,7 +17,7 @@
         vm.getTokensList = function () {
             if(vm.token) {
                 $scope.loadingAPITokens = true;
-                $http.get(API + '/auth/tokens/', {
+                $http.get(environmentConfig.API + '/auth/tokens/', {
                     headers: {
                         'Content-Type': 'application/json',
                         'Authorization': vm.token
@@ -38,7 +38,7 @@
         $scope.addToken = function(){
             if(vm.token) {
               $scope.loadingAPITokens = true;
-                $http.post(API + '/auth/tokens/',{password: $scope.createTokenData.tokenPassword}, {
+                $http.post(environmentConfig.API + '/auth/tokens/',{password: $scope.createTokenData.tokenPassword}, {
                     headers: {
                         'Content-Type': 'application/json',
                         'Authorization': vm.token

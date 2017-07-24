@@ -4,7 +4,7 @@
     angular.module('BlurAdmin.pages.settings.transactionsSwitches')
         .controller('TransactionsSwitchesCtrl', TransactionsSwitchesCtrl);
 
-    function TransactionsSwitchesCtrl($scope,API,$uibModal,$rootScope,toastr,$http,cookieManagement,errorToasts,$window,errorHandler) {
+    function TransactionsSwitchesCtrl($scope,environmentConfig,$uibModal,$rootScope,toastr,$http,cookieManagement,errorToasts,$window,errorHandler) {
 
         var vm = this;
         vm.token = cookieManagement.getCookie('TOKEN');
@@ -33,7 +33,7 @@
         vm.getTransactionsSwitches = function () {
             if(vm.token) {
                 $scope.loadingTransactionsSwitches = true;
-                $http.get(API + '/admin/company/switches/', {
+                $http.get(environmentConfig.API + '/admin/company/switches/', {
                     headers: {
                         'Content-Type': 'application/json',
                         'Authorization': vm.token
@@ -57,7 +57,7 @@
             transactionsSwitchParams.enabled ? transactionsSwitchParams.enabled = transactionsSwitchParams.enabled == 'True' ? true: false : '';
             if(vm.token) {
                 $scope.loadingTransactionsSwitches = true;
-                $http.post(API + '/admin/company/switches/', transactionsSwitchParams, {
+                $http.post(environmentConfig.API + '/admin/company/switches/', transactionsSwitchParams, {
                     headers: {
                         'Content-Type': 'application/json',
                         'Authorization': vm.token
@@ -86,7 +86,7 @@
             vm.updatedTransactionsSwitch.enabled ? vm.updatedTransactionsSwitch.enabled = vm.updatedTransactionsSwitch.enabled == 'True' ? true: false : '';
             if(vm.token) {
                 $scope.loadingTransactionsSwitches = true;
-                $http.patch(API + '/admin/company/switches/' + $scope.editTransactionsSwitch.id + '/', vm.updatedTransactionsSwitch, {
+                $http.patch(environmentConfig.API + '/admin/company/switches/' + $scope.editTransactionsSwitch.id + '/', vm.updatedTransactionsSwitch, {
                     headers: {
                         'Content-Type': 'application/json',
                         'Authorization': vm.token

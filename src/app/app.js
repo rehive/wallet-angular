@@ -1,6 +1,7 @@
 'use strict';
 
 angular.module('BlurAdmin', [
+    'BlurAdmin.config',
     'ngFileUpload',
     'ngSanitize',
     'ngCookies',
@@ -14,9 +15,7 @@ angular.module('BlurAdmin', [
     'BlurAdmin.pages'
 ])
 
-    .constant('API', 'https://rehive.com/api/3')
-
-    .run(function($cookies,$rootScope,cookieManagement,$state,$stateParams,userVerification,$http,API,$window,$location,_){
+    .run(function($cookies,$rootScope,cookieManagement,$state,$stateParams,userVerification,$http,environmentConfig,$window,$location,_){
 
         $window.onload = function(){
             $rootScope.$pageFinishedLoading = true;
@@ -39,7 +38,7 @@ angular.module('BlurAdmin', [
         var getCompanyInfo = function () {
             var token = cookieManagement.getCookie('TOKEN');
             if(token && $rootScope.userVerified) {
-                $http.get(API + '/admin/company/', {
+                $http.get(environmentConfig.API + '/admin/company/', {
                     headers: {
                         'Content-Type': 'application/json',
                         'Authorization': token

@@ -4,7 +4,7 @@
     angular.module('BlurAdmin.pages.settings.transactionsSwitches')
         .controller('TransactionsSwitchModalCtrl', TransactionsSwitchModalCtrl);
 
-    function TransactionsSwitchModalCtrl($scope,$uibModalInstance,transactionsSwitches,toastr,$http,API,cookieManagement,errorToasts,errorHandler) {
+    function TransactionsSwitchModalCtrl($scope,$uibModalInstance,transactionsSwitches,toastr,$http,environmentConfig,cookieManagement,errorToasts,errorHandler) {
 
         var vm = this;
 
@@ -14,7 +14,7 @@
 
         $scope.deleteTransactionsSwitch = function () {
             $scope.deletingTransactionsSwitches = true;
-            $http.delete(API + '/admin/company/switches/' + $scope.transactionsSwitches.id + '/', {
+            $http.delete(environmentConfig.API + '/admin/company/switches/' + $scope.transactionsSwitches.id + '/', {
                 headers: {
                     'Content-Type': 'application/json',
                     'Authorization': vm.token

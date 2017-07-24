@@ -5,7 +5,7 @@
         .controller('AdminEmailsCtrl', AdminEmailsCtrl);
 
     /** @ngInject */
-    function AdminEmailsCtrl($scope,API,$location,$http,cookieManagement,errorToasts,toastr) {
+    function AdminEmailsCtrl($scope,environmentConfig,$location,$http,cookieManagement,errorToasts,toastr) {
 
         var vm = this;
         vm.token = cookieManagement.getCookie('TOKEN');
@@ -18,7 +18,7 @@
         vm.getUserEmails = function () {
             $scope.loadingAdminEmails = true;
             if(vm.token) {
-                $http.get(API + '/user/emails/', {
+                $http.get(environmentConfig.API + '/user/emails/', {
                     headers: {
                         'Content-Type': 'application/json',
                         'Authorization': vm.token
@@ -39,7 +39,7 @@
         $scope.updateEmail = function (email) {
             $scope.loadingAdminEmails = true;
             if(vm.token) {
-                $http.patch(API + '/user/emails/' + email.id + '/' , {primary: true}, {
+                $http.patch(environmentConfig.API + '/user/emails/' + email.id + '/' , {primary: true}, {
                     headers: {
                         'Content-Type': 'application/json',
                         'Authorization': vm.token
@@ -60,7 +60,7 @@
             $scope.loadingAdminEmails = true;
             newEmail.primary = newEmail.primary == 'True' ? true:false;
             if(vm.token) {
-                $http.post(API + '/user/emails/', newEmail , {
+                $http.post(environmentConfig.API + '/user/emails/', newEmail , {
                     headers: {
                         'Content-Type': 'application/json',
                         'Authorization': vm.token
@@ -83,7 +83,7 @@
         $scope.deleteEmail = function (email) {
             $scope.loadingAdminEmails = true;
             if(vm.token) {
-                $http.delete(API + '/user/emails/' + email.id + '/', {
+                $http.delete(environmentConfig.API + '/user/emails/' + email.id + '/', {
                     headers: {
                         'Content-Type': 'application/json',
                         'Authorization': vm.token

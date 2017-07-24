@@ -5,7 +5,7 @@
         .controller('ResetPasswordConfirmationCtrl', ResetPasswordConfirmationCtrl);
 
     /** @ngInject */
-    function ResetPasswordConfirmationCtrl($scope,$stateParams,$http,toastr,$location,API,errorToasts) {
+    function ResetPasswordConfirmationCtrl($scope,$stateParams,$http,toastr,$location,environmentConfig,errorToasts) {
 
         $scope.passwordResetDone = false;
         $scope.resettingPassword = false;
@@ -13,7 +13,7 @@
 
         $scope.resetPassword = function(passwordResetParams){
             $scope.resettingPassword = true;
-            $http.post(API + '/auth/password/reset/confirm/', {
+            $http.post(environmentConfig.API + '/auth/password/reset/confirm/', {
                 new_password1: passwordResetParams.new_password1,
                 new_password2: passwordResetParams.new_password2,
                 uid: $stateParams.uid,

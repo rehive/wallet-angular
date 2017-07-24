@@ -5,7 +5,7 @@
         .controller('UserAccountInfoCtrl', UserAccountInfoCtrl);
 
     /** @ngInject */
-    function UserAccountInfoCtrl($scope,API,$stateParams,$uibModal,$http,cookieManagement,errorToasts,toastr) {
+    function UserAccountInfoCtrl($scope,environmentConfig,$stateParams,$uibModal,$http,cookieManagement,errorToasts,toastr) {
 
         var vm = this;
         vm.token = cookieManagement.getCookie('TOKEN');
@@ -15,7 +15,7 @@
         vm.getUser = function(){
             if(vm.token) {
                 $scope.loadingUserAccountInfo = true;
-                $http.get(API + '/admin/users/' + vm.uuid + '/', {
+                $http.get(environmentConfig.API + '/admin/users/' + vm.uuid + '/', {
                     headers: {
                         'Content-Type': 'application/json',
                         'Authorization': vm.token
@@ -35,7 +35,7 @@
 
         vm.getUserEmails = function(){
             if(vm.token) {
-                $http.get(API + '/admin/users/emails/?user=' + vm.uuid, {
+                $http.get(environmentConfig.API + '/admin/users/emails/?user=' + vm.uuid, {
                     headers: {
                         'Content-Type': 'application/json',
                         'Authorization': vm.token
@@ -55,7 +55,7 @@
         vm.getUserMobileNumbers = function(){
             if(vm.token) {
                 $scope.loadingUserAccountInfo = true;
-                $http.get(API + '/admin/users/mobiles/?user=' + vm.uuid, {
+                $http.get(environmentConfig.API + '/admin/users/mobiles/?user=' + vm.uuid, {
                     headers: {
                         'Content-Type': 'application/json',
                         'Authorization': vm.token

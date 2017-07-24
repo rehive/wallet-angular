@@ -4,7 +4,7 @@
     angular.module('BlurAdmin.pages.currency.settings.tiers')
         .controller('TiersCtrl', TiersCtrl);
 
-    function TiersCtrl($rootScope,$scope,$uibModal,$http,cookieManagement,API,toastr,errorToasts,$window) {
+    function TiersCtrl($rootScope,$scope,$uibModal,$http,cookieManagement,environmentConfig,toastr,errorToasts,$window) {
 
       var vm = this;
       vm.token = cookieManagement.getCookie('TOKEN');
@@ -33,7 +33,7 @@
       vm.getTiers = function(){
           if(vm.token) {
               $scope.loadingTiers = true;
-              $http.get(API + '/admin/tiers/?currency=' + $rootScope.selectedCurrency.code, {
+              $http.get(environmentConfig.API + '/admin/tiers/?currency=' + $rootScope.selectedCurrency.code, {
                   headers: {
                       'Content-Type': 'application/json',
                       'Authorization': vm.token
@@ -53,7 +53,7 @@
       $scope.addTier = function(){
           if(vm.token) {
               $scope.loadingTiers = true;
-              $http.post(API + '/admin/tiers/', $scope.newTier ,{
+              $http.post(environmentConfig.API + '/admin/tiers/', $scope.newTier ,{
                   headers: {
                       'Content-Type': 'application/json',
                       'Authorization': vm.token
@@ -82,7 +82,7 @@
             $window.scrollTo(0, 0);
             $scope.editingTiers = !$scope.editingTiers;
             $scope.loadingTiers = true;
-              $http.patch(API + '/admin/tiers/' + $scope.editTier.id + '/', vm.updatedTier, {
+              $http.patch(environmentConfig.API + '/admin/tiers/' + $scope.editTier.id + '/', vm.updatedTier, {
                   headers: {
                       'Content-Type': 'application/json',
                       'Authorization': vm.token

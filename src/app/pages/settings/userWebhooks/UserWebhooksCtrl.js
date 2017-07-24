@@ -5,7 +5,7 @@
         .controller('UserWebhooksCtrl', UserWebhooksCtrl);
 
     /** @ngInject */
-    function UserWebhooksCtrl($scope,API,$uibModal,toastr,$http,cookieManagement,errorToasts,$window,$state,errorHandler) {
+    function UserWebhooksCtrl($scope,environmentConfig,$uibModal,toastr,$http,cookieManagement,errorToasts,$window,$state,errorHandler) {
 
         var vm = this;
         vm.updatedUserWebhook = {};
@@ -37,7 +37,7 @@
         vm.getUserWebhooks = function () {
             if(vm.token) {
                 $scope.loadingUserWebhooks = true;
-                $http.get(API + '/admin/webhooks/users/', {
+                $http.get(environmentConfig.API + '/admin/webhooks/users/', {
                     headers: {
                         'Content-Type': 'application/json',
                         'Authorization': vm.token
@@ -62,7 +62,7 @@
              'user.create' : userWebhooksParams.event == 'User Update' ? 'user.update' : userWebhooksParams.event == 'User Delete' ?
              'user.delete' : userWebhooksParams.event == 'User Password Reset' ? 'user.password.reset' : userWebhooksParams.event == 'User Email Verify' ?
              'user.email.verify' : userWebhooksParams.event == 'User Mobile Verify' ? 'user.mobile.verify' : '';
-            $http.post(API + '/admin/webhooks/users/', userWebhooksParams, {
+            $http.post(environmentConfig.API + '/admin/webhooks/users/', userWebhooksParams, {
                 headers: {
                     'Content-Type': 'application/json',
                     'Authorization': vm.token
@@ -100,7 +100,7 @@
                'user.delete' : vm.updatedUserWebhook.event == 'User Password Reset' ? 'user.password.reset' : vm.updatedUserWebhook.event == 'User Email Verify' ?
                'user.email.verify' : vm.updatedUserWebhook.event == 'User Mobile Verify' ? 'user.mobile.verify' : '';
            }
-            $http.patch(API + '/admin/webhooks/users/'+ $scope.editUserWebhook.id + '/', vm.updatedUserWebhook, {
+            $http.patch(environmentConfig.API + '/admin/webhooks/users/'+ $scope.editUserWebhook.id + '/', vm.updatedUserWebhook, {
                 headers: {
                     'Content-Type': 'application/json',
                     'Authorization': vm.token

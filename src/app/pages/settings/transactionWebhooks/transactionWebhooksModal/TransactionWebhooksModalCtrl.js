@@ -4,7 +4,7 @@
     angular.module('BlurAdmin.pages.settings.transactionWebhooks')
         .controller('TransactionWebhooksModalCtrl', TransactionWebhooksModalCtrl);
 
-    function TransactionWebhooksModalCtrl($scope,$uibModalInstance,transactionWebhook,toastr,$http,API,cookieManagement,errorToasts,errorHandler) {
+    function TransactionWebhooksModalCtrl($scope,$uibModalInstance,transactionWebhook,toastr,$http,environmentConfig,cookieManagement,errorToasts,errorHandler) {
 
         var vm = this;
 
@@ -14,7 +14,7 @@
 
         $scope.deleteTransactionWebhook = function () {
             $scope.deletingTransactionWebhook = true;
-            $http.delete(API + '/admin/webhooks/transactions/' + $scope.transactionWebhook.id + '/', {
+            $http.delete(environmentConfig.API + '/admin/webhooks/transactions/' + $scope.transactionWebhook.id + '/', {
                 headers: {
                     'Content-Type': 'application/json',
                     'Authorization': vm.token

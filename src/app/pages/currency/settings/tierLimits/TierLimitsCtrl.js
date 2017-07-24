@@ -5,7 +5,7 @@
         .controller('TierLimitsCtrl', TierLimitsCtrl);
 
     /** @ngInject */
-    function TierLimitsCtrl($rootScope,$scope,cookieManagement,$http,API,$timeout,errorToasts,toastr,$uibModal,currencyModifiers) {
+    function TierLimitsCtrl($rootScope,$scope,cookieManagement,$http,environmentConfig,$timeout,errorToasts,toastr,$uibModal,currencyModifiers) {
 
         var vm = this;
         vm.token = cookieManagement.getCookie('TOKEN');
@@ -42,7 +42,7 @@
         $scope.getAllTiers = function(tierLevel){
             if(vm.token) {
                 $scope.loadingTierLimits = true;
-                $http.get(API + '/admin/tiers/?currency=' + $rootScope.selectedCurrency.code, {
+                $http.get(environmentConfig.API + '/admin/tiers/?currency=' + $rootScope.selectedCurrency.code, {
                     headers: {
                         'Content-Type': 'application/json',
                         'Authorization': vm.token
@@ -90,7 +90,7 @@
         $scope.getTierLimits = function(){
             if(vm.token) {
                 $scope.loadingTierLimits = true;
-                $http.get(API + '/admin/tiers/' + $scope.selectedTier.id + '/limits/',{
+                $http.get(environmentConfig.API + '/admin/tiers/' + $scope.selectedTier.id + '/limits/',{
                     headers: {
                         'Content-Type': 'application/json',
                         'Authorization': vm.token
@@ -119,7 +119,7 @@
                 tierLimitsParams.tx_type = tierLimitsParams.tx_type.toLowerCase();
                 tierLimitsParams.type = tierLimitsParams.type == 'Maximum' ? 'max': tierLimitsParams.type == 'Maximum per day' ? 'day_max':
                                                                   tierLimitsParams.type == 'Maximum per month' ? 'month_max': tierLimitsParams.type == 'Minimum' ? 'min': 'overdraft';
-                $http.post(API + '/admin/tiers/' + $scope.selectedTier.id + '/limits/',tierLimitsParams,{
+                $http.post(environmentConfig.API + '/admin/tiers/' + $scope.selectedTier.id + '/limits/',tierLimitsParams,{
                     headers: {
                         'Content-Type': 'application/json',
                         'Authorization': vm.token
@@ -163,7 +163,7 @@
                 vm.updatedTierLimit.type ? vm.updatedTierLimit.type = vm.updatedTierLimit.type == 'Maximum' ? 'max': vm.updatedTierLimit.type == 'Maximum per day' ? 'day_max':
                     vm.updatedTierLimit.type == 'Maximum per month' ? 'month_max': vm.updatedTierLimit.type == 'Minimum' ? 'min': 'overdraft' : '';
 
-                $http.patch(API + '/admin/tiers/' + $scope.selectedTier.id + '/limits/' + $scope.editTierLimit.id + '/',vm.updatedTierLimit,{
+                $http.patch(environmentConfig.API + '/admin/tiers/' + $scope.selectedTier.id + '/limits/' + $scope.editTierLimit.id + '/',vm.updatedTierLimit,{
                     headers: {
                         'Content-Type': 'application/json',
                         'Authorization': vm.token

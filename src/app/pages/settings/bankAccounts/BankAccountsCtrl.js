@@ -5,7 +5,7 @@
         .controller('BankAccountsCtrl', BankAccountsCtrl);
 
     /** @ngInject */
-    function BankAccountsCtrl($scope,API,$uibModal,toastr,$http,cookieManagement,errorToasts,$window,errorHandler) {
+    function BankAccountsCtrl($scope,environmentConfig,$uibModal,toastr,$http,cookieManagement,errorToasts,$window,errorHandler) {
 
         var vm = this;
         vm.token = cookieManagement.getCookie('TOKEN');
@@ -29,7 +29,7 @@
         vm.getBankAccounts = function () {
             if(vm.token) {
                 $scope.loadingBankAccounts = true;
-                $http.get(API + '/admin/bank-accounts/', {
+                $http.get(environmentConfig.API + '/admin/bank-accounts/', {
                     headers: {
                         'Content-Type': 'application/json',
                         'Authorization': vm.token
@@ -48,7 +48,7 @@
         vm.getBankAccounts();
 
         $scope.addBankAccount = function (newBankAccount) {
-            $http.post(API + '/admin/bank-accounts/', newBankAccount, {
+            $http.post(environmentConfig.API + '/admin/bank-accounts/', newBankAccount, {
                 headers: {
                     'Content-Type': 'application/json',
                     'Authorization': vm.token
@@ -79,7 +79,7 @@
             $window.scrollTo(0, 0);
             $scope.editingBankAccounts = !$scope.editingBankAccounts;
             $scope.loadingBankAccounts = true;
-            $http.patch(API + '/admin/bank-accounts/'+ $scope.editBankData.id + '/', vm.updatedBankAccount, {
+            $http.patch(environmentConfig.API + '/admin/bank-accounts/'+ $scope.editBankData.id + '/', vm.updatedBankAccount, {
                 headers: {
                     'Content-Type': 'application/json',
                     'Authorization': vm.token

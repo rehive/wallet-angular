@@ -5,7 +5,7 @@
         .controller('TierSwitchesCtrl', TierSwitchesCtrl);
 
     /** @ngInject */
-    function TierSwitchesCtrl($rootScope,$scope,cookieManagement,$http,API,$timeout,errorToasts,toastr,$uibModal) {
+    function TierSwitchesCtrl($rootScope,$scope,cookieManagement,$http,environmentConfig,$timeout,errorToasts,toastr,$uibModal) {
 
         var vm = this;
         vm.token = cookieManagement.getCookie('TOKEN');
@@ -42,7 +42,7 @@
         $scope.getAllTiers = function(tierLevel){
             if(vm.token) {
                 $scope.loadingTierSwitches = true;
-                $http.get(API + '/admin/tiers/?currency=' + $rootScope.selectedCurrency.code, {
+                $http.get(environmentConfig.API + '/admin/tiers/?currency=' + $rootScope.selectedCurrency.code, {
                     headers: {
                         'Content-Type': 'application/json',
                         'Authorization': vm.token
@@ -90,7 +90,7 @@
         $scope.getTierSwitches = function(){
             if(vm.token) {
                 $scope.loadingTierSwitches = true;
-                $http.get(API + '/admin/tiers/' + $scope.selectedTier.id + '/switches/',{
+                $http.get(environmentConfig.API + '/admin/tiers/' + $scope.selectedTier.id + '/switches/',{
                     headers: {
                         'Content-Type': 'application/json',
                         'Authorization': vm.token
@@ -112,7 +112,7 @@
                 $scope.loadingTierSwitches = true;
                 tierSwitchesParams.tx_type = tierSwitchesParams.tx_type.toLowerCase();
                 tierSwitchesParams.enabled == 'True' ? tierSwitchesParams.enabled = true : tierSwitchesParams.enabled = false;
-                $http.post(API + '/admin/tiers/' + $scope.selectedTier.id + '/switches/',tierSwitchesParams,{
+                $http.post(environmentConfig.API + '/admin/tiers/' + $scope.selectedTier.id + '/switches/',tierSwitchesParams,{
                     headers: {
                         'Content-Type': 'application/json',
                         'Authorization': vm.token
@@ -149,7 +149,7 @@
                 vm.updatedTierSwitch.tx_type ? vm.updatedTierSwitch.tx_type = vm.updatedTierSwitch.tx_type.toLowerCase() : '';
                 vm.updatedTierSwitch.enabled == 'True' ? vm.updatedTierSwitch.enabled = true : vm.updatedTierSwitch.enabled = false;
 
-                $http.patch(API + '/admin/tiers/' + $scope.selectedTier.id + '/switches/' + $scope.editTierSwitch.id + '/',vm.updatedTierSwitch,{
+                $http.patch(environmentConfig.API + '/admin/tiers/' + $scope.selectedTier.id + '/switches/' + $scope.editTierSwitch.id + '/',vm.updatedTierSwitch,{
                     headers: {
                         'Content-Type': 'application/json',
                         'Authorization': vm.token
