@@ -21,7 +21,7 @@ Rehive's back office dashboard is an open sourced project in Angular JS which ad
 * cd into `dashboard-angular`
 * run `npm install` to install the dependencies,
 * to run local copy in development mode, execute: `gulp serve`,
-* to run local copy in staging mode, with the rehive staging API(staging.rehive.com/api/3), execute: `gulp serve:staging`,
+* to run local copy in staging mode, with the rehive staging API (`https://staging.rehive.com/api/3/`), execute: `gulp serve:staging`,
 * to run local copy in production mode, execute: `gulp serve:dist`.
 
 ### Where can I learn more ?
