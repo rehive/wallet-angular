@@ -16,7 +16,10 @@
             reference: "",
             confirm_on_create: true,
             metadata: "",
-            currency: null
+            currency: null,
+            subtype: "",
+            note: "",
+            account: ""
         };
         $scope.onGoingTransaction = false;
         $scope.showAdvancedOption = false;
@@ -57,7 +60,10 @@
                 reference: "",
                 confirm_on_create: true,
                 metadata: "",
-                currency: $rootScope.selectedCurrency.code
+                currency: $rootScope.selectedCurrency.code,
+                subtype: "",
+                note: "",
+                account: ""
             };
 
             if(view == 'debit'){
@@ -77,7 +83,10 @@
                 reference: $scope.debitData.reference,
                 confirm_on_create: $scope.debitData.confirm_on_create,
                 metadata: $scope.debitData.metadata,
-                currency: $scope.debitData.currency
+                currency: $scope.debitData.currency,
+                subtype: $scope.debitData.subtype,
+                note: $scope.debitData.note,
+                account: $scope.debitData.account
             };
 
             $scope.onGoingTransaction = true;

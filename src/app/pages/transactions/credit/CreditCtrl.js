@@ -16,7 +16,10 @@
             reference: "",
             confirm_on_create: true,
             metadata: "",
-            currency: null
+            currency: null,
+            subtype: "",
+            note: "",
+            account: ""
         };
 
         if($state.params.email){
@@ -58,7 +61,10 @@
                 reference: "",
                 confirm_on_create: true,
                 metadata: "",
-                currency: $rootScope.selectedCurrency.code
+                currency: $rootScope.selectedCurrency.code,
+                subtype: "",
+                note: "",
+                account: ""
             };
 
             if(view == 'credit'){
@@ -78,7 +84,10 @@
                 reference: $scope.creditData.reference,
                 confirm_on_create: $scope.creditData.confirm_on_create,
                 metadata: $scope.creditData.metadata,
-                currency: $scope.creditData.currency
+                currency: $scope.creditData.currency,
+                subtype: $scope.creditData.subtype,
+                note: $scope.creditData.note,
+                account: $scope.creditData.account
             };
 
             $scope.onGoingTransaction = true;

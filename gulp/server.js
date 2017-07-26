@@ -64,7 +64,7 @@ gulp.task('serve', ['productionEnv','watch'], function () {
   browserSyncInit([path.join(conf.paths.tmp, '/serve'), conf.paths.src]);
 });
 
-gulp.task('serve:staging', ['stagingEnv','build'], function () {
+gulp.task('serve:staging', ['stagingEnv','watch'], function () {
   browserSyncInit([path.join(conf.paths.tmp, '/serve'), conf.paths.src]);
 });
 

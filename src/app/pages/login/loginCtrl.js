@@ -8,6 +8,8 @@
     function LoginCtrl($rootScope,$scope,$http,cookieManagement,environmentConfig,$location,errorToasts,userVerification) {
 
         var vm = this;
+        console.log('token');
+        console.log(cookieManagement.getCookie('TOKEN'));
         cookieManagement.deleteCookie('TOKEN');
 
         $scope.login = function(user, company, password) {
