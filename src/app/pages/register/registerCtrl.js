@@ -12,7 +12,6 @@
             first_name: '',
             last_name: '',
             email: '',
-            mobile_number: '',
             company: '',
             password1: '',
             password2: ''
