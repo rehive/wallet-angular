@@ -20,7 +20,7 @@
 
         $timeout(function () {
           elem.removeClass('full-invisible');
-          elem.addClass('animated zoomIn');
+          //elem.addClass('animated zoomIn');
         }, delay);
       }
     };
