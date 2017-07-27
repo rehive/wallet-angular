@@ -15,7 +15,8 @@
                 url: '/services/notifications',
                 abstract: true,
                 template:'<div ui-view="notificationServiceViews"></div>'
-            });
+            })
+            $urlRouterProvider.when("/services/notifications", "/services/notifications/company-details");
     }
 
 })();

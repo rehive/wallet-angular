@@ -13,10 +13,12 @@
         $stateProvider
             .state('stellarService', {
                 url: '/services/stellar',
-                templateUrl: 'app/pages/services/stellarService/stellarService.html',
-                controller: "StellarServiceCtrl",
+                abstract:true,
+                // templateUrl: 'app/pages/services/stellarService/stellarService.html',
+                // controller: "StellarServiceCtrl",
                 title: 'Stellar Service'
             });
+            $urlRouterProvider.when("/services/stellar", "/services/stellar/transactions");
     }
 
 })();

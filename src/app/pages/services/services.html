@@ -1,4 +1,4 @@
-<div ng-hide="newUser" ba-panel ba-panel-title="Services" ba-panel-class=" with-scroll" >
+<div ng-hide="newUser || loadingServices" ba-panel ba-panel-title="Services" ba-panel-class=" with-scroll" >
     <div>
         <table class="table">
             <tr  width="15%" class="black-muted-bg">
@@ -7,33 +7,18 @@
                 <td><strong>Description</strong></td>
                 <td></td>
             </tr>
-            <tr class="editable-row">
+            <tr ng-repeat="service in servicesList" class="editable-row">
                 <td width="15%"><img ng-src="{{defaultImageUrl}}" class="currency-logo"></td>
-                <td  width="15%">Notification Service</td>
-                <td width="30%">The notification service allows Rehive company administrators to add highly customized emails and text messages based on webhook events.</td>
-                <td class="rehive-table-row-last-child"><a href="#/services/notifications/company-details" ><button class="btn btn-primary pull-right rehive-button-no-right-margin">Manage</button></a></td>
-            </tr>
-            <tr class="editable-row">
-                <td width="15%"><img ng-src="{{defaultImageUrl}}" class="currency-logo"></td>
-                <td width="15%">Stellar Service</td>
-                <td width="30%">Manage digital currencies on the Stellar Network.</td>
-                <td class="rehive-table-row-last-child">
-                    <a href="#/services/stellar/transactions" ><button class="btn btn-primary pull-right rehive-button-no-right-margin">Manage</button></a>
-                    <!--<a href=""><button class="btn btn-danger pull-right rehive-button-no-right-margin">Deactivate</button></a>-->
-                </td>
-            </tr>
-            <tr class="editable-row">
-                <td width="15%"><img ng-src="{{defaultImageUrl}}" class="currency-logo"></td>
-                <td width="15%">Bitcoin Service</td>
-                <td width="50%">Enable bitcoin sending and receiving.</td>
-                <td class="rehive-table-row-last-child">
-                    <a href="#/services/bitcoin/transactions" ><button class="btn btn-primary pull-right rehive-button-no-right-margin">Manage</button></a>
-                    <!--<a href=""><button class="btn btn-danger pull-right rehive-button-no-right-margin">Deactivate</button></a>-->
-                </td>
+                <td  width="15%" ng-bind="service.name"></td>
+                <td width="30%" ng-bind="service.description"></td>
+                <td class="rehive-table-row-last-child"><button ng-click="goToService(service)" class="btn btn-primary pull-right rehive-button-no-right-margin">Manage</button></td>
             </tr>
         </table>
         <hr class="no-margin hr-top-border">
     </div>
+</div>
+<div ba-panel ng-show="loadingServices">
+    <loading-image></loading-image>
 </div>
 <div ng-show="newUser">
     <div class="row">

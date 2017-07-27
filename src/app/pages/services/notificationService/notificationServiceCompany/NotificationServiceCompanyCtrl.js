@@ -24,7 +24,6 @@
                 }).then(function (res) {
                     $scope.updatingCompanyDetails =  false;
                     if (res.status === 200) {
-                        console.log(res.data);
                       $scope.company = res.data.data;
                     }
                 }).catch(function (error) {
