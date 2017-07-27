@@ -104,7 +104,7 @@
         </div>
     </div>
     <div class="modal-footer">
-        <button type="button" ng-disabled="updatingTransaction" class="transaction-details-button btn btn-danger pull-left" ng-click="updateTransaction('Failed')">Cancel Transaction</button>
-        <button type="button" ng-hide="transaction.status == 'Complete'" ng-disabled="updatingTransaction" class="transaction-details-button btn btn-primary pull-right" ng-click="updateTransaction('Complete')">Complete Transaction</button>
+        <button type="button" ng-hide="transaction.status == 'Failed'" ng-disabled="updatingTransaction" class="transaction-details-button btn btn-danger pull-left" ng-click="updateTransactionConfirm('Failed')">Cancel Transaction</button>
+        <button type="button" ng-hide="transaction.status == 'Complete'" ng-disabled="updatingTransaction" class="transaction-details-button btn btn-primary pull-right" ng-click="updateTransactionConfirm('Complete')">Complete Transaction</button>
     </div>
 </div>

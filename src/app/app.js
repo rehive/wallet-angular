@@ -2,6 +2,7 @@
 
 angular.module('BlurAdmin', [
     'BlurAdmin.config',
+    'cp.ngConfirm',
     'ngFileUpload',
     'ngSanitize',
     'ngCookies',
