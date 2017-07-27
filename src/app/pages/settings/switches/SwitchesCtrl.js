@@ -19,7 +19,7 @@
         };
 
         $scope.switchesOptions = ['Allow transactions','Allow transactions for unverified users','Allow unlimited overdrafts',
-            'Automatically confirm transactions on creation','Allow custom session durations on login'];
+            'Automatically confirm transactions on creation','Allow custom session durations on login','Allow users to manage their accounts'];
         $scope.boolOptions = ['True','False'];
 
         $scope.toggleSwitchesEditView = function(switches){
@@ -68,6 +68,8 @@
                 switchesParams.switch_type = "auto_confirm";
             } else if(switchesParams.switch_type == 'Allow custom session durations on login') {
                 switchesParams.switch_type = "session_duration";
+            } else if(switchesParams.switch_type == 'Allow users to manage their accounts'){
+               switchesParams.switch_type = "manage_accounts";
             }
 
             switchesParams.enabled == 'True' ? switchesParams.enabled = true : switchesParams.enabled = false;
