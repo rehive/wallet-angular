@@ -120,19 +120,21 @@ def prebuild(ctx, config, version_tag):
 
     # Compile js using docker image:
     try:
-        ctx.run("docker run --rm -v $PWD/release:/app/release:rw {image} bash -c 'gulp build{env_string}'".format(image=image,
-                                                                                                           env_string=env_string),
-                     echo=True)
+        ctx.run(
+            "docker run --rm -v $PWD/release:/app/release:rw {image} bash -c 'gulp clean && gulp build{env_string}'".format(
+                image=image,
+                env_string=env_string),
+            echo=True)
 
     # If the build image is not found, build it and then run
     except Failure:
         create_build_image(ctx, config)
         push_build_image(ctx, config)
         ctx.run(
-            "docker run --rm -v $PWD/release:/app/release:rw {image} bash -c 'gulp build{env_string}'".format(image=image,
-                                                                                                  env_string=env_string),
+            "docker run --rm -v $PWD/release:/app/release:rw {image} bash -c 'gulp clean && gulp build{env_string}'".format(
+                image=image,
+                env_string=env_string),
             echo=True)
-
 
 
 @task
@@ -199,6 +201,7 @@ def git_release(ctx, version_bump='prerelease'):
     ctx.run("git push origin %s" % tag, echo=True)
 
     print('Tag: {}\n'.format(tag))
+
 
 @task
 def docker_release(ctx, config):
