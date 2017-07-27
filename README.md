@@ -24,6 +24,12 @@ Rehive's back office dashboard is an open sourced project in Angular JS which ad
 * to run local copy in staging mode, with the rehive staging API (`https://staging.rehive.com/api/3/`), execute: `gulp serve:staging`,
 * to run local copy in production mode, execute: `gulp serve:dist`.
 
+### Deployment
+* commit all changes
+* run `inv local.git_release` to increment the version and tag the release
+* run `inv local.docker_release production` to build and upload the latest docker image
+* run `inv k8s.deploy production` to add the latest image to kubernetes deployment
+
 ### Where can I learn more ?
 
 Check us out at [Rehive](http://www.rehive.com/)

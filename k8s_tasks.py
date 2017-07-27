@@ -77,12 +77,17 @@ def templater(ctx, config, template='etc/k8s/templates/all-in-one.yaml'):
 
 
 @task
-def deploy(ctx, config, version_tag):
+def deploy(ctx, config, version_tag=None):
     """
     Updates kubernetes deployment to use specified version
     """
-
     config_dict = get_config(config)
+
+    if not version_tag:
+        version_tag = latest_version(ctx)
+
+    set_project(ctx, config)
+    set_cluster(ctx, config)
 
     image_name = config_dict['IMAGE'].split(':')[0]
     image = '{}:{}'.format(image_name, version_tag)
@@ -258,3 +263,30 @@ def live(ctx, config):
     image = server_config['spec']['template']['spec']['containers'][0]['image']
     print(image)
     return image
+
+
+# Cluster Management:
+@task
+def set_project(ctx, config):
+    """Sets the active gcloud project"""
+    config_dict = get_config(config)
+    ctx.run('gcloud config set project {project}'.format(project=config_dict['CLUSTER_PROJECT']))
+
+
+@task
+def set_cluster(ctx, config):
+    """Sets the active cluster"""
+    config_dict = get_config(config)
+    ctx.run('gcloud container clusters get-credentials {cluster} --zone europe-west1-c --project {project}'.format(cluster=config_dict['CLUSTER'],
+                                                                                                                   project=config_dict['CLUSTER_PROJECT']),
+            echo=True)
+
+
+@task
+def latest_version(ctx):
+    """Checks the git tags and returns the current latest version"""
+    ctx.run('git fetch && git fetch --tags')
+    result = ctx.run('git tag --sort=-v:refname', hide='both')
+    latest_tag = result.stdout.split('\n')[0]
+    print(latest_tag)
+    return latest_tag
