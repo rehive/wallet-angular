@@ -4,14 +4,23 @@
         <a href="/#/register" class="auth-link">New to Rehive? Sign up!</a>
 
         <form class="form-horizontal">
-            <div class="row form-group">
-                <div class="col-sm-12">
-                    <input type="text" ng-model="user" class="form-control" id="inputEmail1" placeholder="Email or phone">
-                </div>
-            </div>
+          <div ng-hide="gotCompanyName">
             <div class="row form-group">
                 <div class="col-sm-12">
                     <input type="text" ng-model="company" class="form-control" id="inputCompany1" placeholder="Company">
+                </div>
+            </div>
+            <div class="row form-group">
+            <div class="col-sm-12">
+                <button ng-disabled="!company" ng-click="gotCompanyName = true" class="btn btn-primary btn-auth pull-right">Next</button>
+                <a href="/#/password/reset" class="forgot-pass pull-left">Forgot password?</a>
+            </div>
+          </div>
+          </div>
+          <div ng-keydown="($event.keyCode === 13) && login(user,company,password)" ng-show="gotCompanyName">
+            <div class="row form-group">
+                <div class="col-sm-12">
+                    <input type="text" ng-model="user" class="form-control" id="inputEmail1" placeholder="Email or phone" autofocus>
                 </div>
             </div>
             <div class="row form-group">
@@ -23,8 +32,11 @@
                 <div class="col-sm-12">
                     <button ng-click="login(user,company,password)" class="btn btn-primary btn-auth pull-right">Sign in</button>
                     <a href="/#/password/reset" class="forgot-pass pull-left">Forgot password?</a>
+                    <br>
+                    <a ng-click="gotCompanyName = false" class="forgot-pass pull-left pointer">Back</a>
                 </div>
             </div>
+          </div>
         </form>
 
     </div>

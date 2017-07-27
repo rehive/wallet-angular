@@ -8,9 +8,8 @@
     function LoginCtrl($rootScope,$scope,$http,cookieManagement,environmentConfig,$location,errorToasts,userVerification) {
 
         var vm = this;
-        console.log('token');
-        console.log(cookieManagement.getCookie('TOKEN'));
         cookieManagement.deleteCookie('TOKEN');
+        $scope.gotCompanyName = false;
 
         $scope.login = function(user, company, password) {
             $rootScope.$pageFinishedLoading = false;
@@ -35,6 +34,7 @@
 
                 }
             }).catch(function (error) {
+                $scope.gotCompanyName = false;
                 $rootScope.$pageFinishedLoading = true;
                 errorToasts.evaluateErrors(error.data);
             });
