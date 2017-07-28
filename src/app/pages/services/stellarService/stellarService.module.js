@@ -5,6 +5,7 @@
       "BlurAdmin.pages.services.stellarService.stellarServiceTransactions",
       "BlurAdmin.pages.services.stellarService.stellarServiceUsers",
       "BlurAdmin.pages.services.stellarService.stellarServiceSettings",
+      "BlurAdmin.pages.services.stellarService.stellarServiceSetup"
     ])
         .config(routeConfig);
 
@@ -18,7 +19,7 @@
                 // controller: "StellarServiceCtrl",
                 title: 'Stellar Service'
             });
-            $urlRouterProvider.when("/services/stellar", "/services/stellar/transactions");
+            $urlRouterProvider.when("/services/stellar", "/services/stellar/setup");
     }
 
 })();

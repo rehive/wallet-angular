@@ -32,6 +32,10 @@
         };
         $scope.getServices();
 
+        $scope.addService = function(){
+            $location.path('/services/add');
+        };
+
         $scope.goToService = function(service) {
           var serviceNameArray = service.name.split(' ');
           var pathName = serviceNameArray[0].toLowerCase();

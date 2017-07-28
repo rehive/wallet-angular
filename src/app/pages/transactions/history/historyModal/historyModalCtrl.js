@@ -14,27 +14,27 @@
 
         $scope.updateTransactionConfirm = function (status) {
                 $ngConfirm({
-              title: 'Critical Decision',
+              title: 'Update transaction',
               content: 'Are you sure you want to edit this transaction?',
               animationBounce: 1,
               animationSpeed: 100,
               scope: $scope,
               buttons: {
                 close: {
-                    text: "No!",
+                    text: "No",
                     btnClass: 'btn-default'
                 },
                 ok: {
-                    text: "Yes!",
+                    text: "Yes",
                     btnClass: 'btn-primary',
                     keys: ['enter'], // will trigger when enter is pressed
                     action: function(scope){
                       $scope.updateTransaction(status);
                     }
                 }
-            },
+            }
           });
-        }
+        };
 
         $scope.updateTransaction = function(status){
             $scope.updatingTransaction = true;
