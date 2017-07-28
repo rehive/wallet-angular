@@ -10,7 +10,7 @@
             <td><strong>Status</strong></td>
             <td><strong>Created</strong></td>
         </tr>
-        <tr ng-repeat="transaction in transactions " data-toggle="modal"
+        <tr ng-repeat="transaction in transactions | orderBy: '-created'" data-toggle="modal"
             ng-click="openModal('app/pages/services/stellarService/stellarServiceTransactions/stellarServiceTransactionsModal/stellarServiceTransactionsModal.html', 'lg',transaction)"
             class="editable-row pointer">
             <td width="10%"><div title="{{transaction.user.email}}" class="transactions-list-element" ng-bind="transaction.user.email"></div></td>

@@ -8,7 +8,7 @@
         <tr ng-repeat="user in users" class="editable-row center" >
             <td><a href="#/user/{{user.identifier}}"><div title="{{user.email}}" class="transactions-list-element" ng-bind="user.email"></div></a></td>
             <td><div title="{{user.identifier}}" class="transactions-list-element" ng-bind="user.identifier"></div></td>
-            <td><div title="{{user.crypto.address}}" class="transactions-list-element" ng-bind="user.crypto.address"></div></td>
+            <td><div title="{{user.crypto.federated_address}}" class="transactions-list-element" ng-bind="user.crypto.federated_address"></div></td>
         </tr>
     </table>
     <div >
