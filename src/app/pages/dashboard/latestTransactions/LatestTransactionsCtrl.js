@@ -5,7 +5,7 @@
         .controller('LatestTransactionsCtrl', LatestTransactionsCtrl);
 
     /** @ngInject */
-    function LatestTransactionsCtrl($scope,$uibModal,$http,environmentConfig,cookieManagement,errorToasts,errorHandler) {
+    function LatestTransactionsCtrl($scope,$uibModal,$http,environmentConfig,cookieManagement,errorToasts,errorHandler,$window,$location) {
 
         var vm = this;
         $scope.transactions = [];
@@ -39,6 +39,16 @@
             }
         };
         vm.getLatestTransactions();
+
+        $scope.goToAllTransactions = function(){
+            $location.path('/transactions/history');
+        };
+
+        $scope.openViewInNewTab =  function(event,path){
+            if(event.button == 1){
+                $window.open(path, "_blank");
+            }
+        };
 
         $scope.openModal = function (page, size,transaction) {
             $uibModal.open({

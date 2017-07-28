@@ -1,6 +1,6 @@
 <div ng-hide="loadingCurrencies" ba-panel ba-panel-title="Currencies" ba-panel-class=" with-scroll" >
     <div>
-        <button class="btn btn-success pull-right divider" ng-click="goToAddCurrency()">Add Currency</button>
+        <button class="btn btn-success pull-right divider" ng-mousedown="openViewInNewTab($event,'/#/currency/add')" ng-click="goToAddCurrency()">Add Currency</button>
     </div>
     <table class="table">
         <tr class="black-muted-bg">
@@ -19,10 +19,14 @@
             <td width="15%">Coming Soon</td>
             <td width="15%">Coming Soon</td>
             <td class="rehive-table-row-last-child">
-                <button ng-click="goToView(currency,'/currency/overview')" class="btn btn-primary pull-right rehive-button-no-right-margin">Overview</button>
-                <button ng-click="goToView(currency,'/users')" class="btn btn-primary pull-right rehive-button-no-right-margin">Users</button>
-                <button ng-click="goToView(currency,'/transactions/credit')" class="btn btn-primary pull-right rehive-button-no-right-margin">Credit</button>
-                <button ng-click="goToView(currency,'/transactions/debit')" class="btn btn-primary pull-right rehive-button-no-right-margin">Debit</button>
+                <button ng-mousedown="openViewInNewTab($event,'/#/currency/overview')"
+                        ng-click="goToView(currency,'/currency/overview')" class="btn btn-primary pull-right rehive-button-no-right-margin">Overview</button>
+                <button ng-mousedown="openViewInNewTab($event,'/#/users')"
+                        ng-click="goToView(currency,'/users')" class="btn btn-primary pull-right rehive-button-no-right-margin">Users</button>
+                <button ng-mousedown="openViewInNewTab($event,'/#/transactions/credit')"
+                        ng-click="goToView(currency,'/transactions/credit')" class="btn btn-primary pull-right rehive-button-no-right-margin">Credit</button>
+                <button ng-mousedown="openViewInNewTab($event,'/#/transactions/debit')"
+                        ng-click="goToView(currency,'/transactions/debit')" class="btn btn-primary pull-right rehive-button-no-right-margin">Debit</button>
             </td>
         </tr>
     </table>

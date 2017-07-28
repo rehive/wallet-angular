@@ -7,7 +7,7 @@
           <div ng-hide="gotCompanyName">
             <div class="row form-group">
                 <div class="col-sm-12">
-                    <input type="text" ng-model="company" class="form-control" id="inputCompany1" placeholder="Company">
+                    <input type="text" ng-model="company" class="form-control" id="inputCompany1" placeholder="Company" auto-focus="!gotCompanyName">
                 </div>
             </div>
             <div class="row form-group">
@@ -20,7 +20,7 @@
           <div ng-keydown="($event.keyCode === 13) && login(user,company,password)" ng-show="gotCompanyName">
             <div class="row form-group">
                 <div class="col-sm-12">
-                    <input type="text" ng-model="user" class="form-control" id="inputEmail1" placeholder="Email or phone" autofocus>
+                    <input type="text" ng-model="user" class="form-control" id="inputEmail1" placeholder="Email or phone" auto-focus="gotCompanyName">
                 </div>
             </div>
             <div class="row form-group">

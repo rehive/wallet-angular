@@ -13,6 +13,9 @@
                 for(var key in errors.data){
                     if (errors.data.hasOwnProperty(key)) {
                         errors.data[key].forEach(function(error){
+                            if(key == 'non_field_errors'){
+                                key = 'error';
+                            }
                             toastr.error(error, (key.charAt(0).toUpperCase() + key.slice(1)));
                         })
                     }

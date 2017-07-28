@@ -5,7 +5,7 @@
         .controller('CurrenciesCtrl', CurrenciesCtrl);
 
     /** @ngInject */
-    function CurrenciesCtrl($rootScope,$scope,$location,cookieManagement,environmentConfig,$http,errorToasts,errorHandler) {
+    function CurrenciesCtrl($rootScope,$scope,$location,cookieManagement,environmentConfig,$http,errorToasts,errorHandler,$window) {
 
         var vm = this;
         vm.token = cookieManagement.getCookie('TOKEN');
@@ -39,6 +39,12 @@
         $scope.goToView = function(currency,path){
             $rootScope.selectedCurrency = currency;
             $location.path(path);
+        };
+
+        $scope.openViewInNewTab =  function(event,path){
+            if(event.button == 1){
+                $window.open(path, "_blank");
+            }
         };
 
         $scope.goToAddCurrency = function(){

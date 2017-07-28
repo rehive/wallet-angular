@@ -31,6 +31,6 @@
         <loading-image ng-show="transactionsStateMessage == ''"></loading-image>
     </div>
     <div ng-show="transactions.length > 0" class="add-row-editable-table">
-        <a href="/#/transactions/history"><button class="btn btn-primary pull-right" ng-click="">View All</button></a>
+        <button ng-mousedown="openViewInNewTab($event,'/#/transactions/history')" ng-click="goToAllTransactions()" class="btn btn-primary pull-right" >View All</button>
     </div>
 </div>
