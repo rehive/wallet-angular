@@ -3,9 +3,8 @@
         <div class="divider admin-emails">
             <table class="table table-striped admin-emails-table">
                 <tr class="black-muted-bg divider">
-                    <th>Status</th>
-                    <th>Email</th>
                     <th>Primary</th>
+                    <th>Email</th>
                     <th>Verified</th>
                     <th></th>
                 </tr>
@@ -16,7 +15,6 @@
                         </label>
                     </th>
                     <th title="{{email.email}}" ng-bind="email.email | limitTo: '24'"></th>
-                    <th ng-bind="email.primary ? 'True': 'False'"></th>
                     <th ng-bind="email.verified ? 'True': 'False'"></th>
                     <th class="rehive-table-row-last-child">
                         <button ng-click="deleteEmail(email)" class="btn btn-danger pull-right rehive-settings-buttons">Delete</button>
