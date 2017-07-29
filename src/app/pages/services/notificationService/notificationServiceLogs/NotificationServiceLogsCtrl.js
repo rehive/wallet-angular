@@ -15,7 +15,7 @@
         vm.getNotificationLogs = function () {
             $scope.loadingLogs =  true;
             if(vm.token) {
-                $http.get('https://notification.s.services.rehive.com/api/logs/', {
+                $http.get('https://notification.services.rehive.io/api/admin/logs/', {
                     headers: {
                         'Content-Type': 'application/json',
                         'Authorization': vm.token
