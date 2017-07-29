@@ -16,7 +16,7 @@
         vm.getCompanyDetails = function () {
           $scope.updatingCompanyDetails =  true;
             if(vm.token) {
-                $http.get('https://notification.s.services.rehive.com/api/company/', {
+                $http.get('https://notification.services.rehive.io/api/admin/company/', {
                     headers: {
                         'Content-Type': 'application/json',
                         'Authorization': vm.token
@@ -42,7 +42,7 @@
           $scope.updatingCompanyDetails =  true;
             $scope.company = {};
             if(vm.token) {
-                $http.patch('https://notification.s.services.rehive.com/api/company/', vm.updatedCompany, {
+                $http.patch('https://notification.services.rehive.io/api/admin/company/', vm.updatedCompany, {
                     headers: {
                         'Content-Type': 'application/json',
                         'Authorization': vm.token
