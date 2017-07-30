@@ -15,7 +15,7 @@
 
         $scope.deleteNotification = function () {
             $scope.deletingNotification = true;
-            $http.delete('https://notification.s.services.rehive.com/api/notifications/' + $scope.notification.id + '/', {
+            $http.delete('https://notification.services.rehive.io/api/admin/notifications/' + $scope.notification.id + '/', {
                 headers: {
                     'Content-Type': 'application/json',
                     'Authorization': vm.token

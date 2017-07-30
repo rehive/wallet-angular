@@ -35,7 +35,7 @@
             $scope.loadingNotifications =  true;
             $scope.notificationsList = [];
             if(vm.token) {
-                $http.get('https://notification.s.services.rehive.com/api/notifications/', {
+                $http.get('https://notification.services.rehive.io/api/admin/notifications/', {
                     headers: {
                         'Content-Type': 'application/json',
                         'Authorization': vm.token
@@ -65,7 +65,7 @@
             $scope.loadingNotifications =  true;
             $scope.notificationParams.enabled = $scope.notificationParams.enabled == 'True' ? true : false;
             if(vm.token) {
-                $http.post('https://notification.s.services.rehive.com/api/notifications/',notificationParams, {
+                $http.post('https://notification.services.rehive.io/api/admin/notifications/',notificationParams, {
                     headers: {
                         'Content-Type': 'application/json',
                         'Authorization': vm.token
@@ -93,7 +93,7 @@
             $scope.editingNotifications = !$scope.editingNotifications;
             $scope.notificationParams.enabled = $scope.notificationParams.enabled == 'True' ? true : false;
             if(vm.token) {
-                $http.patch('https://notification.s.services.rehive.com/api/notifications/' + $scope.editNotification.id + '/',vm.updatedNotification, {
+                $http.patch('https://notification.services.rehive.io/api/admin/notifications/' + $scope.editNotification.id + '/',vm.updatedNotification, {
                     headers: {
                         'Content-Type': 'application/json',
                         'Authorization': vm.token
