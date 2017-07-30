@@ -5,7 +5,7 @@
         .controller('StellarServiceUsersCtrl', StellarServiceUsersCtrl);
 
     /** @ngInject */
-    function StellarServiceUsersCtrl($scope,$http,cookieManagement,errorToasts,$location) {
+    function StellarServiceUsersCtrl($scope,$http,cookieManagement,errorToasts,$location,environmentConfig) {
         var vm = this;
         vm.token = cookieManagement.getCookie('TOKEN');
 
@@ -30,7 +30,7 @@
             + '&identifier=' + $scope.usersSearchParams.searchIdentifier
             + '&address=' + $scope.usersSearchParams.searchAddress;
 
-            return 'https://rehive.com/services/crypto/users/' + vm.filterParams;
+            return environmentConfig.API.slice(0,-6) + '/services/crypto/users/' + vm.filterParams;
         };
 
         $scope.getAllUsers = function(applyFilter){

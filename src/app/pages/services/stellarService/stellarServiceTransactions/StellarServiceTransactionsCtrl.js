@@ -5,7 +5,7 @@
         .controller('StellarServiceTransactionsCtrl', StellarServiceTransactionsCtrl);
 
     /** @ngInject */
-    function StellarServiceTransactionsCtrl($scope,$http,cookieManagement,$uibModal,errorToasts,$window,$location) {
+    function StellarServiceTransactionsCtrl($scope,$http,cookieManagement,$uibModal,errorToasts,$window,$location,environmentConfig) {
 
         var vm = this;
         vm.token = cookieManagement.getCookie('TOKEN');
@@ -47,7 +47,7 @@
                 + '&status=' + ($scope.searchParams.searchStatus == 'Status' ? '' : $scope.searchParams.searchStatus)
                 + '&orderby=' + ($scope.searchParams.searchOrderBy == 'Latest' ? '-created' : $scope.searchParams.searchOrderBy == 'Largest' ? '-amount' : $scope.searchParams.searchOrderBy == 'Smallest' ? 'amount' : '');
 
-            return 'https://rehive.com/services/crypto/transactions/' + vm.filterParams;
+            return environmentConfig.API.slice(0,-6) + '/services/crypto/transactions/' + vm.filterParams;
         };
 
         $scope.getLatestTransactions = function(applyFilter){
@@ -77,7 +77,7 @@
                         $scope.transactionsData = res.data.data;
                         $scope.transactions = $scope.transactionsData.results;
                         if($scope.transactions == 0){
-                            $scope.transactionsStateMessage = 'No Transactions Have Been Found';
+                            $scope.transactionsStateMessage = 'No transactions yet.';
                             return;
                         }
 
@@ -89,7 +89,7 @@
                         $location.path('/services');
                         return
                     }
-                    $scope.transactionsStateMessage = 'Failed To Load Data';
+                    $scope.transactionsStateMessage = 'Failed to load data';
                     errorToasts.evaluateErrors(error.data);
                 });
             }

@@ -20,6 +20,7 @@
                 }
             }).then(function (res) {
                 if (res.status === 200) {
+                    console.log(res.data)
                     if(res.data.data.count == 0){
                         $scope.loadingStellarService = false;
                     } else {
@@ -53,6 +54,7 @@
                 errorToasts.evaluateErrors(error.data);
             });
         };
+        $scope.getSendAccounts();
 
         $scope.saveReceiveAccount = function (address,secret_key) {
             $scope.loadingStellarService = true;
