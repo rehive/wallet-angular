@@ -4,6 +4,11 @@
       "API": "https://staging.rehive.com/api/3"
     }
   },
+  "local": {
+    "environmentConfig": {
+      "API": "http://localhost:8000/api/3"
+    }
+  },
   "production": {
     "environmentConfig": {
       "API": "https://rehive.com/api/3"

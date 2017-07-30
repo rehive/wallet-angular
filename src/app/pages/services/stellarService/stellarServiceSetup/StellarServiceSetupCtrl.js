@@ -5,7 +5,7 @@
         .controller('StellarServiceSetupCtrl', StellarServiceSetupCtrl);
 
     /** @ngInject */
-    function StellarServiceSetupCtrl($scope,$http,cookieManagement,$uibModal,toastr,errorToasts,$window,$location) {
+    function StellarServiceSetupCtrl($scope,$http,environmentConfig,cookieManagement,$uibModal,toastr,errorToasts,$window,$location) {
 
         var vm = this;
         vm.token = cookieManagement.getCookie('TOKEN');
@@ -13,7 +13,7 @@
 
         $scope.getReceiveAccounts = function () {
             $scope.loadingStellarService = true;
-            $http.get('https://rehive.com/services/crypto/admin/receive_accounts/?default=true', {
+            $http.get(environmentConfig.API.slice(0,-6) + '/services/crypto/admin/receive_accounts/?default=true', {
                 headers: {
                     'Content-Type': 'application/json',
                     'Authorization': vm.token
@@ -35,7 +35,7 @@
 
         $scope.getSendAccounts = function () {
             $scope.loadingStellarService = true;
-            $http.get('https://rehive.com/services/crypto/admin/send_accounts/?default=true', {
+            $http.get(environmentConfig.API.slice(0,-6) + '/services/crypto/admin/send_accounts/?default=true', {
                 headers: {
                     'Content-Type': 'application/json',
                     'Authorization': vm.token
@@ -56,7 +56,7 @@
 
         $scope.saveReceiveAccount = function (address,secret_key) {
             $scope.loadingStellarService = true;
-            $http.post('https://rehive.com/services/crypto/admin/receive_accounts/',{address: address,default: true}, {
+            $http.post(environmentConfig.API.slice(0,-6) + '/services/crypto/admin/receive_accounts/',{address: address,default: true}, {
                 headers: {
                     'Content-Type': 'application/json',
                     'Authorization': vm.token
@@ -73,7 +73,7 @@
 
         $scope.saveSendAccount = function (secret_key) {
             $scope.loadingStellarService = true;
-            $http.post('https://rehive.com/services/crypto/admin/send_accounts/',{secret_key: secret_key,default: true}, {
+            $http.post(environmentConfig.API.slice(0,-6) + '/services/crypto/admin/send_accounts/',{secret_key: secret_key,default: true}, {
                 headers: {
                     'Content-Type': 'application/json',
                     'Authorization': vm.token

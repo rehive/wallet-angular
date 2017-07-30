@@ -48,6 +48,13 @@ browserSync.use(browserSyncSpa({
   selector: '[ng-app]'// Only needed for angular apps
 }));
 
+gulp.task('localEnv', function () {
+  gulp.src('./src/app/config/configFile.json')
+      .pipe(gulpNgConfig('BlurAdmin.config',{environment: 'local'}))
+      .pipe(gulp.dest('./src/app/config/'))
+});
+
+
 gulp.task('stagingEnv', function () {
   gulp.src('./src/app/config/configFile.json')
       .pipe(gulpNgConfig('BlurAdmin.config',{environment: 'staging'}))
@@ -61,6 +68,10 @@ gulp.task('productionEnv', function () {
 });
 
 gulp.task('serve', ['productionEnv','watch'], function () {
+  browserSyncInit([path.join(conf.paths.tmp, '/serve'), conf.paths.src]);
+});
+
+gulp.task('serve:local', ['localEnv','watch'], function () {
   browserSyncInit([path.join(conf.paths.tmp, '/serve'), conf.paths.src]);
 });
 
