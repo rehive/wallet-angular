@@ -1,17 +1,14 @@
 <div ba-panel ba-panel-title="Documents">
-    <!--<table class="table table-condensed table-striped user-details-table">-->
-        <!--<tr>-->
-            <!--<th><strong>Document</strong></th>-->
-            <!--<th><strong>Type</strong></th>-->
-            <!--<th><strong>Uploaded</strong></th>-->
-            <!--<th><strong>Status</strong></th>-->
-        <!--</tr>-->
-        <!--<tr ng-repeat="document in documents">-->
-            <!--<th>Other</th>-->
-            <!--<th>Other</th>-->
-            <!--<th>Feb. 14, 2017, 11:23 a.m</th>-->
-            <!--<th><button class="btn btn-warning pull-right">Pending</button></th>-->
-        <!--</tr>-->
-    <!--</table>-->
-    <h4 style="margin-top: 10px">Coming Soon</h4>
+    <table class="table table-condensed table-striped user-details-table">
+        <tr>
+            <th><strong>Document category</strong></th>
+            <th><strong>Document type</strong></th>
+            <th></th>
+        </tr>
+        <tr ng-repeat="document in userDocuments">
+            <th>{{document.document_category}}</th>
+            <th>{{document.document_type}}</th>
+            <th><button class="btn btn-warning pull-right">Pending</button></th>
+        </tr>
+    </table>
 </div>

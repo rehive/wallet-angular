@@ -3,8 +3,17 @@
   vertical-align: middle;
 }
 
+.user-details-table > tbody > tr > .custom-table-th {
+  padding: 6px 4px 6px 6px;
+}
+
 .user-details-table > tbody > tr > th:last-child{
   padding: 6px 0 6px 6px;
+}
+
+.user-details-table{
+  border-top: 1px solid gainsboro;
+  border-bottom: 1px solid gainsboro;
 }
 
 .user-accounts-btn{

@@ -1,30 +1,40 @@
 <div ng-hide="loadingUserAccountInfo" ba-panel ba-panel-title="Account Info" >
     <table class="table table-condensed table-striped user-details-table">
         <tr ng-show="user.identifier">
-            <th width="70%"><strong>Identifier</strong></th>
+            <th width="83%"><strong>Identifier</strong></th>
+            <th></th>
             <th></th>
         </tr>
         <tr ng-show="user.identifier">
-            <th width="70%" ng-bind="user.identifier"></th>
+            <th width="83%" ng-bind="user.identifier"></th>
+            <th></th>
             <th></th>
         </tr>
         <tr ng-show="emailsList.length > 0">
-            <th width="70%"><strong>Email Addresses</strong></th>
+            <th width="83%"><strong>Email Addresses</strong></th>
+            <th></th>
             <th></th>
         </tr>
         <tr ng-show="emailsList.length > 0" ng-repeat="email in emailsList">
-            <th width="70%" ng-bind="email.email"></th>
+            <th width="83%" ng-bind="email.email"></th>
+            <th ng-show="email.primary"><span class="ion-checkmark pull-right"></span></th>
+            <th ng-show="!email.primary" class="custom-table-th"><button class="btn btn-primary pull-right user-accounts-btn"
+                                                                                      ng-click="updateEmail(email)">Primary</button></th>
             <th ng-show="email.verified"><span class="ion-checkmark pull-right"></span></th>
             <th ng-show="!email.verified" class="rehive-table-row-last-child"><button class="btn btn-primary pull-right user-accounts-btn"
                                                   ng-click="openUserEmailModal('app/pages/users/userDetails/userAccountInfo/userEmailModal/userEmailModal.html','md',email)">Verify</button></th>
 
         </tr>
         <tr ng-show="mobilesList.length > 0">
-            <th width="70%"><strong>Mobile Numbers</strong></th>
+            <th width="83%"><strong>Mobile Numbers</strong></th>
+            <th></th>
             <th></th>
         </tr>
         <tr ng-show="mobilesList.length > 0" ng-repeat="mobile in mobilesList">
-            <th width="70%" ng-bind="mobile.number"></th>
+            <th width="83%" ng-bind="mobile.number"></th>
+            <th ng-show="mobile.primary"><span class="ion-checkmark pull-right"></span></th>
+            <th ng-show="!mobile.primary" class="custom-table-th"><button class="btn btn-primary pull-right user-accounts-btn"
+                                                                                     ng-click="updateMobile(mobile)">Primary</button></th>
             <th ng-show="mobile.verified"><span class="ion-checkmark pull-right"></span></th>
             <th ng-show="!mobile.verified" class="rehive-table-row-last-child"><button class="btn btn-primary pull-right user-accounts-btn"
                                                                                       ng-click="openUserMobileModal('app/pages/users/userDetails/userAccountInfo/userMobileModal/userMobileModal.html','md',mobile)">Verify</button></th>

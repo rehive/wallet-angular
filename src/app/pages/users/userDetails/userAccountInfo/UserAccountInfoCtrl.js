@@ -72,6 +72,50 @@
             }
         };
 
+        $scope.updateEmail = function (email) {
+            $scope.loadingUserAccountInfo = true;
+            $http.patch(environmentConfig.API + '/admin/users/emails/' + email.id + '/', {primary: true}, {
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': vm.token
+                }
+            }).then(function (res) {
+                if (res.status === 200) {
+                    toastr.success('Primary email successfully changed');
+                    vm.getUserEmails()
+                }
+            }).catch(function (error) {
+                $scope.loadingUserAccountInfo = false;
+                if(error.status == 403){
+                    errorHandler.handle403();
+                    return
+                }
+                errorToasts.evaluateErrors(error.data);
+            });
+        };
+
+        $scope.updateMobile = function (mobile) {
+            $scope.loadingUserAccountInfo = true;
+            $http.patch(environmentConfig.API + '/admin/users/mobiles/' + mobile.id + '/', {primary: true}, {
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': vm.token
+                }
+            }).then(function (res) {
+                if (res.status === 200) {
+                    toastr.success('Primary mobile number successfully changed');
+                    vm.getUserMobileNumbers();
+                }
+            }).catch(function (error) {
+                $scope.loadingUserAccountInfo = false;
+                if(error.status == 403){
+                    errorHandler.handle403();
+                    return
+                }
+                errorToasts.evaluateErrors(error.data);
+            });
+        };
+
         $scope.openUserEmailModal = function (page,size,email) {
             vm.theModal = $uibModal.open({
                 animation: true,
