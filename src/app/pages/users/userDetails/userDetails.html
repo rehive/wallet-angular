@@ -1,7 +1,8 @@
-<div ng-hide="loadingUser">
+<div ng-hide="loadingUser || updatingProfilePic">
     <div class="row divider">
         <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">
-            <img ng-src="{{user.profile}}"  width="90" height="90" alt="token Image">
+            <img class="pointer" ng-click="toggleProfilePictureView()"
+                 ng-src="{{user.profile}}"  width="90" height="90" alt="token Image">
         </div>
     </div>
     <div class="row">
@@ -21,4 +22,7 @@
 </div>
 <div ba-panel ng-show="loadingUser">
     <loading-image></loading-image>
+</div>
+<div ng-show="updatingProfilePic">
+    <user-profile-picture></user-profile-picture>
 </div>

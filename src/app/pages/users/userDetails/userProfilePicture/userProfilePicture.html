@@ -1,0 +1,18 @@
+<div class="row">
+    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+        <div ng-show="updatingProfilePic" ba-panel ba-panel-title="Upload new user profile picture">
+        <form name="myUserProfilePicForm" novalidate>
+            <fieldset>
+                <input type="file" ngf-select ng-model="profilePictureFile.file" name="file"
+                       accept="image/*" ngf-max-size="10MB" required>
+                <div class="form-group">
+                    <button ng-disabled="!myUserProfilePicForm.$valid" ng-click="uploadProfilePicture()"
+                            class="btn btn-primary pull-right">Save</button>
+                    <button ng-click="toggleProfilePictureView()"
+                            class="btn btn-primary pull-right margin-right-10">Back</button>
+                    </div>
+                </fieldset>
+            </form>
+        </div>
+    </div>
+</div>

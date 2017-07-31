@@ -114,10 +114,6 @@
             }
         };
 
-        vm.findIndexOfUserSwitches = function(element){
-            return this.id == element.id;
-        };
-
         $scope.openUserSwitchesModal = function (page, size,userSwitches) {
             vm.theModal = $uibModal.open({
                 animation: true,
