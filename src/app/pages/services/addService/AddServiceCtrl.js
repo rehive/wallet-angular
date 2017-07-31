@@ -70,6 +70,7 @@
                     'Authorization': vm.token
                 }
             }).then(function (res) {
+              console.log(res);
                 if (res.status === 200) {
                     $timeout(function () {
                         $scope.loadingServices = false;

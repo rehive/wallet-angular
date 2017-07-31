@@ -24,6 +24,7 @@
               $scope.loadingServices = false;
                 if (res.status === 200) {
                   $scope.servicesList =  res.data.data.results;
+                  console.log($scope.servicesList);
                 }
             }).catch(function (error) {
               $scope.loadingServices = false;

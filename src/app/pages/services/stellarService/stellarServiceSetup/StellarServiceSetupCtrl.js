@@ -29,6 +29,7 @@
                     }
                 }
             }).catch(function (error) {
+              console.log(error);
                 $scope.loadingStellarService = false;
                 errorToasts.evaluateErrors(error.data);
             });
