@@ -9,6 +9,7 @@
 
         var vm = this;
         vm.token = cookieManagement.getCookie('TOKEN');
+        vm.serviceUrl = cookieManagement.getCookie('SERVICEURL');
         vm.currenciesList = JSON.parse($window.sessionStorage.currenciesList);
 
         $scope.pagination = {
@@ -47,7 +48,7 @@
                 + '&status=' + ($scope.searchParams.searchStatus == 'Status' ? '' : $scope.searchParams.searchStatus)
                 + '&orderby=' + ($scope.searchParams.searchOrderBy == 'Latest' ? '-created' : $scope.searchParams.searchOrderBy == 'Largest' ? '-amount' : $scope.searchParams.searchOrderBy == 'Smallest' ? 'amount' : '');
 
-            return environmentConfig.API.slice(0,-6) + '/services/crypto/transactions/' + vm.filterParams;
+            return vm.serviceUrl + 'transactions/' + vm.filterParams;
         };
 
         $scope.getLatestTransactions = function(applyFilter){

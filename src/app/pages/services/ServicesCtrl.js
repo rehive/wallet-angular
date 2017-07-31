@@ -37,6 +37,7 @@
         };
 
         $scope.goToService = function(service) {
+          cookieManagement.setCookie('SERVICEURL',service.url);
           var serviceNameArray = service.name.split(' ');
           var pathName = serviceNameArray[0].toLowerCase();
           $location.path('/services/' + pathName);

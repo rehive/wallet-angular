@@ -8,6 +8,7 @@
     function StellarServiceUsersCtrl($scope,$http,cookieManagement,errorToasts,$location,environmentConfig) {
         var vm = this;
         vm.token = cookieManagement.getCookie('TOKEN');
+        vm.serviceUrl = cookieManagement.getCookie('SERVICEURL');
 
         $scope.usersPagination = {
             itemsPerPage: 25,
@@ -30,7 +31,7 @@
             + '&identifier=' + $scope.usersSearchParams.searchIdentifier
             + '&address=' + $scope.usersSearchParams.searchAddress;
 
-            return environmentConfig.API.slice(0,-6) + '/services/crypto/users/' + vm.filterParams;
+            return vm.serviceUrl + 'users/' + vm.filterParams;
         };
 
         $scope.getAllUsers = function(applyFilter){

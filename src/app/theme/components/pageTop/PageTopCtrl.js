@@ -9,6 +9,7 @@
         var vm = this;
 
         vm.token = cookieManagement.getCookie('TOKEN');
+        console.log(vm.token);
         $scope.currencies = [];
         vm.currentLocation = $location.path();
         $rootScope.$on('$locationChangeStart', function (event,newUrl) {
@@ -26,6 +27,8 @@
 
         vm.getCompanyCurrencies = function(){
             if(vm.token){
+              console.log('inside currencies');
+              console.log(vm.token);
                 $http.get(environmentConfig.API + '/admin/currencies/?enabled=true', {
                     headers: {
                         'Content-Type': 'application/json',
