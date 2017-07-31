@@ -5,28 +5,32 @@
     <table class="table">
         <tr class="black-muted-bg">
             <td><strong>Logo</strong></td>
-            <td><strong>Pending Withrawals</strong></td>
+            <td><strong>Total balance</strong></td>
+            <td><strong>Pending debits</strong></td>
+            <td><strong>Pending credits</strong></td>
             <td><strong>24h Volume</strong></td>
             <td></td>
         </tr>
         <tr ng-repeat="currency in currencies" class="editable-row dashboard-currencies-table-row">
-            <td width="15%">
+            <td width="10%">
                 <div class="dashboard-currencies-hexagon-container">
                     <div class="dashboard-currencies-hexagon"></div>
                     <div class="dashboard-currencies-hex-over">{{currency.code}}</div>
                 </div>
             </td>
-            <td width="15%">Coming Soon</td>
-            <td width="15%">Coming Soon</td>
+            <td width="12%">Coming soon</td>
+            <td width="12%">Coming soon</td>
+            <td width="12%">Coming soon</td>
+            <td width="12%">Coming soon</td>
             <td class="rehive-table-row-last-child">
                 <button ng-mousedown="openViewInNewTab($event,'/#/currency/overview')"
                         ng-click="goToView(currency,'/currency/overview')" class="btn btn-primary pull-right rehive-button-no-right-margin">Overview</button>
                 <button ng-mousedown="openViewInNewTab($event,'/#/users')"
                         ng-click="goToView(currency,'/users')" class="btn btn-primary pull-right rehive-button-no-right-margin">Users</button>
                 <button ng-mousedown="openViewInNewTab($event,'/#/transactions/credit')"
-                        ng-click="goToView(currency,'/transactions/credit')" class="btn btn-primary pull-right rehive-button-no-right-margin">Credit</button>
+                        ng-click="goToView(currency,'/transactions/credit')" class="btn btn-primary pull-right rehive-button-no-right-margin">Credits</button>
                 <button ng-mousedown="openViewInNewTab($event,'/#/transactions/debit')"
-                        ng-click="goToView(currency,'/transactions/debit')" class="btn btn-primary pull-right rehive-button-no-right-margin">Debit</button>
+                        ng-click="goToView(currency,'/transactions/debit')" class="btn btn-primary pull-right rehive-button-no-right-margin">Debits</button>
             </td>
         </tr>
     </table>
