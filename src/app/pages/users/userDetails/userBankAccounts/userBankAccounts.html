@@ -1,48 +1,56 @@
-<div ng-hide="loadingUserBanks" ba-panel ba-panel-title="Bank Accounts" >
-    <table class="table table-condensed table-striped user-details-table divider" ng-repeat="bank in userBanks">
-        <tr>
-            <th width="50%"><strong>Account Name/Holder</strong></th>
-            <th>{{bank.name || 'None'}}</th>
-        </tr>
-        <tr>
-            <th width="50%"><strong>Account Number</strong></th>
-            <th>{{bank.number || 'None'}}</th>
-        </tr>
-        <tr>
-            <th width="50%"><strong>Account Type</strong></th>
-            <th>{{bank.type || 'None'}}</th>
-        </tr>
-        <tr>
-            <th width="50%"><strong>Bank Name</strong></th>
-            <th>{{bank.bank_name || 'None'}}</th>
-        </tr>
-        <tr>
-            <th width="50%"><strong>Bank Code</strong></th>
-            <th>{{bank.bank_code || 'None'}}</th>
-        </tr>
-        <tr>
-            <th width="50%"><strong>Branch Code</strong></th>
-            <th>{{bank.branch_code || 'None'}}</th>
-        </tr>
-        <tr>
-            <th width="50%"><strong>Bank Address</strong></th>
-            <th>{{bank.address || 'None'}}</th>
-        </tr>
-        <tr>
-            <th width="50%"><strong>Swift</strong></th>
-            <th>{{bank.swift || 'None'}}</th>
-        </tr>
-        <tr>
-            <th width="50%"><strong>IBAN</strong></th>
-            <th>{{bank.iban || 'None'}}</th>
-        </tr>
-        <tr>
-            <th width="50%"><strong>BIC</strong></th>
-            <th>{{bank.bic || 'None'}}</th>
-        </tr>
-        <br>
-    </table>
+<div ng-hide="loadingUserBankAccount || addingUserBankAccount" ba-panel ba-panel-title="Bank Accounts" >
+    <button ng-click="toggleAddUserBankAccountView()" class="btn btn-primary pull-right user-accounts-btn divider">Add</button>
+    <div ng-repeat="bank in userBanks">
+        <table class="table table-condensed table-striped user-details-table divider">
+            <tr>
+                <th width="50%"><strong>Account Name/Holder</strong></th>
+                <th>{{bank.name || 'None'}}</th>
+            </tr>
+            <tr>
+                <th width="50%"><strong>Account Number</strong></th>
+                <th>{{bank.number || 'None'}}</th>
+            </tr>
+            <tr>
+                <th width="50%"><strong>Account Type</strong></th>
+                <th>{{bank.type || 'None'}}</th>
+            </tr>
+            <tr>
+                <th width="50%"><strong>Bank Name</strong></th>
+                <th>{{bank.bank_name || 'None'}}</th>
+            </tr>
+            <tr>
+                <th width="50%"><strong>Bank Code</strong></th>
+                <th>{{bank.bank_code || 'None'}}</th>
+            </tr>
+            <tr>
+                <th width="50%"><strong>Branch Code</strong></th>
+                <th>{{bank.branch_code || 'None'}}</th>
+            </tr>
+            <tr>
+                <th width="50%"><strong>Bank Address</strong></th>
+                <th>{{bank.address || 'None'}}</th>
+            </tr>
+            <tr>
+                <th width="50%"><strong>Swift</strong></th>
+                <th>{{bank.swift || 'None'}}</th>
+            </tr>
+            <tr>
+                <th width="50%"><strong>IBAN</strong></th>
+                <th>{{bank.iban || 'None'}}</th>
+            </tr>
+            <tr>
+                <th width="50%"><strong>BIC</strong></th>
+                <th>{{bank.bic || 'None'}}</th>
+            </tr>
+        </table>
+        <button ng-click="openUserBankAccountModal('app/pages/users/userDetails/userBankAccounts/userBankAccountModal/userBankAccountModal.html','md',bank)" class="btn btn-danger pull-right user-accounts-btn divider">Delete</button>
+        <button ng-click="toggleEditUserBankAccountView(address)" class="btn btn-primary pull-right user-accounts-btn divider margin-right-10">Edit</button>
+    </div>
 </div>
-<div ba-panel ng-show="loadingUserBanks">
+<div ba-panel ng-show="loadingUserBankAccount">
     <loading-image></loading-image>
 </div>
+<div ng-show="addingUserBankAccount">
+    <add-user-bank-account-view></add-user-bank-account-view>
+</div>
+
