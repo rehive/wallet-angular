@@ -75,5 +75,9 @@
             $scope.showConfirmCurrency = true;
         };
 
+        $scope.back = function(){
+            $scope.showConfirmCurrency = false;
+        };
+
     }
 })();

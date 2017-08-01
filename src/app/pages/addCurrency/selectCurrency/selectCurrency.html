@@ -1,5 +1,4 @@
-<div ng-hide="loadingCurrencies" ba-panel>
-    <label class="divider"><strong>Select Currency</strong></label>
+<div ng-hide="loadingCurrencies" ba-panel ba-panel-title="Select currency">
     <select class="form-control pointer divider" ng-model="addCurrency.currencyChoice"
             ng-options="currency.code + ' - ' + currency.description for currency in currencyOptions | orderBy: 'code'">
     </select>
