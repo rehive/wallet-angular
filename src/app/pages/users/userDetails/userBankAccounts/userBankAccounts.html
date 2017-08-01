@@ -1,4 +1,4 @@
-<div ng-hide="loadingUserBankAccount || addingUserBankAccount" ba-panel ba-panel-title="Bank Accounts" >
+<div ng-hide="loadingUserBankAccount || addingUserBankAccount || editingUserBankAccount" ba-panel ba-panel-title="Bank Accounts" >
     <button ng-click="toggleAddUserBankAccountView()" class="btn btn-primary pull-right user-accounts-btn divider">Add</button>
     <div ng-repeat="bank in userBanks">
         <table class="table table-condensed table-striped user-details-table divider">
@@ -44,7 +44,7 @@
             </tr>
         </table>
         <button ng-click="openUserBankAccountModal('app/pages/users/userDetails/userBankAccounts/userBankAccountModal/userBankAccountModal.html','md',bank)" class="btn btn-danger pull-right user-accounts-btn divider">Delete</button>
-        <button ng-click="toggleEditUserBankAccountView(address)" class="btn btn-primary pull-right user-accounts-btn divider margin-right-10">Edit</button>
+        <button ng-click="toggleEditUserBankAccountView(bank)" class="btn btn-primary pull-right user-accounts-btn divider margin-right-10">Edit</button>
     </div>
 </div>
 <div ba-panel ng-show="loadingUserBankAccount">
@@ -52,5 +52,8 @@
 </div>
 <div ng-show="addingUserBankAccount">
     <add-user-bank-account-view></add-user-bank-account-view>
+</div>
+<div ng-show="editingUserBankAccount">
+    <edit-user-bank-account-view></edit-user-bank-account-view>
 </div>
 

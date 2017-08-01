@@ -10,7 +10,9 @@
         var vm = this;
         vm.token = cookieManagement.getCookie('TOKEN');
         vm.uuid = $stateParams.uuid;
+        vm.updatedUserBankAccount = {};
         $scope.userBankAccountParams = {};
+        $scope.editUserBankAccount = {};
         $scope.loadingUserBankAccount = true;
         $scope.addingUserBankAccount = false;
 
@@ -62,6 +64,45 @@
                 });
             }
         };
+
+        $scope.toggleEditUserBankAccountView = function (userBankAccount) {
+            if(userBankAccount){
+                $scope.editUserBankAccount = userBankAccount;
+            } else {
+                $scope.editUserBankAccount = {};
+                vm.getUserBankAccounts();
+            }
+
+            $scope.editingUserBankAccount = !$scope.editingUserBankAccount;
+        };
+
+        $scope.userBankAccountChanged =  function (field) {
+            vm.updatedUserBankAccount[field] = $scope.editUserBankAccount[field];
+        };
+
+        $scope.updateUserBankAccount = function(){
+            if(vm.token) {
+                $scope.loadingUserBankAccount = true;
+                $scope.editingUserBankAccount = !$scope.editingUserBankAccount;
+                $http.patch(environmentConfig.API + '/admin/users/bank-accounts/' + $scope.editUserBankAccount.id + '/',vm.updatedUserBankAccount,{
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': vm.token
+                    }
+                }).then(function (res) {
+                    $scope.loadingUserBankAccount = false;
+                    if (res.status === 200) {
+                        vm.updatedUserBankAccount = {};
+                        $scope.editUserBankAccount = {};
+                        toastr.success('Successfully updated user bank account!');
+                    }
+                }).catch(function (error) {
+                    $scope.loadingUserBankAccount = false;
+                    errorToasts.evaluateErrors(error.data);
+                });
+            }
+        };
+
 
         $scope.openUserBankAccountModal = function (page, size, bankAccount) {
             vm.theModal = $uibModal.open({

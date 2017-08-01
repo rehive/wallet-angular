@@ -95,6 +95,7 @@
                 }).then(function (res) {
                     $scope.loadingUserAddress = false;
                     if (res.status === 200) {
+                        vm.updatedUserAddress = {};
                         $scope.editUserAddress = {};
                         toastr.success('Successfully updated user address!');
                     }
