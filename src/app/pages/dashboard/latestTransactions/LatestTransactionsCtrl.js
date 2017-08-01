@@ -22,7 +22,7 @@
                 }).then(function (res) {
                     if (res.status === 200) {
                         if (res.data.data.results.length == 0) {
-                            $scope.transactionsStateMessage = 'No Transactions Have Been Made';
+                            $scope.transactionsStateMessage = 'No transactions have been made';
                             return;
                         }
                         $scope.transactions = res.data.data.results;
@@ -33,7 +33,7 @@
                         errorHandler.handle403();
                         return
                     }
-                    $scope.transactionsStateMessage = 'Failed To Load Data';
+                    $scope.transactionsStateMessage = 'Failed to load data';
                     errorToasts.evaluateErrors(error.data);
                 });
             }

@@ -1,5 +1,5 @@
 <div ng-hide="editingTiers || loadingTiers">
-    <div ba-panel class="setting-bank-accounts" ba-panel-title="Tiers" ba-panel-class="light-text with-scroll">
+    <div ng-show="tiersList.length > 0" ba-panel class="setting-bank-accounts" ba-panel-title="Tiers" ba-panel-class="light-text with-scroll">
         <table class="table fees-table table-striped setting-bank-accounts-table">
             <tr class="black-muted-bg divider">
                 <th><strong>Level</strong></th>
