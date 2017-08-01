@@ -15,7 +15,7 @@
                         controller: "PendingCreditCtrl",
                     }
                 },
-                title: 'Pending Credits'
+                title: 'Pending credits'
             });
     }
 

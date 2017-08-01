@@ -16,7 +16,7 @@
                 params: {
                   email: null
                 },
-                title: 'Debit',
+                title: 'Debits',
                 sidebarMeta: {
                     order: 200
                 }

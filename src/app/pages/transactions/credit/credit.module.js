@@ -16,7 +16,7 @@
                 params: {
                   email: null
                 },
-                title: 'Credit',
+                title: 'Credits',
                 sidebarMeta: {
                     order: 300
                 }

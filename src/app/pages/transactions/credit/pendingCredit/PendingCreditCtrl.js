@@ -32,14 +32,14 @@
                 }).then(function (res) {
                     if (res.status === 200) {
                         if (res.data.data.results.length == 0) {
-                            $scope.transactionsStateMessage = 'No Pending Transactions';
+                            $scope.transactionsStateMessage = 'No pending transactions';
                             return;
                         }
                         $scope.transactions.list = res.data.data.results;
                         $scope.transactionsStateMessage = '';
                     }
                 }).catch(function (error) {
-                    $scope.transactionsStateMessage = 'Failed To Load Data';
+                    $scope.transactionsStateMessage = 'Failed to load data';
                     errorToasts.evaluateErrors(error.data);
                 });
             }
@@ -67,7 +67,7 @@
                 var index = $scope.transactions.list.findIndex(vm.findIndexOfTransaction,transaction);
                 $scope.transactions.list.splice(index, 1);
                 if($scope.transactions.list.length == 0){
-                    $scope.transactionsStateMessage = 'No Pending Transactions';
+                    $scope.transactionsStateMessage = 'No pending transactions';
                     return;
                 }
             }, function(){

@@ -1,5 +1,5 @@
 $panel-title-height: 44px;
-$panel-heading-font-size: 16px;
+$panel-heading-font-size: 17px;
 
 .panel {
   @include scrollbars(.4em, rgba(0, 0, 0, 0.6), rgba(255, 255, 255, 0.7));
@@ -73,7 +73,7 @@ $panel-heading-font-size: 16px;
   font-size: 0.98em;
   letter-spacing: 0.025em;
   word-spacing: -1px;
-  font-weight: $font-light;
+  font-weight: $font-normal;
 }
 
 .panel-default {
@@ -167,7 +167,7 @@ $panel-heading-font-size: 16px;
 }
 
 .light-text {
-  font-weight: $font-light;
+  font-weight: $font-normal;
 }
 
 /*
