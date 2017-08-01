@@ -2,7 +2,7 @@
     <div>
         <button class="btn btn-success pull-right divider" ng-click="addService()">Add</button>
     </div>
-    <div>
+    <div ng-show="servicesList.length > 0">
         <table class="table">
             <tr  width="15%" class="black-muted-bg">
                 <td><strong>Logo</strong></td>
@@ -20,7 +20,7 @@
         <hr class="no-margin hr-top-border">
     </div>
 </div>
-<div ba-panel ng-show="loadingServices">
+<div ba-panel ng-show="!newUser && loadingServices">
     <loading-image></loading-image>
 </div>
 <div ng-show="newUser">

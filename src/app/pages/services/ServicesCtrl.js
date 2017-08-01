@@ -15,7 +15,7 @@
 
         $scope.getServices = function(){
           $scope.loadingServices = true;
-            $http.get(environmentConfig.API + '/admin/services/', {
+            $http.get(environmentConfig.API + '/admin/services/?active=true', {
                 headers: {
                     'Content-Type': 'application/json',
                     'Authorization': vm.token
@@ -24,7 +24,6 @@
               $scope.loadingServices = false;
                 if (res.status === 200) {
                   $scope.servicesList =  res.data.data.results;
-                  console.log($scope.servicesList);
                 }
             }).catch(function (error) {
               $scope.loadingServices = false;

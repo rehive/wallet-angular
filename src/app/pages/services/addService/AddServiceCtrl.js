@@ -74,6 +74,7 @@
                 if (res.status === 200) {
                     $timeout(function () {
                         $scope.loadingServices = false;
+                        toastr.success('Service has been successfully added');
                         $location.path('/services');
                     },600);
                 }
