@@ -4,7 +4,7 @@
     angular.module('BlurAdmin.pages.userDetails')
         .controller('UserDocumentModalCtrl', UserDocumentModalCtrl);
 
-    function UserDocumentModalCtrl($scope,$uibModalInstance,document,Upload,toastr,$http,environmentConfig,cookieManagement,errorToasts,errorHandler) {
+    function UserDocumentModalCtrl($scope,$uibModalInstance,document,Upload,toastr,$http,$ngConfirm,environmentConfig,cookieManagement,errorToasts,errorHandler) {
 
         var vm = this;
         $scope.document = document;
@@ -71,6 +71,30 @@
                     return
                 }
                 errorToasts.evaluateErrors(error.data);
+            });
+        };
+
+        $scope.deleteDocumentConfirm = function () {
+            $ngConfirm({
+                title: 'Delete document',
+                content: 'Are you sure you want to delete this document?',
+                animationBounce: 1,
+                animationSpeed: 100,
+                scope: $scope,
+                buttons: {
+                    close: {
+                        text: "No",
+                        btnClass: 'btn-default'
+                    },
+                    ok: {
+                        text: "Yes",
+                        btnClass: 'btn-primary',
+                        keys: ['enter'], // will trigger when enter is pressed
+                        action: function(scope){
+                            $scope.deleteDocument();
+                        }
+                    }
+                }
             });
         };
 
