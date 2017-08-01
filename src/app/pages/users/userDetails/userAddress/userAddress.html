@@ -1,4 +1,4 @@
-<div ng-hide="loadingUserAddress || addingUserAddress" ba-panel ba-panel-title="Addresses">
+<div ng-hide="loadingUserAddress || addingUserAddress || editingUserAddress" ba-panel ba-panel-title="Addresses">
     <button ng-click="toggleAddUserAddressView()" class="btn btn-primary pull-right user-accounts-btn divider">Add</button>
     <div  ng-repeat="address in userAddresses">
         <table class="table table-striped user-details-table divider">
@@ -15,7 +15,7 @@
                 <th>{{address.city || 'None'}}</th>
             </tr>
             <tr>
-                <th width="50%"><strong>State/Province</strong></th>
+                <th width="50%"><strong>State/province</strong></th>
                 <th>{{address.state_province || 'None'}}</th>
             </tr>
             <tr>
@@ -23,17 +23,20 @@
                 <th>{{address.country || 'None'}}</th>
             </tr>
             <tr>
-                <th width="50%"><strong>Postal Code</strong></th>
+                <th width="50%"><strong>Postal code</strong></th>
                 <th>{{address.postal_code || 'None'}}</th>
             </tr>
         </table>
         <button ng-click="openUserAddressModal('app/pages/users/userDetails/userAddress/userAddressModal/userAddressModal.html','md',address)" class="btn btn-danger pull-right user-accounts-btn divider">Delete</button>
-        <button ng-click="toggleAddUserAddressView()" class="btn btn-primary pull-right user-accounts-btn divider margin-right-10">Edit</button>
+        <button ng-click="toggleEditUserAddressView(address)" class="btn btn-primary pull-right user-accounts-btn divider margin-right-10">Edit</button>
     </div>
 </div>
 <div ba-panel ng-show="loadingUserAddress">
     <loading-image></loading-image>
 </div>
 <div ng-show="addingUserAddress">
-    <add-user-address></add-user-address>
+    <add-user-address-view></add-user-address-view>
+</div>
+<div ng-show="editingUserAddress">
+    <edit-user-address-view></edit-user-address-view>
 </div>

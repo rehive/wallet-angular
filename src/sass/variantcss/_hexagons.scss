@@ -108,5 +108,6 @@
 .dashboard-currencies-hex-over{
   @include hexagon-hex-over(100px, 15px, -38px);
   text-align: left;
-  left: 10px;
+  left: -10px;
+  top: -39px;
 }

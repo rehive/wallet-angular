@@ -13,8 +13,11 @@
         $scope.userAddressParams = {
             country: 'ZA'
         };
+        vm.updatedUserAddress = {};
         $scope.loadingUserAddress = true;
         $scope.addingUserAddress = false;
+        $scope.editingUserAddress = false;
+        $scope.editUserAddress = {};
 
         vm.getUserAddress = function(){
             if(vm.token) {
@@ -57,6 +60,43 @@
                         $scope.userAddressParams = {country: 'ZA'};
                         toastr.success('Successfully added user address!');
                         vm.getUserAddress()
+                    }
+                }).catch(function (error) {
+                    $scope.loadingUserAddress = false;
+                    errorToasts.evaluateErrors(error.data);
+                });
+            }
+        };
+
+        $scope.toggleEditUserAddressView = function (userAddress) {
+            if(userAddress){
+                $scope.editUserAddress = userAddress;
+            } else {
+                $scope.editUserAddress = {};
+                vm.getUserAddress();
+            }
+
+            $scope.editingUserAddress = !$scope.editingUserAddress;
+        };
+
+        $scope.userAddressChanged =  function (field) {
+            vm.updatedUserAddress[field] = $scope.editUserAddress[field];
+        };
+
+        $scope.updateUserAddress = function(){
+            if(vm.token) {
+                $scope.loadingUserAddress = true;
+                $scope.editingUserAddress = !$scope.editingUserAddress;
+                $http.patch(environmentConfig.API + '/admin/users/addresses/' + $scope.editUserAddress.id + '/',vm.updatedUserAddress,{
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': vm.token
+                    }
+                }).then(function (res) {
+                    $scope.loadingUserAddress = false;
+                    if (res.status === 200) {
+                        $scope.editUserAddress = {};
+                        toastr.success('Successfully updated user address!');
                     }
                 }).catch(function (error) {
                     $scope.loadingUserAddress = false;
