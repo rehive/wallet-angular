@@ -12,10 +12,10 @@
                 views:{
                     'currencySettings':{
                       templateUrl: 'app/pages/currency/settings/tierSwitches/tierSwitches.html',
-                      controller: "TierSwitchesCtrl",
+                      controller: "TierSwitchesCtrl"
                     }
                 },
-                title: 'Tier Switches'
+                title: 'Tier switches'
             });
     }
 

@@ -2,10 +2,10 @@
     <uib-tabset active="activeTabIndex">
         <uib-tab ng-repeat="tierLevel in tierLevelsForLimits" select="selectTier(tierLevel)" heading="Tier {{tierLevel}}">
           <div ng-hide="editingTierLimits">
-            <div ng-show="tiersLimitsList.length > 0" ba-panel class="setting-bank-accounts" ba-panel-title="Tier Limits" ba-panel-class="light-text with-scroll">
+            <div ng-show="tiersLimitsList.length > 0" ba-panel class="setting-bank-accounts" ba-panel-title="Tier limits" ba-panel-class="light-text with-scroll">
                 <table class="table fees-table table-striped setting-bank-accounts-table">
                     <tr class="black-muted-bg divider">
-                        <th><strong>Tx Type</strong></th>
+                        <th><strong>Tx type</strong></th>
                         <th><strong>Amount</strong></th>
                         <th><strong>Type</strong></th>
                         <th><strong>Subtype</strong></th>
@@ -27,10 +27,10 @@
             <div ba-panel ng-show="tiersLimitsList.length == 0">
               <h4>No limits are available for this tier.</h4>
             </div>
-            <div ba-panel ba-panel-title="Add Tier Limit" ba-panel-class="light-text with-scroll">
+            <div ba-panel ba-panel-title="Add tier limit" ba-panel-class="light-text with-scroll">
                 <form name="tierLimitForm" class="custom-form">
                     <div class="form-group">
-                        <label><strong>Transaction Type</strong> <span class="required-icon">*</span></label>
+                        <label><strong>Transaction type</strong> <span class="required-icon">*</span></label>
                         <br>
                         <select class="form-control pointer" ng-model="tierLimitsParams.tx_type" ng-options="option for option in txTypeOptions" required>
                         </select>

@@ -12,10 +12,10 @@
                 views:{
                     'currencySettings':{
                       templateUrl: 'app/pages/currency/settings/tierRequirements/tierRequirements.html',
-                      controller: "TierRequirementsCtrl",
+                      controller: "TierRequirementsCtrl"
                     }
                 },
-                title: 'Tier Requirements'
+                title: 'Tier requirements'
             });
     }
 

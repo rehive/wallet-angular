@@ -12,7 +12,7 @@
                 views:{
                     'currencySettings':{
                       templateUrl: 'app/pages/currency/settings/tiers/tiers.html',
-                      controller: "TiersCtrl",
+                      controller: "TiersCtrl"
                     }
                 },
                 title: 'Tiers'

@@ -15,7 +15,7 @@
                       controller: "TierLimitsCtrl",
                     }
                 },
-                title: 'Tier Limits'
+                title: 'Tier limits'
             });
     }
 

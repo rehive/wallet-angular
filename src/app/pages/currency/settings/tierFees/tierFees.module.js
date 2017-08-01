@@ -12,10 +12,10 @@
                 views:{
                     'currencySettings':{
                       templateUrl: 'app/pages/currency/settings/tierFees/tierFees.html',
-                      controller: "TierFeesCtrl",
+                      controller: "TierFeesCtrl"
                     }
                 },
-                title: 'Tier Fees'
+                title: 'Tier fees'
             });
     }
 

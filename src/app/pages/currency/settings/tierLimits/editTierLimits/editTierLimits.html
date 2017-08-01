@@ -1,7 +1,7 @@
-<div ng-hide="loadingTierLimits" ba-panel ba-panel-title="Edit Tier Limit" >
+<div ng-hide="loadingTierLimits" ba-panel ba-panel-title="Edit tier limit" >
     <form name="editTierLimitForm" class="custom-form" novalidate>
       <div class="form-group">
-          <label><strong>Transaction Type</strong> <span class="required-icon">*</span></label>
+          <label><strong>Transaction type</strong> <span class="required-icon">*</span></label>
           <br>
           <select class="form-control pointer" ng-change="tierLimitChanged('tx_type')" ng-model="editTierLimit.tx_type" ng-options="option for option in txTypeOptions" required>
           </select>

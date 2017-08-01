@@ -3,10 +3,10 @@
         <button type="button" class="close" ng-click="$dismiss()" aria-label="Close">
             <em class="ion-ios-close-empty sn-link-close"></em>
         </button>
-        <h4 class="modal-title" id="myModalLabel">Delete Tier Fees</h4>
+        <h4 class="modal-title" id="myModalLabel">Delete tier fees</h4>
     </div>
     <div class="modal-body">
-        <p>Tx Type: {{tierFee.tx_type | capitalizeWord}}</p>
+        <p>Tx type: {{tierFee.tx_type | capitalizeWord}}</p>
         <p>Value: {{tierFee.value | currencyModifiersFilter: selectedCurrency.divisibility | preciseRound: selectedCurrency.divisibility}}</p>
         <p>Percenage: {{tierFee.percentage ? tierFee.percentage + '%' : 'None'}}</p>
         <p>Subtype: {{tierFee.subtype ? tierFee.subtype : 'None'}}</p>

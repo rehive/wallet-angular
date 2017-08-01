@@ -2,10 +2,10 @@
     <uib-tabset active="activeTabIndex">
         <uib-tab ng-repeat="tierLevel in tierLevelsForSwitches" select="selectTier(tierLevel)" heading="Tier {{tierLevel}}">
             <div ng-hide="editingTierSwitches">
-                <div ng-show="tiersSwitchesList.length > 0" ba-panel class="setting-bank-accounts" ba-panel-title="Tier Switches" ba-panel-class="light-text with-scroll">
+                <div ng-show="tiersSwitchesList.length > 0" ba-panel class="setting-bank-accounts" ba-panel-title="Tier switches" ba-panel-class="light-text with-scroll">
                     <table class="table fees-table table-striped setting-bank-accounts-table">
                         <tr class="black-muted-bg divider">
-                            <th><strong>Tx Type</strong></th>
+                            <th><strong>Tx type</strong></th>
                             <th><strong>Subtype</strong></th>
                             <th><strong>Enabled</strong></th>
                             <th></th>
@@ -24,10 +24,10 @@
                 <div ba-panel ng-show="tiersSwitchesList.length == 0">
                     <h4>No switches are available for this tier.</h4>
                 </div>
-                <div ba-panel ba-panel-title="Add Tier Switch" ba-panel-class="light-text with-scroll">
+                <div ba-panel ba-panel-title="Add tier switch" ba-panel-class="light-text with-scroll">
                     <form name="tierSwitchForm" class="custom-form">
                         <div class="form-group">
-                            <label><strong>Transaction Type</strong> <span class="required-icon">*</span></label>
+                            <label><strong>Transaction type</strong> <span class="required-icon">*</span></label>
                             <br>
                             <select class="form-control pointer" ng-model="tierSwitchesParams.tx_type" ng-options="option for option in txTypeOptions" required>
                             </select>

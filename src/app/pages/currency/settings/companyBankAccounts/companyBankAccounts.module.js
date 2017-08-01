@@ -15,7 +15,7 @@
                       controller: "CompanyBankAccountsCtrl",
                     }
                 },
-                title: 'Bank Accounts'
+                title: 'Bank accounts'
             });
     }
 
