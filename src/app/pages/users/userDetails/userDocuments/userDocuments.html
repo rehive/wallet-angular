@@ -1,14 +1,19 @@
-<div ba-panel ba-panel-title="Documents">
-    <table class="table table-condensed table-striped user-details-table">
+<div ng-hide="loadingUserDocuments" ba-panel ba-panel-title="Documents">
+    <button ng-click="openAddUserDocumentModal('app/pages/users/userDetails/userDocuments/addUserDocumentModal/addUserDocumentModal.html','lg')"
+            class="btn btn-primary pull-right user-accounts-btn divider">Add</button>
+    <table ng-show="userDocuments.length > 0" class="table table-hover table-condensed table-striped user-details-table">
         <tr>
-            <th><strong>Document category</strong></th>
-            <th><strong>Document type</strong></th>
-            <th></th>
+            <th><strong>Category</strong></th>
+            <th><strong>Type</strong></th>
+            <th><strong>Status</strong></th>
         </tr>
-        <tr ng-repeat="document in userDocuments">
+        <tr class="pointer" ng-repeat="document in userDocuments" ng-click="openUserDocumentModal('app/pages/users/userDetails/userDocuments/userDocumentModal/userDocumentModal.html','lg',document)">
             <th>{{document.document_category}}</th>
             <th>{{document.document_type}}</th>
-            <th><button class="btn btn-warning pull-right">Pending</button></th>
+            <th>{{document.verified}}</th>
         </tr>
     </table>
+</div>
+<div ba-panel ng-show="loadingUserDocuments">
+    <loading-image></loading-image>
 </div>

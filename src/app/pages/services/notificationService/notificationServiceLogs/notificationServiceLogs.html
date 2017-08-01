@@ -9,7 +9,7 @@
                 <td><strong>Sent</strong></td>
                 <td><strong>Created</strong></td>
             </tr>
-            <tr ng-repeat="log in notificationLogs" ng-click="openNotificationServiceLogsModal('app/pages/services/notificationService/notificationServiceLogs/notificationServiceLogsModal/notificationServiceLogsModal.html', 'md',log)"
+            <tr ng-repeat="log in notificationLogs | orderBy: '-created'" ng-click="openNotificationServiceLogsModal('app/pages/services/notificationService/notificationServiceLogs/notificationServiceLogsModal/notificationServiceLogsModal.html', 'md',log)"
                 class="editable-row pointer">
                 <td width="25%"><div title="{{log.recipient}}" class="notifications-list-element" ng-bind="log.recipient | limitTo: '20'"></div></td>
                 <td width="25%"><div title="{{log.notification}}" class="notifications-list-element" ng-bind="log.notification | limitTo: '20'"></div></td>

@@ -5,7 +5,7 @@
         .controller('UserDocumentsCtrl', UserDocumentsCtrl);
 
     /** @ngInject */
-    function UserDocumentsCtrl($scope,environmentConfig,$stateParams,$http,cookieManagement,errorToasts,toastr) {
+    function UserDocumentsCtrl($scope,environmentConfig,$uibModal,$stateParams,$http,cookieManagement,errorToasts,toastr) {
 
         var vm = this;
         vm.token = cookieManagement.getCookie('TOKEN');
@@ -32,6 +32,48 @@
             }
         };
         vm.getUserDocuments();
+
+        $scope.openUserDocumentModal = function (page, size, document) {
+            vm.theModal = $uibModal.open({
+                animation: true,
+                templateUrl: page,
+                size: size,
+                controller: 'UserDocumentModalCtrl',
+                scope: $scope,
+                resolve: {
+                    document: function () {
+                        return document;
+                    }
+                }
+            });
+
+            vm.theModal.result.then(function(document){
+                if(document){
+                    vm.getUserDocuments();
+                }
+            }, function(){
+            });
+        };
+
+        $scope.openAddUserDocumentModal = function (page, size) {
+            vm.theAddModal = $uibModal.open({
+                animation: true,
+                templateUrl: page,
+                size: size,
+                controller: 'AddUserDocumentModalCtrl',
+                scope: $scope,
+                resolve: {
+                    uuid: function () {
+                        return vm.uuid;
+                    }
+                }
+            });
+
+            vm.theAddModal.result.then(function(){
+                vm.getUserDocuments();
+            }, function(){
+            });
+        };
 
 
 
