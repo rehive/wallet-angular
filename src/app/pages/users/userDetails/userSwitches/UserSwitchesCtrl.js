@@ -73,15 +73,37 @@
 
         $scope.toggleUserSwitchesEditView = function(userSwitch){
             if(userSwitch) {
-                $scope.editUserSwitch = userSwitch;
-                $scope.editUserSwitch.tx_type == 'credit' ? $scope.editUserSwitch.tx_type = 'Credit' : $scope.editUserSwitch.tx_type = 'Debit';
-                $scope.editUserSwitch.enabled == true ? $scope.editUserSwitch.enabled = 'True' : $scope.editUserSwitch.enabled = 'False';
+                vm.getUserSwitch(userSwitch);
             } else {
                 $scope.editUserSwitch.enabled == 'True' ? $scope.editUserSwitch.enabled = true : $scope.editUserSwitch.enabled = false;
                 $scope.editUserSwitch = {};
                 vm.getUserSwitches();
             }
             $scope.editingUserSwitches = !$scope.editingUserSwitches;
+        };
+
+        vm.getUserSwitch = function (userSwitch) {
+            $scope.loadingUserSwitches = true;
+            $http.get(environmentConfig.API + '/admin/users/' + vm.uuid + '/switches/' + userSwitch.id + '/', {
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': vm.token
+                }
+            }).then(function (res) {
+                $scope.loadingUserSwitches = false;
+                if (res.status === 200) {
+                    $scope.editUserSwitch = res.data.data;
+                    $scope.editUserSwitch.tx_type == 'credit' ? $scope.editUserSwitch.tx_type = 'Credit' : $scope.editUserSwitch.tx_type = 'Debit';
+                    $scope.editUserSwitch.enabled == true ? $scope.editUserSwitch.enabled = 'True' : $scope.editUserSwitch.enabled = 'False';
+                }
+            }).catch(function (error) {
+                $scope.loadingUserSwitches = false;
+                if(error.status == 403){
+                    errorHandler.handle403();
+                    return
+                }
+                errorToasts.evaluateErrors(error.data);
+            });
         };
 
         $scope.userSwitchChanged = function(field){

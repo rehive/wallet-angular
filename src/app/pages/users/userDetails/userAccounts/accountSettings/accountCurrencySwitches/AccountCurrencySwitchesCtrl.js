@@ -23,15 +23,37 @@
 
         $scope.toggleAccountCurrencySwitchEditView = function(accountCurrencySwitch){
             if(accountCurrencySwitch) {
-                $scope.editAccountCurrencySwitch = accountCurrencySwitch;
-                $scope.editAccountCurrencySwitch.tx_type == 'credit' ? $scope.editAccountCurrencySwitch.tx_type = 'Credit' : $scope.editAccountCurrencySwitch.tx_type = 'Debit';
-                $scope.editAccountCurrencySwitch.enabled == true ? $scope.editAccountCurrencySwitch.enabled = 'True' : $scope.editAccountCurrencySwitch.enabled = 'False';
+                vm.getAccountCurrencySwitch(accountCurrencySwitch);
             } else {
                 $scope.editAccountCurrencySwitch.enabled == 'True' ? $scope.editAccountCurrencySwitch.enabled = true : $scope.editAccountCurrencySwitch.enabled = false;
                 $scope.editAccountCurrencySwitch = {};
                 $scope.getAccountCurrencySwitches();
             }
             $scope.editingAccountCurrencySwitches = !$scope.editingAccountCurrencySwitches;
+        };
+
+        vm.getAccountCurrencySwitch = function (accountCurrencySwitch) {
+            $scope.loadingAccountCurrencySwitches = true;
+            $http.get(environmentConfig.API + '/admin/accounts/' + vm.reference + '/currencies/' + vm.currencyCode + '/switches/' + accountCurrencySwitch.id +'/', {
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': vm.token
+                }
+            }).then(function (res) {
+                $scope.loadingAccountCurrencySwitches = false;
+                if (res.status === 200) {
+                    $scope.editAccountCurrencySwitch = res.data.data;
+                    $scope.editAccountCurrencySwitch.tx_type == 'credit' ? $scope.editAccountCurrencySwitch.tx_type = 'Credit' : $scope.editAccountCurrencySwitch.tx_type = 'Debit';
+                    $scope.editAccountCurrencySwitch.enabled == true ? $scope.editAccountCurrencySwitch.enabled = 'True' : $scope.editAccountCurrencySwitch.enabled = 'False';
+                }
+            }).catch(function (error) {
+                $scope.loadingAccountCurrencySwitches = false;
+                if(error.status == 403){
+                    errorHandler.handle403();
+                    return
+                }
+                errorToasts.evaluateErrors(error.data);
+            });
         };
 
         $scope.getAccountCurrencySwitches = function(){

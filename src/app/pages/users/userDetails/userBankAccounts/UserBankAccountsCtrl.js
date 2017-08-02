@@ -67,13 +67,35 @@
 
         $scope.toggleEditUserBankAccountView = function (userBankAccount) {
             if(userBankAccount){
-                $scope.editUserBankAccount = userBankAccount;
+                vm.getUserBankAccount(userBankAccount);
             } else {
                 $scope.editUserBankAccount = {};
                 vm.getUserBankAccounts();
             }
 
             $scope.editingUserBankAccount = !$scope.editingUserBankAccount;
+        };
+
+        vm.getUserBankAccount = function (userBankAccount) {
+            $scope.loadingUserBankAccount = true;
+            $http.get(environmentConfig.API + '/admin/users/bank-accounts/' + userBankAccount.id + '/', {
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': vm.token
+                }
+            }).then(function (res) {
+                $scope.loadingUserBankAccount = false;
+                if (res.status === 200) {
+                    $scope.editUserBankAccount = res.data.data;
+                }
+            }).catch(function (error) {
+                $scope.loadingUserBankAccount = false;
+                if(error.status == 403){
+                    errorHandler.handle403();
+                    return
+                }
+                errorToasts.evaluateErrors(error.data);
+            });
         };
 
         $scope.userBankAccountChanged =  function (field) {
@@ -95,6 +117,7 @@
                         vm.updatedUserBankAccount = {};
                         $scope.editUserBankAccount = {};
                         toastr.success('Successfully updated user bank account!');
+                        vm.getUserBankAccounts();
                     }
                 }).catch(function (error) {
                     $scope.loadingUserBankAccount = false;

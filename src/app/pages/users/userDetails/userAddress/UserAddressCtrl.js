@@ -70,13 +70,35 @@
 
         $scope.toggleEditUserAddressView = function (userAddress) {
             if(userAddress){
-                $scope.editUserAddress = userAddress;
+                vm.getAddress(userAddress);
             } else {
                 $scope.editUserAddress = {};
                 vm.getUserAddress();
             }
 
             $scope.editingUserAddress = !$scope.editingUserAddress;
+        };
+
+        vm.getAddress = function (userAddress) {
+            $scope.loadingUserAddress = true;
+            $http.get(environmentConfig.API + '/admin/users/addresses/' + userAddress.id + '/', {
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': vm.token
+                }
+            }).then(function (res) {
+                $scope.loadingUserAddress = false;
+                if (res.status === 200) {
+                    $scope.editUserAddress = res.data.data;
+                }
+            }).catch(function (error) {
+                $scope.loadingUserAddress = false;
+                if(error.status == 403){
+                    errorHandler.handle403();
+                    return
+                }
+                errorToasts.evaluateErrors(error.data);
+            });
         };
 
         $scope.userAddressChanged =  function (field) {
@@ -98,6 +120,7 @@
                         vm.updatedUserAddress = {};
                         $scope.editUserAddress = {};
                         toastr.success('Successfully updated user address!');
+                        vm.getUserAddress();
                     }
                 }).catch(function (error) {
                     $scope.loadingUserAddress = false;
