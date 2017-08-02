@@ -9,7 +9,7 @@
         $stateProvider
             .state('accountSettings.accountCurrencySwitches', {
                 url: '/switches',
-                title: 'Account Currency Switches',
+                title: 'Account currency switches',
                 views:{
                     'accountSettings':{
                         templateUrl: 'app/pages/users/userDetails/userAccounts/accountSettings/accountCurrencySwitches/accountCurrencySwitches.html',

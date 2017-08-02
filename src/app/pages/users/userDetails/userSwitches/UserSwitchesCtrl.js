@@ -114,6 +114,10 @@
             }
         };
 
+        vm.findIndexOfUserSwitches = function (element) {
+            return this.id == element.id;
+        };
+
         $scope.openUserSwitchesModal = function (page, size,userSwitches) {
             vm.theModal = $uibModal.open({
                 animation: true,
@@ -132,8 +136,11 @@
             });
 
             vm.theModal.result.then(function(userSwitches){
-                var index = $scope.userSwitchesList.findIndex(vm.findIndexOfUserSwitches,userSwitches);
-                $scope.userSwitchesList.splice(index, 1);
+                if(userSwitches){
+                    var index = $scope.userSwitchesList.findIndex(vm.findIndexOfUserSwitches,userSwitches);
+                    $scope.userSwitchesList.splice(index, 1);
+                    vm.getUserSwitches();
+                }
             }, function(){
             });
         };

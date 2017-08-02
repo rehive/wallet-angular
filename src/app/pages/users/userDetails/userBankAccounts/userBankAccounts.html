@@ -1,33 +1,33 @@
-<div ng-hide="loadingUserBankAccount || addingUserBankAccount || editingUserBankAccount" ba-panel ba-panel-title="Bank Accounts" >
+<div ng-hide="loadingUserBankAccount || addingUserBankAccount || editingUserBankAccount" ba-panel ba-panel-title="Bank accounts" >
     <button ng-click="toggleAddUserBankAccountView()" class="btn btn-primary pull-right user-accounts-btn divider">Add</button>
     <div ng-repeat="bank in userBanks">
         <table class="table table-condensed table-striped user-details-table divider">
             <tr>
-                <th width="50%"><strong>Account Name/Holder</strong></th>
+                <th width="50%"><strong>Account name/holder</strong></th>
                 <th>{{bank.name || 'None'}}</th>
             </tr>
             <tr>
-                <th width="50%"><strong>Account Number</strong></th>
+                <th width="50%"><strong>Account number</strong></th>
                 <th>{{bank.number || 'None'}}</th>
             </tr>
             <tr>
-                <th width="50%"><strong>Account Type</strong></th>
+                <th width="50%"><strong>Account type</strong></th>
                 <th>{{bank.type || 'None'}}</th>
             </tr>
             <tr>
-                <th width="50%"><strong>Bank Name</strong></th>
+                <th width="50%"><strong>Bank name</strong></th>
                 <th>{{bank.bank_name || 'None'}}</th>
             </tr>
             <tr>
-                <th width="50%"><strong>Bank Code</strong></th>
+                <th width="50%"><strong>Bank code</strong></th>
                 <th>{{bank.bank_code || 'None'}}</th>
             </tr>
             <tr>
-                <th width="50%"><strong>Branch Code</strong></th>
+                <th width="50%"><strong>Branch code</strong></th>
                 <th>{{bank.branch_code || 'None'}}</th>
             </tr>
             <tr>
-                <th width="50%"><strong>Bank Address</strong></th>
+                <th width="50%"><strong>Bank address</strong></th>
                 <th>{{bank.address || 'None'}}</th>
             </tr>
             <tr>

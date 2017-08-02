@@ -1,7 +1,7 @@
-<div ng-hide="loadingAccountCurrencySwitches || editingAccountCurrencySwitches" ba-panel class="setting-bank-accounts" ba-panel-title="Account Currency Switches" ba-panel-class="light-text with-scroll">
+<div ng-hide="loadingAccountCurrencySwitches || editingAccountCurrencySwitches" ba-panel class="setting-bank-accounts" ba-panel-title="Account currency switches" ba-panel-class="light-text with-scroll">
     <table ng-show="accountCurrencySwitchesList.length > 0" class="table fees-table table-striped setting-bank-accounts-table">
         <tr class="black-muted-bg divider">
-            <th><strong>Tx Type</strong></th>
+            <th><strong>Tx type</strong></th>
             <th><strong>Subtype</strong></th>
             <th><strong>Enabled</strong></th>
             <th></th>
@@ -20,10 +20,10 @@
         <h4>No switches are available.</h4>
     </div>
 </div>
-<div ng-hide="loadingAccountCurrencySwitches || editingAccountCurrencySwitches" ba-panel ba-panel-title="Add Account Currency Switch" ba-panel-class="light-text with-scroll">
+<div ng-hide="loadingAccountCurrencySwitches || editingAccountCurrencySwitches" ba-panel ba-panel-title="Add account currency switch" ba-panel-class="light-text with-scroll">
     <form name="accountCurrencySwitchForm" class="custom-form">
         <div class="form-group">
-            <label><strong>Transaction Type</strong> <span class="required-icon">*</span></label>
+            <label><strong>Transaction type</strong> <span class="required-icon">*</span></label>
             <br>
             <select class="form-control pointer" ng-model="accountCurrencySwitchesParams.tx_type" ng-options="option for option in txTypeOptions" required>
             </select>

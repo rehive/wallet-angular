@@ -11,7 +11,7 @@
                 url: '/user/:uuid',
                 templateUrl: 'app/pages/users/userDetails/userDetails.html',
                 controller: "UserDetailsCtrl",
-                title: 'User Details'
+                title: 'User details'
             });
     }
 

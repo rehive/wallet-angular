@@ -91,7 +91,7 @@
                     $scope.usersData = res.data.data;
                     $scope.users = res.data.data.results;
                     if($scope.users.length == 0){
-                        $scope.usersStateMessage = 'No Users Have Been Found';
+                        $scope.usersStateMessage = 'No users have been found';
                         return;
                     }
                     $scope.usersStateMessage = '';
@@ -103,7 +103,7 @@
                     errorHandler.handle403();
                     return
                 }
-                $scope.usersStateMessage = 'Failed To Load Data';
+                $scope.usersStateMessage = 'Failed to load data';
                 errorToasts.evaluateErrors(error.data);
             });
         };

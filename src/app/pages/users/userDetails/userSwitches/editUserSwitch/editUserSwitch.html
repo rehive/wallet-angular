@@ -1,7 +1,7 @@
-<div ng-hide="loadingUserSwitches" ba-panel ba-panel-title="Edit User Switch" ba-panel-class="light-text with-scroll">
+<div ng-hide="loadingUserSwitches" ba-panel ba-panel-title="Edit user switch" ba-panel-class="light-text with-scroll">
     <form name="editUserSwitchForm" class="custom-form" novalidate>
         <div class="form-group">
-            <label><strong>Transaction Type</strong> <span class="required-icon">*</span></label>
+            <label><strong>Transaction type</strong> <span class="required-icon">*</span></label>
             <br>
             <select class="form-control pointer" ng-change="userSwitchChanged('tx_type')" ng-model="editUserSwitch.tx_type" ng-options="option for option in userSwitchesOptions" required>
             </select>

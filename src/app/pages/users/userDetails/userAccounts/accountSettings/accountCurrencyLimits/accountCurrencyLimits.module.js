@@ -9,7 +9,7 @@
         $stateProvider
             .state('accountSettings.accountCurrencyLimits', {
                 url: '/limits',
-                title: 'Account Currency Limits',
+                title: 'Account currency limits',
                 views:{
                     'accountSettings':{
                         templateUrl: 'app/pages/users/userDetails/userAccounts/accountSettings/accountCurrencyLimits/accountCurrencyLimits.html',

@@ -1,4 +1,4 @@
-<div ng-hide="loadingUserBasicInfo" ba-panel ba-panel-title="Edit User Switch" ba-panel-class="light-text with-scroll">
+<div ng-hide="loadingUserBasicInfo" ba-panel ba-panel-title="Edit basic info" ba-panel-class="light-text with-scroll">
     <form name="editUserBasicInfoForm" class="custom-form" novalidate>
         <div class="form-group">
             <label><strong>First name</strong></label>
@@ -19,7 +19,7 @@
             <input type="text" class="form-control" ng-change="userBasicInfoChanged('language')" ng-model="editUserBasicInfo.language" placeholder="None" />
         </div>
         <div class="form-group">
-            <label><strong>ID number</strong></label>
+            <label><strong>Id number</strong></label>
             <input type="text" class="form-control" ng-change="userBasicInfoChanged('id_number')" ng-model="editUserBasicInfo.id_number" placeholder="None" />
         </div>
         <div class="form-group">

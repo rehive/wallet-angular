@@ -5,12 +5,13 @@
         .controller('AccountCurrencyFeesCtrl', AccountCurrencyFeesCtrl);
 
     /** @ngInject */
-    function AccountCurrencyFeesCtrl($rootScope,$scope,$stateParams,$http,$uibModal,environmentConfig,cookieManagement,errorToasts,currencyModifiers,toastr) {
+    function AccountCurrencyFeesCtrl($rootScope,$scope,$location,$stateParams,$http,$uibModal,environmentConfig,cookieManagement,errorToasts,currencyModifiers,toastr) {
 
         var vm = this;
         vm.token = cookieManagement.getCookie('TOKEN');
         vm.currencyCode = $stateParams.currencyCode;
         vm.reference = $stateParams.reference;
+        $scope.currencyObj =  $location.search();
         $scope.loadingAccountCurrencyFees = true;
         $scope.editingAccountCurrencyFees = false;
         vm.updatedAccountCurrencyFee = {};
@@ -22,7 +23,7 @@
         $scope.toggleAccountCurrencyFeeEditView = function(accountCurrencyFee){
             if(accountCurrencyFee) {
                 $scope.editAccountCurrencyFee = accountCurrencyFee;
-                $scope.editAccountCurrencyFee.value = currencyModifiers.convertFromCents($scope.editAccountCurrencyFee.value,$rootScope.selectedCurrency.divisibility);
+                $scope.editAccountCurrencyFee.value = currencyModifiers.convertFromCents($scope.editAccountCurrencyFee.value,$scope.currencyObj.currency.divisibility);
                 $scope.editAccountCurrencyFee.tx_type == 'credit' ? $scope.editAccountCurrencyFee.tx_type = 'Credit' : $scope.editAccountCurrencyFee.tx_type = 'Debit';
             } else {
                 $scope.editAccountCurrencyFee = {};
@@ -53,15 +54,16 @@
         $scope.getAccountCurrencyFees();
 
         $scope.addAccountCurrencyFee = function(accountCurrencyFeesParams){
-            if(currencyModifiers.validateCurrency(accountCurrencyFeesParams.value,$rootScope.selectedCurrency.divisibility)){
-                accountCurrencyFeesParams.value = currencyModifiers.convertToCents(accountCurrencyFeesParams.value,$rootScope.selectedCurrency.divisibility);
+            if(currencyModifiers.validateCurrency(accountCurrencyFeesParams.value,$scope.currencyObj.currency.divisibility)){
+                accountCurrencyFeesParams.value = currencyModifiers.convertToCents(accountCurrencyFeesParams.value,$scope.currencyObj.currency.divisibility);
             } else {
-                toastr.error('Please input amount to ' + $rootScope.selectedCurrency.divisibility + ' decimal places');
+                toastr.error('Please input amount to ' + $scope.currencyObj.currency.divisibility + ' decimal places');
                 return;
             }
             if(vm.token) {
                 $scope.loadingAccountCurrencyFees = true;
                 accountCurrencyFeesParams.tx_type = accountCurrencyFeesParams.tx_type.toLowerCase();
+                console.log(accountCurrencyFeesParams);
                 $http.post(environmentConfig.API + '/admin/accounts/' + vm.reference + '/currencies/' + vm.currencyCode + '/fees/',accountCurrencyFeesParams,{
                     headers: {
                         'Content-Type': 'application/json',
@@ -91,10 +93,10 @@
         };
 
         $scope.updateAccountCurrencyFee = function(){
-            if(currencyModifiers.validateCurrency($scope.editAccountCurrencyFee.value,$rootScope.selectedCurrency.divisibility)){
-                vm.updatedAccountCurrencyFee.value = currencyModifiers.convertToCents($scope.editAccountCurrencyFee.value,$rootScope.selectedCurrency.divisibility);
+            if(currencyModifiers.validateCurrency($scope.editAccountCurrencyFee.value,$scope.currencyObj.currency.divisibility)){
+                vm.updatedAccountCurrencyFee.value = currencyModifiers.convertToCents($scope.editAccountCurrencyFee.value,$scope.currencyObj.currency.divisibility);
             } else {
-                toastr.error('Please input amount to ' + $rootScope.selectedCurrency.divisibility + ' decimal places');
+                toastr.error('Please input amount to ' + $scope.currencyObj.currency.divisibility + ' decimal places');
                 return;
             }
             if(vm.token) {

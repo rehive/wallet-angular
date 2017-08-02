@@ -4,7 +4,7 @@
             <td><strong>Email</strong></td>
             <td><strong>Currency</strong></td>
             <td><strong>Joined</strong></td>
-            <td><strong>Last Login</strong></td>
+            <td><strong>Last login</strong></td>
         </tr>
         <tr ng-repeat="user in users | orderBy: '-last_login'" class="editable-row center">
             <td><a href="/#/user/{{user.identifier}}"><div title="{{user.email}}" class="transactions-list-element" ng-bind="user.email"></div></a></td>

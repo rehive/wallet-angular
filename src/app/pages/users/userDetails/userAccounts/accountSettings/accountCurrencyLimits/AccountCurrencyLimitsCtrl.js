@@ -5,12 +5,13 @@
         .controller('AccountCurrencyLimitsCtrl', AccountCurrencyLimitsCtrl);
 
     /** @ngInject */
-    function AccountCurrencyLimitsCtrl($rootScope,$scope,$stateParams,$http,$uibModal,environmentConfig,cookieManagement,errorToasts,currencyModifiers,toastr) {
+    function AccountCurrencyLimitsCtrl($rootScope,$scope,$stateParams,$location,$http,$uibModal,environmentConfig,cookieManagement,errorToasts,currencyModifiers,toastr) {
 
         var vm = this;
         vm.token = cookieManagement.getCookie('TOKEN');
         vm.currencyCode = $stateParams.currencyCode;
         vm.reference = $stateParams.reference;
+        $scope.currencyObj =  $location.search();
         $scope.loadingAccountCurrencyLimits = true;
         $scope.editingAccountCurrencyLimits = false;
         vm.updatedAccountCurrencyLimit = {};
@@ -24,7 +25,7 @@
         $scope.toggleAccountCurrencyLimitEditView = function(accountCurrencyLimit){
             if(accountCurrencyLimit) {
                 $scope.editAccountCurrencyLimit = accountCurrencyLimit;
-                $scope.editAccountCurrencyLimit.value = currencyModifiers.convertFromCents($scope.editAccountCurrencyLimit.value,$rootScope.selectedCurrency.divisibility);
+                $scope.editAccountCurrencyLimit.value = currencyModifiers.convertFromCents($scope.editAccountCurrencyLimit.value,$scope.currencyObj.currency.divisibility);
                 $scope.editAccountCurrencyLimit.tx_type == 'credit' ? $scope.editAccountCurrencyLimit.tx_type = 'Credit' : $scope.editAccountCurrencyLimit.tx_type = 'Debit';
             } else {
                 $scope.editAccountCurrencyLimit = {};
@@ -55,10 +56,10 @@
         $scope.getAccountCurrencyLimits();
 
         $scope.addAccountCurrencyLimit = function(accountCurrencyLimitsParams){
-            if(currencyModifiers.validateCurrency(accountCurrencyLimitsParams.value,$rootScope.selectedCurrency.divisibility)){
-                accountCurrencyLimitsParams.value = currencyModifiers.convertToCents(accountCurrencyLimitsParams.value,$rootScope.selectedCurrency.divisibility);
+            if(currencyModifiers.validateCurrency(accountCurrencyLimitsParams.value,$scope.currencyObj.currency.divisibility)){
+                accountCurrencyLimitsParams.value = currencyModifiers.convertToCents(accountCurrencyLimitsParams.value,$scope.currencyObj.currency.divisibility);
             } else {
-                toastr.error('Please input amount to ' + $rootScope.selectedCurrency.divisibility + ' decimal places');
+                toastr.error('Please input amount to ' + $scope.currencyObj.currency.divisibility + ' decimal places');
                 return;
             }
             if(vm.token) {
@@ -98,10 +99,10 @@
         };
 
         $scope.updateAccountCurrencyLimit = function(){
-            if(currencyModifiers.validateCurrency($scope.editAccountCurrencyLimit.value,$rootScope.selectedCurrency.divisibility)){
-                vm.updatedAccountCurrencyLimit.value = currencyModifiers.convertToCents($scope.editAccountCurrencyLimit.value,$rootScope.selectedCurrency.divisibility);
+            if(currencyModifiers.validateCurrency($scope.editAccountCurrencyLimit.value,$scope.currencyObj.currency.divisibility)){
+                vm.updatedAccountCurrencyLimit.value = currencyModifiers.convertToCents($scope.editAccountCurrencyLimit.value,$scope.currencyObj.currency.divisibility);
             } else {
-                toastr.error('Please input amount to ' + $rootScope.selectedCurrency.divisibility + ' decimal places');
+                toastr.error('Please input amount to ' + $scope.currencyObj.currency.divisibility + ' decimal places');
                 return;
             }
             if(vm.token) {

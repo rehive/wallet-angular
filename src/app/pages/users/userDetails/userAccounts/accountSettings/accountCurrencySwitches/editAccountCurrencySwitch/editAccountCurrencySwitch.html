@@ -1,7 +1,7 @@
-<div ng-hide="loadingAccountCurrencySwitches" ba-panel ba-panel-title="Edit AccountCurrency Switch" >
+<div ng-hide="loadingAccountCurrencySwitches" ba-panel ba-panel-title="Edit account currency switch" >
     <form name="editAccountCurrencySwitchForm" class="custom-form" novalidate>
         <div class="form-group">
-            <label><strong>Transaction Type</strong> <span class="required-icon">*</span></label>
+            <label><strong>Transaction type</strong> <span class="required-icon">*</span></label>
             <br>
             <select class="form-control pointer" ng-change="accountCurrencySwitchChanged('tx_type')" ng-model="editAccountCurrencySwitch.tx_type" ng-options="option for option in txTypeOptions" required>
             </select>

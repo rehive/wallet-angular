@@ -3,11 +3,11 @@
         <button type="button" class="close" ng-click="$dismiss()" aria-label="Close">
             <em class="ion-ios-close-empty sn-link-close"></em>
         </button>
-        <h4 class="modal-title" id="myModalLabel">Delete Account Currency Fees</h4>
+        <h4 class="modal-title" id="myModalLabel">Delete account currency fee</h4>
     </div>
     <div class="modal-body">
-        <p>Tx Type: {{accountCurrencyFee.tx_type | capitalizeWord}}</p>
-        <p>Value: {{accountCurrencyFee.value | currencyModifiersFilter: selectedCurrency.divisibility | preciseRound: selectedCurrency.divisibility}}</p>
+        <p>Tx type: {{accountCurrencyFee.tx_type | capitalizeWord}}</p>
+        <p>Value: {{accountCurrencyFee.value | currencyModifiersFilter: currencyObj.currency.divisibility | preciseRound: currencyObj.currency.divisibility}}</p>
         <p>Percenage: {{accountCurrencyFee.percentage ? accountCurrencyFee.percentage + '%' : 'None'}}</p>
         <p>Subtype: {{accountCurrencyFee.subtype ? accountCurrencyFee.subtype : 'None'}}</p>
 
