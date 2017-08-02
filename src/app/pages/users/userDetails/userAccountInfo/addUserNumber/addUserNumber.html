@@ -1,0 +1,26 @@
+<div ng-hide="loadingUserAccountInfo">
+    <div ba-panel ba-panel-title="Add user number" ba-panel-class="light-text with-scroll">
+        <form name="userNumberForm" class="custom-form">
+            <div class="form-group">
+                <label><strong>Number</strong> <span class="required-icon">*</span></label>
+                <input type="text" ng-model="newUserNumber.number" class="form-control"  placeholder="Enter number" required>
+            </div>
+            <div class="form-group">
+                <label><strong>Primary</strong> <span class="required-icon">*</span></label>
+                <br>
+                <select class="form-control pointer" ng-model="newUserNumber.primary" ng-options="bool for bool in booleanOptions" required>
+                </select>
+            </div>
+            <div class="form-group">
+                <label><strong>Verified</strong> <span class="required-icon">*</span></label>
+                <br>
+                <select class="form-control pointer" ng-model="newUserNumber.verified" ng-options="bool for bool in booleanOptions" required>
+                </select>
+            </div>
+            <div class="form-group">
+                <button ng-disabled="!userNumberForm.$valid" ng-click="createUserNumber(newUserNumber)" class="btn btn-primary pull-right user-accounts-btn">Add</button>
+                <button ng-click="toggleAddUserNumbersView()" class="btn btn-primary pull-right user-accounts-btn margin-right-10">Back</button>
+            </div>
+        </form>
+    </div>
+</div>

@@ -23,12 +23,32 @@
         $scope.toggleNotificationsEditView = function(notification){
             $window.scrollTo(0,0);
             if(notification){
-                $scope.editNotification = notification;
-                $scope.editNotification.enabled = $scope.editNotification.enabled == true ? 'True' : 'False';
+                vm.getSingleNotification(notification);
             } else {
                 vm.getNotificationsList();
             }
             $scope.editingNotifications = !$scope.editingNotifications;
+        };
+
+        vm.getSingleNotification = function (notification) {
+            $scope.loadingNotifications =  true;
+            if(vm.token) {
+                $http.get('https://notification.services.rehive.io/api/admin/notifications/' + notification.id + '/', {
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': vm.token
+                    }
+                }).then(function (res) {
+                    $scope.loadingNotifications =  false;
+                    if (res.status === 200) {
+                        $scope.editNotification = res.data.data;
+                        $scope.editNotification.enabled = $scope.editNotification.enabled == true ? 'True' : 'False';
+                    }
+                }).catch(function (error) {
+                    $scope.loadingNotifications =  false;
+                    errorToasts.evaluateErrors(error.data);
+                });
+            }
         };
 
         vm.getNotificationsList = function () {
