@@ -1,5 +1,5 @@
 <div ng-hide="editingBankAccounts || loadingBankAccounts">
-    <div ba-panel class="setting-bank-accounts" ba-panel-title="Bank accounts" ba-panel-class="light-text with-scroll">
+    <div ng-show="bankAccounts.length > 0" ba-panel class="setting-bank-accounts" ba-panel-title="Bank accounts" ba-panel-class="light-text with-scroll">
         <table class="table table-striped setting-bank-accounts-table">
             <tr ng-repeat="bankAccount in bankAccounts">
                 <th>{{bankAccount.bank_name}}, {{bankAccount.number}}</th>

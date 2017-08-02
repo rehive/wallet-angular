@@ -26,6 +26,7 @@
                   $uibModalInstance.close($scope.subtype);
                 }
             }).catch(function (error) {
+                console.log(error);
                 $scope.deletingSubtype = false;
                 if(error.status == 403){
                     errorHandler.handle403();

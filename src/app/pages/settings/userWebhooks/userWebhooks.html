@@ -1,5 +1,5 @@
 <div ng-hide="editingUserWebhook || loadingUserWebhooks">
-    <div ba-panel class="setting-bank-accounts" ba-panel-title="User webhooks" ba-panel-class="light-text with-scroll">
+    <div ng-show="userWebhooks.length > 0" ba-panel class="setting-bank-accounts" ba-panel-title="User webhooks" ba-panel-class="light-text with-scroll">
         <table class="table fees-table table-striped setting-bank-accounts-table">
             <tr class="black-muted-bg divider">
                 <th><strong>Event</strong></th>

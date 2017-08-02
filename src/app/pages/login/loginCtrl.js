@@ -34,6 +34,7 @@
 
                 }
             }).catch(function (error) {
+                console.log(error);
                 $scope.gotCompanyName = false;
                 $rootScope.$pageFinishedLoading = true;
                 errorToasts.evaluateErrors(error.data);

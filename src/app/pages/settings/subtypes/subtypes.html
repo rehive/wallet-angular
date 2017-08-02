@@ -1,5 +1,5 @@
 <div ng-hide="editingSubtype || loadingSubtypes">
-    <div ba-panel class="setting-bank-accounts" ba-panel-title="Transaction subtypes" ba-panel-class="light-text with-scroll">
+    <div ng-show="subtypes.length > 0" ba-panel class="setting-bank-accounts" ba-panel-title="Transaction subtypes" ba-panel-class="light-text with-scroll">
         <table class="table fees-table table-striped setting-bank-accounts-table">
             <tr class="black-muted-bg divider">
                 <th><strong>Type</strong></th>
