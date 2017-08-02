@@ -12,7 +12,7 @@
                 url: '/services/add',
                 templateUrl: 'app/pages/services/addService/addService.html',
                 controller: "AddServiceCtrl",
-                title: 'Add Service'
+                title: 'Add service'
             });
     }
 

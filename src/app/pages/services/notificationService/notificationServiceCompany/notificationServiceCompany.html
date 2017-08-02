@@ -1,30 +1,30 @@
 <notification-service-navigation></notification-service-navigation>
 
 <div class="row">
-    <div ng-hide="updatingCompanyDetails" ba-panel ba-panel-title="Company Secret" class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+    <div ng-hide="updatingCompanyDetails" ba-panel ba-panel-title="Company secret" class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
       <div class="form-group">
           <p style="background-color: #d9d9d9; padding: 10px" ng-bind="company.secret"></p>
       </div>
     </div>
-    <div ng-hide="updatingCompanyDetails" ba-panel ba-panel-title="Webhook Shortcuts" class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+    <div ng-hide="updatingCompanyDetails" ba-panel ba-panel-title="Webhook shortcuts" class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
         <p>Notifications are triggered by Rehive webhooks. In order to correctly trigger a notification you should ensure you have at least one webhook of the same
             event type as the notification event. All notification webhooks should be configured with the company secret
             shown above because it ensures secure communication between Rehive and the service.</p>
         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 rehive-webhook-div-left">
-            <button ng-click="goToUsersWebhooks(company.secret)" class="btn notification-webhooks-buttons btn-primary btn-block">Users Webhooks</button>
+            <button ng-click="goToUsersWebhooks(company.secret)" class="btn notification-webhooks-buttons btn-primary btn-block">Users webhooks</button>
         </div>
         <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 rehive-webhook-div-right">
-            <button ng-click="goToTransactionsWebhooks(company.secret)" class="btn notification-webhooks-buttons btn-primary btn-block">Transactions Webhooks</button>
+            <button ng-click="goToTransactionsWebhooks(company.secret)" class="btn notification-webhooks-buttons btn-primary btn-block">Transactions webhooks</button>
         </div>
     </div>
-    <div ng-hide="updatingCompanyDetails" ba-panel ba-panel-title="Company Details" class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+    <div ng-hide="updatingCompanyDetails" ba-panel ba-panel-title="Company details" class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
       <form name="companyEmailForm">
           <div class="form-group">
-              <label><strong>Company Name</strong></label>
+              <label><strong>Company name</strong></label>
               <input type="text" class="form-control divider" ng-change="companyDetailsChanged('name')" ng-model="company.name" placeholder="Enter company name" required/>
           </div>
           <div class="form-group">
-            <label><strong>From Email</strong></label>
+            <label><strong>From email</strong></label>
             <input type="email" class="form-control divider" ng-change="companyDetailsChanged('email')" ng-model="company.email" placeholder="Enter from_email" required/>
           </div>
         <button ng-disabled="!companyEmailForm.$valid" ng-click="updateCompanyDetails()" class="btn btn-primary pull-right">Save</button>

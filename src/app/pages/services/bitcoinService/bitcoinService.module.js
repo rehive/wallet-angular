@@ -16,7 +16,7 @@
                 abstract:true,
                 // templateUrl: 'app/pages/services/bitcoinService/bitcoinService.html',
                 // controller: "BitcoinServiceCtrl",
-                title: 'Bitcoin Service'
+                title: 'Bitcoin service'
             });
             $urlRouterProvider.when("/services/bitcoin", "/services/bitcoin/transactions");
     }

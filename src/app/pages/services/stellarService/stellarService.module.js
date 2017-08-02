@@ -17,7 +17,7 @@
                 abstract:true,
                 // templateUrl: 'app/pages/services/stellarService/stellarService.html',
                 // controller: "StellarServiceCtrl",
-                title: 'Stellar Service'
+                title: 'Stellar service'
             });
             $urlRouterProvider.when("/services/stellar", "/services/stellar/setup");
     }

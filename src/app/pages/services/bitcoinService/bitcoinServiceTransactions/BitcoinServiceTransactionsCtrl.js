@@ -77,7 +77,7 @@
                         $scope.transactionsData = res.data.data;
                         $scope.transactions = $scope.transactionsData.results;
                         if($scope.transactions == 0){
-                            $scope.transactionsStateMessage = 'No Transactions Have Been Found';
+                            $scope.transactionsStateMessage = 'No transactions have been found';
                             return;
                         }
 
@@ -89,7 +89,7 @@
                         $location.path('/services');
                         return
                     }
-                    $scope.transactionsStateMessage = 'Failed To Load Data';
+                    $scope.transactionsStateMessage = 'Failed to load data';
                     errorToasts.evaluateErrors(error.data);
                 });
             }

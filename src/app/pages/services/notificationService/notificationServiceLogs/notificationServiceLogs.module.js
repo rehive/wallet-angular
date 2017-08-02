@@ -15,7 +15,7 @@
                         controller: "NotificationServiceLogsCtrl"
                     }
                 },
-                title: 'Notification Logs'
+                title: 'Notification logs'
             });
     }
 

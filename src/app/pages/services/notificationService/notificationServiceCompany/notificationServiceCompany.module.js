@@ -15,7 +15,7 @@
                     controller: "NotificationServiceCompanyCtrl"
                   }
                 },
-                title: 'Company Details'
+                title: 'Company details'
             });
     }
 

@@ -1,5 +1,5 @@
 <notification-service-navigation></notification-service-navigation>
-<div ng-hide="addingNotifications || editingNotifications || loadingNotifications" ba-panel ba-panel-title="Notifications List">
+<div ng-hide="addingNotifications || editingNotifications || loadingNotifications" ba-panel ba-panel-title="Notifications list">
     <div>
         <button class="btn btn-success pull-right divider" ng-click="toggleAddCurrencyView()">Add</button>
     </div>
@@ -26,10 +26,10 @@
         </table>
     </div>
 </div>
-<div ng-show="addingNotifications" ba-panel ba-panel-title="Create Notification">
+<div ng-show="addingNotifications" ba-panel ba-panel-title="Create notification">
     <create-notification-service-notification></create-notification-service-notification>
 </div>
-<div ng-show="editingNotifications" ba-panel ba-panel-title="Create Notification">
+<div ng-show="editingNotifications" ba-panel ba-panel-title="Create notification">
     <edit-notification-service-notification></edit-notification-service-notification>
 </div>
 <div ng-show="loadingNotifications" ba-panel>
