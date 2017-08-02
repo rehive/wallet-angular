@@ -124,8 +124,8 @@
 }
 
 .nav.nav-tabs {
-  border-top-left-radius: 5px;
-  border-top-right-radius: 5px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
   border-bottom: 1px solid transparent;
   background-color: $primary-light;
   a {
@@ -149,7 +149,7 @@
     background-color: $primary;
   }
   > li:first-of-type a {
-    border-top-left-radius: 5px;
+    border-top-left-radius: 0;
   }
   .dropdown-menu > li > a {
     color: $dropdown-text;
