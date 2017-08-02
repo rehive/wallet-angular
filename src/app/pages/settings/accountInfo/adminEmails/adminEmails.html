@@ -1,5 +1,5 @@
 <div class="row">
-    <div ng-hide="loadingAdminEmails || addingEmail" ba-panel ba-panel-title="Admin Emails">
+    <div ng-hide="loadingAdminEmails || addingEmail" ba-panel ba-panel-title="Admin emails">
         <div class="divider admin-emails">
             <table class="table table-striped admin-emails-table">
                 <tr class="black-muted-bg divider">
@@ -17,7 +17,7 @@
                     <th title="{{email.email}}" ng-bind="email.email | limitTo: '24'"></th>
                     <th ng-bind="email.verified ? 'True': 'False'"></th>
                     <th class="rehive-table-row-last-child">
-                        <button ng-click="deleteEmail(email)" class="btn btn-danger pull-right rehive-settings-buttons">Delete</button>
+                        <button ng-click="deleteEmail(email)" class="btn btn-danger pull-right">Delete</button>
                     </th>
                 </tr>
             </table>

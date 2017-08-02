@@ -1,5 +1,5 @@
 <div ng-hide="editingSubtype || loadingSubtypes">
-    <div ba-panel class="setting-bank-accounts" ba-panel-title="Transaction Subtypes" ba-panel-class="light-text with-scroll">
+    <div ba-panel class="setting-bank-accounts" ba-panel-title="Transaction subtypes" ba-panel-class="light-text with-scroll">
         <table class="table fees-table table-striped setting-bank-accounts-table">
             <tr class="black-muted-bg divider">
                 <th><strong>Type</strong></th>
@@ -20,10 +20,10 @@
             </tr>
         </table>
     </div>
-    <div ba-panel ba-panel-title="Add Subtype" ba-panel-class="light-text with-scroll">
+    <div ba-panel ba-panel-title="Add subtype" ba-panel-class="light-text with-scroll">
         <form name="subtypeForm" class="custom-form">
             <div class="form-group">
-                <label><strong>Transaction Type</strong> <span class="required-icon">*</span></label>
+                <label><strong>Transaction type</strong> <span class="required-icon">*</span></label>
                 <br>
                 <select class="form-control pointer" ng-model="newSubtype.tx_type" ng-options="type for type in subtypeOptions" required>
                 </select>

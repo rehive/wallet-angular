@@ -12,10 +12,10 @@
                 views: {
                   'generalSettings': {
                     templateUrl: 'app/pages/settings/companyInfo/companyInfo.html',
-                    controller: "CompanyInfoCtrl",
+                    controller: "CompanyInfoCtrl"
                   }
                 },
-                title: "Company Info"
+                title: "Company info"
             });
     }
 

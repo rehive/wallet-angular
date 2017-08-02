@@ -1,5 +1,5 @@
 <div ng-hide="editingSwitches || loadingSwitches">
-    <div ba-panel class="setting-bank-accounts" ba-panel-title="Global Switches" ba-panel-class="light-text with-scroll">
+    <div ba-panel class="setting-bank-accounts" ba-panel-title="Global switches" ba-panel-class="light-text with-scroll">
         <table class="table fees-table table-striped setting-bank-accounts-table">
             <tr class="black-muted-bg divider">
                 <th><strong>Type</strong></th>
@@ -16,10 +16,10 @@
             </tr>
         </table>
     </div>
-    <div ba-panel ba-panel-title="Add Global Switch" ba-panel-class="light-text with-scroll">
+    <div ba-panel ba-panel-title="Add global switch" ba-panel-class="light-text with-scroll">
         <form name="switchesForm" class="custom-form">
             <div class="form-group">
-                <label><strong>Switch Type</strong> <span class="required-icon">*</span></label>
+                <label><strong>Switch type</strong> <span class="required-icon">*</span></label>
                 <br>
                 <select class="form-control pointer" ng-model="switchesParams.switch_type" ng-options="option for option in switchesOptions" required>
                 </select>

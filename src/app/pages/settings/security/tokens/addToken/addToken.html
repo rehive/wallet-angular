@@ -1,9 +1,9 @@
-<div ng-hide="loadingAPITokens" ba-panel ba-panel-title="Add Permanent Token" ba-panel-class="light-text">
+<div ng-hide="loadingAPITokens" ba-panel ba-panel-title="Add permanent token" ba-panel-class="light-text">
     <form name="addTokenForm" class="custom-form">
         <div class="form-group">
             <label><strong>Password</strong> <span class="required-icon">*</span></label>
             <br>
-            <input type="password" class="form-control" ng-model="createTokenData.tokenPassword" required>
+            <input type="password" class="form-control" placeholder="Enter password" ng-model="createTokenData.tokenPassword" required>
         </div>
         <div class="form-group">
             <button ng-disabled="!addTokenForm.$valid" ng-click="addToken()" class="btn btn-primary pull-right rehive-settings-buttons">Add</button>

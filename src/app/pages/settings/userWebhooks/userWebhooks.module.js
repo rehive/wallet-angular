@@ -18,7 +18,7 @@
                 params: {
                     secret: null
                 },
-                title: "User Webhooks"
+                title: "User webhooks"
             });
     }
 

@@ -12,10 +12,10 @@
                 views: {
                   'generalSettings': {
                     templateUrl: 'app/pages/settings/accountInfo/adminEmails/adminEmails.html',
-                    controller: "AdminEmailsCtrl",
+                    controller: "AdminEmailsCtrl"
                   }
                 },
-                title: "Admin Emails"
+                title: "Admin emails"
             });
     }
 

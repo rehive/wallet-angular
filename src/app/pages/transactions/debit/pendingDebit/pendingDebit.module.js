@@ -12,10 +12,10 @@
                 views: {
                     "pendingDebitView": {
                         templateUrl: 'app/pages/transactions/debit/pendingDebit/pendingDebit.html',
-                        controller: "PendingDebitCtrl",
+                        controller: "PendingDebitCtrl"
                     }
                 },
-                title: 'Pending Debits'
+                title: 'Pending debits'
             });
     }
 

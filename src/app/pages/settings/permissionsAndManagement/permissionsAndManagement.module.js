@@ -15,7 +15,7 @@
                     templateUrl: 'app/pages/settings/permissionsAndManagement/permissionsAndManagement.html'
                   }
                 },
-                title: "Permissions And Management"
+                title: "Permissions and management"
             });
     }
 

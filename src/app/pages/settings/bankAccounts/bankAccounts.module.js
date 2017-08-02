@@ -15,7 +15,7 @@
                       templateUrl: 'app/pages/settings/bankAccounts/bankAccounts.html'
                   }
                 },
-                title: "Bank Accounts"
+                title: "Bank accounts"
             });
     }
 

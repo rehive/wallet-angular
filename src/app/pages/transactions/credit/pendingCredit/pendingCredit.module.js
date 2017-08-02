@@ -12,7 +12,7 @@
                 views: {
                     "pendingCreditView": {
                         templateUrl: 'app/pages/transactions/credit/pendingCredit/pendingCredit.html',
-                        controller: "PendingCreditCtrl",
+                        controller: "PendingCreditCtrl"
                     }
                 },
                 title: 'Pending credits'

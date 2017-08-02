@@ -1,9 +1,9 @@
 <div ng-hide="editingTransactionWebhook || loadingTransactionWebhooks">
-    <div ba-panel class="setting-bank-accounts" ba-panel-title="Transaction Webhooks" ba-panel-class="light-text with-scroll">
+    <div ba-panel class="setting-bank-accounts" ba-panel-title="Transaction webhooks" ba-panel-class="light-text with-scroll">
         <table class="table fees-table table-striped setting-bank-accounts-table">
             <tr class="black-muted-bg divider">
                 <th><strong>Event</strong></th>
-                <th><strong>Tx Type</strong></th>
+                <th><strong>Tx type</strong></th>
                 <th><strong>URL</strong></th>
                 <th><strong>Secret</strong></th>
                 <th></th>
@@ -20,7 +20,7 @@
             </tr>
         </table>
     </div>
-    <div ba-panel ba-panel-title="Add Webhook" ba-panel-class="light-text with-scroll">
+    <div ba-panel ba-panel-title="Add webhook" ba-panel-class="light-text with-scroll">
         <form name="transactionWebhooksForm" class="custom-form">
           <div class="form-group">
               <label><strong>Event</strong> <span class="required-icon">*</span></label>
@@ -29,17 +29,17 @@
               </select>
           </div>
             <div class="form-group">
-                <label><strong>Transaction Type</strong> <span class="required-icon">*</span></label>
+                <label><strong>Transaction type</strong> <span class="required-icon">*</span></label>
                 <br>
                 <select class="form-control pointer" ng-model="transactionWebhooksParams.tx_type" ng-options="type for type in typeOptions" required>
                 </select>
             </div>
             <div class="form-group">
-                <label><strong>Webhook URL</strong> <span class="required-icon">*</span></label>
+                <label><strong>Webhook url</strong> <span class="required-icon">*</span></label>
                 <input type="text" ng-model="transactionWebhooksParams.url" class="form-control"  placeholder="URL" required>
             </div>
             <div class="form-group">
-                <label><strong>Webhook Secret</strong> <span class="required-icon">*</span></label>
+                <label><strong>Webhook secret</strong> <span class="required-icon">*</span></label>
                 <input type="text" ng-model="transactionWebhooksParams.secret" class="form-control"  placeholder="Secret" required>
             </div>
             <div class="form-group">

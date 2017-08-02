@@ -76,7 +76,7 @@
             }
         };
 
-        $scope.createCredit = function () {
+        $scope.createCreditTransaction = function () {
 
             var sendTransactionData = {
                 user: $scope.creditData.user,

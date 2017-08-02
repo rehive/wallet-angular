@@ -15,7 +15,7 @@
                     templateUrl: 'app/pages/settings/switches/switches.html'
                   }
                 },
-                title: "Global Switches"
+                title: "Global switches"
             });
     }
 

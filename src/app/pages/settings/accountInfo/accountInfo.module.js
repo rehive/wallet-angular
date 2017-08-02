@@ -12,10 +12,10 @@
                 views: {
                   'generalSettings': {
                     templateUrl: 'app/pages/settings/accountInfo/accountInfo.html',
-                    controller: "AccountInfoCtrl",
+                    controller: "AccountInfoCtrl"
                   }
                 },
-                title: "Account Info"
+                title: "Account info"
             });
     }
 

@@ -15,7 +15,7 @@
                     templateUrl: 'app/pages/settings/transactionsSwitches/transactionsSwitches.html'
                   }
                 },
-                title: "Transactions Switches"
+                title: "Transactions switches"
             });
     }
 

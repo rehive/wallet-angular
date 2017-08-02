@@ -16,6 +16,7 @@
             enabled: 'False'
         };
         $scope.transactionsSwitchesOptions = ['Credit','Debit'];
+        $scope.boolOptions = ['True','False'];
 
         $scope.toggleTransactionsSwitchesEditView = function(transactionsSwitch){
             if(transactionsSwitch) {

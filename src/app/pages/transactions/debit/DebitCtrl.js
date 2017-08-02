@@ -75,7 +75,7 @@
             }
         };
 
-        $scope.createDebit= function () {
+        $scope.createDebitTransaction= function () {
 
             var sendTransactionData = {
                 user: $scope.debitData.user,

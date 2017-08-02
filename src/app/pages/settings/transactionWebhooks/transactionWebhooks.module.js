@@ -18,7 +18,7 @@
                 params: {
                     secret: null
                 },
-                title: "Transaction Webhooks"
+                title: "Transaction webhooks"
             });
     }
 
