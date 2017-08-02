@@ -30,6 +30,10 @@
         $scope.showAdvancedOption = false;
         $scope.showView = 'createCredit';
 
+        if($location.path() === '/transactions/credit/pending'){
+            $scope.showView = 'pendingCredit';
+        }
+
         $rootScope.$watch('selectedCurrency',function(){
             if($rootScope.selectedCurrency && $rootScope.selectedCurrency.code) {
                 $scope.creditData.currency = $rootScope.selectedCurrency.code;

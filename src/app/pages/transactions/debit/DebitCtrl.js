@@ -25,6 +25,10 @@
         $scope.showAdvancedOption = false;
         $scope.showView = 'createDebit';
 
+        if($location.path() === '/transactions/debit/pending'){
+            $scope.showView = 'pendingDebit';
+        }
+
         if($state.params.email){
           $scope.debitData.user = $state.params.email;
         }
