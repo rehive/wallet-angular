@@ -22,13 +22,33 @@
 
       $scope.toggleTierEditView = function(tier){
           if(tier){
-              $scope.editTier = tier
+              vm.getTier(tier)
           } else {
               $scope.editTier = {};
               vm.getTiers();
           }
           $scope.editingTiers = !$scope.editingTiers;
       };
+
+        vm.getTier = function(tier){
+            if(vm.token) {
+                $scope.loadingTiers = true;
+                $http.get(environmentConfig.API + '/admin/tiers/' + tier.id + '/' ,{
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': vm.token
+                    }
+                }).then(function (res) {
+                    $scope.loadingTiers = false;
+                    if (res.status === 200) {
+                        $scope.editTier = res.data.data;
+                    }
+                }).catch(function (error) {
+                    $scope.loadingTiers = false;
+                    errorToasts.evaluateErrors(error.data);
+                });
+            }
+        };
 
       vm.getTiers = function(){
           if(vm.token) {

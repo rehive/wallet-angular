@@ -55,6 +55,7 @@
                         $rootScope.haveCompanyName = true;
                         $location.path('/dashboard');
                     } else {
+                        $rootScope.newUser = true;
                         $location.path('/company/name_request');
                     }
                 }).catch(function (error) {

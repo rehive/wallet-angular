@@ -28,15 +28,37 @@
 
         $scope.toggleTierSwitchEditView = function(tierSwitch){
             if(tierSwitch) {
-                $scope.editTierSwitch = tierSwitch;
-                $scope.editTierSwitch.tx_type == 'credit' ? $scope.editTierSwitch.tx_type = 'Credit' : $scope.editTierSwitch.tx_type = 'Debit';
-                $scope.editTierSwitch.enabled == true ? $scope.editTierSwitch.enabled = 'True' : $scope.editTierSwitch.enabled = 'False';
+                vm.getTierSwitch(tierSwitch);
             } else {
                 $scope.editTierSwitch.enabled == 'True' ? $scope.editTierSwitch.enabled = true : $scope.editTierSwitch.enabled = false;
                 $scope.editTierSwitch = {};
                 $scope.getAllTiers($scope.selectedTier.level);
             }
             $scope.editingTierSwitches = !$scope.editingTierSwitches;
+        };
+
+        vm.getTierSwitch = function (tierSwitch) {
+            $scope.loadingTierSwitches = true;
+            $http.get(environmentConfig.API + '/admin/tiers/' + $scope.selectedTier.id + '/switches/' + tierSwitch.id + '/', {
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': vm.token
+                }
+            }).then(function (res) {
+                $scope.loadingTierSwitches = false;
+                if (res.status === 200) {
+                    $scope.editTierSwitch = res.data.data;
+                    $scope.editTierSwitch.tx_type == 'credit' ? $scope.editTierSwitch.tx_type = 'Credit' : $scope.editTierSwitch.tx_type = 'Debit';
+                    $scope.editTierSwitch.enabled == true ? $scope.editTierSwitch.enabled = 'True' : $scope.editTierSwitch.enabled = 'False';
+                }
+            }).catch(function (error) {
+                $scope.loadingTierSwitches = false;
+                if(error.status == 403){
+                    errorHandler.handle403();
+                    return
+                }
+                errorToasts.evaluateErrors(error.data);
+            });
         };
 
         $scope.getAllTiers = function(tierLevel){

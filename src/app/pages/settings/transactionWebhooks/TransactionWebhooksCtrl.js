@@ -25,18 +25,41 @@
 
         $scope.toggleTransactionWebhooksEditView = function(webhook){
             if(webhook){
-                webhook.tx_type = webhook.tx_type == null ? 'All' : webhook.tx_type == 'credit' ? 'Credit' : 'Debit';
-                webhook.event = webhook.event == 'transaction.create' ?
-                 'Transaction Create' : webhook.event == 'transaction.update' ? 'Transaction Update' : webhook.event == 'transaction.delete' ?
-                 'Transaction Delete' : webhook.event == 'transaction.initiate' ? 'Transaction Initiate' : webhook.event == 'transaction.execute' ?
-                 'Transaction Execute' : '';
-                $scope.editTransactionWebhook = webhook;
+                vm.getTransactionWebhook(webhook);
             } else {
                 $scope.editTransactionWebhook = {};
                 vm.getTransactionWebhooks();
             }
             $scope.editingTransactionWebhook = !$scope.editingTransactionWebhook;
         };
+
+        vm.getTransactionWebhook = function (webhook) {
+            $scope.loadingTransactionWebhooks = true;
+            $http.get(environmentConfig.API + '/admin/webhooks/transactions/' + webhook.id + '/', {
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': vm.token
+                }
+            }).then(function (res) {
+                $scope.loadingTransactionWebhooks = false;
+                if (res.status === 200) {
+                    $scope.editTransactionWebhook = res.data.data;
+                    $scope.editTransactionWebhook.tx_type = $scope.editTransactionWebhook.tx_type == null ? 'All' : $scope.editTransactionWebhook.tx_type == 'credit' ? 'Credit' : 'Debit';
+                    $scope.editTransactionWebhook.event = $scope.editTransactionWebhook.event == 'transaction.create' ?
+                        'Transaction Create' : $scope.editTransactionWebhook.event == 'transaction.update' ? 'Transaction Update' : $scope.editTransactionWebhook.event == 'transaction.delete' ?
+                            'Transaction Delete' : $scope.editTransactionWebhook.event == 'transaction.initiate' ? 'Transaction Initiate' : $scope.editTransactionWebhook.event == 'transaction.execute' ?
+                                'Transaction Execute' : '';
+                }
+            }).catch(function (error) {
+                $scope.loadingTransactionWebhooks = false;
+                if(error.status == 403){
+                    errorHandler.handle403();
+                    return
+                }
+                errorToasts.evaluateErrors(error.data);
+            });
+        };
+
 
         vm.getTransactionWebhooks = function () {
             if(vm.token) {

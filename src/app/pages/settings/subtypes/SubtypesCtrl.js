@@ -20,12 +20,34 @@
 
         $scope.toggleSubtypeEditView = function(subtype){
             if(subtype) {
-                $scope.editSubtype = subtype
+                vm.getSubtype(subtype);
             } else {
                 $scope.editSubtype = {};
                 vm.getSubtypes();
             }
             $scope.editingSubtype = !$scope.editingSubtype;
+        };
+
+        vm.getSubtype = function (subtype) {
+            $scope.loadingSubtypes = true;
+            $http.get(environmentConfig.API + '/admin/subtypes/' + subtype.id + '/', {
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': vm.token
+                }
+            }).then(function (res) {
+                $scope.loadingSubtypes = false;
+                if (res.status === 200) {
+                    $scope.editSubtype = res.data.data;
+                }
+            }).catch(function (error) {
+                $scope.loadingSubtypes = false;
+                if(error.status == 403){
+                    errorHandler.handle403();
+                    return
+                }
+                errorToasts.evaluateErrors(error.data);
+            });
         };
 
         vm.getSubtypes = function () {

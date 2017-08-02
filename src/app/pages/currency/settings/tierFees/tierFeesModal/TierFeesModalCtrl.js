@@ -7,8 +7,6 @@
     function TierFeesModalCtrl($scope,$uibModalInstance,tierFee,selectedTier,toastr,$http,environmentConfig,cookieManagement,errorToasts,errorHandler) {
 
         var vm = this;
-
-        console.log(selectedTier);
         $scope.tierFee = tierFee;
         $scope.selectedTier = selectedTier;
         $scope.deletingTierFees = false;

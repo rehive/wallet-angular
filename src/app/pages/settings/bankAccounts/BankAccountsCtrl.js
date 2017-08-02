@@ -17,13 +17,35 @@
 
         $scope.toggleEditBankAccountsView = function(bankAccount){
             if(bankAccount){
-                $scope.editBankData = bankAccount
+                vm.getBankAccount(bankAccount);
             } else {
                 $scope.editBankData = {};
                 vm.getBankAccounts();
             }
 
             $scope.editingBankAccounts = !$scope.editingBankAccounts;
+        };
+
+        vm.getBankAccount = function (bankAccount) {
+            $scope.loadingBankAccounts = true;
+            $http.get(environmentConfig.API + '/admin/bank-accounts/' + bankAccount.id + '/', {
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': vm.token
+                }
+            }).then(function (res) {
+                $scope.loadingBankAccounts = false;
+                if (res.status === 200) {
+                    $scope.editBankData = res.data.data;
+                }
+            }).catch(function (error) {
+                $scope.loadingBankAccounts = false;
+                if(error.status == 403){
+                    errorHandler.handle403();
+                    return
+                }
+                errorToasts.evaluateErrors(error.data);
+            });
         };
 
         vm.getBankAccounts = function () {

@@ -22,16 +22,38 @@
 
         $scope.toggleUserWebhooksEditView = function(webhook){
             if(webhook){
-                $scope.editUserWebhook = webhook;
-                $scope.editUserWebhook.event = $scope.editUserWebhook.event == 'user.create' ?
-                    'User Create' : $scope.editUserWebhook.event == 'user.update' ? 'User Update' : $scope.editUserWebhook.event == 'user.delete' ?
-                    'User Delete': $scope.editUserWebhook.event == 'user.password.reset' ? 'User Password Reset': $scope.editUserWebhook.event == 'user.email.verify' ?
-                    'User Email Verify': $scope.editUserWebhook.event == 'user.mobile.verify' ? 'User Mobile Verify': '';
+                vm.getUserWebhook(webhook);
             } else{
                 $scope.editUserWebhook = {};
                 vm.getUserWebhooks();
             }
             $scope.editingUserWebhook = !$scope.editingUserWebhook;
+        };
+
+        vm.getUserWebhook = function (webhook) {
+            $scope.loadingUserWebhooks = true;
+            $http.get(environmentConfig.API + '/admin/webhooks/users/' + webhook.id + '/', {
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': vm.token
+                }
+            }).then(function (res) {
+                $scope.loadingUserWebhooks = false;
+                if (res.status === 200) {
+                    $scope.editUserWebhook = res.data.data;
+                    $scope.editUserWebhook.event = $scope.editUserWebhook.event == 'user.create' ?
+                        'User Create' : $scope.editUserWebhook.event == 'user.update' ? 'User Update' : $scope.editUserWebhook.event == 'user.delete' ?
+                            'User Delete': $scope.editUserWebhook.event == 'user.password.reset' ? 'User Password Reset': $scope.editUserWebhook.event == 'user.email.verify' ?
+                                'User Email Verify': $scope.editUserWebhook.event == 'user.mobile.verify' ? 'User Mobile Verify': '';
+                }
+            }).catch(function (error) {
+                $scope.loadingUserWebhooks = false;
+                if(error.status == 403){
+                    errorHandler.handle403();
+                    return
+                }
+                errorToasts.evaluateErrors(error.data);
+            });
         };
 
         vm.getUserWebhooks = function () {

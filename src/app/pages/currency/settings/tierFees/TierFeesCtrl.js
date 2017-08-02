@@ -26,14 +26,36 @@
 
         $scope.toggleTierFeeEditView = function(tierFee){
             if(tierFee) {
-                $scope.editTierFee = tierFee;
-                $scope.editTierFee.value = currencyModifiers.convertFromCents($scope.editTierFee.value,$rootScope.selectedCurrency.divisibility);
-                $scope.editTierFee.tx_type == 'credit' ? $scope.editTierFee.tx_type = 'Credit' : $scope.editTierFee.tx_type = 'Debit';
+                vm.getTierFee(tierFee);
             } else {
                 $scope.editTierFee = {};
                 $scope.getAllTiers($scope.selectedTier.level);
             }
             $scope.editingTierFees = !$scope.editingTierFees;
+        };
+
+        vm.getTierFee = function (tierFee) {
+            $scope.loadingTierFees = true;
+            $http.get(environmentConfig.API + '/admin/tiers/' + $scope.selectedTier.id + '/fees/' + tierFee.id + '/', {
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': vm.token
+                }
+            }).then(function (res) {
+                $scope.loadingTierFees = false;
+                if (res.status === 200) {
+                    $scope.editTierFee = res.data.data;
+                    $scope.editTierFee.value = currencyModifiers.convertFromCents($scope.editTierFee.value,$rootScope.selectedCurrency.divisibility);
+                    $scope.editTierFee.tx_type == 'credit' ? $scope.editTierFee.tx_type = 'Credit' : $scope.editTierFee.tx_type = 'Debit';
+                }
+            }).catch(function (error) {
+                $scope.loadingTierFees = false;
+                if(error.status == 403){
+                    errorHandler.handle403();
+                    return
+                }
+                errorToasts.evaluateErrors(error.data);
+            });
         };
 
         $scope.getAllTiers = function(tierLevel){

@@ -24,14 +24,36 @@
 
         $scope.toggleSwitchesEditView = function(switches){
             if(switches) {
-                $scope.editSwitches = switches;
-                $scope.editSwitches.enabled == true ? $scope.editSwitches.enabled = 'True' : $scope.editSwitches.enabled = 'False';
+                vm.getSwitch(switches);
             } else {
                 $scope.editSwitches.enabled == 'True' ? $scope.editSwitches.enabled = true : $scope.editSwitches.enabled = false;
                 $scope.editSwitches = {};
                 vm.getSwitches();
             }
             $scope.editingSwitches = !$scope.editingSwitches;
+        };
+
+        vm.getSwitch = function (switches) {
+            $scope.loadingSwitches = true;
+            $http.get(environmentConfig.API + '/admin/switches/' + switches.id + '/', {
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': vm.token
+                }
+            }).then(function (res) {
+                $scope.loadingSwitches = false;
+                if (res.status === 200) {
+                    $scope.editSwitches = res.data.data;
+                    $scope.editSwitches.enabled == true ? $scope.editSwitches.enabled = 'True' : $scope.editSwitches.enabled = 'False';
+                }
+            }).catch(function (error) {
+                $scope.loadingSwitches = false;
+                if(error.status == 403){
+                    errorHandler.handle403();
+                    return
+                }
+                errorToasts.evaluateErrors(error.data);
+            });
         };
 
         vm.getSwitches = function () {

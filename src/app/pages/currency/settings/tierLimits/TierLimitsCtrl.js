@@ -28,15 +28,36 @@
 
         $scope.toggleTierLimitEditView = function(tierLimit){
             if(tierLimit) {
-                $scope.editTierLimit = tierLimit;
-                $scope.editTierLimit.value = currencyModifiers.convertFromCents($scope.editTierLimit.value,$rootScope.selectedCurrency.divisibility);
-                $scope.editTierLimit.tx_type == 'credit' ? $scope.editTierLimit.tx_type = 'Credit' : $scope.editTierLimit.tx_type = 'Debit';
+                vm.getTierLimit(tierLimit);
             } else {
-
                 $scope.editTierLimit = {};
                 $scope.getAllTiers($scope.selectedTier.level);
             }
             $scope.editingTierLimits = !$scope.editingTierLimits;
+        };
+
+        vm.getTierLimit = function (tierLimit) {
+            $scope.loadingTierLimits = true;
+            $http.get(environmentConfig.API + '/admin/tiers/' + $scope.selectedTier.id + '/limits/' + tierLimit.id + '/', {
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': vm.token
+                }
+            }).then(function (res) {
+                $scope.loadingTierLimits = false;
+                if (res.status === 200) {
+                    $scope.editTierLimit = res.data.data;
+                    $scope.editTierLimit.value = currencyModifiers.convertFromCents($scope.editTierLimit.value,$rootScope.selectedCurrency.divisibility);
+                    $scope.editTierLimit.tx_type == 'credit' ? $scope.editTierLimit.tx_type = 'Credit' : $scope.editTierLimit.tx_type = 'Debit';
+                }
+            }).catch(function (error) {
+                $scope.loadingTierLimits = false;
+                if(error.status == 403){
+                    errorHandler.handle403();
+                    return
+                }
+                errorToasts.evaluateErrors(error.data);
+            });
         };
 
         $scope.getAllTiers = function(tierLevel){

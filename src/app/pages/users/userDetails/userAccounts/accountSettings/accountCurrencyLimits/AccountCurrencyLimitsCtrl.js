@@ -24,14 +24,36 @@
 
         $scope.toggleAccountCurrencyLimitEditView = function(accountCurrencyLimit){
             if(accountCurrencyLimit) {
-                $scope.editAccountCurrencyLimit = accountCurrencyLimit;
-                $scope.editAccountCurrencyLimit.value = currencyModifiers.convertFromCents($scope.editAccountCurrencyLimit.value,$scope.currencyObj.currency.divisibility);
-                $scope.editAccountCurrencyLimit.tx_type == 'credit' ? $scope.editAccountCurrencyLimit.tx_type = 'Credit' : $scope.editAccountCurrencyLimit.tx_type = 'Debit';
+                vm.getAccountCurrencyLimit(accountCurrencyLimit);
             } else {
                 $scope.editAccountCurrencyLimit = {};
                 $scope.getAccountCurrencyLimits();
             }
             $scope.editingAccountCurrencyLimits = !$scope.editingAccountCurrencyLimits;
+        };
+
+        vm.getAccountCurrencyLimit = function (accountCurrencyLimit) {
+            $scope.loadingAccountCurrencyLimits = true;
+            $http.get(environmentConfig.API + '/admin/accounts/' + vm.reference + '/currencies/' + vm.currencyCode + '/limits/' + accountCurrencyLimit.id +'/', {
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': vm.token
+                }
+            }).then(function (res) {
+                $scope.loadingAccountCurrencyLimits = false;
+                if (res.status === 200) {
+                    $scope.editAccountCurrencyLimit = res.data.data;
+                    $scope.editAccountCurrencyLimit.value = currencyModifiers.convertFromCents($scope.editAccountCurrencyLimit.value,$scope.currencyObj.currency.divisibility);
+                    $scope.editAccountCurrencyLimit.tx_type == 'credit' ? $scope.editAccountCurrencyLimit.tx_type = 'Credit' : $scope.editAccountCurrencyLimit.tx_type = 'Debit';
+                }
+            }).catch(function (error) {
+                $scope.loadingAccountCurrencyLimits = false;
+                if(error.status == 403){
+                    errorHandler.handle403();
+                    return
+                }
+                errorToasts.evaluateErrors(error.data);
+            });
         };
 
         $scope.getAccountCurrencyLimits = function(){

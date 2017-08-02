@@ -22,14 +22,36 @@
 
         $scope.toggleAccountCurrencyFeeEditView = function(accountCurrencyFee){
             if(accountCurrencyFee) {
-                $scope.editAccountCurrencyFee = accountCurrencyFee;
-                $scope.editAccountCurrencyFee.value = currencyModifiers.convertFromCents($scope.editAccountCurrencyFee.value,$scope.currencyObj.currency.divisibility);
-                $scope.editAccountCurrencyFee.tx_type == 'credit' ? $scope.editAccountCurrencyFee.tx_type = 'Credit' : $scope.editAccountCurrencyFee.tx_type = 'Debit';
+                vm.getAccountCurrencyFee(accountCurrencyFee);
             } else {
                 $scope.editAccountCurrencyFee = {};
                 $scope.getAccountCurrencyFees();
             }
             $scope.editingAccountCurrencyFees = !$scope.editingAccountCurrencyFees;
+        };
+
+        vm.getAccountCurrencyFee = function (accountCurrencyFee) {
+            $scope.loadingAccountCurrencyFees = true;
+            $http.get(environmentConfig.API + '/admin/accounts/' + vm.reference + '/currencies/' + vm.currencyCode + '/fees/' + accountCurrencyFee.id +'/', {
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': vm.token
+                }
+            }).then(function (res) {
+                $scope.loadingAccountCurrencyFees = false;
+                if (res.status === 200) {
+                    $scope.editAccountCurrencyFee = res.data.data;
+                    $scope.editAccountCurrencyFee.value = currencyModifiers.convertFromCents($scope.editAccountCurrencyFee.value,$scope.currencyObj.currency.divisibility);
+                    $scope.editAccountCurrencyFee.tx_type == 'credit' ? $scope.editAccountCurrencyFee.tx_type = 'Credit' : $scope.editAccountCurrencyFee.tx_type = 'Debit';
+                }
+            }).catch(function (error) {
+                $scope.loadingAccountCurrencyFees = false;
+                if(error.status == 403){
+                    errorHandler.handle403();
+                    return
+                }
+                errorToasts.evaluateErrors(error.data);
+            });
         };
 
         $scope.getAccountCurrencyFees = function(){

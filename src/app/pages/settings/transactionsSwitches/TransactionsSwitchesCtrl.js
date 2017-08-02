@@ -20,15 +20,37 @@
 
         $scope.toggleTransactionsSwitchesEditView = function(transactionsSwitch){
             if(transactionsSwitch) {
-                $scope.editTransactionsSwitch = transactionsSwitch;
-                $scope.editTransactionsSwitch.tx_type == 'credit' ? $scope.editTransactionsSwitch.tx_type = 'Credit' : $scope.editTransactionsSwitch.tx_type = 'Debit';
-                $scope.editTransactionsSwitch.enabled == true ? $scope.editTransactionsSwitch.enabled = 'True' : $scope.editTransactionsSwitch.enabled = 'False';
+                vm.getTransactionsSwitch(transactionsSwitch);
             } else {
                 $scope.editTransactionsSwitch.enabled == 'True' ? $scope.editTransactionsSwitch.enabled = true : $scope.editTransactionsSwitch.enabled = false;
                 $scope.editTransactionsSwitch = {};
                 vm.getTransactionsSwitches();
             }
             $scope.editingTransactionsSwitches = !$scope.editingTransactionsSwitches;
+        };
+
+        vm.getTransactionsSwitch = function (transactionsSwitch) {
+            $scope.loadingTransactionsSwitches = true;
+            $http.get(environmentConfig.API + '/admin/company/switches/' + transactionsSwitch.id + '/', {
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': vm.token
+                }
+            }).then(function (res) {
+                $scope.loadingTransactionsSwitches = false;
+                if (res.status === 200) {
+                    $scope.editTransactionsSwitch = res.data.data;
+                    $scope.editTransactionsSwitch.tx_type == 'credit' ? $scope.editTransactionsSwitch.tx_type = 'Credit' : $scope.editTransactionsSwitch.tx_type = 'Debit';
+                    $scope.editTransactionsSwitch.enabled == true ? $scope.editTransactionsSwitch.enabled = 'True' : $scope.editTransactionsSwitch.enabled = 'False';
+                }
+            }).catch(function (error) {
+                $scope.loadingTransactionsSwitches = false;
+                if(error.status == 403){
+                    errorHandler.handle403();
+                    return
+                }
+                errorToasts.evaluateErrors(error.data);
+            });
         };
 
         vm.getTransactionsSwitches = function () {
