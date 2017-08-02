@@ -30,6 +30,8 @@ def set_env(config, version_tag=None):
     env.build_dir = '/srv/build'
     env.local_path = os.path.dirname(__file__)
 
+    env.env_string = ':staging' if 'staging' in config else ''
+
 
 def format_yaml(template, config):
     """Replace in ${ENV_VAR} in template with value"""
@@ -117,8 +119,13 @@ def prebuild():
     Pre-build steps
     """
     image = '{}:{}'.format(env.image_name + '-js-build', env.version_tag)
+
     with cd(env.project_dir):
-        run('docker run --rm -v release:/app/release:rw {image} gulp -c build'.format(image=image))
+        run("docker run --rm -v $PWD/release:/app/release:rw {image} bash -c 'gulp clean && gulp build{env_string}'"\
+            .format(
+                image=image,
+                env_string=env.env_string),
+        )
 
 
 def build():
