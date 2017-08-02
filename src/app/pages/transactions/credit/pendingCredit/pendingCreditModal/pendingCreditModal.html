@@ -16,26 +16,18 @@
         </div>
         <div class="row">
             <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-                <p><strong>Date: </strong></p>
-            </div>
-            <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
-                <p>{{transaction.created | date:'mediumDate'}} {{transaction.created | date:'shortTime'}}</p>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-                <p><strong>Code: </strong></p>
-            </div>
-            <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
-                <p ng-bind="transaction.id">
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
                 <p><strong>Type: </strong></p>
             </div>
             <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
-                <p ng-bind="transaction.tx_type">
+                <p ng-bind="transaction.tx_type | capitalizeWord">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                <p><strong>Status: </strong></p>
+            </div>
+            <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+                <p ng-bind="transaction.status">
             </div>
         </div>
         <div class="row">
@@ -72,6 +64,14 @@
         </div>
         <div class="row">
             <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                <p><strong>Code: </strong></p>
+            </div>
+            <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+                <p ng-bind="transaction.id">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
                 <p><strong>Balance: </strong></p>
             </div>
             <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
@@ -102,7 +102,14 @@
                 <pre ng-bind="metadata"></pre>
             </div>
         </div>
-
+        <div class="row">
+            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                <p><strong>Date: </strong></p>
+            </div>
+            <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+                <p>{{transaction.created | date:'mediumDate'}} {{transaction.created | date:'shortTime'}}</p>
+            </div>
+        </div>
     </div>
     <div class="modal-footer">
         <button type="button" class="btn transaction-details-button btn-danger pull-left" ng-click="updateTransaction('Failed')">Cancel Credit</button>
