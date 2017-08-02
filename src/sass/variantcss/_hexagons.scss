@@ -106,8 +106,8 @@
   @include hexagon-after(14.43px solid #F8CF51);
 }
 .dashboard-currencies-hex-over{
-  @include hexagon-hex-over(100px, 15px, -38px);
+  @include hexagon-hex-over(100px, 15px, -39px);
+  margin: 0;
   text-align: left;
-  left: -10px;
-  top: -39px;
+  padding-left: 12px;
 }
