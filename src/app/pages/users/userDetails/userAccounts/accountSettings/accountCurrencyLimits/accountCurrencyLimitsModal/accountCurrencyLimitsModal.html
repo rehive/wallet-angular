@@ -9,7 +9,7 @@
         <p>Tx type: {{accountCurrencyLimit.tx_type | capitalizeWord}}</p>
         <p>Type: {{accountCurrencyLimit.type | capitalizeWord}}</p>
         <p>Subtype: {{accountCurrencyLimit.subtype ? accountCurrencyLimit.subtype : 'None'}}</p>
-        <p>Value: {{accountCurrencyLimit.value | currencyModifiersFilter: currencyObj.currency.divisibility | preciseRound: currencyObj.currency.divisibility}}</p>
+        <p>Value: {{accountCurrencyLimit.value | currencyModifiersFilter: currencyObj.divisibility | preciseRound: currencyObj.divisibility}}</p>
     </div>
     <div class="modal-footer">
         <button type="button" class="btn btn-primary pull-left" ng-click="$dismiss()">Close</button>

@@ -76,8 +76,5 @@
         };
         $scope.getAllUsers();
 
-         $scope.pick = function(){
-                  console.log($scope.usersSearchParams.searchCountry);
-              }
     }
 })();

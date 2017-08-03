@@ -41,8 +41,8 @@
           $state.go(state,{"email": email});
         };
 
-        $scope.goToSettings = function(currencyCode,currency){
-            $location.path('account/'+vm.reference+'/settings/'+ currencyCode).search({currency: currency})
+        $scope.goToSettings = function(currencyCode){
+            $location.path('account/'+vm.reference+'/settings/'+ currencyCode);
 
         }
 

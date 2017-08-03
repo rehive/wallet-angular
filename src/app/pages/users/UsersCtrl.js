@@ -97,7 +97,6 @@
                     $scope.usersStateMessage = '';
                 }
             }).catch(function (error) {
-                console.log(error);
                 $scope.loadingUsers = false;
                 if(error.status == 403){
                     errorHandler.handle403();

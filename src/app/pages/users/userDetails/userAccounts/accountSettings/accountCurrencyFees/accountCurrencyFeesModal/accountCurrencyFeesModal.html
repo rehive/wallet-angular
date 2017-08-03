@@ -7,7 +7,7 @@
     </div>
     <div class="modal-body">
         <p>Tx type: {{accountCurrencyFee.tx_type | capitalizeWord}}</p>
-        <p>Value: {{accountCurrencyFee.value | currencyModifiersFilter: currencyObj.currency.divisibility | preciseRound: currencyObj.currency.divisibility}}</p>
+        <p>Value: {{accountCurrencyFee.value | currencyModifiersFilter: currencyObj.divisibility | preciseRound: currencyObj.divisibility}}</p>
         <p>Percenage: {{accountCurrencyFee.percentage ? accountCurrencyFee.percentage + '%' : 'None'}}</p>
         <p>Subtype: {{accountCurrencyFee.subtype ? accountCurrencyFee.subtype : 'None'}}</p>
 

@@ -7,8 +7,6 @@
     /** @ngInject */
     function TransactionWebhooksCtrl($scope,environmentConfig,$uibModal,toastr,$http,cookieManagement,$state,errorToasts,$window,errorHandler) {
 
-
-        console.log($state.params.secret);
         var vm = this;
         vm.updatedTransactionWebhook = {};
         vm.token = cookieManagement.getCookie('TOKEN');

@@ -25,7 +25,6 @@
                 if (res.status === 200) {
                     $scope.selectedService.selected =  res.data.data.results[0];
                     $scope.serviceListOptions =  res.data.data.results;
-                    console.log( $scope.serviceListOptions);
                 }
             }).catch(function (error) {
                 $scope.loadingServices = false;
@@ -70,7 +69,6 @@
                     'Authorization': vm.token
                 }
             }).then(function (res) {
-              console.log(res);
                 if (res.status === 200) {
                     $timeout(function () {
                         $scope.loadingServices = false;

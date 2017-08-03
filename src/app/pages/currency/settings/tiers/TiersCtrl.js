@@ -86,7 +86,6 @@
                       vm.getTiers();
                   }
               }).catch(function (error) {
-                console.log(error);
                   $scope.loadingTiers = false;
                   errorToasts.evaluateErrors(error.data);
               });

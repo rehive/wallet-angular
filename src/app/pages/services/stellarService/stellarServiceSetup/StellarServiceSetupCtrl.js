@@ -21,7 +21,6 @@
                 }
             }).then(function (res) {
                 if (res.status === 200) {
-                    console.log(res.data)
                     if(res.data.data.count == 0){
                         $scope.loadingStellarService = false;
                     } else {
@@ -29,7 +28,6 @@
                     }
                 }
             }).catch(function (error) {
-              console.log(error);
                 $scope.loadingStellarService = false;
                 errorToasts.evaluateErrors(error.data);
             });

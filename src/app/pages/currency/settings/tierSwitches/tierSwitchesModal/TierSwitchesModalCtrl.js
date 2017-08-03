@@ -8,7 +8,6 @@
 
         var vm = this;
 
-        console.log(selectedTier);
         $scope.tierSwitch = tierSwitch;
         $scope.selectedTier = selectedTier;
         $scope.deletingTierSwitches = false;

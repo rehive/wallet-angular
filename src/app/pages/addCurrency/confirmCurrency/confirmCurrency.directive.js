@@ -8,7 +8,7 @@
     function confirmCurrency() {
         return {
             restrict: 'E',
-            controller: 'AddCurrencyCtrl',
+            require: '^parent',
             templateUrl: 'app/pages/addCurrency/confirmCurrency/confirmCurrency.html'
         };
     }

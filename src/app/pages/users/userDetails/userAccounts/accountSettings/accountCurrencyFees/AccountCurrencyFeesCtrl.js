@@ -5,13 +5,13 @@
         .controller('AccountCurrencyFeesCtrl', AccountCurrencyFeesCtrl);
 
     /** @ngInject */
-    function AccountCurrencyFeesCtrl($rootScope,$scope,$location,$stateParams,$http,$uibModal,environmentConfig,cookieManagement,errorToasts,currencyModifiers,toastr) {
+    function AccountCurrencyFeesCtrl($scope,$window,$stateParams,$http,$uibModal,environmentConfig,cookieManagement,errorToasts,currencyModifiers,toastr) {
 
         var vm = this;
         vm.token = cookieManagement.getCookie('TOKEN');
         vm.currencyCode = $stateParams.currencyCode;
+        vm.currenciesList = JSON.parse($window.sessionStorage.currenciesList);
         vm.reference = $stateParams.reference;
-        $scope.currencyObj =  $location.search();
         $scope.loadingAccountCurrencyFees = true;
         $scope.editingAccountCurrencyFees = false;
         vm.updatedAccountCurrencyFee = {};
@@ -19,6 +19,13 @@
             tx_type: 'Credit'
         };
         $scope.txTypeOptions = ['Credit','Debit'];
+
+        vm.getCurrencyObjFromCurrenciesList = function(){
+            $scope.currencyObj = vm.currenciesList.find(function(element){
+                return element.code == vm.currencyCode;
+            });
+        };
+        vm.getCurrencyObjFromCurrenciesList();
 
         $scope.toggleAccountCurrencyFeeEditView = function(accountCurrencyFee){
             if(accountCurrencyFee) {
@@ -41,7 +48,7 @@
                 $scope.loadingAccountCurrencyFees = false;
                 if (res.status === 200) {
                     $scope.editAccountCurrencyFee = res.data.data;
-                    $scope.editAccountCurrencyFee.value = currencyModifiers.convertFromCents($scope.editAccountCurrencyFee.value,$scope.currencyObj.currency.divisibility);
+                    $scope.editAccountCurrencyFee.value = currencyModifiers.convertFromCents($scope.editAccountCurrencyFee.value,$scope.currencyObj.divisibility);
                     $scope.editAccountCurrencyFee.tx_type == 'credit' ? $scope.editAccountCurrencyFee.tx_type = 'Credit' : $scope.editAccountCurrencyFee.tx_type = 'Debit';
                 }
             }).catch(function (error) {
@@ -76,16 +83,15 @@
         $scope.getAccountCurrencyFees();
 
         $scope.addAccountCurrencyFee = function(accountCurrencyFeesParams){
-            if(currencyModifiers.validateCurrency(accountCurrencyFeesParams.value,$scope.currencyObj.currency.divisibility)){
-                accountCurrencyFeesParams.value = currencyModifiers.convertToCents(accountCurrencyFeesParams.value,$scope.currencyObj.currency.divisibility);
+            if(currencyModifiers.validateCurrency(accountCurrencyFeesParams.value,$scope.currencyObj.divisibility)){
+                accountCurrencyFeesParams.value = currencyModifiers.convertToCents(accountCurrencyFeesParams.value,$scope.currencyObj.divisibility);
             } else {
-                toastr.error('Please input amount to ' + $scope.currencyObj.currency.divisibility + ' decimal places');
+                toastr.error('Please input amount to ' + $scope.currencyObj.divisibility + ' decimal places');
                 return;
             }
             if(vm.token) {
                 $scope.loadingAccountCurrencyFees = true;
                 accountCurrencyFeesParams.tx_type = accountCurrencyFeesParams.tx_type.toLowerCase();
-                console.log(accountCurrencyFeesParams);
                 $http.post(environmentConfig.API + '/admin/accounts/' + vm.reference + '/currencies/' + vm.currencyCode + '/fees/',accountCurrencyFeesParams,{
                     headers: {
                         'Content-Type': 'application/json',
@@ -115,10 +121,10 @@
         };
 
         $scope.updateAccountCurrencyFee = function(){
-            if(currencyModifiers.validateCurrency($scope.editAccountCurrencyFee.value,$scope.currencyObj.currency.divisibility)){
-                vm.updatedAccountCurrencyFee.value = currencyModifiers.convertToCents($scope.editAccountCurrencyFee.value,$scope.currencyObj.currency.divisibility);
+            if(currencyModifiers.validateCurrency($scope.editAccountCurrencyFee.value,$scope.currencyObj.divisibility)){
+                vm.updatedAccountCurrencyFee.value = currencyModifiers.convertToCents($scope.editAccountCurrencyFee.value,$scope.currencyObj.divisibility);
             } else {
-                toastr.error('Please input amount to ' + $scope.currencyObj.currency.divisibility + ' decimal places');
+                toastr.error('Please input amount to ' + $scope.currencyObj.divisibility + ' decimal places');
                 return;
             }
             if(vm.token) {

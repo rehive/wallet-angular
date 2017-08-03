@@ -11,6 +11,7 @@
         vm.token = cookieManagement.getCookie('TOKEN');
 
         $scope.addCurrency = {};
+        $scope.addCurrency.currencyChoice = {};
         $scope.showConfirmCurrency = false;
         $scope.showCompleteCurrency = false;
         $scope.loadingCurrencies = true;
@@ -24,7 +25,6 @@
                         'Authorization': vm.token
                     }
                 }).then(function (res) {
-                    $scope.loadingCurrencies = false;
                     if (res.status === 200) {
                         if($rootScope.selectedCurrency && $rootScope.selectedCurrency.code){
                             $scope.addCurrency.currencyChoice = res.data.data.results.find(function (currency) {
@@ -34,6 +34,7 @@
                             $scope.addCurrency.currencyChoice = res.data.data.results[0];
                         }
                         $scope.currencyOptions = res.data.data.results;
+                        $scope.loadingCurrencies = false;
                     }
                 }).catch(function (error) {
                     $scope.loadingCurrencies = false;
@@ -61,7 +62,6 @@
                     $rootScope.selectedCurrency = res.data.data;
                 }
             }).catch(function (error) {
-                console.log(error);
                 $scope.loadingCurrencies = false;
                 if(error.status == 403){
                     errorHandler.handle403();
