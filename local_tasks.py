@@ -1,9 +1,7 @@
 from invoke import task
 from invoke.exceptions import Failure
-import json
 import yaml
 import semver
-import dotenv
 import os
 
 from distutils.util import strtobool

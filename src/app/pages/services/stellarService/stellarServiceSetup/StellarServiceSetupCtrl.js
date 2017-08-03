@@ -21,7 +21,7 @@
                 }
             }).then(function (res) {
                 if (res.status === 200) {
-                    if(res.data.data.count == 0){
+                    if(res.data.data.length == 0){
                         $scope.loadingStellarService = false;
                     } else {
                         $scope.getSendAccounts();
@@ -43,7 +43,7 @@
                 }
             }).then(function (res) {
                 if (res.status === 200) {
-                    if(res.data.data.count == 0){
+                    if(res.data.data.length == 0){
                         $scope.loadingStellarService = false;
                     } else {
                         $location.path('/services/stellar/transactions');
@@ -64,8 +64,8 @@
                     'Authorization': vm.token
                 }
             }).then(function (res) {
-                if (res.status === 200) {
-                    $scope.getSendAccounts(secret_key);
+                if (res.status === 201) {
+                    $scope.saveSendAccount(secret_key);
                 }
             }).catch(function (error) {
                 $scope.loadingStellarService = false;
@@ -75,13 +75,13 @@
 
         $scope.saveSendAccount = function (secret_key) {
             $scope.loadingStellarService = true;
-            $http.post(vm.serviceUrl + 'admin/send_accounts/',{secret_key: secret_key,default: true}, {
+            $http.post(vm.serviceUrl + 'admin/send_accounts/',{secret_key: secret_key, default: true}, {
                 headers: {
                     'Content-Type': 'application/json',
                     'Authorization': vm.token
                 }
             }).then(function (res) {
-                if (res.status === 200) {
+                if (res.status === 201) {
                     $scope.loadingStellarService = false;
                     toastr.success('Stellar account details successfully saved');
                     $location.path('/services/stellar/transactions');
