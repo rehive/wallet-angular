@@ -25,7 +25,7 @@
                     </table>
                 </div>
                 <div ba-panel ng-show="tiersFeesList.length == 0">
-                    <h4>No fees are available for this tier.</h4>
+                    <i>No fees are available for this tier.</i>
                 </div>
                 <div ba-panel ba-panel-title="Add tier fee" ba-panel-class="light-text with-scroll">
                     <form name="tierFeeForm" class="custom-form">
@@ -61,7 +61,7 @@
     </uib-tabset>
 </div>
 <div ba-panel ng-show="!loadingTierFees && tierLevelsForFees.length == 0">
-    <h4>No tiers are available for this currency.</h4>
+    <i>No tiers are available for this currency.</i>
 </div>
 <div ba-panel ng-show="loadingTierFees">
     <loading-image></loading-image>

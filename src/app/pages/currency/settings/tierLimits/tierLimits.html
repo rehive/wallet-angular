@@ -25,7 +25,7 @@
                 </table>
             </div>
             <div ba-panel ng-show="tiersLimitsList.length == 0">
-              <h4>No limits are available for this tier.</h4>
+              <i>No limits are available for this tier.</i>
             </div>
             <div ba-panel ba-panel-title="Add tier limit" ba-panel-class="light-text with-scroll">
                 <form name="tierLimitForm" class="custom-form">
@@ -62,7 +62,7 @@
     </uib-tabset>
 </div>
 <div ba-panel ng-show="!loadingTierLimits && tierLevelsForLimits.length == 0">
-    <h4>No tiers are available for this currency.</h4>
+    <i>No tiers are available for this currency.</i>
 </div>
 <div ba-panel ng-show="loadingTierLimits">
     <loading-image></loading-image>
