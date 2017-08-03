@@ -77,7 +77,7 @@
                         $scope.transactionsData = res.data.data;
                         $scope.transactions = $scope.transactionsData.results;
                         if($scope.transactions == 0){
-                            $scope.transactionsStateMessage = 'No transactions have been found';
+                            $scope.transactionsStateMessage = 'No transactions have been made';
                             return;
                         }
 
