@@ -1,0 +1,39 @@
+<div ng-hide="loadingCurrencies" ba-panel ba-panel-title="Add custom currency">
+    <form name="customCurrencyForm" novalidate>
+        <div class="row form-group">
+            <div class="col-sm-12">
+                <label><strong>Code</strong> <span class="required-icon">*</span></label>
+                <input type="text" ng-model="newCurrencyParams.code" class="form-control" placeholder="Code , Eg: USD" auto-focus="!newCurrencyParams.code" required>
+            </div>
+        </div>
+        <div class="row form-group">
+            <div class="col-sm-12">
+                <label><strong>Description</strong> <span class="required-icon">*</span></label>
+                <input type="text" ng-model="newCurrencyParams.description" class="form-control" placeholder="Description, Eg: United States dollar" required>
+            </div>
+        </div>
+        <div class="row form-group">
+            <div class="col-sm-12">
+                <label><strong>Symbol</strong> <span class="required-icon">*</span></label>
+                <input type="text" ng-model="newCurrencyParams.symbol" class="form-control" placeholder="Symbol, Eg: $" required>
+            </div>
+        </div>
+        <div class="row form-group">
+            <div class="col-sm-12">
+                <label><strong>Unit</strong> <span class="required-icon">*</span></label>
+                <input type="text" ng-model="newCurrencyParams.unit" class="form-control" placeholder="Unit, Eg: dollar" required>
+            </div>
+        </div>
+        <div class="row form-group">
+            <div class="col-sm-12">
+                <label><strong>Divisibility</strong> <span class="required-icon">*</span></label>
+                <input type="number" ng-model="newCurrencyParams.divisibility" class="form-control" placeholder="Divisibility,Eg: 2" required>
+            </div>
+        </div>
+        <button ng-disabled="!customCurrencyForm.$valid" class="btn btn-primary pull-right" ng-click="addCustomCompanyCurrency(newCurrencyParams)">Add</button>
+        <button class="btn btn-primary pull-right margin-right-10" ng-click="toggleCustomCurrencyView()">Back</button>
+    </form>
+</div>
+<div ba-panel ng-show="loadingCurrencies">
+    <loading-image></loading-image>
+</div>

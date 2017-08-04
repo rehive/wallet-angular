@@ -5,7 +5,7 @@
         .controller('AddCurrencyCtrl', AddCurrencyCtrl);
 
     /** @ngInject */
-    function AddCurrencyCtrl($rootScope,$scope,$http,environmentConfig,cookieManagement,errorToasts,errorHandler) {
+    function AddCurrencyCtrl($rootScope,$scope,$http,environmentConfig,cookieManagement,errorToasts,errorHandler,toastr) {
 
         var vm = this;
         vm.token = cookieManagement.getCookie('TOKEN');
@@ -14,6 +14,7 @@
         $scope.addCurrency.currencyChoice = {};
         $scope.showConfirmCurrency = false;
         $scope.showCompleteCurrency = false;
+        $scope.showCustomCurrency = false;
         $scope.loadingCurrencies = true;
 
         vm.getCurrencies = function(){
@@ -40,9 +41,9 @@
         };
         vm.getCurrencies();
 
-        $scope.addCompanyCurrency = function(){
+        $scope.addCompanyCurrency = function(currency){
 
-            var code = $scope.addCurrency.currencyChoice.code;
+            var code = currency.code;
 
             $scope.loadingCurrencies = true;
             $http.patch(environmentConfig.API + '/admin/currencies/' + code+'/', {enabled: true}, {
@@ -67,6 +68,32 @@
             });
         };
 
+        $scope.addCustomCompanyCurrency = function(newCurrencyParams){
+
+            $scope.loadingCurrencies = true;
+            $scope.addCurrency = {};
+            $http.post(environmentConfig.API + '/admin/currencies/', newCurrencyParams, {
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': vm.token
+                }
+            }).then(function (res) {
+                $scope.loadingCurrencies = false;
+                if (res.status === 201) {
+                    $scope.showCustomCurrency = false;
+                    $scope.addCompanyCurrency(res.data.data);
+                    toastr.success('New custom currency has been created successfully');
+                }
+            }).catch(function (error) {
+                $scope.loadingCurrencies = false;
+                if(error.status == 403){
+                    errorHandler.handle403();
+                    return
+                }
+                errorToasts.evaluateErrors(error.data);
+            });
+        };
+
         $scope.next = function(){
             $scope.showConfirmCurrency = true;
         };
@@ -74,6 +101,10 @@
         $scope.back = function(){
             $scope.showConfirmCurrency = false;
         };
+
+        $scope.toggleCustomCurrencyView = function () {
+            $scope.showCustomCurrency = !$scope.showCustomCurrency;
+        }
 
     }
 })();

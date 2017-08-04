@@ -1,6 +1,6 @@
 <div ng-hide="loadingCurrencies" ba-panel ba-panel-title="Confirm currency">
     <h5 class="divider">You are about to add <strong>{{addCurrency.currencyChoice.code}}</strong> to your dashboard</h5>
-    <button class="btn btn-primary pull-right left-margin-12" ng-click="addCompanyCurrency()">Confirm</button>
+    <button class="btn btn-primary pull-right left-margin-12" ng-click="addCompanyCurrency(addCurrency.currencyChoice)">Confirm</button>
     <button ng-click="back()" class="btn btn-primary pull-right" >Back</button>
 </div>
 <div ba-panel ng-show="loadingCurrencies">
