@@ -4,7 +4,7 @@
             <h1>Welcome to Rehive.</h1>
             <p>Please tell us more about you.</p>
         </div>
-        <div class="company-name-request-text divider">
+        <div class="company-name-request-text divider" ng-keydown="($event.keyCode === 13) && company.name && updateCompanyInfo()">
             <p>What is your company's name?</p>
             <input class="form-control" ng-model="company.name" type="text" placeholder="Company name">
         </div>

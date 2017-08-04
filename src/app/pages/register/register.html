@@ -4,39 +4,50 @@
         <a href="/#/login" class="auth-link">Already have a Rehive account? Sign in!</a>
 
         <form name="registerForm" class="form-horizontal">
-            <div class="form-group">
-                <div class="col-sm-12">
-                    <input type="text" ng-model="registerData.first_name" class="form-control" id="firstName" placeholder="First name*" required>
+            <div ng-show="havePersonalDetails" ng-hide="havePersonalDetails">
+                <div class="form-group">
+                    <div class="col-sm-12">
+                        <input type="text" ng-model="registerData.first_name" class="form-control" id="firstName" placeholder="First name*" auto-focus="!havePersonalDetails" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-12">
+                        <input type="text" ng-model="registerData.last_name" class="form-control" id="lastName" placeholder="Last name*" required>
+                    </div>
+                </div>
+                <div class="row form-group">
+                    <div class="col-sm-12">
+                        <button ng-disabled="!registerData.last_name || !registerData.first_name" ng-click="havePersonalDetails = true" class="btn btn-primary btn-auth pull-right">Next</button>
+                    </div>
                 </div>
             </div>
-            <div class="form-group">
-                <div class="col-sm-12">
-                    <input type="text" ng-model="registerData.last_name" class="form-control" id="lastName" placeholder="Last name*" required>
+            <div ng-show="havePersonalDetails" ng-keydown="($event.keyCode === 13) && registerForm.$valid && registerUser()">
+                <i class="register-note">Note: The information given here will be used as your login credentials.</i>
+                <div class="form-group">
+                    <div class="col-sm-12">
+                        <input type="email" ng-model="registerData.email" class="form-control" id="inputEmail1" placeholder="Email*" auto-focus="havePersonalDetails">
+                    </div>
                 </div>
-            </div>
-            <div class="form-group">
-                <div class="col-sm-12">
-                    <input type="email" ng-model="registerData.email" class="form-control" id="inputEmail1" placeholder="Email*" required>
+                <div class="form-group">
+                    <div class="col-sm-12">
+                        <input type="text" ng-change="fixformat(company)" ng-model="registerData.company" class="form-control" id="inputName1" placeholder="Choose a unique ID for your company, Eg: best_company*" required>
+                    </div>
                 </div>
-            </div>
-            <div class="form-group">
-                <div class="col-sm-12">
-                    <input type="text" ng-change="fixformat(company)" ng-model="registerData.company" class="form-control" id="inputName1" placeholder="Choose a unique ID for your company*" required>
+                <div class="form-group">
+                    <div class="col-sm-12">
+                        <input type="password" ng-model="registerData.password1" class="form-control" id="inputPassword1" placeholder="Password*" required>
+                    </div>
                 </div>
-            </div>
-            <div class="form-group">
-                <div class="col-sm-12">
-                    <input type="password" ng-model="registerData.password1" class="form-control" id="inputPassword1" placeholder="Password*" required>
+                <div class="form-group">
+                    <div class="col-sm-12">
+                        <input type="password" ng-model="registerData.password2" class="form-control" id="inputPassword2" placeholder="Retype password*" required>
+                    </div>
                 </div>
-            </div>
-            <div class="form-group">
-                <div class="col-sm-12">
-                    <input type="password" ng-model="registerData.password2" class="form-control" id="inputPassword2" placeholder="Retype password*" required>
-                </div>
-            </div>
-            <div class="form-group">
-                <div class="col-sm-12">
-                    <button ng-disabled="!registerForm.$valid" ng-click="registerUser()" class="btn btn-primary btn-auth pull-right">Sign up</button>
+                <div class="form-group">
+                    <div class="col-sm-12">
+                        <button ng-disabled="!registerForm.$valid" ng-click="registerUser()" class="btn btn-primary btn-auth pull-right">Sign up</button>
+                        <a ng-click="havePersonalDetails = false" class="forgot-pass pull-left pointer">Back</a>
+                    </div>
                 </div>
             </div>
         </form>

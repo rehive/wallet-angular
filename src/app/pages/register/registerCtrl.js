@@ -8,6 +8,7 @@
     function RegisterCtrl($rootScope,$scope,$http,toastr,environmentConfig,errorToasts,$location,cookieManagement) {
 
         //var vm = this;
+        $scope.havePersonalDetails = false;
         $scope.registerData = {
             first_name: '',
             last_name: '',
