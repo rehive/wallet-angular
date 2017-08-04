@@ -10,6 +10,7 @@
         var vm = this;
         vm.token = cookieManagement.getCookie('TOKEN');
         vm.serviceUrl = cookieManagement.getCookie('SERVICEURL');
+        $scope.serviceSetupParams = {};
         $scope.loadingStellarService = true;
 
         $scope.getReceiveAccounts = function () {
@@ -56,16 +57,21 @@
         };
         $scope.getSendAccounts();
 
-        $scope.saveReceiveAccount = function (address,secret_key) {
+        $scope.saveReceiveAccount = function (serviceSetupParams) {
             $scope.loadingStellarService = true;
-            $http.post(vm.serviceUrl + 'admin/receive_accounts/',{address: address,default: true}, {
+            $http.post(vm.serviceUrl + 'admin/receive_accounts/',
+                {
+                    address: serviceSetupParams.address,
+                    default: true,
+                    federation_domain: serviceSetupParams.federation_domain
+                }, {
                 headers: {
                     'Content-Type': 'application/json',
                     'Authorization': vm.token
                 }
             }).then(function (res) {
                 if (res.status === 201) {
-                    $scope.saveSendAccount(secret_key);
+                    $scope.saveSendAccount(serviceSetupParams.secret_key);
                 }
             }).catch(function (error) {
                 $scope.loadingStellarService = false;
