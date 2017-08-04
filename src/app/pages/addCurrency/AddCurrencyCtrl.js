@@ -26,13 +26,9 @@
                     }
                 }).then(function (res) {
                     if (res.status === 200) {
-                        if($rootScope.selectedCurrency && $rootScope.selectedCurrency.code){
-                            $scope.addCurrency.currencyChoice = res.data.data.results.find(function (currency) {
-                                return currency.code == $rootScope.selectedCurrency.code
-                            });
-                        } else {
-                            $scope.addCurrency.currencyChoice = res.data.data.results[0];
-                        }
+                        $scope.addCurrency.currencyChoice = res.data.data.results.find(function (currency) {
+                            return currency.code == 'USD';
+                        });
                         $scope.currencyOptions = res.data.data.results;
                         $scope.loadingCurrencies = false;
                     }
