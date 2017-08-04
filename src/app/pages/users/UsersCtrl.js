@@ -5,13 +5,17 @@
         .controller('UsersCtrl', UsersCtrl);
 
     /** @ngInject */
-    function UsersCtrl($rootScope,$scope,environmentConfig,$http,cookieManagement,errorToasts,$window,errorHandler) {
+    function UsersCtrl($rootScope,$scope,environmentConfig,$http,cookieManagement,errorToasts,Upload,$window,toastr,errorHandler) {
 
         var vm = this;
         vm.token = cookieManagement.getCookie('TOKEN');
         vm.currenciesList = JSON.parse($window.sessionStorage.currenciesList || '[]');
         $scope.usersStateMessage = '';
         $scope.users = [];
+        $scope.creatingUser = false;
+        $scope.newUserParams = {
+            nationality: "US"
+        };
 
         $scope.usersPagination = {
             itemsPerPage: 25,
@@ -107,5 +111,40 @@
             });
         };
         $scope.getAllUsers();
+
+        $scope.addNewUser = function (newUserParams) {
+            $scope.loadingUsers = true;
+            Upload.upload({
+                url: environmentConfig.API + '/admin/users/',
+                data: newUserParams,
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': vm.token},
+                method: "POST"
+            }).then(function (res) {
+                if (res.status === 201) {
+                    $scope.newUserParams = {
+                        nationality: "US"
+                    };
+                    $scope.toggleAddUserView();
+                    $scope.getAllUsers();
+                    toastr.success('User successfully added');
+                }
+            }).catch(function (error) {
+                $scope.loadingUsers = false;
+                if(error.status == 403){
+                    errorHandler.handle403();
+                    return
+                }
+                errorToasts.evaluateErrors(error.data);
+            });
+        };
+
+        $scope.toggleAddUserView = function () {
+            $scope.creatingUser = !$scope.creatingUser;
+            $scope.newUserParams = {
+                nationality: "US"
+            };
+        }
     }
 })();
