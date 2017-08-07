@@ -2,7 +2,7 @@ $text-color: #494242;
 
 .form-control, .form-control:focus {
   @include placeholderStyle($text-color, 0.5);
-  padding: 15px 10px;
+  padding: 19px 10px;
   border-radius: 2px;
   color: $text-color;
 }
@@ -18,7 +18,7 @@ $text-color: #494242;
 }
 
 .auth-block {
-  width: 500px;
+  width: 454px;
   margin: 7% auto;
   background-color: white;
   border-radius: 0;

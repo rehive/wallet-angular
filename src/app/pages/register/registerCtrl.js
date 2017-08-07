@@ -19,22 +19,22 @@
         };
 
         $scope.registerUser = function() {
-            //$rootScope.$pageFinishedLoading = false;
-            //$http.post(environmentConfig.API + '/auth/company/register/', $scope.registerData)
-            //    .then(function (res) {
-            //        if (res.status === 201) {
-            //            cookieManagement.setCookie('TOKEN','Token ' + res.data.data.token);
-            //            $rootScope.$pageFinishedLoading = true;
-            //            $rootScope.userVerified = false;
-            //            $rootScope.newUser = true;
-            //        $location.path('/verification');
-            //        } else {
-            //
-            //        }
-            //}).catch(function (error) {
-            //    $rootScope.$pageFinishedLoading = true;
-            //    errorToasts.evaluateErrors(error.data);
-            //});
+            $rootScope.$pageFinishedLoading = false;
+            $http.post(environmentConfig.API + '/auth/company/register/', $scope.registerData)
+                .then(function (res) {
+                    if (res.status === 201) {
+                        cookieManagement.setCookie('TOKEN','Token ' + res.data.data.token);
+                        $rootScope.$pageFinishedLoading = true;
+                        $rootScope.userVerified = false;
+                        $rootScope.newUser = true;
+                    $location.path('/verification');
+                    } else {
+
+                    }
+            }).catch(function (error) {
+                $rootScope.$pageFinishedLoading = true;
+                errorToasts.evaluateErrors(error.data);
+            });
         };
 
         $scope.fixformat = function(){

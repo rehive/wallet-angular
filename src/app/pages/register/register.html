@@ -5,38 +5,48 @@
     <div class="auth-block text-center">
         <h1>Sign up</h1>
         <form name="registerForm" class="form-horizontal">
-                <div class="form-group row">
-                    <div class="col-lg-6 col-md-6 col-sm-6">
-                        <input type="text" ng-model="registerData.first_name" class="form-control" id="firstName" placeholder="First name" auto-focus="!havePersonalDetails" required>
-                    </div>
-                    <div class="col-lg-6 col-md-6 col-sm-6">
-                        <input type="text" ng-model="registerData.last_name" class="form-control" id="lastName" placeholder="Last name" required>
-                    </div>
+            <div class="form-group row personal-details-div">
+                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 personal-details-left">
+                    <input type="text" ng-model="registerData.first_name" class="form-control" id="firstName" placeholder="First name"  required>
                 </div>
-                <div class="form-group">
-                    <div class="col-lg-12 col-md-12 col-sm-12">
-                        <input type="email" ng-model="registerData.email" class="form-control" id="inputEmail1" placeholder="Email" required>
-                    </div>
+                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 personal-details-right">
+                    <input type="text" ng-model="registerData.last_name" class="form-control" id="lastName" placeholder="Last name" required>
                 </div>
-                <div class="form-group">
-                    <div class="col-lg-12 col-md-12 col-sm-12">
-                        <input type="password" ng-model="registerData.password" class="form-control" id="inputPassword1" placeholder="Choose a password" required>
-                    </div>
+            </div>
+            <div class="form-group">
+                <div class="col-lg-12 col-md-12 col-sm-12">
+                    <input type="email" ng-model="registerData.email" class="form-control" id="inputEmail1" placeholder="Email" required>
                 </div>
-                <div class="form-group row">
-                    <div class="col-lg-6 col-md-6 col-sm-6 register-country-select">
-                        <label class="pull-left register-country-select-label">Select your country</label>
-                    </div>
-                    <div class="col-lg-6 col-md-6 col-sm-6 register-country-select">
-                        <country-select class="form-control custom-form-control pointer" ng-model="registerData.nationality"></country-select>
-                    </div>
+            </div>
+            <div class="form-group">
+                <div class="col-lg-12 col-md-12 col-sm-12">
+                    <input type="password" ng-model="registerData.password" class="form-control" id="inputPassword1" placeholder="Choose a password" required>
                 </div>
-                <div class="form-group">
-                    <div class="col-sm-12">
-                        <button  ng-click="registerUser()" class="btn btn-primary btn-auth pull-right">Sign up</button>
-                    </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-lg-5 col-md-5 col-sm-5 register-country-select">
+                    <label class="pull-left register-country-select-label">Select your country</label>
                 </div>
+                <div class="col-lg-7 col-md-7 col-sm-7">
+                    <country-select class="form-control pointer" ng-model="registerData.nationality" required></country-select>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-lg-12 col-md-12 col-sm-12">
+                    <label  class="checkbox-inline custom-checkbox">
+                        <input type="checkbox" ng-model="registerData.age" ng-checked="registerData.age" required>
+                        <span>I certify that I am 18 years or older, and I agree to the User Agreement and Privacy Policy</span>
+                    </label>
+                </div>
+            </div>
+            <br>
+            <br>
+            <br>
+            <div class="form-group">
+                <div class="col-sm-12">
+                    <button ng-disabled="!registerForm.$valid" ng-click="registerUser()" class="btn btn-primary btn-block btn-auth pull-right">Create account</button>
+                </div>
+            </div>
         </form>
     </div>
 </div>
-<!--ng-disabled="!registerForm.$valid"-->
