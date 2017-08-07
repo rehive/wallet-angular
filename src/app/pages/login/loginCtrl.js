@@ -10,6 +10,7 @@
         var vm = this;
         cookieManagement.deleteCookie('TOKEN');
         $scope.gotCompanyName = false;
+        $scope.path = $location.path();
 
         $scope.login = function(user, company, password) {
             $rootScope.$pageFinishedLoading = false;

@@ -1,0 +1,35 @@
+.auth-nav{
+  background-color: $primary;
+  height: 60px;
+  width: 100%;
+  display: table;
+}
+
+.auth-nav-cell{
+  display: table-cell;
+  vertical-align: middle;
+}
+
+.auth-nav > .auth-nav-cell > a > .auth-nav-buttons {
+  margin-right: 20px;
+  padding: 5px;
+  width: 70px;
+  background-color: $primary;
+  &:hover{
+    border: 1px solid white;
+    border-radius: 2px;
+  }
+  &:active{
+    border: 1px solid white;
+    border-radius: 2px;
+  }
+  &:focus{
+    border: 1px solid white;
+    border-radius: 2px;
+  }
+}
+
+.auth-nav > .auth-nav-cell > a > .active-auth-nav{
+  border: 1px solid white;
+  border-radius: 2px;
+}

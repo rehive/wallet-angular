@@ -1,55 +1,42 @@
+<div>
+    <auth-navigation></auth-navigation>
+</div>
 <div class="auth-main">
     <div class="auth-block text-center">
         <h1>Sign up</h1>
-        <a href="/#/login" class="auth-link">Already have a Rehive account? Sign in!</a>
-
         <form name="registerForm" class="form-horizontal">
-            <div ng-show="havePersonalDetails" ng-hide="havePersonalDetails">
-                <div class="form-group">
-                    <div class="col-sm-12">
-                        <input type="text" ng-model="registerData.first_name" class="form-control" id="firstName" placeholder="First name*" auto-focus="!havePersonalDetails" required>
+                <div class="form-group row">
+                    <div class="col-lg-6 col-md-6 col-sm-6">
+                        <input type="text" ng-model="registerData.first_name" class="form-control" id="firstName" placeholder="First name" auto-focus="!havePersonalDetails" required>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-6">
+                        <input type="text" ng-model="registerData.last_name" class="form-control" id="lastName" placeholder="Last name" required>
                     </div>
                 </div>
                 <div class="form-group">
-                    <div class="col-sm-12">
-                        <input type="text" ng-model="registerData.last_name" class="form-control" id="lastName" placeholder="Last name*" required>
-                    </div>
-                </div>
-                <div class="row form-group">
-                    <div class="col-sm-12">
-                        <button ng-disabled="!registerData.last_name || !registerData.first_name" ng-click="havePersonalDetails = true" class="btn btn-primary btn-auth pull-right">Next</button>
-                    </div>
-                </div>
-            </div>
-            <div ng-show="havePersonalDetails" ng-keydown="($event.keyCode === 13) && registerForm.$valid && registerUser()">
-                <i class="register-note">Note: The information given here will be used as your login credentials.</i>
-                <div class="form-group">
-                    <div class="col-sm-12">
-                        <input type="email" ng-model="registerData.email" class="form-control" id="inputEmail1" placeholder="Email*" auto-focus="havePersonalDetails">
+                    <div class="col-lg-12 col-md-12 col-sm-12">
+                        <input type="email" ng-model="registerData.email" class="form-control" id="inputEmail1" placeholder="Email" required>
                     </div>
                 </div>
                 <div class="form-group">
-                    <div class="col-sm-12">
-                        <input type="text" ng-change="fixformat(company)" ng-model="registerData.company" class="form-control" id="inputName1" placeholder="Choose a unique ID for your company, Eg: best_company*" required>
+                    <div class="col-lg-12 col-md-12 col-sm-12">
+                        <input type="password" ng-model="registerData.password" class="form-control" id="inputPassword1" placeholder="Choose a password" required>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-lg-6 col-md-6 col-sm-6 register-country-select">
+                        <label class="pull-left register-country-select-label">Select your country</label>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-6 register-country-select">
+                        <country-select class="form-control custom-form-control pointer" ng-model="registerData.nationality"></country-select>
                     </div>
                 </div>
                 <div class="form-group">
                     <div class="col-sm-12">
-                        <input type="password" ng-model="registerData.password1" class="form-control" id="inputPassword1" placeholder="Password*" required>
+                        <button  ng-click="registerUser()" class="btn btn-primary btn-auth pull-right">Sign up</button>
                     </div>
                 </div>
-                <div class="form-group">
-                    <div class="col-sm-12">
-                        <input type="password" ng-model="registerData.password2" class="form-control" id="inputPassword2" placeholder="Retype password*" required>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <div class="col-sm-12">
-                        <button ng-disabled="!registerForm.$valid" ng-click="registerUser()" class="btn btn-primary btn-auth pull-right">Sign up</button>
-                        <a ng-click="havePersonalDetails = false" class="forgot-pass pull-left pointer">Back</a>
-                    </div>
-                </div>
-            </div>
         </form>
     </div>
 </div>
+<!--ng-disabled="!registerForm.$valid"-->

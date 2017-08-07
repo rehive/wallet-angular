@@ -2,7 +2,8 @@ $text-color: #494242;
 
 .form-control, .form-control:focus {
   @include placeholderStyle($text-color, 0.5);
-  border-radius: 0;
+  padding: 15px 10px;
+  border-radius: 2px;
   color: $text-color;
 }
 .form-control[disabled], .form-control[readonly], fieldset[disabled] .form-control {
@@ -17,15 +18,16 @@ $text-color: #494242;
 }
 
 .auth-block {
-  width: 380px;
+  width: 500px;
   margin: 7% auto;
-  border-radius: 5px;
+  background-color: white;
+  border-radius: 0;
   color: #000;
-  padding: 20px;
+  padding: 0 20px 7px 20px;
   h1 {
     font-weight: $font-light;
     margin-bottom: 20px;
-    text-align: center;
+    text-align: left;
   }
   p {
     font-size: 16px;
