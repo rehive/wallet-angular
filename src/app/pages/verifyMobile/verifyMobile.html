@@ -1,0 +1,25 @@
+<div>
+    <auth-navigation></auth-navigation>
+</div>
+<div class="auth-main">
+    <div class="auth-block text-center">
+        <h1>Verify mobile number</h1>
+        
+
+        <form class="form-horizontal">
+          <div ng-hide="gotCompanyName">
+            <div class="row form-group">
+                <div class="col-sm-12 input-block">
+                    <input class="mobile-number" type="text" ng-model="tel" ng-intl-tel-input>
+                </div>
+            </div>
+            <div class="row form-group">
+              <div class="col-sm-12">
+                  <button ng-disabled="!tel" ng-click="gotCompanyName = true" class="btn btn-primary btn-auth pull-right">Next</button>
+              </div>
+            </div>
+          </div>
+        </form>
+
+    </div>
+</div>

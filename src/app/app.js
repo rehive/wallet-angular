@@ -11,10 +11,13 @@ angular.module('BlurAdmin', [
     'toastr',
     'countrySelect',
     'iso-3166-country-codes',
-
+    'ngIntlTelInput',
     'BlurAdmin.theme',
     'BlurAdmin.pages'
 ])
+    .config(function (ngIntlTelInputProvider) {
+        ngIntlTelInputProvider.set({utilsScript: 'https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/12.0.1/js/utils.js'});
+    })
 
     .run(function($cookies,$rootScope,cookieManagement,$state,$stateParams,errorHandler,errorToasts,
                   userVerification,$http,environmentConfig,$window,$location,_){
@@ -114,7 +117,7 @@ angular.module('BlurAdmin', [
                     $rootScope.gotToken = true;
                     $rootScope.securityConfigured = true;
                 } else if(newUrlLastElement == 'register' || newUrlLastElement == 'reset'
-                    || newUrlLastElement == 'verification' || newUrlLastElement == 'name_request'){
+                    || newUrlLastElement == 'verification' || newUrlLastElement == 'name_request' || newUrl.indexOf('mobile/verify') > 0 || newUrl.indexOf('mobile/confirm') > 0){
                     $rootScope.securityConfigured = true;
                 } else if(newUrl.indexOf('reset/confirm') > 0 || newUrl.indexOf('email/verify') > 0){
                     $rootScope.securityConfigured = true;

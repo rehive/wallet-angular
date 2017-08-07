@@ -13,7 +13,9 @@
     'BlurAdmin.pages.login',
     'BlurAdmin.pages.register',
     'BlurAdmin.pages.verification',
-    'BlurAdmin.pages.companyNameRequest'
+    'BlurAdmin.pages.companyNameRequest',
+    'BlurAdmin.pages.verifyMobile',
+    'BlurAdmin.pages.confirmMobile'
   ])
       .config(routeConfig);
 
