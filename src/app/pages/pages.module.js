@@ -12,7 +12,7 @@
     'BlurAdmin.pages.transactions',
     'BlurAdmin.pages.login',
     'BlurAdmin.pages.register',
-    'BlurAdmin.pages.verification',
+    'BlurAdmin.pages.emailVerify',
     'BlurAdmin.pages.companyNameRequest'
   ])
       .config(routeConfig);
