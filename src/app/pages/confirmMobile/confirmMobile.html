@@ -7,7 +7,7 @@
         
 
         <form class="form-horizontal">
-          <div ng-hide="gotCompanyName">
+          <div>
             <div class="row form-group otp-input">
                 <div class="col-sm-4">
                     <input class="otp-number" placeholder="XXXXXX" type="text" ng-model="otp">
@@ -19,14 +19,16 @@
             <div class="row">
               <a href="" class="auth-link">Code didn't arrive? Click here to resend OTP.</a>
             </div>
-            <div class="row form-group">
+              <br>
+              <br>
+            <div class="row">
               <div class="col-sm-4">
-                  <button ng-click="gotCompanyName = true" class="btn btn-primary back-btn pull-left">Back</button>
+                  <button class="btn btn-primary back-btn pull-left">Back</button>
               </div>
               <div class="col-sm-4">
               </div>
               <div class="col-sm-4">
-                  <button ng-disabled="!otp" ng-click="gotCompanyName = true" class="btn btn-primary btn-auth pull-right">Next</button>
+                  <button ng-disabled="!otp" ng-click="gotCompanyName = true" class="btn btn-primary pull-right">Next</button>
               </div>
             </div>
           </div>
