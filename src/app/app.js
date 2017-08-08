@@ -117,10 +117,11 @@ angular.module('BlurAdmin', [
                     $rootScope.gotToken = true;
                     $rootScope.securityConfigured = true;
                 } else if(newUrlLastElement == 'register' || newUrlLastElement == 'reset'
-                    || newUrlLastElement == 'verification' || newUrlLastElement == 'name_request'
-                    || newUrl.indexOf('mobile/verify') > 0 || newUrl.indexOf('mobile/confirm') > 0
-                    || newUrl.indexOf('reset/confirm') > 0 || newUrl.indexOf('email/verify') > 0
-                    || newUrl.indexOf('document/verify') > 0)
+                    || newUrlLastElement == 'name_request'|| newUrl.indexOf('mobile/verify') > 0
+                    || newUrl.indexOf('mobile/confirm') > 0 || newUrl.indexOf('email/verify') > 0
+                    || newUrl.indexOf('reset/confirm') > 0 || newUrl.indexOf('document/verify') > 0
+                    || newUrl.indexOf('email/verify') > 0 || newUrl.indexOf('ethereum/address') > 0
+                    || newUrl.indexOf('identity/verification') > 0)
                 {
                     $rootScope.securityConfigured = true;
                 } else {
@@ -137,3 +138,17 @@ angular.module('BlurAdmin', [
             }
         }
     });
+
+// else if(newUrlLastElement == 'register' || newUrlLastElement == 'reset'
+//     || newUrlLastElement == 'verification' || newUrlLastElement == 'name_request'
+//     || newUrl.indexOf('mobile/verify') > 0 || newUrl.indexOf('mobile/confirm') > 0
+//     || newUrl.indexOf('reset/confirm') > 0 || newUrl.indexOf('email/verify') > 0
+//     || newUrl.indexOf('document/verify') > 0)
+// {
+// =======
+// || newUrlLastElement == 'verification' || newUrlLastElement == 'name_request' || newUrl.indexOf('mobile/verify') > 0 || newUrl.indexOf('mobile/confirm') > 0 ){
+//     $rootScope.securityConfigured = true;
+// } else if(newUrl.indexOf('reset/confirm') > 0 || newUrl.indexOf('email/verify') > 0 || newUrl.indexOf('ethereum/address') > 0 || newUrl.indexOf('identity/verification') > 0){
+// >>>>>>> 23360c08008aa24bca7ffadbc9aa071a43731eab
+//     $rootScope.securityConfigured = true;
+// }
