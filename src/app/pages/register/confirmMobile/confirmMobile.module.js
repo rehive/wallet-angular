@@ -11,7 +11,7 @@
                 url: '/mobile/confirm',
                 views:{
                 'admin':{
-                templateUrl: 'app/pages/confirmMobile/confirmMobile.html',
+                templateUrl: 'app/pages/register/confirmMobile/confirmMobile.html',
                 controller: 'ConfirmMobileCtrl'
                         }
                     }
