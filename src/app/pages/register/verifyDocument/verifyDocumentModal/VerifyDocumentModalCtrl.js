@@ -1,7 +1,7 @@
 (function () {
     'use strict';
 
-    angular.module('BlurAdmin.pages.transactions.history')
+    angular.module('BlurAdmin.pages.verifyDocument')
         .controller('VerifyDocumentModalCtrl', VerifyDocumentModalCtrl);
 
     function VerifyDocumentModalCtrl($uibModalInstance,$http,$scope,errorToasts,toastr,document,$location,environmentConfig,cookieManagement) {

@@ -1,0 +1,36 @@
+<div ba-panel ba-panel-title="Latest transactions" ba-panel-class="with-scroll">
+    <div ng-show="transactions.length > 0" class="divider">
+    <table class="table table-condensed table-striped table-hover ">
+        <tr class="black-muted-bg">
+            <td><strong>From</strong></td>
+            <td><strong>Type</strong></td>
+            <td><strong>Subtype</strong></td>
+            <td><strong>Currency</strong></td>
+            <td><strong>Amount</strong></td>
+            <td><strong>Fee</strong></td>
+            <td><strong>Status</strong></td>
+            <td><strong>Date</strong></td>
+        </tr>
+        <tr ng-repeat="transaction in transactions" data-toggle="modal"
+            ng-click="openModal('app/pages/home/latestTransactions/transactionModal/transactionModal.html', 'md',transaction)"
+            class="editable-row pointer">
+            <td><div title="{{transaction.user.email}}" class="transactions-list-element" ng-bind="transaction.user.email"></div></td>
+            <td><div title="{{transaction.tx_type}}" class="transactions-list-element" ng-bind="transaction.tx_type | capitalizeWord"></div></td>
+            <td><div title="{{transaction.subtype}}" class="transactions-list-element" ng-bind="transaction.subtype || 'None'"></div></td>
+            <td><div title="{{transaction.currency.code}}" class="transactions-list-element" ng-bind="transaction.currency.code"></div></td>
+            <td><div title="{{transaction.amount | currencyModifiersFilter: transaction.currency.divisibility | preciseRound: transaction.currency.divisibility}}" class="transactions-list-element" ng-bind="transaction.amount | currencyModifiersFilter: transaction.currency.divisibility | preciseRound: transaction.currency.divisibility"></div></td>
+            <td><div title="{{transaction.fee}}" class="transactions-list-element" ng-bind="transaction.fee"></div></td>
+            <td><div title="{{transaction.status}}" class="transactions-list-element" ng-bind="transaction.status"></div></td>
+            <td><div title="{{transaction.created | date:'mediumDate'}} {{transaction.created | date:'shortTime'}}" class="transactions-list-element">
+              {{transaction.created | date:'mediumDate'}} {{transaction.created | date:'shortTime'}}</div></td>
+        </tr>
+    </table>
+    </div>
+    <div ng-show="transactions.length == 0">
+        <i ng-hide="transactionsStateMessage == ''" ng-bind="transactionsStateMessage"></i>
+        <loading-image ng-show="transactionsStateMessage == ''"></loading-image>
+    </div>
+    <div ng-show="transactions.length > 0" class="add-row-editable-table">
+        <button ng-mousedown="openViewInNewTab($event,'/#/transactions/history')" ng-click="goToAllTransactions()" class="btn btn-primary pull-right" >View All</button>
+    </div>
+</div>

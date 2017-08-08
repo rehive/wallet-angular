@@ -1,4 +1,4 @@
-$sidebar-width: 180px;
+$sidebar-width: 300px;
 $angle-left: "\f100";
 $angle-right: "\f101";
 
@@ -61,10 +61,11 @@ $angle-right: "\f101";
 }
 
 a.al-sidebar-list-link {
+  padding-left: 20px;
   display: block;
   height: 42px;
   text-shadow: none;
-  font-size: 13px;
+  font-size: 20px;
   text-decoration: none;
   color: $sidebar-text;
   line-height: 42px;
@@ -135,12 +136,12 @@ a.al-sidebar-list-link {
       text-shadow: none;
       font-size: 13px;
       text-decoration: none;
-      color: #8aa4af;
-      padding-left: 20px;
+      color: #505d54;
+      padding-left: 40px;
       height: auto;
       line-height: 29px;
       &:hover {
-        color: #ffffff;
+        color: $primary;
       }
     }
     &.selected:not(.with-sub-menu) > a {
@@ -162,8 +163,8 @@ a.al-sidebar-list-link {
   width: 4px;
   background: $primary;
   position: absolute;
-  top: -150px;
-  left: 176px;
+  top: -180px;
+  left: 296px;
   transition: all 0.5s ease;
   transition-property: top, height;
   height: 42px;

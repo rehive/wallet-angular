@@ -1,15 +1,15 @@
 .page-top {
-  background-color: $sidebar-top;
+  background-color: #62ab2c;
   position: fixed;
   z-index: 904;
-  box-shadow: 2px 0px 3px rgba(0, 0, 0, 0.5);
-  height: 50px;
+  box-shadow: 2px 0 3px rgba(0, 0, 0, 0.5);
+  height: 67px;
   width: 100%;
   min-width: $resMin;
   padding: 0 4px 0 17px;
 
   &.scrolled {
-    background-color: rgba(60, 141, 188, 0.85)
+    background-color: rgba(98, 171, 144, 0.9)
   }
 }
 

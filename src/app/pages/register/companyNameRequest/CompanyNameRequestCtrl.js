@@ -60,7 +60,7 @@
                         } else {
                             $rootScope.newUser = false;
                             toastr.success('You have successfully updated the company info!');
-                            $location.path('/dashboard');
+                            $location.path('/home');
                         }
                         $rootScope.$pageFinishedLoading = true;
                     }

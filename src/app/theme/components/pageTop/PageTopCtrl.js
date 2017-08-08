@@ -7,61 +7,8 @@
     /** @ngInject */
     function PageTopCtrl($rootScope,$scope,$http,cookieManagement,environmentConfig,$location,errorToasts,$window,errorHandler,_) {
         var vm = this;
-
         vm.token = cookieManagement.getCookie('TOKEN');
-        $scope.currencies = [];
-        vm.currentLocation = $location.path();
-        $rootScope.$on('$locationChangeStart', function (event,newUrl) {
-            var newUrlArray = newUrl.split('/'),
-                newUrlLastElement = _.last(newUrlArray);
-            vm.currentLocation = newUrlLastElement;
-        });
-
-
-        $rootScope.$watch('selectedCurrency',function(){
-            if($rootScope.selectedCurrency && $rootScope.selectedCurrency.code) {
-              vm.token = cookieManagement.getCookie('TOKEN');
-              vm.getCompanyCurrencies();
-            }
-        });
-
-        vm.getCompanyCurrencies = function(){
-            if(vm.token){
-                $http.get(environmentConfig.API + '/admin/currencies/?enabled=true', {
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'Authorization': vm.token
-                    }
-                }).then(function (res) {
-                    if (res.status === 200) {
-                        if(!$rootScope.selectedCurrency){
-                            $rootScope.selectedCurrency = res.data.data.results[0];
-                        }
-                        $scope.currencies = res.data.data.results;
-                        $window.sessionStorage.currenciesList = JSON.stringify(res.data.data.results);
-                        if(res.data.data.results.length == 0){
-                            $rootScope.newUser = true;
-                        } else {
-                            $rootScope.newUser = false;
-                        }
-                    }
-                }).catch(function (error) {
-                    if(error.status == 403){
-                        errorHandler.handle403();
-                        return
-                    }
-                    errorToasts.evaluateErrors(error.data);
-                });
-            }
-        };
-
-        if(vm.currentLocation != '/login' && vm.currentLocation != '/verification' && vm.currentLocation != '/company/name_request' && vm.currentLocation != '/register' && vm.currentLocation != '/password/reset'){
-            vm.getCompanyCurrencies();
-        }
-
-        $scope.selectCurrency = function(selectedCurrency){
-            $rootScope.selectedCurrency = selectedCurrency;
-        };
+        $scope.user = {first_name: 'Marcus',last_name: 'Dold'};
 
         $scope.logout = function(){
             $rootScope.selectedCurrency = null;

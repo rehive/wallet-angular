@@ -8,7 +8,7 @@
   angular.module('BlurAdmin.pages', [
     'ui.router',
     'BlurAdmin.pages.changePassword',
-    'BlurAdmin.pages.dashboard',
+    'BlurAdmin.pages.home',
     'BlurAdmin.pages.transactions',
     'BlurAdmin.pages.login',
     'BlurAdmin.pages.register',
@@ -23,7 +23,7 @@
 
   /** @ngInject */
   function routeConfig($urlRouterProvider, baSidebarServiceProvider) {
-    $urlRouterProvider.otherwise('/dashboard');
+    $urlRouterProvider.otherwise('/home');
   }
 
 })();

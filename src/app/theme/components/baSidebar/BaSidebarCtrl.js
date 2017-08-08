@@ -17,7 +17,7 @@
     $scope.hoverItem = function ($event) {
       $scope.showHoverElem = true;
       $scope.hoverElemHeight =  $event.currentTarget.clientHeight;
-      var menuTopValue = 50;
+      var menuTopValue = 67;
       $scope.hoverElemTop = $event.currentTarget.getBoundingClientRect().top - menuTopValue;
     };
 
