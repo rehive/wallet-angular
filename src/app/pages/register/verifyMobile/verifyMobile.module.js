@@ -11,7 +11,7 @@
                 url: '/mobile/verify',
                 views:{
                 'admin':{
-                templateUrl: 'app/pages/verifyMobile/verifyMobile.html',
+                templateUrl: 'app/pages/register/verifyMobile/verifyMobile.html',
                 controller: 'VerifyMobileCtrl'
                         }
                     }
