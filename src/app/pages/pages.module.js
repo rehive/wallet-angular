@@ -14,6 +14,7 @@
     'BlurAdmin.pages.register',
     'BlurAdmin.pages.companyNameRequest',
     'BlurAdmin.pages.verifyMobile',
+    'BlurAdmin.pages.verifyDocument',
     'BlurAdmin.pages.confirmMobile',
     'BlurAdmin.pages.emailVerify',
     'BlurAdmin.pages.companyNameRequest'
