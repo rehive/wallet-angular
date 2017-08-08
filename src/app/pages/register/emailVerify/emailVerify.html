@@ -1,0 +1,17 @@
+<div>
+    <auth-navigation></auth-navigation>
+</div>
+<div class="auth-main">
+    <div class="auth-block">
+        <div class="verification-text divider">
+            <div class="text-center divider">
+                <h1>Verify email</h1>
+            </div>
+            <p>We sent a verification email to {{user.email}}. Click the link to verify your email and get started.</p>
+            <br>
+            <a ng-click="resendEmail()" class="verification-link"><p>Email did not arrive? Click here to resent link.</p></a>
+        </div>
+        <button ng-disabled="verifyingEmail" ng-click="verifyUser()" class="btn btn-primary pull-right">Next</button>
+    </div>
+
+</div>

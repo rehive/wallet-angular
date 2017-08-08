@@ -1,6 +1,6 @@
 .auth-nav{
   background-color: $primary;
-  height: 60px;
+  height: 67px;
   width: 100%;
   display: table;
 }
@@ -32,4 +32,12 @@
 .auth-nav > .auth-nav-cell > a > .active-auth-nav{
   border: 1px solid white;
   border-radius: 2px;
+}
+
+.auth-nav > .auth-nav-cell > .auth-nav-user{
+  color: white;
+  font-size: 16px;
+  margin-right: 20px;
+  display: block;
+  vertical-align: middle;
 }

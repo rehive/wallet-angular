@@ -12,10 +12,11 @@
     'BlurAdmin.pages.transactions',
     'BlurAdmin.pages.login',
     'BlurAdmin.pages.register',
-    'BlurAdmin.pages.verification',
     'BlurAdmin.pages.companyNameRequest',
     'BlurAdmin.pages.verifyMobile',
-    'BlurAdmin.pages.confirmMobile'
+    'BlurAdmin.pages.confirmMobile',
+    'BlurAdmin.pages.emailVerify',
+    'BlurAdmin.pages.companyNameRequest'
   ])
       .config(routeConfig);
 

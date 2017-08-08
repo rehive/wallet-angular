@@ -3,12 +3,17 @@
   padding: 10px;
  & > p{
    color:#666;
-   font-size: 12px;
+   font-size: 14px;
   }
 }
 
 .verification-link{
   cursor: pointer;
+  & > p{
+    font-size: 14px;
+    font-weight: bold;
+    text-align: center;
+  }
 }
 
 .verification-button{

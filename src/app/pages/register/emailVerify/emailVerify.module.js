@@ -1,18 +1,18 @@
 (function () {
     'use strict';
 
-    angular.module('BlurAdmin.pages.verification', [])
+    angular.module('BlurAdmin.pages.emailVerify', [])
         .config(routeConfig);
 
     /** @ngInject */
     function routeConfig($stateProvider) {
         $stateProvider
-            .state('verification', {
-                url: '/verification',
+            .state('emailVerify', {
+                url: '/email/verify',
                 views:{
                     'admin':{
-                        templateUrl: 'app/pages/register/verification/verification.html',
-                        controller: 'VerificationCtrl'
+                        templateUrl: 'app/pages/register/emailVerify/emailVerify.html',
+                        controller: 'EmailVerifyCtrl'
                     }
                 }
             });

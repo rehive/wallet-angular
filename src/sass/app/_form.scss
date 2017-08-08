@@ -55,6 +55,9 @@
 
 select.form-control {
   padding: 6px 12px;
+  &:focus{
+    padding: 6px 12px;
+  }
 }
 
 textarea.form-control {
@@ -257,6 +260,7 @@ textarea.form-control {
 
 label.custom-checkbox {
   padding-right: 0;
+  text-align: start;
   padding-left: 0;
   margin-bottom: 0;
   & > input {
@@ -291,6 +295,7 @@ label.custom-checkbox {
     font-weight: $font-light;
     cursor: pointer;
     padding-left: 22px;
+    left: 20px;
     width: 100%;
     &:before {
       cursor: pointer;
@@ -310,6 +315,7 @@ label.custom-checkbox {
       margin-right: 6px;
       position: relative;
       top: 0;
+      left: -20px;
       margin-left: -22px;
       float: left;
     }
