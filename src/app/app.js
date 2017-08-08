@@ -117,9 +117,9 @@ angular.module('BlurAdmin', [
                     $rootScope.gotToken = true;
                     $rootScope.securityConfigured = true;
                 } else if(newUrlLastElement == 'register' || newUrlLastElement == 'reset'
-                    || newUrlLastElement == 'verification' || newUrlLastElement == 'name_request' || newUrl.indexOf('mobile/verify') > 0 || newUrl.indexOf('mobile/confirm') > 0){
+                    || newUrlLastElement == 'verification' || newUrlLastElement == 'name_request' || newUrl.indexOf('mobile/verify') > 0 || newUrl.indexOf('mobile/confirm') > 0 ){
                     $rootScope.securityConfigured = true;
-                } else if(newUrl.indexOf('reset/confirm') > 0 || newUrl.indexOf('email/verify') > 0){
+                } else if(newUrl.indexOf('reset/confirm') > 0 || newUrl.indexOf('email/verify') > 0 || newUrl.indexOf('ethereum/address') > 0 || newUrl.indexOf('identity/verification') > 0){
                     $rootScope.securityConfigured = true;
                 } else {
                     $rootScope.securityConfigured = true;

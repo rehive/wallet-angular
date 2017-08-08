@@ -1,0 +1,71 @@
+<div>
+    <auth-navigation></auth-navigation>
+</div>
+<div class="auth-main">
+    <div class="identity-block text-center">
+        <h1>Identity verification <span class="identity-title">| Basic information</span></h1>
+        
+        <div class="identity-form">
+          <form class="form">
+            <div ng-hide="gotCompanyName">
+              <div class="row form-group">
+                <div class="col-sm-3 itentity-label">
+                      <p>Legal name</p>
+                </div>
+                <div class="col-sm-9">
+                    <div class="col-sm-6">
+                      <input class="form-control"  placeholder="First name" type="text" ng-model="ethereum">
+                    </div>
+                    <div class="col-sm-6">
+                      <input class="form-control"  placeholder="Last name" type="text" ng-model="ethereum">
+                    </div>
+                </div>
+              </div>
+              <div class="row form-group">
+                <div class="col-sm-3 itentity-label">
+                      <p>Date of birth</p>
+                </div>
+                <div class="col-sm-9">
+                    <div class="col-sm-4">
+                      <input class="form-control"  placeholder="Month" type="text" ng-model="ethereum">
+                    </div>
+                    <div class="col-sm-4">
+                      <input class="form-control"  placeholder="Day" type="text" ng-model="ethereum">
+                    </div>
+                    <div class="col-sm-4">
+                      <input class="form-control"  placeholder="Year" type="text" ng-model="ethereum">
+                    </div>
+                </div>
+              </div>
+              <div class="row form-group">
+                <div class="col-sm-3 itentity-label">
+                      <p>Address</p>
+                </div>
+                <div class="col-sm-9">
+                    <div class="col-sm-12 input-block">
+                      <input class="form-control"  placeholder="Line 1" type="text" ng-model="ethereum">
+                    </div>
+                    <div class="col-sm-12 input-block">
+                      <input class="form-control"  placeholder="Line 2" type="text" ng-model="ethereum">
+                    </div>
+                    <div class="col-sm-12 input-block">
+                      <input class="form-control"  placeholder="Country" type="text" ng-model="ethereum">
+                    </div>
+                    <div class="col-sm-8">
+                      <input class="form-control"  placeholder="City" type="text" ng-model="ethereum">
+                    </div>
+                    <div class="col-sm-4">
+                      <input class="form-control"  placeholder="Zip" type="text" ng-model="ethereum">
+                    </div>
+                    <div class="col-sm-12">
+                      <button class="btn btn-primary identity-button">Next</button>
+                    </div>
+                    
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+
+    </div>
+</div>

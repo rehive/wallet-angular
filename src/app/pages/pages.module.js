@@ -16,7 +16,9 @@
     'BlurAdmin.pages.verifyMobile',
     'BlurAdmin.pages.confirmMobile',
     'BlurAdmin.pages.emailVerify',
-    'BlurAdmin.pages.companyNameRequest'
+    'BlurAdmin.pages.companyNameRequest',
+    'BlurAdmin.pages.ethereumAddress',
+    'BlurAdmin.pages.identityVerification'
   ])
       .config(routeConfig);
 
