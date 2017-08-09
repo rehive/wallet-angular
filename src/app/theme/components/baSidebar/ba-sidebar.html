@@ -1,8 +1,8 @@
 <aside class="al-sidebar" ng-swipe-right="$baSidebarService.setMenuCollapsed(false)" ng-swipe-left="$baSidebarService.setMenuCollapsed(true)"
        ng-mouseleave="hoverElemTop=selectElemTop">
   <div style="padding-left: 37px;margin-top: 40px;">
-    <h1><strong>Markus Dold</strong></h1>
-    <p style="font-size: 16px">markus@gmail.com</p>
+    <h1><strong>{{USER.first_name}} {{USER.last_name}}</strong></h1>
+    <p style="font-size: 16px">{{USER.email}}</p>
   </div>
   <ul class="al-sidebar-list" slimscroll="{height: '{{menuHeight}}px'}" slimscroll-watch="menuHeight" >
     <li ng-repeat="item in ::menuItems" class="al-sidebar-list-item"

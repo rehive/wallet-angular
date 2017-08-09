@@ -8,31 +8,60 @@
     function VerifyDocumentCtrl($rootScope,$scope,$http,cookieManagement,toastr,$uibModal,Upload,environmentConfig,$location,errorToasts) {
 
         var vm = this;
-        $scope.path = $location.path();
-        $scope.documents = [{description: 'Passport',status: 'Pending review'},{description: 'Passport',status: 'Pending review'}];
+        vm.token = cookieManagement.getCookie('TOKEN');
+        $scope.documents = [];
 
-        // $scope.uploadDocument = function () {
-        //     Upload.upload({
-        //         url: environmentConfig.API + '/admin/users/documents/' + $scope.document.id + '/',
-        //         data: vm.updatedDocument,
-        //         headers: {
-        //             'Content-Type': 'application/json',
-        //             'Authorization': vm.token},
-        //         method: "POST"
-        //     }).then(function (res) {
-        //         $scope.updatingDocument = false;
-        //         if (res.status === 200) {
-        //             toastr.success('Document successfully uploaded');
-        //         }
-        //     }).catch(function (error) {
-        //         $scope.updatingDocument = false;
-        //         if(error.status == 403){
-        //             errorHandler.handle403();
-        //             return
-        //         }
-        //         errorToasts.evaluateErrors(error.data);
-        //     });
-        // };
+        vm.getUserInfo = function(){
+            $http.get(environmentConfig.API + '/user/', {
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': vm.token
+                }
+            }).then(function (res) {
+                if (res.status === 200) {
+                    $scope.user = res.data.data;
+                    vm.getUserDocuments();
+                }
+            }).catch(function (error) {
+                errorToasts.evaluateErrors(error.data);
+            });
+        };
+        vm.getUserInfo();
+
+        vm.getUserDocuments = function(){
+            $http.get(environmentConfig.API + '/user/documents/', {
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': vm.token
+                }
+            }).then(function (res) {
+                if (res.status === 200) {
+                    $scope.documents = res.data.data.results;
+                }
+            }).catch(function (error) {
+                errorToasts.evaluateErrors(error.data);
+            });
+        };
+
+        $scope.goToHome = function(){
+            $rootScope.registered = true;
+            $location.path('/home');
+        };
+
+        $scope.openAddUserDocumentModal = function (page, size) {
+            vm.theAddModal = $uibModal.open({
+                animation: true,
+                templateUrl: page,
+                size: size,
+                controller: 'AddDocumentModalCtrl',
+                scope: $scope
+            });
+
+            vm.theAddModal.result.then(function(){
+                vm.getUserDocuments();
+            }, function(){
+            });
+        };
 
         $scope.openDocumentModal = function (page, size,document) {
             vm.theModal = $uibModal.open({

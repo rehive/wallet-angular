@@ -1,17 +1,20 @@
 {
   "staging": {
     "environmentConfig": {
-      "API": "https://staging.rehive.com/api/3"
+      "API": "https://staging.rehive.com/api/3",
+      "COMPANY": "best_company_4"
     }
   },
   "local": {
     "environmentConfig": {
-      "API": "http://localhost:8000/api/3"
+      "API": "http://localhost:8000/api/3",
+      "COMPANY": "best_company_4"
     }
   },
   "production": {
     "environmentConfig": {
-      "API": "https://rehive.com/api/3"
+      "API": "https://rehive.com/api/3",
+      "COMPANY": "best_company_4"
     }
   }
 }

@@ -1,0 +1,17 @@
+.panel .custom-panel-heading {
+  height: 130px;
+  text-align: center;
+  width: 100%;
+  display: table;
+}
+
+.panel .custom-panel-heading h1{
+  display: table-cell;
+  vertical-align: middle;
+  color: white;
+  margin: 0;
+}
+
+.accountBalance-panel-body{
+  margin: 30px 0 30px 20px;
+}

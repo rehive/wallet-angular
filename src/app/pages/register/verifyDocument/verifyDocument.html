@@ -13,14 +13,15 @@
                 <tr ng-repeat="document in documents | orderBy: '-created'" data-toggle="modal"
                     ng-click="openDocumentModal('app/pages/register/verifyDocument/verifyDocumentModal/verifyDocumentModal.html', 'lg',document)"
                     class="editable-row center pointer">
-                    <td width="55%"><div title="{{document.description}}" class="transactions-list-element"
-                             ng-bind="document.description"></div></td>
-                    <td  class="pull-left"><div title="{{document.status}}" class="transactions-list-element"
-                             ng-bind="document.status"></div></td>
+                    <td width="55%"><div title="{{document.document_type}}" class="transactions-list-element"
+                             ng-bind="document.document_type"></div></td>
+                    <td  class="pull-left"><div title="{{document.verified}}" class="transactions-list-element"
+                             ng-bind="document.verified"></div></td>
                 </tr>
             </table>
             <div>
-                <button class="btn btn-primary pull-right">Upload</button>
+                <button ng-click="openAddUserDocumentModal('app/pages/register/verifyDocument/addDocumentModal/addDocumentModal.html','lg')" class="btn btn-primary pull-right">Upload</button>
+                <button ng-show="documents.length > 0" ng-click="goToHome()" class="btn btn-primary pull-left">Done</button>
             </div>
         </form>
     </div>

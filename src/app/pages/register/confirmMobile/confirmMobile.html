@@ -10,25 +10,25 @@
           <div>
             <div class="row form-group otp-input">
                 <div class="col-sm-4">
-                    <input class="form-control" placeholder="XXXXXX" type="text" ng-model="otp">
+                    <input class="form-control" placeholder="XXXXXX" type="text" ng-model="mobile.otp">
                 </div>
                 <div class="col-sm-8 otp-text">
-                  We sent a six digit code to +8801829685347. Type the code here to verify your mobile number.
+                  We sent a six digit code to {{user.mobile_number}}. Type the code here to verify your mobile number.
                 </div>
             </div>
             <div class="row">
-              <a href="" class="auth-link">Code didn't arrive? Click here to resend OTP.</a>
+              <a ng-click="resendMobileOtp()" class="auth-link pointer">Code didn't arrive? Click here to resend OTP.</a>
             </div>
               <br>
               <br>
             <div class="row">
               <div class="col-sm-4">
-                  <button class="btn btn-primary back-btn pull-left">Back</button>
+                  <button ng-click="goBack()" class="btn btn-primary back-btn pull-left">Back</button>
               </div>
               <div class="col-sm-4">
               </div>
               <div class="col-sm-4">
-                  <button ng-disabled="!otp" ng-click="gotCompanyName = true" class="btn btn-primary pull-right">Next</button>
+                  <button ng-disabled="!mobile.otp" ng-click="verifyMobileNumber()" class="btn btn-primary pull-right">Next</button>
               </div>
             </div>
           </div>

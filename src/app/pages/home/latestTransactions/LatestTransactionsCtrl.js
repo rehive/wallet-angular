@@ -38,7 +38,7 @@
                 });
             }
         };
-        vm.getLatestTransactions();
+       // vm.getLatestTransactions();
 
         $scope.goToAllTransactions = function(){
             $location.path('/transactions/history');

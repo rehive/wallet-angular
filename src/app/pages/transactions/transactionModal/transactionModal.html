@@ -11,7 +11,7 @@
                 <p><strong>User: </strong></p>
             </div>
             <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
-                <a class="pointer" ng-click="goToUser()" ng-bind="transaction.user.email || transaction.user.mobile_number"></a>
+                <p ng-bind="transaction.user.email || transaction.user.mobile_number"></p>
             </div>
         </div>
         <div class="row">
@@ -112,7 +112,6 @@
         </div>
     </div>
     <div class="modal-footer">
-        <button type="button" ng-hide="transaction.status == 'Failed'" ng-disabled="updatingTransaction" class="transaction-details-button btn btn-danger pull-left" ng-click="updateTransactionConfirm('Failed')">Cancel Transaction</button>
-        <button type="button" ng-show="transaction.status == 'Pending'" ng-disabled="updatingTransaction" class="transaction-details-button btn btn-primary pull-right" ng-click="updateTransactionConfirm('Complete')">Complete Transaction</button>
+        <button type="button" class="btn btn-primary pull-right" ng-click="$dismiss()">Close</button>
     </div>
 </div>

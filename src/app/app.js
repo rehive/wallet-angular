@@ -27,8 +27,8 @@ angular.module('BlurAdmin', [
         };
 
 
-        //using to check if user is in changing password or setting up 2 factor authentication
-        $rootScope.securityConfigured = true;
+        //using to check if user is registering or not
+        $rootScope.registered = true;
 
 
         var locationChangeStart = $rootScope.$on('$locationChangeStart', function (event,newUrl) {
@@ -37,64 +37,23 @@ angular.module('BlurAdmin', [
             var verifyUser = function (){
                 userVerification.verify(function(err,verified){
                     if(verified){
-                        $rootScope.userVerified = true;
-                        getCompanyInfo();
+                        $rootScope.userEmailVerified = true;
+                        verifyUserMobile();
                     } else {
-                        $rootScope.userVerified = false;
+                        $rootScope.userEmailVerified = false;
                     }
                 });
             };
             verifyUser();
 
-            //using to check if user has a company name
-            var getCompanyInfo = function () {
-                var token = cookieManagement.getCookie('TOKEN');
-                if(token && $rootScope.userVerified) {
-                    $http.get(environmentConfig.API + '/admin/company/', {
-                        headers: {
-                            'Content-Type': 'application/json',
-                            'Authorization': token
-                        }
-                    }).then(function (res) {
-                        if (res.status === 200) {
-                            if(res.data.data && res.data.data.name){
-                                $rootScope.haveCompanyName = true;
-                                $rootScope.companyName = res.data.data.name;
-                                getCompanyCurrencies(token);
-                            } else {
-                                $location.path('/company/name_request');
-                            }
-                        }
-                    }).catch(function (error) {
-                        $rootScope.haveCompanyName = false;
-                    });
-                } else {
-                    $location.path('/login');
-                }
-            };
-
-            //using to check if user has at least one currency
-            var getCompanyCurrencies = function(token){
-                if(token){
-                    $http.get(environmentConfig.API + '/admin/currencies/?enabled=true', {
-                        headers: {
-                            'Content-Type': 'application/json',
-                            'Authorization': token
-                        }
-                    }).then(function (res) {
-                        if (res.status === 200) {
-                            if(res.data.data.results.length == 0){
-                                $rootScope.newUser = true;
-                            }
-                        }
-                    }).catch(function (error) {
-                        if(error.status == 403){
-                            errorHandler.handle403();
-                            return
-                        }
-                        errorToasts.evaluateErrors(error.data);
-                    });
-                }
+            var verifyUserMobile = function (){
+                userVerification.verifyMobile(function(err,verified){
+                    if(verified){
+                        $rootScope.userMobileVerified = true;
+                    } else {
+                        $rootScope.userMobileVerified = false;
+                    }
+                });
             };
 
             routeManagement(event,newUrl);
@@ -107,48 +66,47 @@ angular.module('BlurAdmin', [
                 newUrlArray = newUrl.split('/'),
                 newUrlLastElement = _.last(newUrlArray);
 
+            var getUserInfo = function(){
+                if(token){
+                    $http.get(environmentConfig.API + '/user/', {
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'Authorization': token
+                        }
+                    }).then(function (res) {
+                        if (res.status === 200) {
+                            $rootScope.USER = res.data.data;
+                        }
+                    }).catch(function (error) {
+                        errorToasts.evaluateErrors(error.data);
+                    });
+                }
+            };
+            getUserInfo();
+
             if(newUrlLastElement == 'login'){
                 cookieManagement.deleteCookie('TOKEN');
+                $rootScope.USER = {};
                 $rootScope.gotToken = false;
-                $rootScope.securityConfigured = true;
+                $rootScope.registered = true;
                 $location.path('/login');
             } else{
-                if(token) {
-                    $rootScope.gotToken = true;
-                    $rootScope.securityConfigured = true;
-                } else if(newUrlLastElement == 'register' || newUrlLastElement == 'reset'
-                    || newUrlLastElement == 'name_request'|| newUrl.indexOf('mobile/verify') > 0
+                if(newUrlLastElement == 'register' || newUrlLastElement == 'reset'
+                    || newUrl.indexOf('reset/confirm') > 0 || newUrl.indexOf('mobile/verify') > 0
                     || newUrl.indexOf('mobile/confirm') > 0 || newUrl.indexOf('email/verify') > 0
-                    || newUrl.indexOf('reset/confirm') > 0 || newUrl.indexOf('document/verify') > 0
+                    || newUrl.indexOf('document/verify') > 0
                     || newUrl.indexOf('email/verify') > 0 || newUrl.indexOf('ethereum/address') > 0
                     || newUrl.indexOf('identity/verification') > 0)
                 {
-                    $rootScope.securityConfigured = true;
+                    $rootScope.registered = false;
+                } else if (token && $rootScope.registered)
+                {
+                    $rootScope.gotToken = true;
                 } else {
-                    $rootScope.securityConfigured = true;
                     $rootScope.gotToken = false;
                     $location.path('/login');
                 }
 
             }
-
-            //checking if changing password or setting up 2 factor authentication
-            if(newUrlLastElement == 'change' || newUrlLastElement == 'two-factor'){
-                $rootScope.securityConfigured = false;
-            }
         }
     });
-
-// else if(newUrlLastElement == 'register' || newUrlLastElement == 'reset'
-//     || newUrlLastElement == 'verification' || newUrlLastElement == 'name_request'
-//     || newUrl.indexOf('mobile/verify') > 0 || newUrl.indexOf('mobile/confirm') > 0
-//     || newUrl.indexOf('reset/confirm') > 0 || newUrl.indexOf('email/verify') > 0
-//     || newUrl.indexOf('document/verify') > 0)
-// {
-// =======
-// || newUrlLastElement == 'verification' || newUrlLastElement == 'name_request' || newUrl.indexOf('mobile/verify') > 0 || newUrl.indexOf('mobile/confirm') > 0 ){
-//     $rootScope.securityConfigured = true;
-// } else if(newUrl.indexOf('reset/confirm') > 0 || newUrl.indexOf('email/verify') > 0 || newUrl.indexOf('ethereum/address') > 0 || newUrl.indexOf('identity/verification') > 0){
-// >>>>>>> 23360c08008aa24bca7ffadbc9aa071a43731eab
-//     $rootScope.securityConfigured = true;
-// }

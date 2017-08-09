@@ -10,12 +10,12 @@
           <div ng-hide="gotCompanyName">
             <div class="row form-group">
                 <div class="col-sm-12 input-block">
-                    <input class="mobile-number" type="text" ng-model="tel" ng-intl-tel-input>
+                    <input class="mobile-number" type="text" ng-model="userTel.number" ng-intl-tel-input>
                 </div>
             </div>
             <div class="row">
               <div class="col-sm-12">
-                  <button ng-disabled="!tel" class="btn btn-primary btn-verify-mobile pull-right">Next</button>
+                  <button ng-click="addMobile()" ng-disabled="!userTel.number" class="btn btn-primary btn-verify-mobile pull-right">Next</button>
               </div>
             </div>
           </div>
