@@ -9,12 +9,27 @@
 
         var vm = this;
         vm.token = cookieManagement.getCookie('TOKEN');
+        $scope.loadingMobileConfirmView = true;
+        $scope.showAuthNav = false;
         $scope.mobile = {
             otp: ''
         };
 
         $scope.goBack = function(){
             $location.path('mobile/verify');
+        };
+
+        vm.checkIfMobileVerified = function(number){
+            $scope.loadingMobileConfirmView = true;
+            userVerification.verifyMobile(function(err,verified){
+                if(verified){
+                    $scope.loadingMobileConfirmView = false;
+                    toastr.success('Mobile Number verified','Message');
+                    $location.path('/identity/verification');
+                } else {
+                    $scope.loadingMobileConfirmView = false;
+                }
+            },number);
         };
 
         vm.getUserInfo = function(){
@@ -26,6 +41,12 @@
             }).then(function (res) {
                 if (res.status === 200) {
                     $scope.user = res.data.data;
+                    $scope.showAuthNav = true;
+                    if(res.data.data.mobile_number){
+                        vm.checkIfMobileVerified(res.data.data.mobile_number);
+                    } else{
+                        $scope.loadingMobileConfirmView = false;
+                    }
                 }
             }).catch(function (error) {
                 errorToasts.evaluateErrors(error.data);
@@ -41,7 +62,7 @@
                 }
             }).then(function (res) {
                 if (res.status === 200) {
-                    $location.path('ethereum/address');
+                    $location.path('/identity/verification');
                 }
             }).catch(function (error) {
                 errorToasts.evaluateErrors(error.data);

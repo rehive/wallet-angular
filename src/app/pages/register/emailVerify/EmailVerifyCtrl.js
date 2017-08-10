@@ -9,22 +9,24 @@
 
         var vm = this;
         vm.token = cookieManagement.getCookie('TOKEN');
+        $scope.showAuthNav = false;
+        $scope.loadingEmailVerifyView = true;
 
-        $scope.verifyUser = function(){
-            $rootScope.$pageFinishedLoading = false;
-            userVerification.verify(function(err,verified){
-                if(verified){
-                    $rootScope.$pageFinishedLoading = true;
-                    $rootScope.userEmailVerified = true;
-                    $location.path('/mobile/verify');
-                } else {
-                    $rootScope.$pageFinishedLoading = true;
-                    toastr.error('Please verify your account','Message');
-                }
-            });
+        vm.checkIfEmailVerified = function(email){
+            $scope.loadingEmailVerifyView = true;
+            userVerification.verifyEmail(function(err,verified){
+                        if(verified){
+                            $scope.loadingEmailVerifyView = false;
+                            toastr.success('Email verified','Message');
+                            $location.path('/mobile/verify');
+                        } else {
+                            $scope.loadingEmailVerifyView = false;
+                        }
+                    },email);
         };
 
         vm.getUserInfo = function(){
+            $scope.loadingEmailVerifyView = true;
             $http.get(environmentConfig.API + '/user/', {
                 headers: {
                     'Content-Type': 'application/json',
@@ -33,12 +35,29 @@
             }).then(function (res) {
                 if (res.status === 200) {
                     $scope.user = res.data.data;
+                    $scope.showAuthNav = true;
+                    vm.checkIfEmailVerified(res.data.data.email);
                 }
             }).catch(function (error) {
+                $scope.loadingEmailVerifyView = false;
                 errorToasts.evaluateErrors(error.data);
             });
         };
         vm.getUserInfo();
+
+        $scope.verifyUser = function(email){
+            $rootScope.$pageFinishedLoading = false;
+            userVerification.verifyEmail(function(err,verified){
+                if(verified){
+                    $rootScope.$pageFinishedLoading = true;
+                    $location.path('/mobile/verify');
+                } else {
+                    $rootScope.$pageFinishedLoading = true;
+                    toastr.error('Please verify your account','Message');
+                }
+            },email);
+        };
+
 
         $scope.resendEmail = function(){
             $http.post(environmentConfig.API + '/auth/email/verify/resend/',{email: $scope.user.email,company: $scope.user.company}, {
@@ -53,6 +72,10 @@
                 errorToasts.evaluateErrors(error.data);
             });
         };
+
+        $scope.goToNextView = function () {
+            $location.path('/mobile/verify');
+        }
 
 
     }

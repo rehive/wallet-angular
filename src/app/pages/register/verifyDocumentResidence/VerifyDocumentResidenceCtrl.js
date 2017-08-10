@@ -1,14 +1,16 @@
 (function () {
     'use strict';
 
-    angular.module('BlurAdmin.pages.verifyDocument')
-        .controller('VerifyDocumentCtrl', VerifyDocumentCtrl);
+    angular.module('BlurAdmin.pages.verifyDocumentResidence')
+        .controller('VerifyDocumentResidenceCtrl', VerifyDocumentResidenceCtrl);
 
     /** @ngInject */
-    function VerifyDocumentCtrl($rootScope,$scope,$http,cookieManagement,toastr,$uibModal,Upload,environmentConfig,$location,errorToasts) {
+    function VerifyDocumentResidenceCtrl($rootScope,$scope,$http,cookieManagement,toastr,$uibModal,Upload,environmentConfig,$location,errorToasts) {
 
         var vm = this;
         vm.token = cookieManagement.getCookie('TOKEN');
+        $scope.loadingDocumentsResidenceView = true;
+        $scope.showAuthNav = false;
         $scope.documents = [];
 
         vm.getUserInfo = function(){
@@ -20,9 +22,11 @@
             }).then(function (res) {
                 if (res.status === 200) {
                     $scope.user = res.data.data;
+                    $scope.showAuthNav = true;
                     vm.getUserDocuments();
                 }
             }).catch(function (error) {
+                $scope.loadingDocumentsResidenceView = false;
                 errorToasts.evaluateErrors(error.data);
             });
         };
@@ -35,16 +39,20 @@
                     'Authorization': vm.token
                 }
             }).then(function (res) {
+                $scope.loadingDocumentsResidenceView = false;
                 if (res.status === 200) {
-                    $scope.documents = res.data.data.results;
+                    $scope.documents = res.data.data.results.filter(function (element) {
+                        return element.document_category == 'Proof Of Address';
+                    });
                 }
             }).catch(function (error) {
+                $scope.loadingDocumentsResidenceView = false;
                 errorToasts.evaluateErrors(error.data);
             });
         };
 
         $scope.goToHome = function(){
-            $rootScope.registered = true;
+            $rootScope.notRegistering = true;
             $location.path('/home');
         };
 
@@ -53,7 +61,7 @@
                 animation: true,
                 templateUrl: page,
                 size: size,
-                controller: 'AddDocumentModalCtrl',
+                controller: 'AddDocumentResidenceModalCtrl',
                 scope: $scope
             });
 
@@ -68,7 +76,7 @@
                 animation: true,
                 templateUrl: page,
                 size: size,
-                controller: 'VerifyDocumentModalCtrl',
+                controller: 'ShowDocumentResidenceModalCtrl',
                 resolve: {
                     document: function () {
                         return document;
@@ -82,5 +90,9 @@
             }, function(){
             });
         };
+
+        $scope.goToNextView = function(){
+            $location.path('/ethereum/address');
+        }
     }
 })();

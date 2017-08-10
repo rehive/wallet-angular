@@ -9,7 +9,7 @@
 
         var vm = this;
         cookieManagement.deleteCookie('TOKEN');
-        $scope.gotCompanyName = false;
+        $scope.showAuthNav = true;
         $scope.path = $location.path();
 
         $scope.login = function(user, password) {
@@ -21,7 +21,7 @@
                 password: password
             }).then(function (res) {
                 if (res.status === 200) {
-                    $rootScope.registered = true;
+                    $rootScope.notRegistering = true;
                     cookieManagement.setCookie('TOKEN','Token ' + res.data.data.token);
                     cookieManagement.setCookie('User', res.data.data.token);
                     $rootScope.USER = res.data.data.user;

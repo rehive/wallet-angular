@@ -1,7 +1,7 @@
 <div>
     <auth-navigation></auth-navigation>
 </div>
-<div class="auth-main">
+<div ng-hide="loadingEmailVerifyView" class="auth-main">
     <div class="auth-block">
         <div class="verification-text divider">
             <div class="text-center divider">
@@ -11,7 +11,12 @@
             <br>
             <a ng-click="resendEmail()" class="verification-link"><p>Email did not arrive? Click here to resent link.</p></a>
         </div>
-        <button ng-disabled="verifyingEmail" ng-click="verifyUser()" class="btn btn-primary pull-right">Next</button>
+        <button ng-disabled="loadingEmailVerifyView" ng-click="verifyUser(user.email)" class="btn btn-primary pull-right">Next</button>
+        <button ng-click="goToNextView()" class="btn btn-primary pull-left">Skip</button>
     </div>
-
+</div>
+<div class="auth-main " ng-show="loadingEmailVerifyView">
+    <div class="auth-block verification-text">
+        <loading-image></loading-image>
+    </div>
 </div>

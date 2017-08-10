@@ -1,9 +1,11 @@
 <div class="auth-nav">
-    <div ng-hide="user.first_name" class="auth-nav-cell">
-        <a href="/#/register"><button ng-class="{'active-auth-nav': path == '/register'}" class="btn btn-primary pull-right auth-nav-buttons">Sign up</button></a>
-        <a href="/#/login"><button ng-class="{'active-auth-nav': path == '/login'}" class="btn btn-primary pull-right auth-nav-buttons">Sign in</button></a>
-    </div>
-    <div ng-show="user.first_name" class="auth-nav-cell">
-       <span class="auth-nav-user pull-right">{{user.first_name}} {{user.last_name}}</span>
+    <div ng-show="showAuthNav" class="auth-nav-table">
+        <div ng-show="!user.first_name" class="auth-nav-cell">
+            <a href="/#/register"><button ng-class="{'active-auth-nav': path == '/register'}" class="btn btn-primary pull-right auth-nav-buttons">Sign up</button></a>
+            <a href="/#/login"><button ng-class="{'active-auth-nav': path == '/login'}" class="btn btn-primary pull-right auth-nav-buttons">Sign in</button></a>
+        </div>
+        <div ng-show="user.first_name" class="auth-nav-cell">
+           <span class="auth-nav-user pull-right">{{user.first_name}} {{user.last_name}}</span>
+        </div>
     </div>
 </div>

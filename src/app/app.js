@@ -28,33 +28,10 @@ angular.module('BlurAdmin', [
 
 
         //using to check if user is registering or not
-        $rootScope.registered = true;
+        $rootScope.notRegistering = true;
 
 
         var locationChangeStart = $rootScope.$on('$locationChangeStart', function (event,newUrl) {
-
-            //using to check if user has a verified email address
-            var verifyUser = function (){
-                userVerification.verify(function(err,verified){
-                    if(verified){
-                        $rootScope.userEmailVerified = true;
-                        verifyUserMobile();
-                    } else {
-                        $rootScope.userEmailVerified = false;
-                    }
-                });
-            };
-            verifyUser();
-
-            var verifyUserMobile = function (){
-                userVerification.verifyMobile(function(err,verified){
-                    if(verified){
-                        $rootScope.userMobileVerified = true;
-                    } else {
-                        $rootScope.userMobileVerified = false;
-                    }
-                });
-            };
 
             routeManagement(event,newUrl);
         });
@@ -86,21 +63,22 @@ angular.module('BlurAdmin', [
 
             if(newUrlLastElement == 'login'){
                 cookieManagement.deleteCookie('TOKEN');
+                cookieManagement.deleteCookie('USER');
                 $rootScope.USER = {};
                 $rootScope.gotToken = false;
-                $rootScope.registered = true;
+                $rootScope.notRegistering = true;
                 $location.path('/login');
             } else{
                 if(newUrlLastElement == 'register' || newUrlLastElement == 'reset'
                     || newUrl.indexOf('reset/confirm') > 0 || newUrl.indexOf('mobile/verify') > 0
                     || newUrl.indexOf('mobile/confirm') > 0 || newUrl.indexOf('email/verify') > 0
-                    || newUrl.indexOf('document/verify') > 0
+                    || newUrl.indexOf('document/verify/ID') > 0 || newUrl.indexOf('/document/verify/residence') > 0
                     || newUrl.indexOf('email/verify') > 0 || newUrl.indexOf('ethereum/address') > 0
                     || newUrl.indexOf('identity/verification') > 0)
                 {
-                    $rootScope.registered = false;
-                } else if (token && $rootScope.registered)
-                {
+                    $rootScope.notRegistering = false;
+                } else if (token) {
+                    $rootScope.notRegistering = true;
                     $rootScope.gotToken = true;
                 } else {
                     $rootScope.gotToken = false;

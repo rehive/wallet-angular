@@ -9,7 +9,7 @@
 
         var vm = this;
         $scope.path = $location.path();
-        $scope.havePersonalDetails = false;
+        $scope.showAuthNav = true;
         $scope.registerData = {
             first_name: '',
             last_name: '',
@@ -33,9 +33,7 @@
                 .then(function (res) {
                     if (res.status === 201) {
                         cookieManagement.setCookie('TOKEN','Token ' + res.data.data.token);
-                        $rootScope.userEmailVerified = false;
-                        $rootScope.userMobileVerified = false;
-                        $rootScope.registered = false;
+                        $rootScope.notRegistering = false;
                         vm.addNationality('Token ' + res.data.data.token);
                     }
             }).catch(function (error) {

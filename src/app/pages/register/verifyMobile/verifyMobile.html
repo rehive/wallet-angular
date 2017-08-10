@@ -1,11 +1,9 @@
 <div>
     <auth-navigation></auth-navigation>
 </div>
-<div class="auth-main">
+<div ng-hide="loadingMobileVerifyView" class="auth-main">
     <div class="auth-block text-center">
         <h1>Verify mobile number</h1>
-        
-
         <form class="form-horizontal">
           <div ng-hide="gotCompanyName">
             <div class="row form-group">
@@ -16,10 +14,15 @@
             <div class="row">
               <div class="col-sm-12">
                   <button ng-click="addMobile()" ng-disabled="!userTel.number" class="btn btn-primary btn-verify-mobile pull-right">Next</button>
+                  <button ng-click="goToNextView()" class="btn btn-primary pull-left">Skip</button>
               </div>
             </div>
           </div>
         </form>
-
+    </div>
+</div>
+<div class="auth-main " ng-show="loadingMobileVerifyView">
+    <div class="auth-block verification-text">
+        <loading-image></loading-image>
     </div>
 </div>

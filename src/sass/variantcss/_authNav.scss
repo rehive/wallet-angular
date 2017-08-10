@@ -2,15 +2,20 @@
   background-color: $primary;
   height: 67px;
   width: 100%;
-  display: table;
 }
 
-.auth-nav-cell{
+.auth-nav-table{
+  height: 67px;
+  width: 100%;
+  display: table
+}
+
+.auth-nav-table > .auth-nav-cell{
   display: table-cell;
   vertical-align: middle;
 }
 
-.auth-nav > .auth-nav-cell > a > .auth-nav-buttons {
+.auth-nav-table > .auth-nav-cell > a > .auth-nav-buttons {
   margin-right: 20px;
   padding: 5px;
   width: 70px;
@@ -29,12 +34,12 @@
   }
 }
 
-.auth-nav > .auth-nav-cell > a > .active-auth-nav{
+.auth-nav-table > .auth-nav-cell > a > .active-auth-nav{
   border: 1px solid white;
   border-radius: 2px;
 }
 
-.auth-nav > .auth-nav-cell > .auth-nav-user{
+.auth-nav-table > .auth-nav-cell > .auth-nav-user{
   color: white;
   font-size: 16px;
   margin-right: 20px;

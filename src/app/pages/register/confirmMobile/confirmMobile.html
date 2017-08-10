@@ -1,19 +1,17 @@
 <div>
     <auth-navigation></auth-navigation>
 </div>
-<div class="auth-main">
+<div ng-hide="loadingMobileConfirmView" class="auth-main">
     <div class="auth-block text-center">
         <h1>Provide one time pin</h1>
-        
-
         <form class="form-horizontal">
           <div>
             <div class="row form-group otp-input">
                 <div class="col-sm-4">
-                    <input class="form-control" placeholder="XXXXXX" type="text" ng-model="mobile.otp">
+                    <input class="form-control" placeholder="XXXXX" type="text" ng-model="mobile.otp">
                 </div>
                 <div class="col-sm-8 otp-text">
-                  We sent a six digit code to {{user.mobile_number}}. Type the code here to verify your mobile number.
+                  We sent a five digit code to {{user.mobile_number}}. Type the code here to verify your mobile number.
                 </div>
             </div>
             <div class="row">
@@ -33,6 +31,10 @@
             </div>
           </div>
         </form>
-
+    </div>
+</div>
+<div class="auth-main " ng-show="loadingMobileConfirmView">
+    <div class="auth-block verification-text">
+        <loading-image></loading-image>
     </div>
 </div>

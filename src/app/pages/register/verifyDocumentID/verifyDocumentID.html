@@ -1,9 +1,9 @@
 <div>
     <auth-navigation></auth-navigation>
 </div>
-<div class="auth-main">
+<div ng-hide="loadingDocumentsIDView" class="auth-main">
     <div class="auth-block text-center">
-        <h1>Identity verification <span class="text-muted">| Documents</span></h1>
+        <h1>Identity verification <span class="text-muted">| ID</span></h1>
         <form class="form-horizontal">
             <table class="table table-condensed table-striped table-hover divider">
                 <tr class="black-muted-bg">
@@ -11,7 +11,7 @@
                     <th class="pull-left"><h4><strong>Status</strong></h4></th>
                 </tr>
                 <tr ng-repeat="document in documents | orderBy: '-created'" data-toggle="modal"
-                    ng-click="openDocumentModal('app/pages/register/verifyDocument/verifyDocumentModal/verifyDocumentModal.html', 'lg',document)"
+                    ng-click="openDocumentModal('app/pages/register/verifyDocumentID/showDocumentIDModal/showDocumentIDModal.html', 'lg',document)"
                     class="editable-row center pointer">
                     <td width="55%"><div title="{{document.document_type}}" class="transactions-list-element"
                              ng-bind="document.document_type"></div></td>
@@ -20,9 +20,14 @@
                 </tr>
             </table>
             <div>
-                <button ng-click="openAddUserDocumentModal('app/pages/register/verifyDocument/addDocumentModal/addDocumentModal.html','lg')" class="btn btn-primary pull-right">Upload</button>
-                <button ng-show="documents.length > 0" ng-click="goToHome()" class="btn btn-primary pull-left">Done</button>
+                <button ng-click="openAddUserDocumentModal('app/pages/register/verifyDocumentID/addDocumentIDModal/addDocumentIDModal.html','lg')" class="btn btn-primary pull-right">Upload</button>
+                <button ng-click="goToNextView()" class="btn btn-primary pull-left">{{documents.length > 0 ? 'Next':'Skip'}}</button>
             </div>
         </form>
+    </div>
+</div>
+<div class="auth-main " ng-show="loadingDocumentsIDView">
+    <div class="auth-block verification-text">
+        <loading-image></loading-image>
     </div>
 </div>
