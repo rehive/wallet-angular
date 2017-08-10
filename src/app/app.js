@@ -28,33 +28,33 @@ angular.module('BlurAdmin', [
 
 
         //using to check if user is registering or not
-        $rootScope.registered = true;
+        $rootScope.notRegistering = true;
 
 
         var locationChangeStart = $rootScope.$on('$locationChangeStart', function (event,newUrl) {
 
             //using to check if user has a verified email address
-            var verifyUser = function (){
-                userVerification.verify(function(err,verified){
-                    if(verified){
-                        $rootScope.userEmailVerified = true;
-                        verifyUserMobile();
-                    } else {
-                        $rootScope.userEmailVerified = false;
-                    }
-                });
-            };
-            verifyUser();
-
-            var verifyUserMobile = function (){
-                userVerification.verifyMobile(function(err,verified){
-                    if(verified){
-                        $rootScope.userMobileVerified = true;
-                    } else {
-                        $rootScope.userMobileVerified = false;
-                    }
-                });
-            };
+            //var verifyUser = function (){
+            //    userVerification.verify(function(err,verified){
+            //        if(verified){
+            //            $rootScope.userEmailVerified = true;
+            //            verifyUserMobile();
+            //        } else {
+            //            $rootScope.userEmailVerified = false;
+            //        }
+            //    });
+            //};
+            //verifyUser();
+            //
+            //var verifyUserMobile = function (){
+            //    userVerification.verifyMobile(function(err,verified){
+            //        if(verified){
+            //            $rootScope.userMobileVerified = true;
+            //        } else {
+            //            $rootScope.userMobileVerified = false;
+            //        }
+            //    });
+            //};
 
             routeManagement(event,newUrl);
         });
@@ -88,7 +88,7 @@ angular.module('BlurAdmin', [
                 cookieManagement.deleteCookie('TOKEN');
                 $rootScope.USER = {};
                 $rootScope.gotToken = false;
-                $rootScope.registered = true;
+                $rootScope.notRegistering = true;
                 $location.path('/login');
             } else{
                 if(newUrlLastElement == 'register' || newUrlLastElement == 'reset'
@@ -98,8 +98,8 @@ angular.module('BlurAdmin', [
                     || newUrl.indexOf('email/verify') > 0 || newUrl.indexOf('ethereum/address') > 0
                     || newUrl.indexOf('identity/verification') > 0)
                 {
-                    $rootScope.registered = false;
-                } else if (token && $rootScope.registered)
+                    $rootScope.notRegistering = false;
+                } else if (token && $rootScope.notRegistering)
                 {
                     $rootScope.gotToken = true;
                 } else {

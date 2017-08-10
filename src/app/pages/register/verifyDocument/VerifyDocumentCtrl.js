@@ -44,7 +44,7 @@
         };
 
         $scope.goToHome = function(){
-            $rootScope.registered = true;
+            $rootScope.notRegistering = true;
             $location.path('/home');
         };
 

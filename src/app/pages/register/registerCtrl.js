@@ -35,7 +35,7 @@
                         cookieManagement.setCookie('TOKEN','Token ' + res.data.data.token);
                         $rootScope.userEmailVerified = false;
                         $rootScope.userMobileVerified = false;
-                        $rootScope.registered = false;
+                        $rootScope.notRegistering = false;
                         vm.addNationality('Token ' + res.data.data.token);
                     }
             }).catch(function (error) {
