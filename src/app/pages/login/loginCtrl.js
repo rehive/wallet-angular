@@ -9,7 +9,7 @@
 
         var vm = this;
         cookieManagement.deleteCookie('TOKEN');
-        $scope.gotCompanyName = false;
+        $scope.showAuthNav = true;
         $scope.path = $location.path();
 
         $scope.login = function(user, password) {

@@ -9,6 +9,8 @@
 
         var vm = this;
         vm.token = cookieManagement.getCookie('TOKEN');
+        $scope.loadingBasicInfoView = true;
+        $scope.showAuthNav = false;
         $scope.address = {};
         vm.user = {};
 
@@ -21,9 +23,11 @@
             }).then(function (res) {
                 if (res.status === 200) {
                     $scope.user = res.data.data;
+                    $scope.showAuthNav = true;
                     vm.getUserAddress();
                 }
             }).catch(function (error) {
+                $scope.loadingBasicInfoView = false;
                 errorToasts.evaluateErrors(error.data);
             });
         };
@@ -37,14 +41,17 @@
                 }
             }).then(function (res) {
                 if (res.status === 200) {
+                    $scope.loadingBasicInfoView = false;
                     $scope.address = res.data.data;
                 }
             }).catch(function (error) {
+                $scope.loadingBasicInfoView = false;
                 errorToasts.evaluateErrors(error.data);
             });
         };
 
         $scope.updateUserInfo = function(){
+            $scope.loadingBasicInfoView = true;
             $http.patch(environmentConfig.API + '/user/',{first_name: vm.user.first_name,last_name: vm.user.last_name}, {
                 headers: {
                     'Content-Type': 'application/json',
@@ -55,6 +62,7 @@
                     vm.updateAddress();
                 }
             }).catch(function (error) {
+                $scope.loadingBasicInfoView = false;
                 errorToasts.evaluateErrors(error.data);
             });
         };
@@ -67,9 +75,11 @@
                 }
             }).then(function (res) {
                 if (res.status === 200) {
-                    $location.path('document/verify')
+                    $scope.loadingBasicInfoView = false;
+                    $location.path('document/verify/ID')
                 }
             }).catch(function (error) {
+                $scope.loadingBasicInfoView = false;
                 errorToasts.evaluateErrors(error.data);
             });
         };
@@ -77,6 +87,10 @@
         $scope.userChanged = function(field){
             vm.user[field] = $scope.user[field];
         };
+
+        $scope.goToNextView = function(){
+            $location.path('document/verify/ID');
+        }
 
     }
 })();

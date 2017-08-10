@@ -1,13 +1,11 @@
 <div>
     <auth-navigation></auth-navigation>
 </div>
-<div class="auth-main">
+<div ng-hide="loadingEtheriumView" class="auth-main">
     <div class="auth-block text-center">
         <h1>Verify Ethereum address</h1>
-        
-
         <form class="form-horizontal">
-          <div ng-hide="gotCompanyName">
+          <div >
             <div class="row form-group">
                 <div class="col-sm-12 input-block">
                     <input class="form-control"  placeholder="Please paste a valid Ethereum address" type="text" ng-model="ethereum">
@@ -15,11 +13,16 @@
             </div>
             <div class="row">
               <div class="col-sm-12">
-                  <button ng-click="addEthereumAddress()" class="btn btn-primary btn-verify-mobile pull-right">Next</button>
+                  <button ng-click="addEthereumAddress()" class="btn btn-primary btn-verify-mobile pull-right">Done</button>
+                  <button ng-click="goToNextView()" class="btn btn-primary btn-verify-mobile pull-left">Skip</button>
               </div>
             </div>
           </div>
         </form>
-
+    </div>
+</div>
+<div class="auth-main " ng-show="loadingEtheriumView">
+    <div class="auth-block verification-text">
+        <loading-image></loading-image>
     </div>
 </div>

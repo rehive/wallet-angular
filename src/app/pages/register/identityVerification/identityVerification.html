@@ -1,13 +1,12 @@
 <div>
     <auth-navigation></auth-navigation>
 </div>
-<div class="auth-main">
+<div ng-hide="loadingBasicInfoView" class="auth-main">
     <div class="identity-block text-center">
         <h1>Identity verification <span class="identity-title">| Basic information</span></h1>
-        
         <div class="identity-form">
           <form class="form">
-            <div ng-hide="gotCompanyName">
+            <div>
               <div class="row form-group">
                 <div class="col-sm-3 itentity-label">
                       <p>Legal name</p>
@@ -38,10 +37,10 @@
                 </div>
               </div>
               <div class="row form-group">
-                <div class="col-sm-3 itentity-label">
-                      <p>Address</p>
-                </div>
-                <div class="col-sm-9">
+                  <div class="col-sm-3 itentity-label">
+                    <p>Address</p>
+                  </div>
+                  <div class="col-sm-9">
                     <div class="col-sm-12 input-block">
                       <input class="form-control"  placeholder="Line 1" type="text" ng-model="address.line_1">
                     </div>
@@ -58,14 +57,18 @@
                       <input class="form-control"  placeholder="Zip" type="text" ng-model="address.postal_code">
                     </div>
                     <div class="col-sm-12">
-                      <button ng-click="updateUserInfo()" class="btn btn-primary identity-button">Next</button>
+                        <button ng-click="updateUserInfo()" class="btn btn-primary pull-right identity-button">Next</button>
+                        <button ng-click="goToNextView()" class="btn btn-primary pull-left identity-button">Skip</button>
                     </div>
-                    
-                </div>
+                  </div>
               </div>
             </div>
           </form>
         </div>
-
+    </div>
+</div>
+<div class="auth-main " ng-show="loadingBasicInfoView">
+    <div class="auth-block verification-text">
+        <loading-image></loading-image>
     </div>
 </div>
