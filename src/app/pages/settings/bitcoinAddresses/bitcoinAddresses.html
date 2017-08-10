@@ -1,0 +1,29 @@
+<div ng-hide="editingBankAccounts || loadingBankAccounts">
+    <div ng-show="bitcoinAddresses.length > 0" ba-panel class="setting-bank-accounts" ba-panel-title="Bank accounts" ba-panel-class="light-text with-scroll">
+        <table class="table table-striped setting-bank-accounts-table">
+            <tr ng-repeat="bitcoinAddress in bitcoinAddresses">
+                <th class="bank-account-title">{{bitcoinAddress.address}}</th>
+                <th>
+                    <button ng-click="toggleEditBankAccountsView(bitcoinAddress)" class="btn btn-primary pull-right rehive-settings-buttons">Edit</button>
+                </th>
+            </tr>
+        </table>
+    </div>
+    <div ba-panel ba-panel-title="Add bitcoin Address" ba-panel-class="light-text with-scroll">
+        <form name="bankAccountForm" class="custom-form">
+            <div class="form-group">
+                <label><strong>Bitcoin Address</strong> <span class="required-icon">*</span></label>
+                <input type="text" ng-model="newBitcoinAddress.address" class="form-control"  placeholder="Enter you bitcoin address" required>
+            </div>
+            <div class="form-group">
+                <button ng-disabled="!bankAccountForm.$valid" ng-click="addBankAccount(newBitcoinAddress)" class="btn btn-primary pull-right">Add</button>
+            </div>
+        </form>
+    </div>
+</div>
+<div ng-show="editingBankAccounts">
+    <edit-bitcoin-address></edit-bitcoin-address>
+</div>
+<div ba-panel ng-show="loadingBankAccounts">
+    <loading-image></loading-image>
+</div>

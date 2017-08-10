@@ -18,7 +18,8 @@
     'BlurAdmin.pages.emailVerify',
     'BlurAdmin.pages.ethereumAddress',
     'BlurAdmin.pages.identityVerification',
-    'BlurAdmin.pages.signout'
+    'BlurAdmin.pages.signout',
+    'BlurAdmin.pages.settings'
   ])
       .config(routeConfig);
 

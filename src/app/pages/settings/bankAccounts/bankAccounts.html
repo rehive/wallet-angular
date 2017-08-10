@@ -1,0 +1,70 @@
+<div ng-hide="editingBankAccounts || loadingBankAccounts">
+    <div ng-show="bankAccounts.length > 0" ba-panel class="setting-bank-accounts" ba-panel-title="Bank accounts" ba-panel-class="light-text with-scroll">
+        <table class="table table-striped setting-bank-accounts-table">
+            <tr ng-repeat="bankAccount in bankAccounts">
+                <th class="bank-account-title">{{bankAccount.bank_name}}, {{bankAccount.number}}</th>
+                <th>
+                    <button ng-click="toggleEditBankAccountsView(bankAccount)" class="btn btn-primary pull-right rehive-settings-buttons">Edit</button>
+                </th>
+            </tr>
+        </table>
+    </div>
+    <div ba-panel ba-panel-title="Add bank account" ba-panel-class="light-text with-scroll">
+        <form name="bankAccountForm" class="custom-form">
+            <div class="form-group">
+                <label><strong>Account name/holder</strong> <span class="required-icon">*</span></label>
+                <input type="text" ng-model="newBankData.name" class="form-control"  placeholder="E.g Currency Corp" required>
+            </div>
+            <div class="form-group">
+                <label><strong>Account number <span class="required-icon">*</span></strong></label>
+                <input type="text" ng-model="newBankData.number" class="form-control"  placeholder="E.g 5246357653" required>
+            </div>
+            <div class="form-group">
+                <label><strong>Account type</strong></label>
+                <input type="text" ng-model="newBankData.type" class="form-control"  placeholder="E.g Cheque/Current/Savings">
+            </div>
+            <div class="form-group">
+                <label><strong>Bank name</strong> <span class="required-icon">*</span></label>
+                <input type="text" ng-model="newBankData.bank_name" class="form-control"  placeholder="E.g Saharah Bank Ltd" required>
+            </div>
+
+            <div class="form-group">
+                <label><strong>Bank code</strong></label>
+                <input type="text" ng-change="bankAccountChanged('bank_code')" ng-model="newBankData.bank_code" class="form-control"  placeholder="E.g 342543">
+            </div>
+            <div class="form-group">
+                <label><strong>Branch code</strong></label>
+                <input type="text" ng-model="newBankData.branch_code" class="form-control"  placeholder="E.g 456798">
+            </div>
+            <!--<div class="form-group">-->
+                <!--<label><strong>Bank/Branch Address</strong></label>-->
+                <!--<input type="text" ng-model="s" class="form-control divider"  placeholder="Address line 1">-->
+                <!--<input type="text" ng-model="d" class="form-control divider"  placeholder="Address line 2">-->
+                <!--<input type="text" ng-model="f" class="form-control divider"  placeholder="City">-->
+                <!--<country-select class="form-control pointer divider" data-ng-model="q"></country-select>-->
+                <!--<input type="text" ng-model="r" class="form-control divider"  placeholder="Code/Zipcode">-->
+            <!--</div>-->
+            <div class="form-group">
+                <label><strong>Swift</strong></label>
+                <input type="text" ng-model="newBankData.swift" class="form-control"  placeholder="E.g FDDODUMM">
+            </div>
+            <div class="form-group">
+                <label><strong>Iban</strong></label>
+                <input type="text" ng-model="newBankData.iban" class="form-control"  placeholder="E.g DE41700333001189190812">
+            </div>
+            <div class="form-group">
+                <label><strong>Bic</strong></label>
+                <input type="text" ng-model="newBankData.bic" class="form-control"  placeholder="E.g FDDODUMMXXX">
+            </div>
+            <div class="form-group">
+                <button ng-disabled="!bankAccountForm.$valid" ng-click="addBankAccount(newBankData)" class="btn btn-primary pull-right">Add</button>
+            </div>
+        </form>
+    </div>
+</div>
+<div ng-show="editingBankAccounts">
+    <edit-bank-account></edit-bank-account>
+</div>
+<div ba-panel ng-show="loadingBankAccounts">
+    <loading-image></loading-image>
+</div>

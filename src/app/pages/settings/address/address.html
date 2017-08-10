@@ -1,0 +1,36 @@
+<div ng-hide="loadingAccountInfo">
+    <div ba-panel ba-panel-title="Address">
+        <div>
+            <div class="form-group">
+                <label><strong>Address line 1</strong></label>
+                <input type="text" ng-change="accountInfoChanged('line_1')" ng-model="address.line_1" class="form-control" placeholder="E.g Mohakhali C/A">
+            </div>
+            <div class="form-group">
+                <label><strong>Address line 2</strong></label>
+                <input type="text" ng-change="accountInfoChanged('line_2')" ng-model="address.line_2" class="form-control" placeholder="E.g Dhaka">
+            </div>
+            <div class="form-group">
+                <label><strong>City</strong></label>
+                <input type="text" ng-change="accountInfoChanged('city')" ng-model="address.city" class="form-control" placeholder="E.g Capetown">
+            </div>
+            <div class="form-group">
+                <label><strong>State Province</strong></label>
+                <input type="text" ng-change="accountInfoChanged('state_province')" ng-model="address.state_province" class="form-control" placeholder="E.g Western cape">
+            </div>
+            <div class="form-group">
+                <label><strong>Country</strong></label>
+                <country-select class="form-control pointer" ng-change="accountInfoChanged('country')" data-ng-model="address.country"></country-select>
+            </div>
+            <div class="form-group">
+                <label><strong>Postal code</strong></label>
+                <input type="text" ng-change="accountInfoChanged('postal_code')" ng-model="address.postal_code" class="form-control" placeholder="E.g 1209">
+            </div>
+            <div class="form-group">
+                <button ng-click="updateAddress()" class="btn btn-primary pull-right">Save</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div ba-panel ng-show="loadingAccountInfo">
+    <loading-image></loading-image>
+</div>

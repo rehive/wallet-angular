@@ -1,0 +1,12 @@
+<div ng-hide="loadingBankAccounts" ba-panel ba-panel-title="Edit bitcoin address" ba-panel-class="light-text with-scroll">
+    <form class="custom-form">
+        <div class="form-group">
+            <label><strong>Bitcoin Address</strong> <span class="required-icon">*</span></label>
+            <input type="text" ng-change="bankAccountChanged('address')" ng-model="editBitcoinAddress.address" class="form-control"  placeholder="Enter you bitcoin address" required>
+        </div>
+        <div class="form-group">
+            <button ng-click="updateBankAccount()" class="btn btn-primary pull-right">Save</button>
+            <button ng-click="toggleEditBankAccountsView()" class="btn btn-primary pull-right bank-account-back">Back</button>
+        </div>
+    </form>
+</div>
