@@ -11,7 +11,7 @@
 
         $scope.makingPayment = false;
 
-        $scope.toggleBuyBitcoinView = function () {
+        $scope.toggleBuyEuroView = function () {
             $scope.makingPayment = !$scope.makingPayment;
         }
     }

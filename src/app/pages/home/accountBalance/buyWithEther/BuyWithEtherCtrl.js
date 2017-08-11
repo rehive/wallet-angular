@@ -11,7 +11,7 @@
 
         $scope.makingEtherPayment = false;
 
-        $scope.toggleBuyBitcoinView = function () {
+        $scope.toggleBuyEtherView = function () {
             $scope.makingEtherPayment = !$scope.makingEtherPayment;
         }
     }
