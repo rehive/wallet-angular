@@ -60,7 +60,7 @@
                     $scope.mobileVerified = true;
                     $scope.loadingRegisterProgressView = false;
                 } else {
-                    $scope.mobileVerified = true;
+                    $scope.mobileVerified = false;
                     $scope.loadingRegisterProgressView = false;
                 }
             },number);
