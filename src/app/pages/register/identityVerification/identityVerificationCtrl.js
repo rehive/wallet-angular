@@ -34,7 +34,7 @@
         vm.getUserInfo();
 
         vm.getUserAddress = function(){
-            $http.get(environmentConfig.API + '/user/address', {
+            $http.get(environmentConfig.API + '/user/address/', {
                 headers: {
                     'Content-Type': 'application/json',
                     'Authorization': vm.token
@@ -68,7 +68,7 @@
         };
 
         vm.updateAddress = function(){
-            $http.patch(environmentConfig.API + '/user/address',$scope.address, {
+            $http.patch(environmentConfig.API + '/user/address/',$scope.address, {
                 headers: {
                     'Content-Type': 'application/json',
                     'Authorization': vm.token

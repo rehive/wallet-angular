@@ -23,11 +23,10 @@
                     if (res.status === 200) {
                         $scope.currencies = res.data.data.results[0].currencies;
                         $scope.activeCurrency = $scope.currencies.find(function(element){
-                            return element.currency.code === 'WATT';
+                            return element.currency.code === 'WAT';
                         });
                     }
                 }).catch(function (error) {
-                    console.log(error);
                     $scope.loadingCurrencies = false;
                     if(error.status == 403){
                         errorHandler.handle403();
