@@ -9,7 +9,11 @@
         var vm = this;
         vm.token = cookieManagement.getCookie('TOKEN');
 
+        $scope.makingPayment = false;
 
+        $scope.toggleBuyBitcoinView = function () {
+            $scope.makingPayment = !$scope.makingPayment;
+        }
     }
 
 })();

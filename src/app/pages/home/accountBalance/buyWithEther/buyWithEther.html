@@ -1,4 +1,4 @@
-<div>
+<div ng-show="!makingPayment">
     <div class="panel">
         <div class="panel-heading"><h2 class="custom-buy-with-header">Buy with ether</h2></div>
         <div class="panel-body">
@@ -18,10 +18,13 @@
                 <br>
                 <div class="form-group">
                     <div class="col-sm-offset-2 col-sm-10">
-                        <button class="btn btn-primary pull-right">Next</button>
+                        <button class="btn btn-primary pull-right" ng-click="toggleBuyBitcoinView()">Next</button>
                     </div>
                 </div>
             </form>
         </div>
     </div>
+</div>
+<div ng-show="makingPayment">
+    <make-ether-payment></make-ether-payment>
 </div>
