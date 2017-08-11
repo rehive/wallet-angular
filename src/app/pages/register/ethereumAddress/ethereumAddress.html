@@ -8,12 +8,12 @@
           <div >
             <div class="row form-group">
                 <div class="col-sm-12 input-block">
-                    <input class="form-control"  placeholder="Please paste a valid Ethereum address" type="text" ng-model="ethereum">
+                    <input class="form-control"  placeholder="Please paste a valid Ethereum address" type="text" ng-model="ethereum.address">
                 </div>
             </div>
             <div class="row">
               <div class="col-sm-12">
-                  <button ng-click="addEthereumAddress()" class="btn btn-primary btn-verify-mobile pull-right">Done</button>
+                  <button ng-disabled="!ethereum.address" ng-click="addEthereumAddress(ethereum.address)" class="btn btn-primary btn-verify-mobile pull-right">Done</button>
                   <button ng-click="goToNextView()" class="btn btn-primary btn-verify-mobile pull-left">Skip</button>
               </div>
             </div>
