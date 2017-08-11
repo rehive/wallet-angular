@@ -9,10 +9,10 @@
         var vm = this;
         vm.token = cookieManagement.getCookie('TOKEN');
 
-        $scope.makingPayment = false;
+        $scope.makingEtherPayment = false;
 
         $scope.toggleBuyBitcoinView = function () {
-            $scope.makingPayment = !$scope.makingPayment;
+            $scope.makingEtherPayment = !$scope.makingEtherPayment;
         }
     }
 
