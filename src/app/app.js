@@ -8,6 +8,7 @@ angular.module('BlurAdmin', [
     'ngCookies',
     'ui.bootstrap',
     'ui.router',
+    'ngclipboard',
     'toastr',
     'countrySelect',
     'iso-3166-country-codes',

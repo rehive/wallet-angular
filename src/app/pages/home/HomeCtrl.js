@@ -9,6 +9,7 @@
         var vm = this;
         vm.token = cookieManagement.getCookie('TOKEN');
         $scope.loadingCurrencies = true;
+        $scope.showBuyWithEuro = false;
 
         vm.getUserAccounts = function(){
             if(vm.token) {
