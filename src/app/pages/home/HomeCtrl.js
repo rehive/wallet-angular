@@ -23,20 +23,16 @@
                     if (res.status === 200) {
                         $scope.currencies = res.data.data.results[0].currencies;
                         $scope.activeCurrency = $scope.currencies.find(function(element){
-                            return element.active == true;
+                            return element.currency.code === 'WATT';
                         });
-                        var index = $scope.currencies.findIndex(function(element){
-                            return element.active == true;
-                        });
-                        $scope.currencies.splice(index, 1);
                     }
                 }).catch(function (error) {
                     console.log(error);
                     $scope.loadingCurrencies = false;
-                    // if(error.status == 403){
-                    //     errorHandler.handle403();
-                    //     return;
-                    // }
+                    if(error.status == 403){
+                        errorHandler.handle403();
+                        return;
+                    }
                     errorToasts.evaluateErrors(error.data);
                 });
             }
