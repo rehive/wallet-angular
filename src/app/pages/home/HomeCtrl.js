@@ -31,11 +31,12 @@
                         $scope.currencies.splice(index, 1);
                     }
                 }).catch(function (error) {
+                    console.log(error);
                     $scope.loadingCurrencies = false;
-                    if(error.status == 403){
-                        errorHandler.handle403();
-                        return;
-                    }
+                    // if(error.status == 403){
+                    //     errorHandler.handle403();
+                    //     return;
+                    // }
                     errorToasts.evaluateErrors(error.data);
                 });
             }

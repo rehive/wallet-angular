@@ -1,11 +1,14 @@
-<div ng-hide="loadingCurrencies" class="panel panel-primary">
-    <div class="panel-heading custom-panel-heading"><h1>{{activeCurrency.currency.code}} {{activeCurrency.balance | currencyModifiersFilter: activeCurrency.currency.divisibility | preciseRound: activeCurrency.currency.divisibility}}</h1></div>
-    <div class="panel-body">
-        <div class="accountBalance-panel-body" ng-repeat="currency in currencies">
-            <p>Buy with {{currency.currency.description | lowercase}}</p>
+<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+    <div ng-hide="loadingCurrencies" class="panel panel-primary">
+        <div class="panel-heading custom-panel-heading"><h1>{{activeCurrency.currency.code}} {{activeCurrency.balance | currencyModifiersFilter: activeCurrency.currency.divisibility | preciseRound: activeCurrency.currency.divisibility}}</h1></div>
+        <div class="panel-body">
+            <div class="accountBalance-panel-body" ng-repeat="currency in currencies">
+                <p>Buy with {{currency.currency.description | lowercase}}</p>
+            </div>
         </div>
     </div>
+    <div ba-panel ng-show="loadingCurrencies">
+        <loading-image></loading-image>
+    </div>
 </div>
-<div ba-panel ng-show="loadingCurrencies">
-    <loading-image></loading-image>
-</div>
+
