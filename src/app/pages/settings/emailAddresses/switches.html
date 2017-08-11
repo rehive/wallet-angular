@@ -1,0 +1,44 @@
+<div ng-hide="editingSwitches || loadingSwitches">
+    <div ng-show="switchesList.length > 0" ba-panel class="setting-bank-accounts" ba-panel-title="Global switches" ba-panel-class="light-text with-scroll">
+        <table class="table fees-table table-striped setting-bank-accounts-table">
+            <tr class="black-muted-bg divider">
+                <th><strong>Type</strong></th>
+                <th><strong>Enabled</strong></th>
+                <th></th>
+            </tr>
+            <tr ng-repeat="switches in switchesList">
+                <th title="{{switches.switch_type}}" ng-bind="switches.switch_type | limitTo: '35'"></th>
+                <th title="{{switches.enabled}}" ng-bind="switches.enabled | capitalizeWord"></th>
+                <th class="rehive-table-row-last-child">
+                    <button ng-click="openSwitchesModal('app/pages/settings/switches/switchModal/switchModal.html','md',switches)" class="btn btn-danger pull-right rehive-settings-buttons">Delete</button>
+                    <button ng-click="toggleSwitchesEditView(switches)" class="btn btn-primary pull-right rehive-settings-buttons">Edit</button>
+                </th>
+            </tr>
+        </table>
+    </div>
+    <div ba-panel ba-panel-title="Add global switch" ba-panel-class="light-text with-scroll">
+        <form name="switchesForm" class="custom-form">
+            <div class="form-group">
+                <label><strong>Switch type</strong> <span class="required-icon">*</span></label>
+                <br>
+                <select class="form-control pointer" ng-model="switchesParams.switch_type" ng-options="option for option in switchesOptions" required>
+                </select>
+            </div>
+            <div class="form-group">
+              <label><strong>Enabled</strong></label>
+              <br>
+              <select class="form-control pointer" ng-model="switchesParams.enabled" ng-options="bool for bool in boolOptions" required>
+              </select>
+            </div>
+            <div class="form-group">
+                <button ng-click="addSwitches(switchesParams)" ng-disabled="!switchesForm.$valid" class="btn btn-primary pull-right">Add</button>
+            </div>
+        </form>
+    </div>
+</div>
+<div ng-show="editingSwitches">
+    <edit-switch></edit-switch>
+</div>
+<div ba-panel ng-show="loadingSwitches">
+    <loading-image></loading-image>
+</div>
