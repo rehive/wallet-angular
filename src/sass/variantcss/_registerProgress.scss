@@ -1,0 +1,50 @@
+.register-progress-box{
+  margin-bottom: 40px;
+}
+
+.register-cirles{
+  justify-content: center;
+  text-align: center;
+}
+
+.register-circle-checked{
+  margin: 0 auto;
+  height: 70px;
+  width: 70px;
+  border-radius: 40px;
+  text-align: center;
+  background-color: $primary;
+  display: table;
+}
+
+.register-circle-checked span{
+  display: table-cell;
+  vertical-align: middle;
+  color: white;
+  font-size: 36px;
+}
+
+.register-circle-unchecked{
+  margin: 0 auto;
+  height: 70px;
+  width: 70px;
+  border-radius: 40px;
+  text-align: center;
+  background-color: #C2C2C2;
+  display: table;
+}
+
+.register-circle-unchecked span{
+  display: table-cell;
+  vertical-align: middle;
+  color: white;
+  font-size: 28px;
+}
+
+.register-text{
+  color: #C2C2C2;
+  font-size: 14px;
+  font-weight: bold;
+  display: block;
+  margin-top: 10px;
+}

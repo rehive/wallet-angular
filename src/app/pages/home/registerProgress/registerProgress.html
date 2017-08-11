@@ -1,3 +1,61 @@
-<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-    <h1>hello</h1>
+<div ng-hide="emailVerified && mobileVerified && addressVerified && idDocumentsVerified && residenceDocumentsVerified && ethereumAddressVerified">
+    <div ng-hide="loadingRegisterProgressView" class="col-lg-12 col-md-12 col-sm-12 col-xs-12 register-progress-box">
+        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 register-cirles">
+            <div ng-show="emailVerified" class="register-circle-checked">
+                <span><i class="glyphicon glyphicon-ok"></i></span>
+            </div>
+            <div ng-click="goToGetVerified('/email/verify')" ng-hide="emailVerified" class="register-circle-unchecked pointer">
+                <span>1</span>
+            </div>
+            <span class="register-text">Verify email</span>
+        </div>
+        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 register-cirles">
+            <div ng-show="mobileVerified" class="register-circle-checked">
+                <span><i class="glyphicon glyphicon-ok"></i></span>
+            </div>
+            <div ng-click="goToGetVerified('/mobile/verify')" ng-hide="mobileVerified" class="register-circle-unchecked pointer">
+                <span>2</span>
+            </div>
+            <span class="register-text">Verify mobile</span>
+        </div>
+        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 register-cirles">
+            <div ng-show="addressVerified" class="register-circle-checked">
+                <span><i class="glyphicon glyphicon-ok"></i></span>
+            </div>
+            <div ng-click="goToGetVerified('/identity/verification')" ng-hide="addressVerified" class="register-circle-unchecked pointer">
+                <span>3</span>
+            </div>
+            <span class="register-text">Basic info</span>
+        </div>
+        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 register-cirles">
+            <div ng-show="idDocumentsVerified" class="register-circle-checked">
+                <span><i class="glyphicon glyphicon-ok"></i></span>
+            </div>
+            <div ng-click="goToGetVerified('/document/verify/ID')" ng-hide="idDocumentsVerified" class="register-circle-unchecked pointer">
+                <span>4</span>
+            </div>
+            <span class="register-text">Proof of ID</span>
+        </div>
+        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 register-cirles">
+            <div ng-show="residenceDocumentsVerified" class="register-circle-checked">
+                <span><i class="glyphicon glyphicon-ok"></i></span>
+            </div>
+            <div ng-click="goToGetVerified('/document/verify/residence')" ng-hide="residenceDocumentsVerified" class="register-circle-unchecked pointer">
+                <span>5</span>
+            </div>
+            <span class="register-text">Proof of address</span>
+        </div>
+        <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 register-cirles">
+            <div ng-show="ethereumAddressVerified" class="register-circle-checked">
+                <span><i class="glyphicon glyphicon-ok"></i></span>
+            </div>
+            <div ng-click="goToGetVerified('/ethereum/address')" ng-hide="ethereumAddressVerified" class="register-circle-unchecked pointer">
+                <span>6</span>
+            </div>
+            <span class="register-text">Token address</span>
+        </div>
+    </div>
+    <div ng-show="loadingRegisterProgressView" class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <loading-image></loading-image>
+    </div>
 </div>
