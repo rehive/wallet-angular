@@ -1,23 +1,27 @@
-.settings-menu-heading {
-    margin-bottom: 20px;
+.menu-box {
+  width: 350px;
 }
 
-.settings-menu-heading {
-  margin: 15px 0px;
+.ba-heading {
+  padding-bottom: 10px;
 }
+
+.ba-heading h2 {
+    margin-top: 5px;
+  }
 
 .bank-account-title {
-    font-size: 17px;
-    vertical-align: middle!important;
+  font-size: 17px;
+  vertical-align: middle !important;
 }
 
 .bank-account-back {
   margin-right: 10px;
 }
 
-.menu-box-options{
-  padding: 4px;
-  &:hover{
+.menu-box-options {
+  padding: 5px;
+  &:hover {
     background-color: #f5f5f5;
   }
 }

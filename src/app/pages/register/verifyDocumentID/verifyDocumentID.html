@@ -2,26 +2,40 @@
     <auth-navigation></auth-navigation>
 </div>
 <div ng-hide="loadingDocumentsIDView" class="auth-main">
-    <div class="auth-block text-center">
+    <div class="auth-block verification-text">
         <h1>Identity verification <span class="text-muted">| ID</span></h1>
+
+        <p>Please upload a color copy or photo of your identity document. eCharge team will review your document and
+            complete the verification within 48 hours. You'll be notified via email if your documents are verified or
+            not.</p>
+        <br>
+
         <form class="form-horizontal">
             <table class="table table-condensed table-striped table-hover divider">
                 <tr class="black-muted-bg">
-                    <th ><h4><strong>Description</strong></h4></th>
+                    <th style="padding-left: 15px;"><h4><strong>Description</strong></h4></th>
                     <th class="pull-left"><h4><strong>Status</strong></h4></th>
                 </tr>
                 <tr ng-repeat="document in documents | orderBy: '-created'" data-toggle="modal"
                     ng-click="openDocumentModal('app/pages/register/verifyDocumentID/showDocumentIDModal/showDocumentIDModal.html', 'lg',document)"
                     class="editable-row center pointer">
-                    <td width="55%"><div title="{{document.document_type}}" class="transactions-list-element"
-                             ng-bind="document.document_type"></div></td>
-                    <td  class="pull-left"><div title="{{document.verified}}" class="transactions-list-element"
-                             ng-bind="document.verified"></div></td>
+                    <td width="70%" style="padding-left: 15px;">
+                        <div title="{{document.document_type}}" class="transactions-list-element"
+                             ng-bind="document.document_type"></div>
+                    </td>
+                    <td class="pull-left">
+                        <div title="{{document.verified}}" class="transactions-list-element"
+                             ng-bind="document.verified"></div>
+                    </td>
                 </tr>
             </table>
             <div>
-                <button ng-click="openAddUserDocumentModal('app/pages/register/verifyDocumentID/addDocumentIDModal/addDocumentIDModal.html','lg')" class="btn btn-primary pull-right">Upload</button>
-                <button ng-click="goToNextView()" class="btn btn-primary pull-left">{{documents.length > 0 ? 'Next':'Skip'}}</button>
+                <button ng-click="openAddUserDocumentModal('app/pages/register/verifyDocumentID/addDocumentIDModal/addDocumentIDModal.html','lg')"
+                        class="btn btn-primary {{documents.length > 0 ? 'btn-default':'btn-primary'}} pull-left">Upload
+                </button>
+                <button ng-click="goToNextView()"
+                        class="btn {{documents.length > 0 ? 'btn-primary':'btn-danger'}} pull-right">{{documents.length > 0 ? 'Next':'Skip'}}
+                </button>
             </div>
         </form>
     </div>

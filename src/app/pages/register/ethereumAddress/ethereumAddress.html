@@ -2,22 +2,31 @@
     <auth-navigation></auth-navigation>
 </div>
 <div ng-hide="loadingEtheriumView" class="auth-main">
-    <div class="auth-block text-center">
-        <h1>Verify Ethereum address</h1>
+    <div class="auth-block verification-text">
+        <h1>Add ethereum address</h1>
+
+        <p>Note that this your ethereum receiving address for WAT tokens. Please make sure that the address is
+            correct.</p>
+        <br>
+
         <form class="form-horizontal">
-          <div >
-            <div class="row form-group">
-                <div class="col-sm-12 input-block">
-                    <input class="form-control"  placeholder="Please paste a valid Ethereum address" type="text" ng-model="ethereum.address">
+            <div>
+                <div class="row form-group">
+                    <div class="col-sm-12 input-block">
+                        <input class="form-control" placeholder="Please paste a valid ethereum address" type="text"
+                               ng-model="ethereum.address">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <button ng-disabled="!ethereum.address" ng-click="addEthereumAddress(ethereum.address)"
+                                class="btn btn-primary btn-verify-mobile pull-right">Done
+                        </button>
+                        <button ng-click="goToNextView()" class="btn btn-danger btn-verify-mobile pull-left">Skip
+                        </button>
+                    </div>
                 </div>
             </div>
-            <div class="row">
-              <div class="col-sm-12">
-                  <button ng-disabled="!ethereum.address" ng-click="addEthereumAddress(ethereum.address)" class="btn btn-primary btn-verify-mobile pull-right">Done</button>
-                  <button ng-click="goToNextView()" class="btn btn-primary btn-verify-mobile pull-left">Skip</button>
-              </div>
-            </div>
-          </div>
         </form>
     </div>
 </div>

@@ -75,10 +75,11 @@
             }).then(function (res) {
                 if (res.status === 200) {
                     $scope.address = res.data.data;
-                    delete $scope.address['state_province'];
+                    delete $scope.address['line_2'];
                     for (var key in $scope.address) {
                         if ($scope.address.hasOwnProperty(key)) {
                             if(!$scope.address[key]){
+                                console.log(key);
                                 $scope.addressVerified = false;
                             }
                         }

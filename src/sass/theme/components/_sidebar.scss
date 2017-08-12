@@ -36,9 +36,9 @@ $angle-right: "\f101";
   float: none;
   padding: 0;
   &.selected:not(.with-sub-menu) {
-    background-color: $primary;
+    background-color: transparent;
     a.al-sidebar-list-link {
-      color: $sidebar-text;
+      color: $primary;
       b {
         color: $sidebar-text;
       }
@@ -61,7 +61,7 @@ $angle-right: "\f101";
 }
 
 a.al-sidebar-list-link {
-  padding-left: 20px;
+  padding-left: 10px;
   display: block;
   height: 42px;
   text-shadow: none;

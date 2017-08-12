@@ -4,66 +4,89 @@
 <div ng-hide="loadingBasicInfoView" class="auth-main">
     <div class="identity-block text-center">
         <h1>Identity verification <span class="identity-title">| Basic information</span></h1>
+
         <div class="identity-form">
-          <form class="form">
-            <div>
-              <div class="row form-group">
-                <div class="col-sm-3 itentity-label">
-                      <p>Legal name</p>
+            <form class="form">
+                <div>
+                    <div class="row form-group">
+                        <div class="col-sm-3 identity-label">
+                            <p>Legal name</p>
+                        </div>
+                        <div class="col-sm-9">
+                            <div class="col-sm-6">
+                                <input class="form-control" ng-change="userChanged('first_name')"
+                                       placeholder="First name" type="text" ng-model="user.first_name">
+                            </div>
+                            <div class="col-sm-6">
+                                <input class="form-control" ng-change="userChanged('last_name')" placeholder="Last name"
+                                       type="text" ng-model="user.last_name">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row form-group">
+                        <div class="col-sm-3 identity-label">
+                            <p>ID number</p>
+                        </div>
+                        <div class="col-sm-9">
+                            <div class="col-sm-12">
+                                <input class="form-control" placeholder="ID or passport number" type="text" ng-model="user.id_number">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row form-group">
+                        <div class="col-sm-3 identity-label">
+                            <p>Date of birth</p>
+                        </div>
+                        <div class="col-sm-9">
+                            <div class="col-sm-4">
+                                <input class="form-control" placeholder="Month" type="text" ng-model="month">
+                            </div>
+                            <div class="col-sm-4">
+                                <input class="form-control" placeholder="Day" type="text" ng-model="day">
+                            </div>
+                            <div class="col-sm-4">
+                                <input class="form-control" placeholder="Year" type="text" ng-model="year">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row form-group">
+                        <div class="col-sm-3 identity-label">
+                            <p>Address</p>
+                        </div>
+                        <div class="col-sm-9">
+                            <div class="col-sm-12 input-block">
+                                <input class="form-control" placeholder="Line 1" type="text" ng-model="address.line_1">
+                            </div>
+                            <div class="col-sm-12 input-block">
+                                <input class="form-control" placeholder="Line 2" type="text" ng-model="address.line_2">
+                            </div>
+                            <div class="col-sm-12 input-block">
+                                <country-select placeholder="country" class="form-control pointer"
+                                                ng-model="address.country"></country-select>
+                            </div>
+                            <div class="col-sm-12 input-block">
+                                <input class="form-control" placeholder="State/Province" type="text"
+                                       ng-model="address.state_province">
+                            </div>
+                            <div class="col-sm-8">
+                                <input class="form-control" placeholder="City" type="text" ng-model="address.city">
+                            </div>
+                            <div class="col-sm-4">
+                                <input class="form-control" placeholder="Zip" type="text"
+                                       ng-model="address.postal_code">
+                            </div>
+                            <div class="col-sm-12">
+                                <button ng-click="updateUserInfo()" class="btn btn-primary pull-right identity-button">
+                                    Next
+                                </button>
+                                <button ng-click="goToNextView()" class="btn btn-danger pull-left identity-button">
+                                    Skip
+                                </button>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="col-sm-9">
-                    <div class="col-sm-6">
-                      <input class="form-control" ng-change="userChanged('first_name')"  placeholder="First name" type="text" ng-model="user.first_name">
-                    </div>
-                    <div class="col-sm-6">
-                      <input class="form-control" ng-change="userChanged('last_name')"  placeholder="Last name" type="text" ng-model="user.last_name">
-                    </div>
-                </div>
-              </div>
-              <div class="row form-group">
-                <div class="col-sm-3 itentity-label">
-                      <p>Date of birth</p>
-                </div>
-                <div class="col-sm-9">
-                    <div class="col-sm-4">
-                      <input class="form-control"  placeholder="Month" type="text" ng-model="ethereum">
-                    </div>
-                    <div class="col-sm-4">
-                      <input class="form-control"  placeholder="Day" type="text" ng-model="ethereum">
-                    </div>
-                    <div class="col-sm-4">
-                      <input class="form-control"  placeholder="Year" type="text" ng-model="ethereum">
-                    </div>
-                </div>
-              </div>
-              <div class="row form-group">
-                  <div class="col-sm-3 itentity-label">
-                    <p>Address</p>
-                  </div>
-                  <div class="col-sm-9">
-                    <div class="col-sm-12 input-block">
-                      <input class="form-control"  placeholder="Line 1" type="text" ng-model="address.line_1">
-                    </div>
-                    <div class="col-sm-12 input-block">
-                      <input class="form-control"  placeholder="Line 2" type="text" ng-model="address.line_2">
-                    </div>
-                    <div class="col-sm-12 input-block">
-                        <country-select placeholder="country" class="form-control pointer" ng-model="address.country" ></country-select>
-                    </div>
-                    <div class="col-sm-8">
-                      <input class="form-control"  placeholder="City" type="text" ng-model="address.city">
-                    </div>
-                    <div class="col-sm-4">
-                      <input class="form-control"  placeholder="Zip" type="text" ng-model="address.postal_code">
-                    </div>
-                    <div class="col-sm-12">
-                        <button ng-click="updateUserInfo()" class="btn btn-primary pull-right identity-button">Next</button>
-                        <button ng-click="goToNextView()" class="btn btn-primary pull-left identity-button">Skip</button>
-                    </div>
-                  </div>
-              </div>
-            </div>
-          </form>
+            </form>
         </div>
     </div>
 </div>

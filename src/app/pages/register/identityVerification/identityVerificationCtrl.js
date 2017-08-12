@@ -5,7 +5,7 @@
         .controller('IdentityVerificationCtrl', IdentityVerificationCtrl);
 
     /** @ngInject */
-    function IdentityVerificationCtrl($rootScope,$scope,$http,cookieManagement,environmentConfig,$location,errorToasts,userVerification) {
+    function IdentityVerificationCtrl($rootScope, $scope, $http, cookieManagement, environmentConfig, $location, errorToasts, userVerification) {
 
         var vm = this;
         vm.token = cookieManagement.getCookie('TOKEN');
@@ -14,7 +14,7 @@
         $scope.address = {};
         vm.user = {};
 
-        vm.getUserInfo = function(){
+        vm.getUserInfo = function () {
             $http.get(environmentConfig.API + '/user/', {
                 headers: {
                     'Content-Type': 'application/json',
@@ -33,7 +33,7 @@
         };
         vm.getUserInfo();
 
-        vm.getUserAddress = function(){
+        vm.getUserAddress = function () {
             $http.get(environmentConfig.API + '/user/address/', {
                 headers: {
                     'Content-Type': 'application/json',
@@ -50,9 +50,13 @@
             });
         };
 
-        $scope.updateUserInfo = function(){
+        $scope.updateUserInfo = function () {
             $scope.loadingBasicInfoView = true;
-            $http.patch(environmentConfig.API + '/user/',{first_name: vm.user.first_name,last_name: vm.user.last_name}, {
+            $http.patch(environmentConfig.API + '/user/', {
+                first_name: vm.user.first_name,
+                id_number: vm.user.id_number,
+                last_name: vm.user.last_name
+            }, {
                 headers: {
                     'Content-Type': 'application/json',
                     'Authorization': vm.token
@@ -67,8 +71,8 @@
             });
         };
 
-        vm.updateAddress = function(){
-            $http.patch(environmentConfig.API + '/user/address/',$scope.address, {
+        vm.updateAddress = function () {
+            $http.patch(environmentConfig.API + '/user/address/', $scope.address, {
                 headers: {
                     'Content-Type': 'application/json',
                     'Authorization': vm.token
@@ -84,11 +88,11 @@
             });
         };
 
-        $scope.userChanged = function(field){
+        $scope.userChanged = function (field) {
             vm.user[field] = $scope.user[field];
         };
 
-        $scope.goToNextView = function(){
+        $scope.goToNextView = function () {
             $location.path('document/verify/ID');
         }
 
