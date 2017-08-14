@@ -2,10 +2,12 @@ $text-color: #494242;
 
 .form-control, .form-control:focus {
   @include placeholderStyle($text-color, 0.5);
-  padding: 19px 10px;
+  height: auto;
+  padding: 10px 10px;
   border-radius: 2px;
   color: $text-color;
 }
+
 .form-control[disabled], .form-control[readonly], fieldset[disabled] .form-control {
   @include placeholderStyle($text-color, 0.6);
 }
@@ -20,7 +22,7 @@ $text-color: #494242;
 .auth-block {
   position: relative;
   width: 490px;
-  margin: 7% auto;
+  margin: 20vh auto;
   background-color: white;
   border-radius: 0;
   color: #000;
