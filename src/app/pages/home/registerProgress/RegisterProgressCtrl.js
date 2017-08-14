@@ -79,7 +79,6 @@
                     for (var key in $scope.address) {
                         if ($scope.address.hasOwnProperty(key)) {
                             if(!$scope.address[key]){
-                                console.log(key);
                                 $scope.addressVerified = false;
                             }
                         }
