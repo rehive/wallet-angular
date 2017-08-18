@@ -1,20 +1,20 @@
 (function () {
     'use strict';
 
-    angular.module('BlurAdmin.pages.settings.switches')
-        .controller('SwitchModalCtrl', SwitchModalCtrl);
+    angular.module('BlurAdmin.pages.settings.emails')
+        .controller('MobilesModalCtrl', MobilesModalCtrl);
 
-    function SwitchModalCtrl($scope,$uibModalInstance,switches,toastr,$http,environmentConfig,cookieManagement,errorToasts,errorHandler) {
+    function MobilesModalCtrl($scope,$uibModalInstance,mobile,toastr,$http,environmentConfig,cookieManagement,errorToasts,errorHandler) {
 
         var vm = this;
 
-        $scope.switches = switches;
+        $scope.mobile = mobile;
         $scope.deletingSwitches = false;
         vm.token = cookieManagement.getCookie('TOKEN');
 
-        $scope.deleteSwitches = function () {
+        $scope.deleteEmail = function () {
             $scope.deletingSwitches = true;
-            $http.delete(environmentConfig.API + '/admin/switches/' + $scope.switches.id + '/', {
+            $http.delete(environmentConfig.API + '/user/mobiles/' + $scope.mobile.id + '/', {
                 headers: {
                     'Content-Type': 'application/json',
                     'Authorization': vm.token
@@ -22,8 +22,8 @@
             }).then(function (res) {
                 $scope.deletingSwitches = false;
                 if (res.status === 200) {
-                    toastr.success('Switch successfully deleted');
-                    $uibModalInstance.close($scope.switches);
+                    toastr.success('Mobile number successfully deleted');
+                    $uibModalInstance.close($scope.email);
                 }
             }).catch(function (error) {
                 $scope.deletingSwitches = false;

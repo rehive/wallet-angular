@@ -7,7 +7,9 @@
       'BlurAdmin.pages.settings.bankAccounts',
       'BlurAdmin.pages.settings.bitcoinAddresses',
       'BlurAdmin.pages.settings.notifications',
-      'BlurAdmin.pages.settings.security'
+      'BlurAdmin.pages.settings.security',
+      'BlurAdmin.pages.settings.emails',
+      'BlurAdmin.pages.settings.mobiles'
     ])
         .config(routeConfig);
 

@@ -1,11 +1,11 @@
 (function () {
     'use strict';
 
-    angular.module('BlurAdmin.pages.settings.emails')
-        .controller('EmailsCtrl', EmailsCtrl);
+    angular.module('BlurAdmin.pages.settings.mobiles')
+        .controller('MobilesCtrl', MobilesCtrl);
 
     /** @ngInject */
-    function EmailsCtrl($scope,environmentConfig,$uibModal,toastr,$http,cookieManagement,errorToasts,$window,stringService,errorHandler) {
+    function MobilesCtrl($scope,environmentConfig,$uibModal,toastr,$http,cookieManagement,errorToasts,$window,stringService,errorHandler) {
 
         var vm = this;
         vm.updatedSwitches = {};
@@ -21,7 +21,7 @@
         vm.getSwitches = function () {
             if(vm.token) {
                 $scope.loadingSwitches = true;
-                $http.get(environmentConfig.API + '/user/emails/', {
+                $http.get(environmentConfig.API + '/user/mobiles/', {
                     headers: {
                         'Content-Type': 'application/json',
                         'Authorization': vm.token
@@ -29,7 +29,7 @@
                 }).then(function (res) {
                     $scope.loadingSwitches = false;
                     if (res.status === 200) {
-                        $scope.emailsList = res.data.data;
+                        $scope.mobilesList = res.data.data;
                         $window.scrollTo(0, 0);
                     }
                 }).catch(function (error) {
@@ -42,7 +42,7 @@
 
         $scope.makePrimary = function (email) {
              $scope.loadingSwitches = true;
-             $http.patch(environmentConfig.API + '/user/emails/'+email.id, {primary: true}, {
+             $http.patch(environmentConfig.API + '/user/mobiles/'+email.id, {primary: true}, {
                  headers: {
                      'Content-Type': 'application/json',
                      'Authorization': vm.token
@@ -52,7 +52,7 @@
                  if (res.status === 201 || res.status === 200) {
                      vm.getSwitches();
                      $scope.email = {};
-                     toastr.success('You have successfully changed the primary email!');
+                     toastr.success('You have successfully changed the primary mobile number!');
                      $window.scrollTo(0, 0);
                  }
              }).catch(function (error) {
@@ -65,13 +65,13 @@
              });
          };
 
-        $scope.verify = function (email) {
+        $scope.verify = function (mobile) {
              $scope.loadingSwitches = true;
              var data = {
-                 email: email.email,
+                 mobile: mobile.number,
                  company: environmentConfig.COMPANY
              };
-             $http.post(environmentConfig.API + '/auth/email/verify/resend/', data, {
+             $http.post(environmentConfig.API + '/auth/mobile/verify/resend/', data, {
                  headers: {
                      'Content-Type': 'application/json',
                      'Authorization': vm.token
@@ -79,7 +79,7 @@
              }).then(function (res) {
                  $scope.loadingSwitches = false;
                  if (res.status === 201 || res.status === 200) {
-                     toastr.success('A verification email has been sent to your email address!');
+                     toastr.success('An OTP has been sent to your mobile number!');
                      $window.scrollTo(0, 0);
                  }
              }).catch(function (error) {
@@ -92,9 +92,9 @@
              });
          };
 
-         $scope.addEmail = function (email) {
+         $scope.addMobile = function (mobile) {
              $scope.loadingSwitches = true;
-             $http.post(environmentConfig.API + '/user/emails/', email, {
+             $http.post(environmentConfig.API + '/user/mobiles/', mobile, {
                  headers: {
                      'Content-Type': 'application/json',
                      'Authorization': vm.token
@@ -103,8 +103,8 @@
                  $scope.loadingSwitches = false;
                  if (res.status === 201) {
                      vm.getSwitches();
-                     $scope.email = {};
-                     toastr.success('You have successfully added the email!');
+                     $scope.mobile = {};
+                     toastr.success('You have successfully added the mobile number!');
                      $window.scrollTo(0, 0);
                  }
              }).catch(function (error) {
@@ -121,23 +121,23 @@
             return this.id == element.id;
         };
 
-        $scope.openSwitchesModal = function (page, size, email) {
+        $scope.openSwitchesModal = function (page, size, mobile) {
             vm.theModal = $uibModal.open({
                 animation: true,
                 templateUrl: page,
                 size: size,
-                controller: 'EmailsModalCtrl',
+                controller: 'MobilesModalCtrl',
                 scope: $scope,
                 resolve: {
-                    email: function () {
-                        return email;
+                    mobile: function () {
+                        return mobile;
                     }
                 }
             });
 
-            vm.theModal.result.then(function(email){
-                var index = $scope.emailsList.findIndex(vm.findIndexOfSwitches,email);
-                $scope.emailsList.splice(index, 1);
+            vm.theModal.result.then(function(mobile){
+                var index = $scope.mobilesList.findIndex(vm.findIndexOfSwitches, mobile);
+                $scope.mobilesList.splice(index, 1);
             }, function(){
             });
         };

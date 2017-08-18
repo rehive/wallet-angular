@@ -1,21 +1,21 @@
 (function () {
     'use strict';
 
-    angular.module('BlurAdmin.pages.settings.switches', [])
+    angular.module('BlurAdmin.pages.settings.emails', [])
         .config(routeConfig);
 
     /** @ngInject */
     function routeConfig($stateProvider,$urlRouterProvider) {
         $stateProvider
-            .state('settings.switches', {
-                url: '/switches',
+            .state('settings.emails', {
+                url: '/emails',
                 views: {
                   'generalSettings': {
-                    controller: 'SwitchesCtrl',
-                    templateUrl: 'app/pages/settings/switches/switches.html'
+                    controller: 'EmailsCtrl',
+                    templateUrl: 'app/pages/settings/emailAddresses/emailAddresses.html'
                   }
                 },
-                title: "Global switches"
+                title: "Email Addresses"
             });
     }
 
