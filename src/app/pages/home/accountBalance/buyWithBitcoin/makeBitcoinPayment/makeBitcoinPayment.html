@@ -3,11 +3,11 @@
         <div class="panel-heading"><h2 class="custom-buy-with-header">Make bitcoin payment</h2></div>
         <div class="col-md-12">
             <div class="col-md-12 make-payment-notice">
-                You are buying 354432 WAT tokens worth $1350. Follow the instructions below.
+                You are buying {{getAmount(quotebtc.token_amount, quotebtc.token_currency.divisibility)}} ICOT tokens worth {{getAmount(quotebtc.deposit_amount, quotebtc.deposit_currency.divisibility)}} Bitcoins. Follow the instructions below.
             </div>
             <div class="col-md-12">
                 <div class="col-md-6 make-payment-image">
-                    <img src="https://chart.googleapis.com/chart?chs=300x300&cht=qr&chl=gcsakhgdkjsahc321hgjh1g23jhg231hj1j&choe=UTF-8" width="100%" />
+                    <img ng-src="{{bitcoinAddress.qr_code}}" width="100%" />
                 </div>
                 <div class="col-md-6" style="float: right">
                     <div class="row make-payment-scan">
@@ -15,19 +15,19 @@
                     </div>
                     <div class="row">
                         <button class="btn btn-primary make-payment-copy" ngclipboard
-                            data-clipboard-text="gcsakhgdkjsahc321hgjh1g23jhg231hj1j">
+                            data-clipboard-text="{{bitcoinAddress.account_id}}">
                             Copy to clipboard
                         </button>
                     </div>
                 </div>
             </div>
             <div class="col-md-12 make-payment-final">
-                Send Exactly $0.99495 (plus miner fee) to <b>123324safscfccbvx1324242</b>
+                Send Exactly ${{getAmount(quotebtc.token_amount, quotebtc.token_currency.divisibility)}} (plus miner fee) to <b>{{bitcoinAddress.account_id}}</b>
             </div>
         </div>
         <div class="panel-body">
-            <button ng-click="toggleBuyBitcoinView()" class="btn btn-primary pull-right make-payment-cancel">Cancel</button>
-            <p class="pull-right make-payment-time">9:54</p>
+            <button ng-click="cancelBtc()" class="btn btn-primary pull-right make-payment-cancel">Cancel</button>
+            <p class="pull-right make-payment-time">{{qouteBtcTime}}</p>
         </div>
     </div>
 </div>

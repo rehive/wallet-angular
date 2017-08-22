@@ -39,6 +39,11 @@
         };
         vm.getUserAccounts();
 
+        $scope.getAmount = function(amount, div){
+            var retval = amount / Math.pow(10,div);
+           // console.log(retval)
+            return retval;
+        }
     }
 
 })();
