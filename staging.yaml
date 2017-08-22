@@ -1,7 +1,7 @@
-PROJECT_NAME: rehive-dashboard
+PROJECT_NAME: echarge-demo
 HOST_NAME: rehive-build-server
-NAMESPACE: rehive-dashboard-staging
+NAMESPACE: echarge-demo-staging
 IMAGE: rehive/dashboard-staging
-VIRTUAL_HOST: staging.dashboard.rehive.com
+VIRTUAL_HOST: echarge.s.demos.rehive.io
 CLUSTER: staging
 CLUSTER_PROJECT: rehive-services
