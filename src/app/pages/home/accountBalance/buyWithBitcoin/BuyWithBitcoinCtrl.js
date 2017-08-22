@@ -84,7 +84,7 @@
                     var qouteBtcTime = 600000;
                     localStorage.removeItem("quoteBtc");
                     localStorage.setItem("quoteBtc", JSON.stringify(quoteBtc));
-                    $scope.startBtcTimeout(qouteBtcTime);
+                    $scope.startBtcTimeout(qouteBtcTime, $scope.quotebtc.id);
                 }
             }).catch(function (error) {
                 $scope.loadingEtheriumView = false;
@@ -92,16 +92,34 @@
             });
         }
 
-        $scope.startBtcTimeout = function(time) {
+        $scope.startBtcTimeout = function(time, quote_id) {
             var timeLeft = Math.floor(time / 1000);
+
             $scope.btcInterval = $interval(function () {
                 timeLeft -= 1;
                 $scope.qouteBtcTime = Math.floor(timeLeft / 60) + ":" + Math.floor(timeLeft % 60);
             }, 1000);
+
+            $scope.purchaseInterval = $interval(function () {
+                $http.get(environmentConfig.ICO_API + '/user/icos/' + $scope.currency.id + '/purchases/?quote__id=' + quote_id, {
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': vm.token
+                    }
+                }).then(function (res) {
+                    if (res.status === 200 && res.data.data.results.length > 0) {
+                        $interval.cancel($scope.btcInterval);
+                        $interval.cancel($scope.purchaseInterval);
+                        $scope.completeBtc()
+                    }
+                });
+            }, 10 * 1000);
+
             $scope.btcTimeout = $timeout(function () {
                 $scope.toggleBuyBitcoinView();
                 localStorage.removeItem("quoteBtc");
                 $interval.cancel($scope.btcInterval);
+                $interval.cancel($scope.purchaseInterval);
                 $scope.btc = null;
                 $scope.btcWatt = null;
             }, time);
@@ -140,6 +158,15 @@
             $interval.cancel($scope.btcInterval);
             $scope.btc = null;
             $scope.btcWatt = null;
+        }
+
+        $scope.completeBtc = function() {
+            localStorage.removeItem("quoteBtc");
+            $timeout.cancel($scope.btcTimeout);
+            $interval.cancel($scope.btcInterval);
+            $scope.btc = null;
+            $scope.btcWatt = null;
+            $location.path('/transactions');
         }
     }
 })();
