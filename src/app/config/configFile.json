@@ -2,19 +2,22 @@
   "staging": {
     "environmentConfig": {
       "API": "https://staging.rehive.com/api/3",
-      "COMPANY": "ico_test_1"
+      "COMPANY": "ico_test_1",
+      "ICO_API": "https://ico.s.services.rehive.io/api"
     }
   },
   "local": {
     "environmentConfig": {
       "API": "http://localhost:8000/api/3",
-      "COMPANY": "ico_test_1"
+      "COMPANY": "ico_test_1",
+      "ICO_API": "http://localhost:8001/api"
     }
   },
   "production": {
     "environmentConfig": {
       "API": "https://rehive.com/api/3",
-      "COMPANY": "ico_test_1"
+      "COMPANY": "ico_test_1",
+      "ICO_API": "https://ico.services.rehive.io/api"
     }
   }
 }
