@@ -6,13 +6,13 @@
                 <div class="form-group">
                     <label class="col-sm-2 control-label"><strong>BTC</strong></label>
                     <div class="col-sm-10">
-                        <input type="number" ng-model="btc" class="form-control" placeholder="0.00000000" ng-change="btcWatt = btc / btcRate">
+                        <input type="number" step="any" ng-model="btc" class="form-control" placeholder="0.00000000" ng-change="btcWatt = btc / btcRate">
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="col-sm-2 control-label"><strong>WATT</strong></label>
                     <div class="col-sm-10">
-                        <input type="number" ng-model="btcWatt" class="form-control" placeholder="0.00000" ng-change="btc = btcWatt * btcRate">
+                        <input type="number" step="any" ng-model="btcWatt" class="form-control" placeholder="0.00000" ng-change="btc = btcWatt * btcRate">
                     </div>
                 </div>
                 <br>
