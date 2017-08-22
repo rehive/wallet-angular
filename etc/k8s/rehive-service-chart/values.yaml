@@ -1,0 +1,37 @@
+# Default values for rehive-service.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+deployment:
+  replicaCount: 3
+image:
+  repository: rehive/example
+  tag: 0.001
+  pullPolicy: IfNotPresent
+service:
+  name: nginx
+  type: ClusterIP
+  externalPort: 80
+  internalPort: 8000
+ingress:
+  enabled: true
+  hosts:
+    - example.services.rehive.io
+  annotations:
+    kubernetes.io/ingress.class: "nginx"
+    kubernetes.io/tls-acme: "true"
+  tls:
+    - hosts:
+      - example.services.rehive.io
+      secretName: stellar-service-tls
+  hosts:
+    - example.services.rehive.io
+database:
+  volumeName: example-database-volume
+  volumeSize: 50Gi
+  gcePersistentDiskName: example-database
+workersEnabled: true
+workers:
+  - name: worker-receive
+    internalPort: 8000
+    replicaCount: 1
+    command: 'celery -A config.celery worker --loglevel=INFO --concurrency=1 -Q general-example'

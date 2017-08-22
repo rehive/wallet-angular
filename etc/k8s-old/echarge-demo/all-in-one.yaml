@@ -1,13 +1,13 @@
 apiVersion: v1
 kind: Namespace
 metadata:
-  name: rehive-dashboard
+  name: echarge-demo
 ---
 apiVersion: v1
 kind: Service
 metadata:
-  name: rehive-dashboard
-  namespace: rehive-dashboard
+  name: echarge-demo
+  namespace: echarge-demo
 spec:
   ports:
   - port: 80
@@ -15,32 +15,32 @@ spec:
     protocol: TCP
   type: NodePort
   selector:
-    app: rehive-dashboard
+    app: echarge-demo
 ---
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
-  name: rehive-dashboard
-  namespace: rehive-dashboard
+  name: echarge-demo
+  namespace: echarge-demo
 spec:
   replicas: 1
   template:
     metadata:
       labels:
-        app: rehive-dashboard
+        app: echarge-demo
     spec:
       containers:
-      - image: rehive/rehive-dashboard:0.8.0
+      - image: gcr.io/rehive-services/echarge-demo:0.0.1-rc1
         imagePullPolicy: Always
-        name: rehive-dashboard
+        name: echarge-demo
         ports:
         - containerPort: 80
 ---
 apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
-  name: rehive-dashboard
-  namespace: rehive-dashboard
+  name: echarge-demo
+  namespace: echarge-demo
   annotations:
     kubernetes.io/tls-acme: "true"
     kubernetes.io/ingress.class: "nginx"
@@ -48,21 +48,13 @@ metadata:
 spec:
   tls:
   - hosts:
-    - dashboard.rehive.com
-    - www.dashboard.rehive.com
-    secretName: rehive-dashboard-tls
+    - echarge.demos.rehive.io
+    secretName: echarge-demo-tls
   rules:
-  - host: dashboard.rehive.com
+  - host: echarge.demos.rehive.io
     http:
       paths:
       - path: /
         backend:
-          serviceName: rehive-dashboard
-          servicePort: 80
-  - host: www.dashboard.rehive.com
-    http:
-      paths:
-      - path: /
-        backend:
-          serviceName: rehive-dashboard
+          serviceName: echarge-demo
           servicePort: 80
