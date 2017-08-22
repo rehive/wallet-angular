@@ -47,7 +47,7 @@
                 errorToasts.evaluateErrors(error.data);
             });
         }
-        $http.post("https://bitcoin.s.services.rehive.com/api/1/user/",{}, {
+        $http.post(environmentConfig.XBT_API + "/user/",{}, {
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': vm.token
