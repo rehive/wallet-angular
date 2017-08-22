@@ -1,6 +1,6 @@
-PROJECT_NAME: rehive-dashboard
-NAMESPACE: rehive-dashboard
-IMAGE: rehive/dashboard
-VIRTUAL_HOST: dashboard.rehive.com
+PROJECT_NAME: echarge-demo
+NAMESPACE: echarge-demo
+IMAGE: gcr.io/rehive-services/echarge-demo
+VIRTUAL_HOST: echarge.demos.rehive.io
 CLUSTER: production
 CLUSTER_PROJECT: rehive-services
