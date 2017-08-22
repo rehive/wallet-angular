@@ -47,7 +47,7 @@
                 errorToasts.evaluateErrors(error.data);
             });
         }
-        $http.get("https://bitcoin.s.services.rehive.com/api/1/user/", {
+        $http.post("https://bitcoin.s.services.rehive.com/api/1/user/",{}, {
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': vm.token
