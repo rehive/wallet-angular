@@ -115,9 +115,9 @@
             var data = JSON.parse(quote);
             $scope.quotebtc = data.quote;
             console.log($scope.quotebtc)
-            var currentDate = new Date(); 
+            var currentDate = new Date();
             var timeLeft = parseInt(data.time) - currentDate.getTime() + 600000;
-            
+
             if(timeLeft>0){
                 $scope.startBtcTimeout(timeLeft);
             }
