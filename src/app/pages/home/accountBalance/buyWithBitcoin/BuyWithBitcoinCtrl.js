@@ -113,7 +113,7 @@
                         $scope.completeBtc()
                     }
                 });
-            }, 10 * 1000);
+            }, 60 * 1000);
 
             $scope.btcTimeout = $timeout(function () {
                 $scope.toggleBuyBitcoinView();
