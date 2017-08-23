@@ -3,7 +3,7 @@
         <div class="panel-heading"><h2 class="custom-buy-with-header">Make ether payment</h2></div>
         <div class="col-md-12">
             <div class="col-md-12 make-payment-notice">
-                You are buying {{getAmount(quoteeth.token_amount, quoteeth.token_currency.divisibility)}} ICOT tokens worth {{getAmount(quoteeth.deposit_amount, quoteeth.deposit_currency.divisibility)}} ether. Follow the instructions below.
+                You are buying <div title="{{ quoteeth.token_amount | currencyModifiersFilter: quoteeth.token_currency.divisibility | preciseRound: quoteeth.token_currency.divisibility}}" class="transactions-list-element" ng-bind="quoteeth.token_amount | currencyModifiersFilter: quoteeth.token_currency.divisibility | preciseRound: quoteeth.token_currency.divisibility"></div> ICOT tokens worth {{getAmount(quoteeth.deposit_amount, quoteeth.deposit_currency.divisibility)}} ether. Follow the instructions below.
             </div>
             <div class="col-md-12">
                 <div class="col-md-6 make-payment-image">
