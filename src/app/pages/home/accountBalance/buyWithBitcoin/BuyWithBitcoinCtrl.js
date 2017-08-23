@@ -106,7 +106,7 @@
             }, 1000);
 
             $scope.purchaseInterval = $interval(function () {
-                $http.get(environmentConfig.ICO_API + '/user/icos/' + $scope.currency.id + '/purchases/?quote__id=' + quote_id, {
+                $http.get(environmentConfig.ICO_API + '/user/icos/' + $scope.currency.id + '/purchases/?quote__id=' + $scope.quotebtc.id, {
                     headers: {
                         'Content-Type': 'application/json',
                         'Authorization': vm.token

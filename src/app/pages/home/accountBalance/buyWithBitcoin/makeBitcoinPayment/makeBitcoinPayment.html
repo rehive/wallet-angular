@@ -3,7 +3,7 @@
         <div class="panel-heading"><h2 class="custom-buy-with-header">Make bitcoin payment</h2></div>
         <div class="col-md-12">
             <div class="col-md-12 make-payment-notice">
-                You are buying {{getAmount(quotebtc.token_amount, quotebtc.token_currency.divisibility)}} ICOT tokens worth {{getAmount(quotebtc.deposit_amount, quotebtc.deposit_currency.divisibility)}} Bitcoins. Follow the instructions below.
+                You are buying <span title="{{ quotebtc.token_amount | currencyModifiersFilter: quotebtc.token_currency.divisibility | preciseRound: quotebtc.token_currency.divisibility}}" ng-bind="quotebtc.token_amount | currencyModifiersFilter: quotebtc.token_currency.divisibility | preciseRound: quotebtc.token_currency.divisibility"></span> ICOT tokens worth <span title="{{ quotebtc.deposit_amount | currencyModifiersFilter: quotebtc.deposit_currency.divisibility | preciseRound: quotebtc.deposit_currency.divisibility}}" ng-bind="quotebtc.deposit_amount | currencyModifiersFilter: quotebtc.deposit_currency.divisibility | preciseRound: quotebtc.deposit_currency.divisibility"></span> Bitcoins. Follow the instructions below.
             </div>
             <div class="col-md-12">
                 <div class="col-md-6 make-payment-image">
@@ -15,14 +15,14 @@
                     </div>
                     <div class="row">
                         <button class="btn btn-primary make-payment-copy" ngclipboard
-                            data-clipboard-text="{{bitcoinAddress.account_id}}">
+                            data-clipboard-text="{{bitcoinAddress.details.payment_uri}}">
                             Copy to clipboard
                         </button>
                     </div>
                 </div>
             </div>
             <div class="col-md-12 make-payment-final">
-                Send Exactly ${{getAmount(quotebtc.token_amount, quotebtc.token_currency.divisibility)}} (plus miner fee) to <b>{{bitcoinAddress.account_id}}</b>
+                Send Exactly $<span title="{{ quotebtc.token_amount | currencyModifiersFilter: quotebtc.token_currency.divisibility | preciseRound: quotebtc.token_currency.divisibility}}" ng-bind="quotebtc.token_amount | currencyModifiersFilter: quotebtc.token_currency.divisibility | preciseRound: quotebtc.token_currency.divisibility"></span> (plus miner fee) to <b>{{bitcoinAddress.details.payment_uri}}</b>
             </div>
         </div>
         <div class="panel-body">
