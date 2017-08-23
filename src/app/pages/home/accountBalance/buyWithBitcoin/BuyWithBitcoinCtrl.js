@@ -23,6 +23,7 @@
             if (res.status === 201 || res.status === 200) {
                 var data = res.data.data;
                 $scope.currency = res.data.data.results[0];
+                console.log($scope.currency);
                 $scope.getRates();
             }
         }).catch(function (error) {
@@ -62,6 +63,10 @@
 
         $scope.placeQuote = function(btc){
             var btcint = btc * Math.pow(10, $scope.divisibilityBtc);
+            if($rootScope.allVerified === false) {
+                errorToasts.evaluateErrors({message: "Please get verified."});
+                return;
+            }
             $http({
                 method: 'POST',
                 url: environmentConfig.ICO_API + '/user/icos/' + $scope.currency.id + '/quotes/',

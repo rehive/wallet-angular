@@ -5,7 +5,7 @@
         .controller('HomeCtrl', HomeCtrl);
 
     /** @ngInject */
-    function HomeCtrl($rootScope,$scope,$location,cookieManagement,environmentConfig,$http,errorToasts,errorHandler,$window) {
+    function HomeCtrl($rootScope,$scope,$location,toastr,cookieManagement,environmentConfig,$http,errorToasts,errorHandler,$window) {
         var vm = this;
         vm.token = cookieManagement.getCookie('TOKEN');
         $scope.loadingCurrencies = true;
@@ -43,6 +43,10 @@
             var retval = amount / Math.pow(10,div);
            // console.log(retval)
             return retval;
+        }
+
+        $scope.addressCopied = function(){
+            toastr.success('Address copies','Message');
         }
     }
 
