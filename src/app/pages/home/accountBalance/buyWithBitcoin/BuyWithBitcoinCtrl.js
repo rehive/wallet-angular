@@ -120,6 +120,7 @@
                     if (res.status === 200 && res.data.data.results.length > 0) {
                         $interval.cancel($scope.btcInterval);
                         $interval.cancel($scope.purchaseInterval);
+                        $timeout.cancel($scope.btcTimeout);
                         $scope.completeBtc()
                     }
                 });

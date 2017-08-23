@@ -119,6 +119,7 @@
                     if (res.status === 200 && res.data.data.results.length > 0) {
                         $interval.cancel($scope.ethInterval);
                         $interval.cancel($scope.purchaseInterval);
+                        $timeout.cancel($scope.ethTimeout);
                         $scope.completeEth()
                     }
                 });
