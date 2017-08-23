@@ -1,7 +1,7 @@
 PROJECT_NAME: echarge-demo
 HOST_NAME: rehive-build-server
 NAMESPACE: echarge-demo-staging
-IMAGE: rehive/dashboard-staging
+IMAGE: gcr.io/rehive-services/echarge-demo-staging
 VIRTUAL_HOST: echarge.s.demos.rehive.io
 CLUSTER: staging
 CLUSTER_PROJECT: rehive-services

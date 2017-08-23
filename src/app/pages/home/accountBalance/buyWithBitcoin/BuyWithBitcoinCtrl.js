@@ -23,6 +23,7 @@
             if (res.status === 201 || res.status === 200) {
                 var data = res.data.data;
                 $scope.currency = res.data.data.results[0];
+                console.log($scope.currency);
                 $scope.getRates();
             }
         }).catch(function (error) {
@@ -62,6 +63,10 @@
 
         $scope.placeQuote = function(btc){
             var btcint = btc * Math.pow(10, $scope.divisibilityBtc);
+            //if($rootScope.allVerified === false) {
+            //    errorToasts.evaluateErrors({message: "Please get verified."});
+            //    return;
+            //}
             $http({
                 method: 'POST',
                 url: environmentConfig.ICO_API + '/user/icos/' + $scope.currency.id + '/quotes/',
@@ -84,7 +89,7 @@
                     var qouteBtcTime = 600000;
                     localStorage.removeItem("quoteBtc");
                     localStorage.setItem("quoteBtc", JSON.stringify(quoteBtc));
-                    $scope.startBtcTimeout(qouteBtcTime);
+                    $scope.startBtcTimeout(qouteBtcTime, $scope.quotebtc.id);
                 }
             }).catch(function (error) {
                 $scope.loadingEtheriumView = false;
@@ -92,16 +97,40 @@
             });
         }
 
-        $scope.startBtcTimeout = function(time) {
+        $scope.startBtcTimeout = function(time, quote_id) {
             var timeLeft = Math.floor(time / 1000);
+
             $scope.btcInterval = $interval(function () {
                 timeLeft -= 1;
-                $scope.qouteBtcTime = Math.floor(timeLeft / 60) + ":" + Math.floor(timeLeft % 60);
+                var minutes = Math.floor(timeLeft / 60);
+                var seconds = Math.floor(timeLeft % 60);
+                if (seconds < 10) {
+                    seconds = '0' + seconds;
+                }
+                $scope.qouteBtcTime = minutes + ":" + seconds;
             }, 1000);
+
+            $scope.purchaseInterval = $interval(function () {
+                $http.get(environmentConfig.ICO_API + '/user/icos/' + $scope.currency.id + '/purchases/?quote__id=' + $scope.quotebtc.id, {
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': vm.token
+                    }
+                }).then(function (res) {
+                    if (res.status === 200 && res.data.data.results.length > 0) {
+                        $interval.cancel($scope.btcInterval);
+                        $interval.cancel($scope.purchaseInterval);
+                        $timeout.cancel($scope.btcTimeout);
+                        $scope.completeBtc()
+                    }
+                });
+            }, 60 * 1000);
+
             $scope.btcTimeout = $timeout(function () {
                 $scope.toggleBuyBitcoinView();
                 localStorage.removeItem("quoteBtc");
                 $interval.cancel($scope.btcInterval);
+                $interval.cancel($scope.purchaseInterval);
                 $scope.btc = null;
                 $scope.btcWatt = null;
             }, time);
@@ -140,6 +169,15 @@
             $interval.cancel($scope.btcInterval);
             $scope.btc = null;
             $scope.btcWatt = null;
+        }
+
+        $scope.completeBtc = function() {
+            localStorage.removeItem("quoteBtc");
+            $timeout.cancel($scope.btcTimeout);
+            $interval.cancel($scope.btcInterval);
+            $scope.btc = null;
+            $scope.btcWatt = null;
+            $location.path('/transactions');
         }
     }
 })();

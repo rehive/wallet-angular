@@ -1,24 +1,24 @@
 <div ng-show="!makingEtherPayment">
     <div class="panel">
-        <div class="panel-heading"><h2 class="custom-buy-with-header">Buy with ethereum</h2></div>
+        <div class="panel-heading"><h2 class="custom-buy-with-header">Buy with ether</h2></div>
         <div class="panel-body">
             <form class="form-horizontal col-lg-12 custom-form-body">
                 <div class="form-group">
                     <label class="col-sm-2 control-label"><strong>ETH</strong></label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" placeholder="0.00000000">
+                        <input type="number" step="any" ng-model="eth" class="form-control" placeholder="0.00000000" ng-change="ethWatt = +(eth / ethRate).toFixed(currency.currency.divisibility)">
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="col-sm-2 control-label"><strong>WATT</strong></label>
+                    <label class="col-sm-2 control-label"><strong>{{currency.currency.code}}</strong></label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" placeholder="0.00000">
+                        <input type="number" step="any" ng-model="ethWatt" class="form-control" placeholder="0.00" ng-change="eth = +(ethWatt * ethRate).toFixed(divisibilityEth)">
                     </div>
                 </div>
                 <br>
                 <div class="form-group">
                     <div class="col-sm-offset-2 col-sm-10">
-                        <button class="btn btn-primary pull-right" ng-click="toggleBuyEtherView()">Next</button>
+                        <button ng-click="placeQuoteEth(eth)" class="btn btn-primary pull-right">Next</button>
                     </div>
                 </div>
             </form>

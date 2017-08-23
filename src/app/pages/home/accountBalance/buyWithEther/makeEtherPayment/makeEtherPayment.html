@@ -1,13 +1,19 @@
 <div>
     <div class="panel">
-        <div class="panel-heading"><h2 class="custom-buy-with-header">Make ethereum payment</h2></div>
+        <div class="panel-heading"><h2 class="custom-buy-with-header">Make ether payment</h2></div>
         <div class="col-md-12">
             <div class="col-md-12 make-payment-notice">
-                You are buying 354432 WAT tokens worth $1350. Follow the instructions below.
+                You are buying <span
+                    title="{{ quoteeth.token_amount | currencyModifiersFilter: quoteeth.token_currency.divisibility | preciseRound: quoteeth.token_currency.divisibility}}"
+                    class="transactions-list-element"
+                    ng-bind="quoteeth.token_amount | currencyModifiersFilter: quoteeth.token_currency.divisibility | preciseRound: quoteeth.token_currency.divisibility"></span>
+                ECH.
+                <br>
+                Follow the instructions below.
             </div>
             <div class="col-md-12">
                 <div class="col-md-6 make-payment-image">
-                    <img src="https://chart.googleapis.com/chart?chs=300x300&cht=qr&chl=gcsakhgdkjsahc321hgjh1g23jhg231hj1j&choe=UTF-8" width="100%" />
+                    <img ng-src="{{ethereumAddress.crypto.qr_code}}" width="100%"/>
                 </div>
                 <div class="col-md-6" style="float: right">
                     <div class="row make-payment-scan">
@@ -15,19 +21,23 @@
                     </div>
                     <div class="row">
                         <button class="btn btn-primary make-payment-copy" ngclipboard
-                            data-clipboard-text="gcsakhgdkjsahc321hgjh1g23jhg231hj1j">
+                                data-clipboard-text="{{ethereumAddress.crypto.address}}" ng-click="addressCopied()">
                             Copy to clipboard
                         </button>
                     </div>
                 </div>
             </div>
             <div class="col-md-12 make-payment-final">
-                Send Exactly $0.99495 (plus miner fee) to <b>123324safscfccbvx1324242</b>
+                Send Exactly ETH <span
+                    title="{{ quoteeth.deposit_amount | currencyModifiersFilter: quoteeth.deposit_currency.divisibility | preciseRound: quoteeth.deposit_currency.divisibility}}"
+                    class="transactions-list-element"
+                    ng-bind="quoteeth.deposit_amount | currencyModifiersFilter: quoteeth.deposit_currency.divisibility | preciseRound: quoteeth.deposit_currency.divisibility"></span>
+                (plus miner fee) to <b style="font-size:12px;">{{ethereumAddress.crypto.address}}</b>
             </div>
         </div>
         <div class="panel-body">
-            <button ng-click="toggleBuyEtherView()" class="btn btn-primary pull-right make-payment-cancel">Cancel</button>
-            <p class="pull-right make-payment-time">9:54</p>
+            <button ng-click="cancelEth()" class="btn btn-primary pull-right make-payment-cancel">Cancel</button>
+            <p class="pull-right make-payment-time">{{qouteEthTime}}</p>
         </div>
     </div>
 </div>

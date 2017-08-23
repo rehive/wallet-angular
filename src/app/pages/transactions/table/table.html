@@ -10,7 +10,7 @@
             <td><strong>Status</strong></td>
             <td><strong>Date</strong></td>
         </tr>
-        <tr ng-repeat="transaction in transactions | orderBy: '-created'" data-toggle="modal"
+        <tr ng-repeat="transaction in transactions | orderBy: '-created' | filter: {currency:{code: 'ECH'}}" data-toggle="modal"
             ng-click="openModal('app/pages/transactions/transactionModal/transactionModal.html', 'md',transaction)"
             class="editable-row center pointer">
             <td><div title="{{transaction.user.email || transaction.user.mobile_number}}" class="transactions-list-element" ng-bind="transaction.user.email || transaction.user.mobile_number | limitTo: '100'"></div></td>

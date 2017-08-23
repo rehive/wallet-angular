@@ -9,6 +9,7 @@
 
         var vm = this;
         vm.token = cookieManagement.getCookie('TOKEN');
+        $rootScope.allVerified = false;
         $scope.loadingRegisterProgressView = true;
         $scope.emailVerified = false;
         $scope.mobileVerified = false;
@@ -152,7 +153,9 @@
         };
         vm.getEthereumAddresses();
 
-
+        if($scope.ethereumAddressVerified && $scope.checkDocumentsArrayVerification && $scope.idDocumentsVerified && $scope.addressVerified && $scope.mobileVerified && $scope.emailVerified){
+            $rootScope.allVerified = true;
+        }
 
     }
 })();
