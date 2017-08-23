@@ -54,7 +54,7 @@
             }
         }).then(function (res) {
             if (res.status === 201 || res.status === 200) {
-                $scope.etherAddress = res.data;
+                $scope.ethereumAddress = res.data.data;
             }
         }).catch(function (error) {
             errorToasts.evaluateErrors(error.data);
