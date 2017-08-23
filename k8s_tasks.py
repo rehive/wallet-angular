@@ -81,6 +81,8 @@ def deploy(ctx, config, version_tag=None):
     """
     Updates kubernetes deployment to use specified version
     """
+    set_project(ctx, config)
+    set_cluster(ctx, config)
     config_dict = get_config(config)
 
     if not version_tag:
@@ -203,6 +205,8 @@ def setup(ctx, config):
     """
     Updates kubernetes deployment to use specified version
     """
+    set_project(ctx, config)
+    set_cluster(ctx, config)
     config_dict = get_config(config)
     ctx.run(
         'kubectl apply -f etc/k8s/{}/all-in-one.yaml'.format(config_dict['NAMESPACE']))
