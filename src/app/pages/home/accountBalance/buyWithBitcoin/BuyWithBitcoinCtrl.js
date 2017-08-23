@@ -97,7 +97,12 @@
 
             $scope.btcInterval = $interval(function () {
                 timeLeft -= 1;
-                $scope.qouteBtcTime = Math.floor(timeLeft / 60) + ":" + Math.floor(timeLeft % 60);
+                var minutes = Math.floor(timeLeft / 60);
+                var seconds = Math.floor(timeLeft % 60);
+                if (seconds < 10) {
+                    seconds = '0' + seconds;
+                }
+                $scope.qouteBtcTime = minutes + ":" + seconds;
             }, 1000);
 
             $scope.purchaseInterval = $interval(function () {
