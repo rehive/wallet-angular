@@ -63,10 +63,10 @@
 
         $scope.placeQuote = function(btc){
             var btcint = btc * Math.pow(10, $scope.divisibilityBtc);
-            if($rootScope.allVerified === false) {
-                errorToasts.evaluateErrors({message: "Please get verified."});
-                return;
-            }
+            //if($rootScope.allVerified === false) {
+            //    errorToasts.evaluateErrors({message: "Please get verified."});
+            //    return;
+            //}
             $http({
                 method: 'POST',
                 url: environmentConfig.ICO_API + '/user/icos/' + $scope.currency.id + '/quotes/',

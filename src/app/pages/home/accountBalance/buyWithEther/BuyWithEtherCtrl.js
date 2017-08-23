@@ -62,10 +62,10 @@
 
         $scope.placeQuoteEth = function(eth){
             var ethint = eth * Math.pow(10, $scope.divisibilityEth);
-            if($rootScope.allVerified === false) {
-                errorToasts.evaluateErrors({message: "Please get verified."});
-                return;
-            }
+            //if($rootScope.allVerified === false) {
+            //    errorToasts.evaluateErrors({message: "Please get verified."});
+            //    return;
+            //}
             $http({
                 method: 'POST',
                 url: environmentConfig.ICO_API + '/user/icos/' + $scope.currency.id + '/quotes/',

@@ -24,7 +24,7 @@
                     if (res.status === 200) {
                         $scope.currencies = res.data.data.results[0].currencies;
                         $scope.activeCurrency = $scope.currencies.find(function(element){
-                            return element.currency.code === 'ICOT';
+                            return element.currency.code === 'ECH';
                         });
                     }
                 }).catch(function (error) {

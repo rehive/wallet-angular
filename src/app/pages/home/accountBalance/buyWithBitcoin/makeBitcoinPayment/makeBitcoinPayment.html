@@ -3,11 +3,16 @@
         <div class="panel-heading"><h2 class="custom-buy-with-header">Make bitcoin payment</h2></div>
         <div class="col-md-12">
             <div class="col-md-12 make-payment-notice">
-                You are buying <span title="{{ quotebtc.token_amount | currencyModifiersFilter: quotebtc.token_currency.divisibility | preciseRound: quotebtc.token_currency.divisibility}}" ng-bind="quotebtc.token_amount | currencyModifiersFilter: quotebtc.token_currency.divisibility | preciseRound: quotebtc.token_currency.divisibility"></span> ICOT tokens worth <span title="{{ quotebtc.deposit_amount | currencyModifiersFilter: quotebtc.deposit_currency.divisibility | preciseRound: quotebtc.deposit_currency.divisibility}}" ng-bind="quotebtc.deposit_amount | currencyModifiersFilter: quotebtc.deposit_currency.divisibility | preciseRound: quotebtc.deposit_currency.divisibility"></span> Bitcoins. Follow the instructions below.
+                You are buying <span
+                    title="{{ quotebtc.token_amount | currencyModifiersFilter: quotebtc.token_currency.divisibility | preciseRound: quotebtc.token_currency.divisibility}}"
+                    ng-bind="quotebtc.token_amount | currencyModifiersFilter: quotebtc.token_currency.divisibility | preciseRound: quotebtc.token_currency.divisibility"></span>
+                ECH.
+                <br>
+                Follow the instructions below.
             </div>
             <div class="col-md-12">
                 <div class="col-md-6 make-payment-image">
-                    <img ng-src="{{bitcoinAddress.details.qr_code}}" width="100%" />
+                    <img ng-src="{{bitcoinAddress.details.qr_code}}" width="100%"/>
                 </div>
                 <div class="col-md-6" style="float: right">
                     <div class="row make-payment-scan">
@@ -15,14 +20,17 @@
                     </div>
                     <div class="row">
                         <button class="btn btn-primary make-payment-copy" ngclipboard
-                            data-clipboard-text="{{bitcoinAddress.details.payment_uri}}" ng-click="addressCopied()">
+                                data-clipboard-text="{{bitcoinAddress.details.payment_uri}}" ng-click="addressCopied()">
                             Copy to clipboard
                         </button>
                     </div>
                 </div>
             </div>
-            <div class="col-md-12 make-payment-final">
-                Send Exactly $<span title="{{ quotebtc.token_amount | currencyModifiersFilter: quotebtc.token_currency.divisibility | preciseRound: quotebtc.token_currency.divisibility}}" ng-bind="quotebtc.token_amount | currencyModifiersFilter: quotebtc.token_currency.divisibility | preciseRound: quotebtc.token_currency.divisibility"></span> (plus miner fee) to <b>{{bitcoinAddress.details.payment_uri}}</b>
+            <div class="col-md-12 make-payment-final text-center">
+                Send Exactly BTC <span
+                    title="{{ quotebtc.deposit_amount | currencyModifiersFilter: quotebtc.deposit_currency.divisibility | preciseRound: quotebtc.deposit_currency.divisibility}}"
+                    ng-bind="quotebtc.deposit_amount | currencyModifiersFilter: quotebtc.deposit_currency.divisibility | preciseRound: quotebtc.deposit_currency.divisibility"></span>
+                (plus miner fee) to <b style="font-size:12px;">{{bitcoinAddress.details.payment_uri}}</b>
             </div>
         </div>
         <div class="panel-body">
