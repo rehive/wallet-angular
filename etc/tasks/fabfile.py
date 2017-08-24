@@ -172,16 +172,18 @@ def prebuild():
     # Compile js using docker image:
     with settings(abort_exception=FabricException):
         try:
-            run("docker run --rm -v $PWD/release:/app/release:rw {image} bash -c 'gulp clean && gulp build{env_string}'".format(
-                    image=image,
-                    env_string=env.env_string))
+            with cd(env.project_dir):
+                run("docker run --rm -v $PWD/release:/app/release:rw {image} bash -c 'gulp clean && gulp build{env_string}'".format(
+                        image=image,
+                        env_string=env.env_string))
 
         # If the build image is not found, build it and then run
         except FabricException:
             create_build_image()
             push_build_image()
-            run(
-                "docker run --rm -v $PWD/release:/app/release:rw {image} bash -c 'gulp clean && gulp build{env_string}'".format(
-                    image=image,
-                    env_string=env.env_string,
-                    pty=True))
+            with cd(env.project_dir):
+                run(
+                    "docker run --rm -v $PWD/release:/app/release:rw {image} bash -c 'gulp clean && gulp build{env_string}'".format(
+                        image=image,
+                        env_string=env.env_string,
+                        pty=True))
