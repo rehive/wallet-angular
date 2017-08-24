@@ -9,6 +9,9 @@ from fabric.context_managers import hide
 from fabric.contrib.project import rsync_project
 import posixpath
 
+class FabricException(Exception):
+    pass
+
 from .utils import get_config
 
 
@@ -29,6 +32,8 @@ def set_env(config, version_tag=None):
     env.base_image_name = env.image_name + '_base'
     env.version_tag = version_tag
 
+    env.env_string = ':staging' if 'staging' in config else ''
+
     env.build_dir = '/srv/build'
     env.local_path = os.path.dirname(__file__)
 
@@ -42,7 +47,7 @@ def upload():
         exclude=(
             '.git', '.gitignore', '__pycache__', '*.pyc', '.DS_Store', 'environment.yml',
             'fabfile.py', 'Makefile', '.idea', 'bower_components', 'node_modules',
-            '.env.example', 'README.md', 'var'
+            '.env.example', 'README.md', 'var', 'release',
         ), delete=True)
 
 
@@ -77,6 +82,9 @@ def build():
     """
     image = '{}:{}'.format(env.image_name, env.version_tag)
     cmd = 'docker build -t {image} .'.format(image=image)
+
+    prebuild()
+
     with cd(env.project_dir):
         run(cmd)
 
@@ -135,3 +143,45 @@ def push_base():
     """
     docker('login')
     docker('push %s' % env.base_image_name)
+
+
+def create_build_image():
+    """Create image for compiling js"""
+    image = '{}:{}'.format(env.image_name+'-js-build', env.version_tag)
+    with cd(env.project_dir):
+        run('rm -rf release || true')
+        run('docker build -f etc/docker/jsbuild -t {image} .'.format(image=image))
+
+
+def push_build_image():
+    """
+    Build, tag and push docker image
+    """
+    image = '{}:{}'.format(env.image_name+'-js-build', env.version_tag)
+    build()
+    with cd(env.project_dir):
+        run('gcloud docker -- push %s' % image)
+
+
+def prebuild():
+    """
+    Pre-build steps
+    """
+    image = '{}:{}'.format(env.image_name + '-js-build', env.version_tag)
+
+    # Compile js using docker image:
+    with settings(abort_exception=FabricException):
+        try:
+            run("docker run --rm -v $PWD/release:/app/release:rw {image} bash -c 'gulp clean && gulp build{env_string}'".format(
+                    image=image,
+                    env_string=env.env_string))
+
+        # If the build image is not found, build it and then run
+        except FabricException:
+            create_build_image()
+            push_build_image()
+            run(
+                "docker run --rm -v $PWD/release:/app/release:rw {image} bash -c 'gulp clean && gulp build{env_string}'".format(
+                    image=image,
+                    env_string=env.env_string,
+                    pty=True))
