@@ -22,16 +22,17 @@ ingress:
   tls:
     - hosts:
       - example.services.rehive.io
-      secretName: stellar-service-tls
+      secretName: example-service-tls
   hosts:
     - example.services.rehive.io
+postgresEnabled: true
 database:
   volumeName: example-database-volume
   volumeSize: 50Gi
   gcePersistentDiskName: example-database
 workersEnabled: true
 workers:
-  - name: worker-receive
+  - name: worker-example
     internalPort: 8000
     replicaCount: 1
     command: 'celery -A config.celery worker --loglevel=INFO --concurrency=1 -Q general-example'
