@@ -1,7 +1,7 @@
 from invoke import Collection, task
-import local_tasks
-import k8s_tasks
-import server_tasks
+from etc.tasks import local_tasks
+from etc.tasks import k8s_tasks
+from etc.tasks import server_tasks
 import base64
 
 @task
