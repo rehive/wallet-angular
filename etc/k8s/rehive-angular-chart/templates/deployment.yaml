@@ -24,21 +24,3 @@ spec:
         imagePullPolicy: {{ .Values.image.pullPolicy }}
         ports:
         - containerPort: {{ .Values.service.internalPort }}
-        command: ['/bin/sh','-c', 'gunicorn config.wsgi:application --config file:config/gunicorn.py']
-        envFrom:
-          - secretRef:
-              name: {{ template "fullname" . }}
-        livenessProbe:
-          httpGet:
-            path: /readiness
-            port: {{ .Values.service.internalPort }}
-          initialDelaySeconds: 10
-          timeoutSeconds: 2
-          periodSeconds: 10
-        readinessProbe:
-          httpGet:
-            path: /healthz
-            port: {{ .Values.service.internalPort }}
-          initialDelaySeconds: 10
-          timeoutSeconds: 2
-          periodSeconds: 10

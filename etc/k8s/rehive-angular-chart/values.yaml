@@ -11,7 +11,7 @@ service:
   name: nginx
   type: ClusterIP
   externalPort: 80
-  internalPort: 8000
+  internalPort: 80
 ingress:
   enabled: true
   hosts:
@@ -33,6 +33,6 @@ database:
 workersEnabled: true
 workers:
   - name: worker-example
-    internalPort: 8000
+    internalPort: 80
     replicaCount: 1
     command: 'celery -A config.celery worker --loglevel=INFO --concurrency=1 -Q general-example'

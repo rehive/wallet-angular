@@ -11,7 +11,7 @@ service:
   name: nginx
   type: NodePort
   externalPort: 80
-  internalPort: 8000
+  internalPort: 80
 ingress:
   enabled: true
   hosts:
@@ -25,6 +25,4 @@ ingress:
       secretName: echarge-demo-tls
   hosts:
     - echarge.demos.rehive.io
-postgresEnabled: false
-workersEnabled: false
 

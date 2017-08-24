@@ -23,7 +23,7 @@ def install(ctx, config):
     ctx.run('helm install --name {project_name} '
             '--namespace {namespace} '
             '-f ./etc/k8s/{config}/values.yaml '
-            './etc/k8s/rehive-service-chart'.format(project_name=config_dict['PROJECT_NAME'],
+            './etc/k8s/rehive-angular-chart'.format(project_name=config_dict['PROJECT_NAME'],
                                               config=config,
                                               namespace=config_dict['NAMESPACE']), echo=True)
 
@@ -39,7 +39,7 @@ def upgrade(ctx, config, version):
     set_cluster(ctx, config)
 
     ctx.run('helm upgrade {project_name} '
-            './etc/k8s/rehive-service-chart '
+            './etc/k8s/rehive-angular-chart '
             '-f ./etc/k8s/{config}/values.yaml '
             '--set image.tag={version}'.format(project_name=config_dict['PROJECT_NAME'],
                                                config=config,

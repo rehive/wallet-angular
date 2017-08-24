@@ -6,12 +6,12 @@ deployment:
 image:
   repository: gcr.io/rehive-services/echarge-demo-staging
   tag: 0.0.3
-  pullPolicy: IfNotPresent
+  pullPolicy: Always
 service:
   name: nginx
   type: NodePort
   externalPort: 80
-  internalPort: 8000
+  internalPort: 80
 ingress:
   enabled: true
   hosts:
@@ -25,6 +25,4 @@ ingress:
       secretName: echarge-demo-tls
   hosts:
     - echarge.s.demos.rehive.io
-postgresEnabled: false
-workersEnabled: false
 

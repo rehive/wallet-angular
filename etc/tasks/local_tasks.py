@@ -8,6 +8,8 @@ import os
 from distutils.util import strtobool
 from invoke.exceptions import ParseError
 
+from invoke.exceptions import Failure
+
 from .utils import get_config, get_path, latest_version, next_version
 
 
@@ -58,6 +60,8 @@ def build(ctx, config, version_tag):
     config_dict = get_config(config)
     image_name = config_dict['IMAGE'].split(':')[0]
     image = '{}:{}'.format(image_name, version_tag)
+
+    prebuild(ctx, config, version_tag)
 
     cmd = 'docker build -t %s .' % image
     ctx.run(cmd, echo=True)
@@ -128,3 +132,59 @@ def confirm(prompt='Continue?\n', failure_prompt='User cancelled task'):
 
     if not response_bool:
         raise ParseError(failure_prompt)
+
+
+@task
+def create_build_image(ctx, config, version_tag):
+    """
+    Build project's docker image
+    """
+    config_dict = get_config(config)
+    image_name = config_dict['IMAGE'].split(':')[0]
+    image = '{}:{}'.format(image_name + '-js-build', version_tag)
+
+    cmd = 'docker build -f etc/docker/jsbuild -t {image} .'.format(image=image)
+    ctx.run(cmd, echo=True)
+    return image
+
+
+@task
+def push_build_image(ctx, config, version_tag):
+    """
+    Build, tag and push docker image
+    """
+    config_dict = get_config(config)
+    image_name = config_dict['IMAGE'].split(':')[0]
+    image = '{}:{}'.format(image_name + '-js-build', version_tag)
+
+    ctx.run('gcloud docker -- push %s' % image, echo=True)
+
+
+@task
+def prebuild(ctx, config, version_tag):
+    """
+    Pre-build steps
+    """
+    config_dict = get_config(config)
+    image_name = config_dict['IMAGE'].split(':')[0]
+    image = '{}:{}'.format(image_name + '-js-build', version_tag)
+    env_string = ':staging' if 'staging' in config else ''
+
+    # Compile js using docker image:
+    try:
+        ctx.run(
+            "docker run --rm -v $PWD/release:/app/release:rw {image} bash -c 'gulp clean && gulp build{env_string}'".format(
+                image=image,
+                env_string=env_string),
+            echo=True)
+
+    # If the build image is not found, build it and then run
+    except Failure:
+        create_build_image(ctx, config, version_tag)
+        push_build_image(ctx, config, version_tag)
+        ctx.run(
+            "docker run --rm -v $PWD/release:/app/release:rw {image} bash -c 'gulp clean && gulp build{env_string}'".format(
+                image=image,
+                env_string=env_string,
+                pty=True),
+            echo=True)
