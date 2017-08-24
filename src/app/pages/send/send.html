@@ -1,0 +1,43 @@
+<div class="panel col-md-6 container" ng-hide="loadingUserInfo">
+  <div class="panel-heading"><h2 class="custom-buy-with-header">Send</h2></div>
+  <form class="form-horizontal send-padding">
+      <div ng-show="showSendTo">
+          <div class="form-group">
+            <label class="send-label">Recipient</label>
+            <input type="text" ng-model="recipient" placeholder="Enter name/email/mobile" class="form-control">
+          </div>
+          <div class="row">
+              <div class="col-sm-12">
+                  <button ng-disabled="!recipient" ng-click="showSendTo=false"
+                          class="btn btn-primary pull-right">Next
+                  </button>
+              </div>
+          </div>
+      </div>
+      <div ng-hide="showSendTo">
+          <div class="form-group">
+            <label class="send-label">Amount</label>
+            <input type="text" ng-model="amount" placeholder="Enter a valid amount" class="form-control">
+          </div>
+          <div class="form-group">
+            <label class="send-label">Note</label>
+            <input type="text" ng-model="note" placeholder="Enter a note" class="form-control">
+          </div>
+          <div class="row">
+              <div class="col-sm-12">
+                  <button ng-disabled="!amount" ng-click="openConfirmationModal(recipient, amount, note)"
+                          class="btn btn-primary pull-right">Send
+                  </button>
+                  <button ng-click="showSendTo=true"
+                        class="btn btn-primary pull-left">Back
+                  </button>
+              </div>
+          </div>
+      </div>
+  </form>
+</div>
+<div class="auth-main " ng-show="loadingUserInfo">
+    <div class="auth-block verification-text">
+        <loading-image></loading-image>
+    </div>
+</div>
