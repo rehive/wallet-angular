@@ -17,7 +17,41 @@
   display: table;
 }
 
+.register-circle-pending{
+  margin: 0 auto;
+  height: 70px;
+  width: 70px;
+  border-radius: 40px;
+  text-align: center;
+  background-color: #e0c714;
+  display: table;
+}
+
+.register-circle-declined{
+  margin: 0 auto;
+  height: 70px;
+  width: 70px;
+  border-radius: 40px;
+  text-align: center;
+  background-color: #bd1717;
+  display: table;
+}
+
 .register-circle-checked span{
+  display: table-cell;
+  vertical-align: middle;
+  color: white;
+  font-size: 36px;
+}
+
+.register-circle-pending span{
+  display: table-cell;
+  vertical-align: middle;
+  color: white;
+  font-size: 36px;
+}
+
+.register-circle-declined span{
   display: table-cell;
   vertical-align: middle;
   color: white;

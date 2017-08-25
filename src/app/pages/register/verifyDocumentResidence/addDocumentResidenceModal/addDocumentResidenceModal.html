@@ -20,6 +20,16 @@
                 <select class="form-control pointer" ng-model="userDocumentParams.document_type" ng-options="type for type in documentTypeOptions" required>
                 </select>
             </div>
+            <div class="form-group">
+                <label><strong>Issued by</strong> <span class="required-icon">*</span></label>
+                <br>
+                <input type="text" class="form-control" placeholder="Issued by" required>
+            </div>
+            <div class="form-group">
+                <label><strong>Issued date</strong> <span class="required-icon">*</span></label>
+                <br>
+                <input type="date" placeholder="Issued date" class="input-form-date" required>
+            </div>
         </form>
     </div>
     <div class="modal-footer">

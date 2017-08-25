@@ -14,10 +14,8 @@
         $scope.emailVerified = false;
         $scope.mobileVerified = false;
         $scope.addressVerified = true;
-        $scope.idDocumentsVerified = true;
-        $scope.idDocumentColor = "";
-        $scope.residenceDocumentsVerified = true;
-        $scope.residenceDocumentsColor = "";
+        $scope.idDocumentsVerified = 'n';
+        $scope.residenceDocumentsVerified = 'n';
         $scope.ethereumAddressVerified = true;
 
         $scope.goToGetVerified = function (path) {
@@ -119,20 +117,27 @@
         vm.getUserDocuments();
 
         vm.checkDocumentsArrayVerification = function(documentsArray){
-            var verifiedStatus = true;
             if(documentsArray.length === 0){
-                $scope.idDocumentsVerified = false;
-                return;
+                return 'n';
             } else {
                 for(var i = 0; i < documentsArray.length; i++){
-                    if(documentsArray[i].verified !== 'Verified'){
-                        verifiedStatus = false;
-                        break;
+                    if(documentsArray[i].verified === 'Verified'){
+                        return 'v';
+                    }
+                }
+                for(var i = 0; i < documentsArray.length; i++){
+                    if(documentsArray[i].verified === 'Pending'){
+                        return 'p';
+                    }
+                }
+                for(var i = 0; i < documentsArray.length; i++){
+                    if(documentsArray[i].verified === 'Declined'){
+                        return 'd';
                     }
                 }
             }
             return verifiedStatus;
-        };
+        }; 
 
         vm.getEthereumAddresses = function(){
             $http.get(environmentConfig.API + '/user/bitcoin-accounts/', {

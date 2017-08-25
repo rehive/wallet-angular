@@ -12,6 +12,7 @@
         $scope.loadingDocumentsResidenceView = true;
         $scope.showAuthNav = false;
         $scope.documents = [];
+        $scope.status = 'noUpload';
 
         vm.getUserInfo = function(){
             $http.get(environmentConfig.API + '/user/', {
@@ -44,11 +45,48 @@
                     $scope.documents = res.data.data.results.filter(function (element) {
                         return element.document_category == 'Proof Of Address';
                     });
+
+                    $scope.pendingDocuments = $scope.documents.filter(function (element) {
+                        return (element.verified == 'Pending');
+                    });
+
+                    var statusCheck = vm.checkDocumentsArrayVerification($scope.documents, "Varified");
+                    if(statusCheck === true) {
+                        $scope.status = 'verified';
+                    }
+                    else {
+                        statusCheck = vm.checkDocumentsArrayVerification($scope.documents, "Pending");
+                        if(statusCheck === true) {
+                            $scope.status = 'pending';
+                        }
+                        else {
+                            statusCheck = vm.checkDocumentsArrayVerification($scope.documents, "Declined");
+                            if(statusCheck === true) {
+                                $scope.status = 'declined';
+                            }
+                        }
+                    }
                 }
             }).catch(function (error) {
                 $scope.loadingDocumentsResidenceView = false;
                 errorToasts.evaluateErrors(error.data);
             });
+        };
+
+        vm.checkDocumentsArrayVerification = function(documentsArray, status){
+            var verifiedStatus = false;
+            if(documentsArray.length === 0){
+                $scope.idDocumentsVerified = false;
+                return;
+            } else {
+                for(var i = 0; i < documentsArray.length; i++){
+                    if(documentsArray[i].verified === status){
+                        verifiedStatus = true;
+                        break;
+                    }
+                }
+            }
+            return verifiedStatus;
         };
 
         $scope.goToHome = function(){

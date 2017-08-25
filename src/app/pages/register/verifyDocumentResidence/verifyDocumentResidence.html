@@ -4,9 +4,12 @@
 <div ng-hide="loadingDocumentsResidenceView" class="auth-main">
     <div class="auth-block verification-text">
         <h1>Identity verification <span class="text-muted">| Proof of residence</span></h1>
-        <p>Please upload a color copy or photo of your proof of address document. eCharge team will review your document and
+        <p ng-show="status == 'verified' || status == 'noUpload'">Please upload a color copy or photo of your identity document. eCharge team will review your document and
             complete the verification within 48 hours. You'll be notified via email if your documents are verified or
             not.</p>
+        <p ng-show="status == 'pending'">Our team is currently reviewing your documents and will shortly get back to you.</p>
+        <p ng-show="status == 'declined'">Your document has been declined. Please carefully read our terms of service and follow this guide for 
+            requirements and specifications to get approved.</p>
         <br>
         <form class="form-horizontal">
             <table class="table table-condensed table-striped table-hover divider">
@@ -33,7 +36,7 @@
                 <button ng-click="goToNextView()" ng-hide="documents.length > 0"
                         class="btn {{documents.length > 0 ? 'btn-primary':'btn-danger'}} pull-left">Skip
                 </button>
-                <button ng-show="documents.length > 0" ng-disabled="documents.length === 3" ng-click="openAddUserDocumentModal('app/pages/register/verifyDocumentResidence/addDocumentResidenceModal/addDocumentResidenceModal.html','lg')"
+                <button ng-show="documents.length > 0" ng-disabled="pendingDocuments.length === 3" ng-click="openAddUserDocumentModal('app/pages/register/verifyDocumentResidence/addDocumentResidenceModal/addDocumentResidenceModal.html','lg')"
                         class="btn btn-primary btn-default'}} pull-left">Upload
                 </button>
             </div>

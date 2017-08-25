@@ -28,19 +28,31 @@
             <span class="register-text">Basic info</span>
         </div>
         <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 register-cirles">
-            <div ng-show="idDocumentsVerified" class="register-circle-checked">
+            <div ng-show="idDocumentsVerified == 'v'" class="register-circle-checked">
                 <span><i class="glyphicon glyphicon-ok"></i></span>
             </div>
-            <div ng-click="goToGetVerified('/document/verify/ID')" ng-hide="idDocumentsVerified" class="register-circle-unchecked pointer">
+            <div ng-click="goToGetVerified('/document/verify/ID')" ng-show="idDocumentsVerified == 'n'" class="register-circle-unchecked pointer">
+                <span>4</span>
+            </div>
+            <div ng-click="goToGetVerified('/document/verify/ID')" ng-show="idDocumentsVerified == 'p'" class="register-circle-pending pointer">
+                <span>4</span>
+            </div>
+            <div ng-click="goToGetVerified('/document/verify/ID')" ng-show="idDocumentsVerified == 'd'" class="register-circle-declined pointer">
                 <span>4</span>
             </div>
             <span class="register-text">Proof of ID</span>
         </div>
         <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 register-cirles">
-            <div ng-show="residenceDocumentsVerified" class="register-circle-checked">
+            <div ng-show="residenceDocumentsVerified == 'v'" class="register-circle-checked">
                 <span><i class="glyphicon glyphicon-ok"></i></span>
             </div>
-            <div ng-click="goToGetVerified('/document/verify/residence')" ng-hide="residenceDocumentsVerified" class="register-circle-unchecked pointer">
+            <div ng-click="goToGetVerified('/document/verify/residence')" ng-show="residenceDocumentsVerified == 'n'" class="register-circle-unchecked pointer">
+                <span>5</span>
+            </div>
+            <div ng-click="goToGetVerified('/document/verify/residence')" ng-show="residenceDocumentsVerified == 'p'" class="register-circle-pending pointer">
+                <span>5</span>
+            </div>
+            <div ng-click="goToGetVerified('/document/verify/residence')" ng-show="residenceDocumentsVerified == 'd'" class="register-circle-declined pointer">
                 <span>5</span>
             </div>
             <span class="register-text">Proof of address</span>
