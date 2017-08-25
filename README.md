@@ -27,7 +27,7 @@ Rehive's back office dashboard is an open sourced project in Angular JS which ad
 Deployment pre-requisites:
 --------------------------
 1. `pip install invoke python-dotenv fabric3 pyyaml semver nose`
-2. Helm client: https://docs.helm.sh/using_helm/#installing-helm
+2. Helm client: https://docs.helm.sh/using_helm/#installing-helm Be sure to install this version: `https://github.com/kubernetes/helm/releases/tag/v2.4.2`
 
 Deployment:
 -----------
