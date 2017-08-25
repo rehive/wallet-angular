@@ -15,7 +15,9 @@
         $scope.mobileVerified = false;
         $scope.addressVerified = true;
         $scope.idDocumentsVerified = true;
+        $scope.idDocumentColor = "";
         $scope.residenceDocumentsVerified = true;
+        $scope.residenceDocumentsColor = "";
         $scope.ethereumAddressVerified = true;
 
         $scope.goToGetVerified = function (path) {
