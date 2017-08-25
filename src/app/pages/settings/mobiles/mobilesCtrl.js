@@ -11,7 +11,9 @@
         vm.updatedSwitches = {};
         vm.token = cookieManagement.getCookie('TOKEN');
         $scope.loadingSwitches = true;
+        $scope.mobile = {};
         $scope.editSwitches = {};
+        $scope.verifying = false;
 
         $scope.switchesParams = {
             switch_type: 'Allow transactions',
@@ -67,6 +69,7 @@
 
         $scope.verify = function (mobile) {
              $scope.loadingSwitches = true;
+             
              var data = {
                  mobile: mobile.number,
                  company: environmentConfig.COMPANY
@@ -80,6 +83,7 @@
                  $scope.loadingSwitches = false;
                  if (res.status === 201 || res.status === 200) {
                      toastr.success('An OTP has been sent to your mobile number!');
+                     $scope.verifying = true;
                      $window.scrollTo(0, 0);
                  }
              }).catch(function (error) {
@@ -92,8 +96,38 @@
              });
          };
 
+         $scope.checkOtp = function (otp) {
+             $scope.loadingSwitches = true;
+             $http.post(environmentConfig.API + '/auth/mobile/verify/', {otp: otp}, {
+                 headers: {
+                     'Content-Type': 'application/json',
+                     'Authorization': vm.token
+                 }
+             }).then(function (res) {
+                 $scope.loadingSwitches = false;
+                 if (res.status === 201 || res.status === 200) {
+                     toastr.success('Your mobile number has been verified successfully.');
+                     $scope.verifying = false;
+                     vm.getSwitches();
+                     $window.scrollTo(0, 0);
+                 }
+             }).catch(function (error) {
+                 $scope.loadingSwitches = false;
+                 if(error.status == 403){
+                     errorHandler.handle403();
+                     return
+                 }
+                 errorToasts.evaluateErrors(error.data);
+             });
+         };
+
+         $scope.skipVerify = function() {
+             $scope.verifying = false;
+         }
+
          $scope.addMobile = function (mobile) {
              $scope.loadingSwitches = true;
+             console.log($scope.mobile);
              $http.post(environmentConfig.API + '/user/mobiles/', mobile, {
                  headers: {
                      'Content-Type': 'application/json',
@@ -136,8 +170,7 @@
             });
 
             vm.theModal.result.then(function(mobile){
-                var index = $scope.mobilesList.findIndex(vm.findIndexOfSwitches, mobile);
-                $scope.mobilesList.splice(index, 1);
+                vm.getSwitches();
             }, function(){
             });
         };

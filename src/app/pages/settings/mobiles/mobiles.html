@@ -1,5 +1,5 @@
 <div ng-hide="loadingSwitches">
-    <div ng-show="mobilesList.length > 0" ba-panel class="setting-bank-accounts" ba-panel-title="Mobile numbers" ba-panel-class="light-text with-scroll">
+    <div ng-show="mobilesList.length > 0 && !verifying" ba-panel class="setting-bank-accounts" ba-panel-title="Mobile numbers" ba-panel-class="light-text with-scroll">
         <table class="table fees-table table-striped setting-bank-accounts-table">
             <tr ng-repeat="mobile in mobilesList">
                 <th class="bank-account-title" ng-bind="mobile.number" ></th>
@@ -11,7 +11,7 @@
             </tr>
         </table>
     </div>
-    <div ba-panel ba-panel-title="Add mobile number" ba-panel-class="light-text with-scroll">
+    <div ng-hide="verifying" ba-panel ba-panel-title="Add mobile number" ba-panel-class="light-text with-scroll">
         <form name="switchesForm" class="custom-form">
             <div class="form-group">
                 <label><strong>Mobile number</strong> <span class="required-icon">*</span></label>
@@ -21,6 +21,20 @@
             </div>
             <div class="form-group">
                 <button ng-click="addMobile(mobile)" ng-disabled="!mobile.number" class="btn btn-primary pull-right">Add</button>
+            </div>
+        </form>
+    </div>
+    <div ng-show="verifying"  ba-panel ba-panel-title="Verify mobile number" ba-panel-class="light-text with-scroll">
+        <form name="switchesForm" class="custom-form">
+            <div class="form-group">
+                <label><strong>Enter OTP</strong> <span class="required-icon">*</span></label>
+                <br>
+                <input class="form-control" type="text" ng-model="otp">
+                </select>
+            </div>
+            <div class="form-group">
+                <button ng-click="checkOtp(otp)" ng-disabled="!otp" class="btn btn-primary pull-right">Verify</button>
+                <button ng-click="skipVerify()" class="btn btn-danger pull-left">Skip</button>
             </div>
         </form>
     </div>

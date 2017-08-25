@@ -11,7 +11,7 @@
         vm.updatedSwitches = {};
         vm.token = cookieManagement.getCookie('TOKEN');
         $scope.loadingSwitches = true;
-        $scope.editSwitches = {};
+        $scope.email = {};
 
         $scope.switchesParams = {
             switch_type: 'Allow transactions',
