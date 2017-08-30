@@ -1,7 +1,7 @@
 (function () {
     'use strict';
 
-    angular.module('BlurAdmin.pages.home')
+    angular.module('BlurAdmin.pages.send')
         .directive('registerProgress', registerProgress);
 
     /** @ngInject */
@@ -9,7 +9,7 @@
         return {
             restrict: 'E',
             controller: 'RegisterProgressCtrl',
-            templateUrl: 'app/pages/home/registerProgress/registerProgress.html'
+            templateUrl: 'app/pages/send/registerProgress/registerProgress.html'
         };
     }
 })();

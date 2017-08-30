@@ -1,11 +1,21 @@
-<div class="panel col-md-4" ng-hide="loadingUserInfo">
+<div class="panel col-md-6" ng-hide="loadingUserInfo">
   <div class="panel-heading"><h2 class="custom-buy-with-header">Receive</h2></div>
-  <div class="row receive-text">
-    <h3>The QR code is your public address for accepting payments.</h3>
-  </div>
-  <div class="row receive-img">
-      <img ng-src="https://chart.googleapis.com/chart?chl={{user.email}}&cht=qr&choe=UTF-8&chs=400"/>
-  </div>
+  <div class="panel-body panel-without-padding">
+        <div class="col-md-6 make-payment-image">
+            <img ng-src="https://chart.googleapis.com/chart?chl={{user.email}}&cht=qr&choe=UTF-8&chs=400" width="100%"/>
+        </div>
+        <div class="col-md-6 receive-text" style="float: right">
+            <div class="row make-payment-scan">
+                The QR code is your public address for accepting payments.
+            </div>
+            <div class="row">
+                <button class="btn btn-primary make-payment-copy" ngclipboard
+                        data-clipboard-text="{{user.email}}" ng-click="addressCopied()">
+                    Copy to clipboard
+                </button>
+            </div>
+        </div>
+    </div>
 </div>
 <div class="auth-main " ng-show="loadingUserInfo">
     <div class="auth-block verification-text">

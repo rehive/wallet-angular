@@ -1,46 +1,30 @@
-<div class="panel col-md-6 container" ng-hide="loadingUserInfo">
-  <div class="panel-heading"><h2 class="custom-buy-with-header">Send</h2></div>
-  <form class="form-horizontal send-padding">
-      <div ng-show="showSendTo">
-          <div class="form-group">
-            <label class="send-label">
-                <strong>Recipient</strong>
-            </label>
-            <input type="text" ng-model="recipient" placeholder="Enter name/email/mobile" class="form-control">
-          </div>
-          <div class="row">
-              <div class="col-sm-12">
-                  <button ng-disabled="!recipient" ng-click="showSendTo=false"
-                          class="btn btn-primary pull-right">Next
-                  </button>
-              </div>
-          </div>
-      </div>
-      <div ng-hide="showSendTo">
-          <div class="form-group">
-            <label class="send-label">
-                <strong>Amount</strong>
-            </label>
-            <input type="text" ng-model="amount" placeholder="Enter a valid amount" class="form-control">
-          </div>
-          <div class="form-group">
-            <label class="send-label">
-                <strong>Note</strong>
-            </label>
-            <input type="text" ng-model="note" placeholder="Enter a note" class="form-control">
-          </div>
-          <div class="row">
-              <div class="col-sm-12">
-                  <button ng-disabled="!amount" ng-click="openConfirmationModal(recipient, amount, note)"
-                          class="btn btn-primary pull-right">Send
-                  </button>
-                  <button ng-click="showSendTo=true"
-                        class="btn btn-danger pull-left">Back
-                  </button>
-              </div>
-          </div>
-      </div>
-  </form>
+<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+    <register-progress></register-progress>
+</div>
+<div class="panel col-md-6" ng-hide="loadingUserInfo">
+    <div class="panel-heading"><h2 class="custom-buy-with-header">Send</h2></div>
+    <div class="panel-body">
+        <form class="form-horizontal col-lg-12 custom-form-body">
+            <div class="form-group">
+                <label class="col-sm-2 control-label"><strong>Recipient</strong></label>
+                <div class="col-sm-10">
+                    <input type="text" step="any" ng-model="recipient" class="form-control" placeholder="Enter name, email or mobile number" >
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-2 control-label"><strong>Amount</strong></label>
+                <div class="col-sm-10">
+                    <input type="text" step="any" ng-model="amount" class="form-control" placeholder="Enter a valid amount">
+                </div>
+            </div>
+            <br>
+            <div class="form-group">
+                <div class="col-sm-offset-2 col-sm-10">
+                    <button ng-disabled="!recipient || !amount" ng-click="openConfirmationModal(recipient, amount, '')" class="btn btn-primary pull-right">Send</button>
+                </div>
+            </div>
+        </form>
+    </div>
 </div>
 <div class="auth-main " ng-show="loadingUserInfo">
     <div class="auth-block verification-text">

@@ -1,7 +1,7 @@
 (function () {
     'use strict';
 
-    angular.module('BlurAdmin.pages.home')
+    angular.module('BlurAdmin.pages.send')
         .controller('RegisterProgressCtrl', RegisterProgressCtrl);
 
     /** @ngInject */

@@ -13,7 +13,7 @@
           controller: 'ReceiveCtrl',
           title: 'Receive',
           sidebarMeta: {
-            order: 0
+            order: 1
           }
         });
   }

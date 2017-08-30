@@ -36,6 +36,10 @@
             }
         };
         vm.getUserInfo();
+
+        $scope.addressCopied = function(){
+            toastr.success('Address copies','Message');
+        }
     }
 
 })();

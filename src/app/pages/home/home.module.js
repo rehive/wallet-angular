@@ -12,9 +12,6 @@
           templateUrl: 'app/pages/home/home.html',
           controller: 'HomeCtrl',
           title: 'Home',
-          sidebarMeta: {
-            order: 0
-          }
         });
   }
 
