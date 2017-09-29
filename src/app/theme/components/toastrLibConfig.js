@@ -11,7 +11,7 @@
   /** @ngInject */
   function toastrLibConfig(toastrConfig) {
     angular.extend(toastrConfig, {
-      closeButton: true,
+      closeButton: false,
       closeHtml: '<button>&times;</button>',
       timeOut: 6000,
       autoDismiss: false,
@@ -20,7 +20,7 @@
       newestOnTop: true,
       positionClass: 'toast-bottom-right',
       preventDuplicates: false,
-      preventOpenDuplicates: false,
+      preventOpenDuplicates: true,
       target: 'body'
     });
   }

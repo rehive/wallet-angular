@@ -1,8 +1,8 @@
-<div>
-    <auth-navigation></auth-navigation>
-</div>
 <div ng-hide="loadingDocumentsIDView" class="auth-main">
-    <div class="auth-block verification-text">
+    <div class="auth-block verification-text rp-block">
+        <div class="pull-right step-number">
+            Step 4 of 7
+        </div>
         <h1>Identity verification <span class="text-muted">| ID</span></h1>
 
         <p ng-show="status == 'verified' || status == 'noUpload'">Please upload a color copy or photo of your identity document. eCharge team will review your document and
@@ -27,8 +27,8 @@
                              ng-bind="document.document_type"></div>
                     </td>
                     <td class="pull-left">
-                        <div title="{{document.verified}}" class="transactions-list-element"
-                             ng-bind="document.verified"></div>
+                        <div title="{{document.status}}" class="transactions-list-element"
+                             ng-bind="document.status"></div>
                     </td>
                 </tr>
             </table>

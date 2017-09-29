@@ -1,17 +1,18 @@
-<div>
-    <auth-navigation></auth-navigation>
-</div>
 <div ng-hide="loadingEtheriumView" class="auth-main">
-    <div class="auth-block verification-text">
+    <div class="auth-block verification-text rp-block">
+        <div class="pull-right step-number">
+            Step 7 of 7
+        </div>
         <h1>Add ethereum address</h1>
 
-        <p>Note that this your ethereum receiving address for ECH tokens. Please make sure that the address is
+        <p ng-show="statusPending">Note that this your ethereum receiving address for ECH tokens. Please make sure that the address is
             correct.</p>
+        <p ng-hide="statusPending">We’ve send you a verification email to verify your ethereum address.</p>
         <br>
 
         <form class="form-horizontal">
             <div>
-                <div class="row form-group">
+                <div class="row form-group" ng-show="statusPending">
                     <div class="col-sm-12 input-block">
                         <input class="form-control" placeholder="Please paste a valid ethereum address" type="text"
                                ng-model="ethereum.address">
@@ -19,7 +20,10 @@
                 </div>
                 <div class="row">
                     <div class="col-sm-12">
-                        <button ng-disabled="!ethereum.address" ng-click="addEthereumAddress(ethereum.address)"
+                        <button ng-show="statusPending" ng-disabled="!ethereum.address" ng-click="addEthereumAddress(ethereum.address)"
+                                class="btn btn-primary btn-verify-mobile pull-right">Done
+                        </button>
+                        <button ng-hide="statusPending" ng-click="goToNextView()"
                                 class="btn btn-primary btn-verify-mobile pull-right">Done
                         </button>
                         <button ng-click="goToNextView()" class="btn btn-danger btn-verify-mobile pull-left">Skip

@@ -38,6 +38,10 @@
                     }
             }).catch(function (error) {
                 $rootScope.$pageFinishedLoading = true;
+                if(error.status == 403 || error.status == 401){
+                    errorHandler.handle403();
+                    return
+                }
                 errorToasts.evaluateErrors(error.data);
             });
         };

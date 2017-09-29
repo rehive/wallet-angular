@@ -9,12 +9,12 @@
         $stateProvider
             .state('verifyDocumentResidence', {
                 url: '/document/verify/residence',
-                views:{
-                    'admin':{
+                // views:{
+                //     'admin':{
                         templateUrl: 'app/pages/register/verifyDocumentResidence/verifyDocumentResidence.html',
                         controller: 'VerifyDocumentResidenceCtrl'
-                    }
-                }
+                //     }
+                // }
             });
     }
 

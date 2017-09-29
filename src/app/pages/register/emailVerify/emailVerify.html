@@ -3,6 +3,9 @@
 </div>
 <div ng-hide="loadingEmailVerifyView" class="auth-main">
     <div class="auth-block">
+        <div class="pull-right step-number">
+            Step 1 of 7
+        </div>
         <div class="verification-text divider">
             <div class="text-center divider">
                 <h1>Verify email</h1>
@@ -16,7 +19,6 @@
         <button ng-disabled="loadingEmailVerifyView" ng-click="verifyUser(user.email)"
                 class="btn btn-primary pull-right">Next
         </button>
-        <button ng-click="goToNextView()" class="btn btn-danger pull-left">Skip</button>
     </div>
 </div>
 <div class="auth-main " ng-show="loadingEmailVerifyView">

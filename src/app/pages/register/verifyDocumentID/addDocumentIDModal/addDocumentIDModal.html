@@ -1,44 +1,109 @@
 <div class="modal-content">
-    <div class="modal-header">
+    <div class="modal-header col-md-12">
         <button type="button" class="close" ng-click="$dismiss()" aria-label="Close">
             <em class="ion-ios-close-empty sn-link-close"></em>
         </button>
         <h4 class="modal-title" id="myModalLabel">Add document</h4>
     </div>
-    <div class="modal-body">
-        <div class="divider">
-            <img ng-show="userDocumentParams.file" ngf-thumbnail="userDocumentParams.file" height="500px" width="100%">
+    <div class="modal-body col-md-12">
+        <div class="col-md-6 col-lg-6">
+            <img ng-show="!addingDocument && userDocumentParams.file" ngf-thumbnail="userDocumentParams.file" style="max-height:375px;width:100%">
+            <div ng-show="addingDocument" style="text-align:center">
+                <loading-image></loading-image>
+            </div>
         </div>
-        <form name="addDocumentForm" novalidate>
+        <form class="col-md-6 col-lg-6" name="addDocumentForm" >
             <fieldset class="divider">
-                <input ng-change="documentChanged()" type="file" ngf-select ng-model="userDocumentParams.file" name="file"
-                       accept="image/*" ngf-max-size="10MB" required>
+                <input type="file" ngf-select ng-model="userDocumentParams.file" name="file"
+                       accept="image/*" ngf-max-size="5MB" required>
+                <div style="padding-top:5px;" ng-show="formSubmitted && addDocumentForm.file.$error.required">
+                    <span style="color:red;">
+                        This field is required!
+                    </span>
+                </div>
+                <div style="padding-top:5px;" ng-show="addDocumentForm.file.$error.maxSize">
+                    <span style="color:red;" >
+                        File too large, max 5MB.
+                    </span>
+                </div>
             </fieldset>
             <div class="form-group">
                 <label><strong>Document type</strong> <span class="required-icon">*</span></label>
                 <br>
-                <select class="form-control pointer" ng-model="userDocumentParams.document_type" ng-options="type for type in documentTypeOptions" required>
+                <select class="form-control pointer" name="type" ng-model="userDocumentParams.document_type" ng-options="type for type in documentTypeOptions" required>
                 </select>
             </div>
             <div class="form-group">
-                <label><strong>Expire date</strong> <span class="required-icon">*</span></label>
+                <label><strong>Expiry date</strong> <span class="required-icon">*</span></label>
                 <br>
-                <input type="date" placeholder="Expire date" class="input-form-date" required>
+                <div class="row">
+                    <div class="col-sm-4">
+                        <Select class="form-control" ng-model="expire.day" name="expire_day" ng-options="n for n in [] | range:1:32" required>
+                        </Select>
+                    </div>
+                    <div class="col-sm-4">
+                        <Select class="form-control" ng-model="expire.month" name="expire_month" ng-options="m.value as m.name for m in months" reqiured>
+                        </Select>
+                    </div>
+                    <div class="col-sm-4">
+                        <Select class="form-control" ng-model="expire.year" name="expire_year" ng-options="n for n in [] | range:1950:2021" required>
+                        </Select>
+                    </div>
+                </div>
+                <div style="padding-top:5px;" ng-show="formSubmitted && (addDocumentForm.expire_day.$invalid || addDocumentForm.expire_month.$invalid || addDocumentForm.expire_year.$invalid)">
+                    <span style="color:red;">
+                        This field is required!
+                    </span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label><strong>ID/Passport number for this document</strong> <span class="required-icon">*</span></label>
+                <br>
+                <input class="form-control" placeholder="ID or passport number" name="id_number" type="text" ng-model="id_number" required>
+                <div style="padding-top:5px;" ng-show="formSubmitted && addDocumentForm.id_number.$invalid">
+                    <span style="color:red;">
+                        This field is required!
+                    </span>
+                </div>
             </div>
             <div class="form-group">
                 <label><strong>Issued by</strong> <span class="required-icon">*</span></label>
                 <br>
-                <input type="text" class="form-control" placeholder="Issued by" required>
+                <input type="text" class="form-control" name="issued_by" placeholder="Issued by" ng-model="issued_by" required>
+                <div style="padding-top:5px;" ng-show="formSubmitted && addDocumentForm.issued_by.$invalid">
+                    <span style="color:red;">
+                        This field is required!
+                    </span>
+                </div>
             </div>
             <div class="form-group">
                 <label><strong>Issued date</strong> <span class="required-icon">*</span></label>
                 <br>
-                <input type="date" placeholder="Issued date" class="input-form-date" required>
+                <div class="row">
+                    <div class="col-sm-4">
+                        <Select class="form-control" ng-model="issue.day" name="issue_day" ng-options="n for n in [] | range:1:32" required>
+                        </Select>
+                    </div>
+                    <div class="col-sm-4">
+                        <Select class="form-control" ng-model="issue.month" name="issue_month" ng-options="m.value as m.name for m in months" required>
+                        </Select>
+                    </div>
+                    <div class="col-sm-4">
+                        <Select class="form-control" ng-model="issue.year" name="issue_year" ng-options="n for n in [] | range:1950:2021" required>
+                        </Select>
+                    </div>
+                </div>
+                <div style="padding-top:5px;" ng-show="formSubmitted && (addDocumentForm.issue_day.$invalid || addDocumentForm.issue_month.$invalid || addDocumentForm.issue_year.$invalid)">
+                    <span style="color:red;">
+                        This field is required!
+                    </span>
+                </div>
+                <div class="row modal-body-buttons">
+                    <button type="button" class="btn btn-danger pull-left" ng-click="$dismiss()">Close</button>
+                    <button ng-click="addDocumentForm.$valid ? addDocument() : formSubmitted = true" ng-disabled="addingDocument" type="button" class="btn btn-primary pull-right">Add</button>
+                </div>
             </div>
         </form>
     </div>
-    <div class="modal-footer">
-        <button type="button" class="btn btn-danger pull-left" ng-click="$dismiss()">Close</button>
-        <button ng-click="addDocument()" ng-disabled="addingDocument || !documentSelected" type="button" class="btn btn-primary pull-right">Add</button>
-    </div>
+    
 </div>

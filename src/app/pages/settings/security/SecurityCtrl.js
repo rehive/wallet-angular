@@ -39,5 +39,9 @@
             });
         }
 
+        $scope.enableMultiFactorAuth = function(){
+            $location.path('/authentication/multi-factor');
+        };
+
     }
 })();

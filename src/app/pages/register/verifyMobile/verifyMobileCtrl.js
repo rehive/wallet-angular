@@ -21,7 +21,7 @@
             userVerification.verifyMobile(function(err,verified){
                 if(verified){
                     $scope.loadingMobileVerifyView = false;
-                    toastr.success('Mobile Number verified','Message');
+                    $rootScope.mobileVerified = true;
                     $location.path('/identity/verification');
                 } else {
                     $scope.loadingMobileVerifyView = false;
@@ -48,6 +48,10 @@
                 }
             }).catch(function (error) {
                 $scope.loadingMobileVerifyView = false;
+                if(error.status == 403 || error.status == 401){
+                    errorHandler.handle403();
+                    return
+                }
                 errorToasts.evaluateErrors(error.data);
             });
         };
@@ -67,6 +71,10 @@
                 }
             }).catch(function (error) {
                 $rootScope.$pageFinishedLoading = true;
+                if(error.status == 403 || error.status == 401){
+                    errorHandler.handle403();
+                    return
+                }
                 errorToasts.evaluateErrors(error.data);
             });
         };

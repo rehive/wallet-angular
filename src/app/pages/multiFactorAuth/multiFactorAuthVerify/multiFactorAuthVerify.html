@@ -1,0 +1,60 @@
+<div>
+    <auth-navigation></auth-navigation>
+</div>
+<div ng-show="authType == 'sms'">
+    <div ng-hide="loadingVerifyAuth" class="auth-main">
+        <div class="auth-block text-center">
+            <h1>Verify sms authentication</h1>
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 verification-text">
+                <p>Haven't received a sms? <a ng-click="resendSmsAuthNumber()" class="verification-link">Resend sms</a></p>
+            </div>
+            <div class="row verification-btn-box">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 divider">
+                    <input class="form-control divider" type="text" ng-model="verifyTokenObj.token" placeholder="Enter token">
+                    <button ng-disabled="!verifyTokenObj.token" ng-click="verifyToken()" class="btn btn-primary btn-auth" ng-click="">Save</button>
+                </div>
+                <div ng-hide="prevLocation == 'login'" class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <a class="pull-left" href="/#/authentication/multi-factor/sms">Back</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div ng-show="authType == 'token'">
+    <div ng-hide="loadingVerifyAuth" class="auth-main">
+        <div class="auth-block text-center">
+            <h1>Verify token authentication</h1>
+            <div ng-hide="prevLocation == 'login'">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 verification-text">
+                    <img ng-src="{{qrCodeUrl}}">
+                </div>
+                <table class="table table-fees table-striped user-details-table divider">
+                    <tr ng-repeat="(key,value) in tokenAuthenticationDetails">
+                        <th width="40%"><strong ng-bind="key"></strong></th>
+                        <th ng-bind="value"></th>
+                    </tr>
+                </table>
+            </div>
+            <div class="row verification-btn-box">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 divider">
+                    <input class="form-control divider" type="text" ng-model="verifyTokenObj.token" placeholder="Enter token">
+                    <button ng-disabled="!verifyTokenObj.token" ng-click="verifyToken()" class="btn btn-primary btn-auth" ng-click="">Save</button>
+                </div>
+                <div ng-show="tokenAuthenticationEnabled"  class="col-lg-12 col-md-12 col-sm-12 col-xs-12 divider">
+                    <button ng-click="deleteTokenAuth()" class="btn btn-danger btn-auth" ng-click="">Delete</button>
+                </div>
+                <div ng-hide="prevLocation == 'login'" class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <a class="pull-left" href="/#/authentication/multi-factor">Back</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div ng-show="loadingVerifyAuth" class="auth-main">
+    <div class="auth-block text-center">
+        <loading-image></loading-image>
+    </div>
+</div>

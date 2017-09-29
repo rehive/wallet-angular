@@ -9,12 +9,12 @@
         $stateProvider
             .state('identityVerification', {
                 url: '/identity/verification',
-                views:{
-                'admin':{
+                // views:{
+                // 'admin':{
                 templateUrl: 'app/pages/register/identityVerification/identityVerification.html',
                 controller: 'IdentityVerificationCtrl'
-                        }
-                    }
+                    //     }
+                    // }
                 });
             }
 

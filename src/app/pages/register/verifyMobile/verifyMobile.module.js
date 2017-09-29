@@ -9,12 +9,12 @@
         $stateProvider
             .state('verifyMobile', {
                 url: '/mobile/verify',
-                views:{
-                'admin':{
+                // views:{
+                // 'admin':{
                 templateUrl: 'app/pages/register/verifyMobile/verifyMobile.html',
                 controller: 'VerifyMobileCtrl'
-                        }
-                    }
+                    //     }
+                    // }
                 });
             }
 

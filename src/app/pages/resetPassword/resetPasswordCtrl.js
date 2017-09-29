@@ -10,7 +10,7 @@
         $scope.resetPassword = function(user,company){
             $http.post(environmentConfig.API + '/auth/password/reset/', {
                 user: user,
-                company: company
+                company: environmentConfig.COMPANY
             }).then(function (res) {
                 if (res.status === 200) {
                     toastr.success(res.data.message);

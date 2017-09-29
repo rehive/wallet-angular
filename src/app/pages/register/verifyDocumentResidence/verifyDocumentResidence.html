@@ -1,8 +1,8 @@
-<div>
-    <auth-navigation></auth-navigation>
-</div>
 <div ng-hide="loadingDocumentsResidenceView" class="auth-main">
-    <div class="auth-block verification-text">
+    <div class="auth-block verification-text rp-block">
+        <div class="pull-right step-number">
+            Step 6 of 7
+        </div>
         <h1>Identity verification <span class="text-muted">| Proof of residence</span></h1>
         <p ng-show="status == 'verified' || status == 'noUpload'">Please upload a color copy or photo of your identity document. eCharge team will review your document and
             complete the verification within 48 hours. You'll be notified via email if your documents are verified or
@@ -22,8 +22,8 @@
                     class="editable-row center pointer">
                     <td width="70%" style="padding-left: 15px;"><div title="{{document.document_type}}" class="transactions-list-element"
                              ng-bind="document.document_type"></div></td>
-                    <td  class="pull-left"><div title="{{document.verified}}" class="transactions-list-element"
-                             ng-bind="document.verified"></div></td>
+                    <td  class="pull-left"><div title="{{document.status}}" class="transactions-list-element"
+                             ng-bind="document.status"></div></td>
                 </tr>
             </table>
             <div>

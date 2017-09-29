@@ -49,6 +49,10 @@
                     }
                 }
             }).catch(function (error) {
+                if(error.status == 403 || error.status == 401){
+                    errorHandler.handle403();
+                    return
+                }
                 errorToasts.evaluateErrors(error.data);
             });
         };
@@ -62,9 +66,14 @@
                 }
             }).then(function (res) {
                 if (res.status === 200) {
+                    $rootScope.mobileVerified = true;
                     $location.path('/identity/verification');
                 }
             }).catch(function (error) {
+                if(error.status == 403 || error.status == 401){
+                    errorHandler.handle403();
+                    return
+                }
                 errorToasts.evaluateErrors(error.data);
             });
         };
@@ -79,6 +88,10 @@
                     toastr.success('Verification otp has been re-sent');
                 }
             }).catch(function (error) {
+                if(error.status == 403 || error.status == 401){
+                    errorHandler.handle403();
+                    return
+                }
                 errorToasts.evaluateErrors(error.data);
             });
         }

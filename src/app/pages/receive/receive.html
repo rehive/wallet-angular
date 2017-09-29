@@ -1,6 +1,6 @@
 <div class="panel col-md-6" ng-hide="loadingUserInfo">
   <div class="panel-heading"><h2 class="custom-buy-with-header">Receive</h2></div>
-  <div class="panel-body panel-without-padding">
+  <div class="panel-body receive-panel-padding">
         <div class="col-md-6 make-payment-image">
             <img ng-src="https://chart.googleapis.com/chart?chl={{user.email}}&cht=qr&choe=UTF-8&chs=400" width="100%"/>
         </div>
@@ -17,7 +17,7 @@
         </div>
     </div>
 </div>
-<div class="auth-main " ng-show="loadingUserInfo">
+<div class="panel col-md-6" ng-show="loadingUserInfo">
     <div class="auth-block verification-text">
         <loading-image></loading-image>
     </div>

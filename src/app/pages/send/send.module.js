@@ -7,8 +7,8 @@
   /** @ngInject */
   function routeConfig($stateProvider) {
     $stateProvider
-        .state('send', {
-          url: '/send',
+        .state('home', {
+          url: '/home',
           templateUrl: 'app/pages/send/send.html',
           controller: 'SendCtrl',
           title: 'Send',

@@ -28,6 +28,10 @@
                 }
             }).catch(function (error) {
                 $scope.loadingDocumentsIDView = false;
+                if(error.status == 403 || error.status == 401){
+                    errorHandler.handle403();
+                    return
+                }
                 errorToasts.evaluateErrors(error.data);
             });
         };
@@ -42,33 +46,43 @@
             }).then(function (res) {
                 if (res.status === 200) {
                     $scope.documents = res.data.data.results.filter(function (element) {
-                        return (element.document_category == 'Proof Of Identity' || element.document_category == 'Advanced Proof Of Identity');
+                        return (element.document_category == 'Proof Of Identity');
                     });
 
                     $scope.pendingDocuments = $scope.documents.filter(function (element) {
                         return (element.verified == 'Pending');
                     });
 
-                    var statusCheck = vm.checkDocumentsArrayVerification($scope.documents, "Varified");
+                    var statusCheck = vm.checkDocumentsArrayVerification($scope.documents, "verified");
                     if(statusCheck === true) {
                         $scope.status = 'verified';
+                        $rootScope.idDocumentsVerified = 'v';
                     }
                     else {
-                        statusCheck = vm.checkDocumentsArrayVerification($scope.documents, "Pending");
+                        statusCheck = vm.checkDocumentsArrayVerification($scope.documents, "pending");
                         if(statusCheck === true) {
                             $scope.status = 'pending';
+                            $rootScope.idDocumentsVerified = 'p';
                         }
                         else {
-                            statusCheck = vm.checkDocumentsArrayVerification($scope.documents, "Declined");
+                            statusCheck = vm.checkDocumentsArrayVerification($scope.documents, "declined");
                             if(statusCheck === true) {
                                 $scope.status = 'declined';
+                                $rootScope.idDocumentsVerified = 'd';
                             }
                         }
+                    }
+                    if($scope.status == 'verified'){
+                        $scope.goToNextView();
                     }
                     $scope.loadingDocumentsIDView = false;
                 }
             }).catch(function (error) {
                 $scope.loadingDocumentsIDView = false;
+                if(error.status == 403 || error.status == 401){
+                    errorHandler.handle403();
+                    return
+                }
                 errorToasts.evaluateErrors(error.data);
             });
         };
@@ -80,7 +94,7 @@
                 return;
             } else {
                 for(var i = 0; i < documentsArray.length; i++){
-                    if(documentsArray[i].verified === status){
+                    if(documentsArray[i].status === status){
                         verifiedStatus = true;
                         break;
                     }
@@ -130,7 +144,7 @@
         };
 
         $scope.goToNextView = function(){
-            $location.path('/document/verify/residence');
+            $location.path('/document/verify/IDSelfie');
         };
 
     }

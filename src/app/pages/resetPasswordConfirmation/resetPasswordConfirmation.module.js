@@ -8,7 +8,7 @@
     function routeConfig($stateProvider) {
         $stateProvider
             .state('resetPasswordConfirmation', {
-                url: '/password/reset/confirm/:uid/:token',
+                url: '/password-reset-confirm/',
                 views:{
                     'admin':{
                         templateUrl: 'app/pages/resetPasswordConfirmation/resetPasswordConfirmation.html',

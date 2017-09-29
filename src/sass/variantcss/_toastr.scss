@@ -1,0 +1,15 @@
+#toast-container .toast{
+  opacity: 1 !important;
+  box-shadow: none;
+  &:hover{
+    box-shadow: none;
+  }
+}
+
+.toast-success{
+  background-color: #3db764 !important;
+}
+
+.toast-error{
+  background-color: #ED675A !important;
+}

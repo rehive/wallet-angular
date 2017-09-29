@@ -9,12 +9,12 @@
         $stateProvider
             .state('confirmMobile', {
                 url: '/mobile/confirm',
-                views:{
-                'admin':{
+                // views:{
+                // 'admin':{
                 templateUrl: 'app/pages/register/confirmMobile/confirmMobile.html',
                 controller: 'ConfirmMobileCtrl'
-                        }
-                    }
+                    //     }
+                    // }
                 });
             }
 

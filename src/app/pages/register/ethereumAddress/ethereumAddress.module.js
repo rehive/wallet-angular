@@ -9,12 +9,12 @@
         $stateProvider
             .state('ethereumAddress', {
                 url: '/ethereum/address',
-                views:{
-                'admin':{
+                // views:{
+                // 'admin':{
                 templateUrl: 'app/pages/register/ethereumAddress/ethereumAddress.html',
                 controller: 'EthereumAddressCtrl'
-                        }
-                    }
+                    //     }
+                    // }
                 });
             }
 

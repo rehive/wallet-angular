@@ -28,6 +28,10 @@
                 }
             }).catch(function (error) {
                 $scope.loadingDocumentsResidenceView = false;
+                if(error.status == 403 || error.status == 401){
+                    errorHandler.handle403();
+                    return
+                }
                 errorToasts.evaluateErrors(error.data);
             });
         };
@@ -50,25 +54,35 @@
                         return (element.verified == 'Pending');
                     });
 
-                    var statusCheck = vm.checkDocumentsArrayVerification($scope.documents, "Varified");
+                    var statusCheck = vm.checkDocumentsArrayVerification($scope.documents, "verified");
                     if(statusCheck === true) {
                         $scope.status = 'verified';
+                        $rootScope.residenceDocumentsVerified = 'v';
                     }
                     else {
-                        statusCheck = vm.checkDocumentsArrayVerification($scope.documents, "Pending");
+                        statusCheck = vm.checkDocumentsArrayVerification($scope.documents, "pending");
                         if(statusCheck === true) {
                             $scope.status = 'pending';
+                            $rootScope.residenceDocumentsVerified = 'p';
                         }
                         else {
-                            statusCheck = vm.checkDocumentsArrayVerification($scope.documents, "Declined");
+                            statusCheck = vm.checkDocumentsArrayVerification($scope.documents, "declined");
                             if(statusCheck === true) {
-                                $scope.status = 'declined';
+                                $rootScope.residenceDocumentsVerified = 'd';
                             }
                         }
+                    }
+
+                    if($scope.status == 'verified'){
+                        $scope.goToNextView();
                     }
                 }
             }).catch(function (error) {
                 $scope.loadingDocumentsResidenceView = false;
+                if(error.status == 403 || error.status == 401){
+                    errorHandler.handle403();
+                    return
+                }
                 errorToasts.evaluateErrors(error.data);
             });
         };
@@ -80,7 +94,7 @@
                 return;
             } else {
                 for(var i = 0; i < documentsArray.length; i++){
-                    if(documentsArray[i].verified === status){
+                    if(documentsArray[i].status === status){
                         verifiedStatus = true;
                         break;
                     }

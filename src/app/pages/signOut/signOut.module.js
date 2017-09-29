@@ -13,10 +13,6 @@
                     $rootScope.gotToken = false;
                     cookieManagement.deleteCookie('TOKEN');
                     $location.path('/login');
-                },
-                title: 'Sign out',
-                sidebarMeta: {
-                    order: 500
                 }
             });
     }

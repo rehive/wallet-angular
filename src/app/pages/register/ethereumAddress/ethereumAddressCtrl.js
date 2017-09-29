@@ -12,6 +12,7 @@
         $scope.ethereum = {address: ''};
         $scope.showAuthNav = false;
         $scope.loadingEtheriumView = true;
+        $scope.statusPending = true;
 
         vm.getUserInfo = function(){
             $http.get(environmentConfig.API + '/user/', {
@@ -27,6 +28,10 @@
                 }
             }).catch(function (error) {
                 $scope.loadingEtheriumView = false;
+                if(error.status == 403 || error.status == 401){
+                    errorHandler.handle403();
+                    return
+                }
                 errorToasts.evaluateErrors(error.data);
             });
         };
@@ -41,18 +46,29 @@
             }).then(function (res) {
                 if (res.status === 200) {
                     if(res.data.data.length > 0){
-                        $location.path('/home')
+                        $scope.address = res.data.data[0];
+                        
+                        if($scope.address.status == 'pending'){
+                            $scope.statusPending = false;
+                        }
+                        else{
+                            $location.path('/home')
+                        }
                     }
                     $scope.loadingEtheriumView = false;
                 }
             }).catch(function (error) {
                 $scope.loadingEtheriumView = false;
+                if(error.status == 403 || error.status == 401){
+                    errorHandler.handle403();
+                    return
+                }
                 errorToasts.evaluateErrors(error.data);
             });
         };
 
         $scope.addEthereumAddress = function(address){
-            $http.post(environmentConfig.API + '/user/bitcoin-accounts/',{address: address}, {
+            $http.post(environmentConfig.API + '/user/bitcoin-accounts/',{address: address, crypto_type: 'ethereum'}, {
                 headers: {
                     'Content-Type': 'application/json',
                     'Authorization': vm.token
@@ -65,6 +81,10 @@
                 }
             }).catch(function (error) {
                 $scope.loadingEtheriumView = false;
+                if(error.status == 403 || error.status == 401){
+                    errorHandler.handle403();
+                    return
+                }
                 errorToasts.evaluateErrors(error.data);
             });
         };

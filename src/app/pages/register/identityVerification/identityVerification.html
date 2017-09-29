@@ -1,12 +1,13 @@
-<div>
-    <auth-navigation></auth-navigation>
-</div>
+
 <div ng-hide="loadingBasicInfoView" class="auth-main">
-    <div class="identity-block text-center">
+    <div class="identity-block text-center rp-block">
+        <div class="pull-right step-number">
+            Step 3 of 7
+        </div>
         <h1>Identity verification <span class="identity-title">| Basic information</span></h1>
 
         <div class="identity-form">
-            <form class="form">
+            <form name="infoForm">
                 <div>
                     <div class="row form-group">
                         <div class="col-sm-3 identity-label">
@@ -14,40 +15,48 @@
                         </div>
                         <div class="col-sm-9">
                             <div class="col-sm-6">
-                                <input class="form-control" ng-change="userChanged('first_name')"
-                                       placeholder="First name" type="text" ng-model="user.first_name">
+                                <input class="form-control" name="fname" ng-change="userChanged('first_name')"
+                                       placeholder="First name" type="text" ng-model="user.first_name" required>
                             </div>
                             <div class="col-sm-6">
-                                <input class="form-control" ng-change="userChanged('last_name')" placeholder="Last name"
-                                       type="text" ng-model="user.last_name">
+                                <input class="form-control" name="lname" ng-change="userChanged('last_name')" placeholder="Last name"
+                                       type="text" ng-model="user.last_name" required>
                             </div>
+                            
+                            <span style="color:red;float: left;padding-left: 16px;padding-top: 5px;" ng-show="formSubmitted && (infoForm.fname.$invalid || infoForm.lname.$invalid)">
+                            This fields are required!</span>
                         </div>
                     </div>
-                    <div class="row form-group">
+                    <!-- <div class="row form-group">
                         <div class="col-sm-3 identity-label">
                             <p>ID number</p>
                         </div>
                         <div class="col-sm-9">
                             <div class="col-sm-12">
-                                <input class="form-control" placeholder="ID or passport number" type="text" ng-model="user.id_number">
+                                <input class="form-control" ng-change="userChanged('id_number')" placeholder="ID or passport number" name="ID_number" type="text" ng-model="user.id_number">
                             </div>
                         </div>
-                    </div>
+                    </div> -->
                     <div class="row form-group">
                         <div class="col-sm-3 identity-label">
                             <p>Date of birth</p>
                         </div>
                         <div class="col-sm-9">
                             <div class="col-sm-4">
-                                <input class="form-control" placeholder="Month" type="text" ng-model="month">
+                                <Select class="form-control" ng-model="birth.day" ng-options="n for n in [] | range:1:32" name="bday" required>
+                                </Select>
                             </div>
                             <div class="col-sm-4">
-                                <input class="form-control" placeholder="Day" type="text" ng-model="day">
+                                <Select class="form-control" ng-model="birth.month" ng-options="m.value as m.name for m in months" name="bmonth" required>
+                                </Select>
                             </div>
                             <div class="col-sm-4">
-                                <input class="form-control" placeholder="Year" type="text" ng-model="year">
+                                <Select class="form-control" ng-model="birth.year" ng-options="n for n in [] | range:1950:2001" name="byear" required>
+                                </Select>
                             </div>
                         </div>
+                        <span style="color:red;float: left;padding-left: 16px;padding-top: 5px;" ng-show="formSubmitted && (infoForm.bday.$invalid || infoForm.bmonth.$invalid || infoForm.byear.$invalid)">
+                            This field is required!</span>
                     </div>
                     <div class="row form-group">
                         <div class="col-sm-3 identity-label">
@@ -55,28 +64,38 @@
                         </div>
                         <div class="col-sm-9">
                             <div class="col-sm-12 input-block">
-                                <input class="form-control" placeholder="Line 1" type="text" ng-model="address.line_1">
+                                <input class="form-control" placeholder="Line 1" type="text" ng-model="address.line_1" name="line1" required>
+                                <span style="color:red;float: left;padding-top: 5px;" ng-show="formSubmitted && infoForm.line1.$invalid">
+                            This field is required!</span>
                             </div>
                             <div class="col-sm-12 input-block">
                                 <input class="form-control" placeholder="Line 2" type="text" ng-model="address.line_2">
                             </div>
                             <div class="col-sm-12 input-block">
-                                <country-select placeholder="country" class="form-control pointer"
-                                                ng-model="address.country"></country-select>
+                                <input class="form-control" placeholder="City" type="text" ng-model="address.city" name="city" required>
+                                <span style="color:red;float: left;padding-top: 5px;" ng-show="formSubmitted && infoForm.city.$invalid">
+                            This field is required!</span>
                             </div>
                             <div class="col-sm-12 input-block">
                                 <input class="form-control" placeholder="State/Province" type="text"
                                        ng-model="address.state_province">
                             </div>
                             <div class="col-sm-8">
-                                <input class="form-control" placeholder="City" type="text" ng-model="address.city">
+                                <div style="margin-bottom:3px;float:left;font-size: 15px;font-weight: bold;">Select country</div>
+                                <country-select placeholder="country" class="form-control pointer"
+                                                ng-model="address.country" name="country" required></country-select>
+                                <span style="color:red;float: left;padding-top: 5px;" ng-show="formSubmitted && infoForm.country.$invalid">
+                                This field is required!</span>
                             </div>
+                                            
                             <div class="col-sm-4">
-                                <input class="form-control" placeholder="Zip" type="text"
-                                       ng-model="address.postal_code">
+                                <input class="form-control" style="margin-top:6px" placeholder="Zip" type="text"
+                                       ng-model="address.postal_code" name="code" required>
+                                <span style="color:red;float: left;padding-top: 5px;" ng-show="formSubmitted && infoForm.code.$invalid">
+                                This field is required!</span>
                             </div>
                             <div class="col-sm-12">
-                                <button ng-click="updateUserInfo()" class="btn btn-primary pull-right identity-button">
+                                <button ng-click="infoForm.$valid ? updateUserInfo() : formSubmitted = true;" class="btn btn-primary pull-right identity-button">
                                     Next
                                 </button>
                                 <button ng-click="goToNextView()" class="btn btn-danger pull-left identity-button">

@@ -10,6 +10,14 @@
   padding: 0 15px 0 6px;
 }
 
+.modal-content > .col-md-12 {
+    background-color: white!important;
+}
+
+.modal-body-buttons {
+  padding: 15px 15px 0px 15px;
+}
+
 .btn-auth {
   color: #ffffff;
   width: 100%;
@@ -25,4 +33,14 @@
     border: 1px solid #e7e7e7;
     width: 100%;
     padding: 10px;
+}
+
+.step-number {
+  margin-top: -22px;
+  font-size: 18px;
+  color: #9aa2a2;
+}
+
+.rp-block {
+  margin: 20px auto!important;
 }
