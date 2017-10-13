@@ -46,7 +46,7 @@
                         return;
                     }
 
-                    if($scope.user.kyc_verified == true){
+                    if($scope.user.kyc.status == "verified"){
                         $scope.allVerified = true;
                         if($rootScope.ethereumAddressVerified){
                             $rootScope.allVerified = true;
