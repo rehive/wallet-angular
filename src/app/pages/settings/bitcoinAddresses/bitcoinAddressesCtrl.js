@@ -28,7 +28,7 @@
 
         vm.getBankAccount = function (bankAccount) {
             $scope.loadingBankAccounts = true;
-            $http.get(environmentConfig.API + '/user/bitcoin-accounts/' + bankAccount.id + '/', {
+            $http.get(environmentConfig.API + '/user/crypto-accounts/' + bankAccount.id + '/', {
                 headers: {
                     'Content-Type': 'application/json',
                     'Authorization': vm.token
@@ -51,7 +51,7 @@
         vm.getBankAccounts = function () {
             if(vm.token) {
                 $scope.loadingBankAccounts = true;
-                $http.get(environmentConfig.API + '/user/bitcoin-accounts/', {
+                $http.get(environmentConfig.API + '/user/crypto-accounts/', {
                     headers: {
                         'Content-Type': 'application/json',
                         'Authorization': vm.token
@@ -70,7 +70,7 @@
         vm.getBankAccounts();
 
         $scope.addBankAccount = function (newBitcoinAddress) {
-            $http.post(environmentConfig.API + '/user/bitcoin-accounts/', newBitcoinAddress, {
+            $http.post(environmentConfig.API + '/user/crypto-accounts/', newBitcoinAddress, {
                 headers: {
                     'Content-Type': 'application/json',
                     'Authorization': vm.token
@@ -101,7 +101,7 @@
             $window.scrollTo(0, 0);
             $scope.editingBankAccounts = !$scope.editingBankAccounts;
             $scope.loadingBankAccounts = true;
-            $http.patch(environmentConfig.API + '/user/bitcoin-accounts/'+ $scope.editBitcoinAddress.id + '/', vm.updatedBankAccount, {
+            $http.patch(environmentConfig.API + '/user/crypto-accounts/'+ $scope.editBitcoinAddress.id + '/', vm.updatedBankAccount, {
                 headers: {
                     'Content-Type': 'application/json',
                     'Authorization': vm.token

@@ -38,7 +38,7 @@
         vm.getUserInfo();
 
         vm.getEthereumAddresses = function(){
-            $http.get(environmentConfig.API + '/user/bitcoin-accounts/', {
+            $http.get(environmentConfig.API + '/user/crypto-accounts/', {
                 headers: {
                     'Content-Type': 'application/json',
                     'Authorization': vm.token
@@ -68,7 +68,7 @@
         };
 
         $scope.addEthereumAddress = function(address){
-            $http.post(environmentConfig.API + '/user/bitcoin-accounts/',{address: address, crypto_type: 'ethereum'}, {
+            $http.post(environmentConfig.API + '/user/crypto-accounts/',{address: address, crypto_type: 'ethereum'}, {
                 headers: {
                     'Content-Type': 'application/json',
                     'Authorization': vm.token
