@@ -1,4 +1,4 @@
-<div ng-show="transactions.length > 0" class="divider">
+<div ng-show="transactionsList.length > 0" class="divider">
     <table class="table table-condensed table-striped table-hover ">
         <tr class="black-muted-bg">
             <td><strong>User</strong></td>
@@ -10,7 +10,7 @@
             <td><strong>Status</strong></td>
             <td><strong>Date</strong></td>
         </tr>
-        <tr ng-repeat="transaction in transactions | orderBy: '-created' | filter: {currency:{code: 'ECH'}}" data-toggle="modal"
+        <tr ng-repeat="transaction in transactionsList | orderBy: '-created'" data-toggle="modal"
             ng-click="openModal('app/pages/transactions/transactionModal/transactionModal.html', 'md',transaction)"
             class="editable-row center pointer">
             <td><div title="{{transaction.user.email || transaction.user.mobile_number}}" class="transactions-list-element" ng-bind="transaction.user.email || transaction.user.mobile_number | limitTo: '100'"></div></td>
@@ -30,7 +30,7 @@
            previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;"></p>
     </div>
 </div>
-<div ng-show="transactions.length == 0">
+<div ng-show="transactionsList.length == 0">
     <i ng-hide="transactionsStateMessage == ''" ng-bind="transactionsStateMessage"></i>
     <loading-image ng-show="transactionsStateMessage == ''"></loading-image>
 </div>

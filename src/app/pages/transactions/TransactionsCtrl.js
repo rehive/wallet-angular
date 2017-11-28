@@ -16,7 +16,7 @@
             maxSize: 5
         };
 
-        $scope.transactions = [];
+        $scope.transactionsList = [];
         $scope.transactionsStateMessage = '';
         $scope.transactionsData = {};
         $scope.loadingTransactions = false;
@@ -37,8 +37,8 @@
                 $scope.transactionsStateMessage = '';
                 $scope.loadingTransactions = true;
 
-                if ($scope.transactions.length > 0) {
-                    $scope.transactions.length = 0;
+                if ($scope.transactionsList.length > 0) {
+                    $scope.transactionsList.length = 0;
                 }
 
                 var transactionsUrl = vm.getTransactionUrl();
@@ -52,8 +52,8 @@
                     $scope.loadingTransactions = false;
                     if (res.status === 200) {
                         $scope.transactionsData = res.data.data;
-                        $scope.transactions = $scope.transactionsData.results;
-                        if ($scope.transactions == 0) {
+                        $scope.transactionsList = $scope.transactionsData.results;
+                        if ($scope.transactionsData.count == 0) {
                             $scope.transactionsStateMessage = 'No transactions have been made';
                             return;
                         }
