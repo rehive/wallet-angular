@@ -1,5 +1,5 @@
-<div ng-hide="allVerified && ethereumAddressVerified">
-    <div ng-hide="loadingRegisterProgressView" class="col-lg-10 col-md-10 col-sm-10 col-xs-10 register-progress-box">
+<div ng-hide="allVerified">
+    <div ng-hide="loadingRegisterProgressView" class="col-lg-12 col-md-12 col-sm-12 col-xs-12 register-progress-box">
         <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 register-cirles">
             <div ng-show="emailVerified" class="register-circle-checked">
                 <span><i class="glyphicon glyphicon-ok"></i></span>
@@ -75,15 +75,6 @@
             </div>
             <span class="register-text">Proof of address</span>
         </div>
-    </div>
-    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2" ng-hide="loadingRegisterProgressView">
-        <div ng-show="ethereumAddressVerified" class="register-circle-checked" style="margin-left: 12px;">
-            <span><i class="glyphicon glyphicon-ok"></i></span>
-        </div>
-        <div ng-click="goToGetVerified('/ethereum/address')" ng-hide="ethereumAddressVerified" class="register-circle-unchecked pointer" style="margin-left: 12px;">
-            <span>7</span>
-        </div>
-        <span class="register-text">Token address</span>
     </div>
     <div ng-show="loadingRegisterProgressView" class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
         <loading-image></loading-image>

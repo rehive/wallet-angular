@@ -159,33 +159,7 @@
                 }
             }
             return 'n';
-        }; 
-
-        vm.getEthereumAddresses = function(){
-            if(vm.token){
-                $http.get(environmentConfig.API + '/user/crypto-accounts/', {
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'Authorization': vm.token
-                    }
-                }).then(function (res) {
-                    if (res.status === 200) {
-                        if(res.data.data.length > 0){
-                            $rootScope.ethereumAddressVerified = true;
-                            if($scope.allVerified){
-                                $rootScope.allVerified = true;
-                            }
-                        } else {
-                            $rootScope.ethereumAddressVerified = false;
-                        }
-                    }
-                }).catch(function (error) {
-                    $scope.loadingRegisterProgressView = false;
-                    errorToasts.evaluateErrors(error.data);
-                });
-            }
         };
-        vm.getEthereumAddresses();
         
 
     }

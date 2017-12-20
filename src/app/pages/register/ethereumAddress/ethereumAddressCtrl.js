@@ -13,6 +13,7 @@
         $scope.showAuthNav = false;
         $scope.loadingEtheriumView = true;
         $scope.statusPending = true;
+        $location.path('/home')
 
         vm.getUserInfo = function(){
             $http.get(environmentConfig.API + '/user/', {
