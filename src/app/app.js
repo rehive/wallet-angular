@@ -54,14 +54,11 @@ angular.module('BlurAdmin', [
                     }).then(function (res) {
                         if (res.status === 200) {
                             $rootScope.USER = res.data.data;
-                            var switches = $rootScope.USER.switches.find(function(element){
-                                return element.tx_type === "credit";
-                            });
-                            if(typeof(switches) != 'undefined'){
-                                $rootScope.creditSwitch = switches.enabled;
-                            }
-                            else {
-                                $rootScope.creditSwitch = true;
+                            var settings = $rootScope.USER.settings;
+                            if(settings.allow_transactions===false){
+                                $rootScope.creditSwitch=false
+                            }else{
+                                $rootScope.creditSwitch = settings.allow_credit_transactions;
                             }
                         }
                     }).catch(function (error) {
