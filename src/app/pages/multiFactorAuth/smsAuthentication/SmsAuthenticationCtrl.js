@@ -81,7 +81,6 @@
                         $scope.loadingSmsAuth = false;
                     }
                 }).catch(function (error) {
-                    console.log(error)
                     $scope.loadingSmsAuth = false;
                     if(error.status == 403 || error.status == 401){
                         errorHandler.handle403();

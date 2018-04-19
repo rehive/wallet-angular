@@ -8,7 +8,13 @@
         $scope.metadata = metadataTextService.convertToText(transaction.metadata);
         $scope.transaction = transaction;
         $scope.updatingTransaction = false;
-
+        //console.log(transaction);
+        if(transaction.source_transaction){
+            $scope.user = transaction.source_transaction.user;
+        }
+        else {
+            $scope.user = transaction.destination_transaction.user;
+        }
         var vm = this;
         vm.token = cookieManagement.getCookie('TOKEN');
 

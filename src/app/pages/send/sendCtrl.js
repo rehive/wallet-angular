@@ -22,7 +22,6 @@
                     $scope.loadingUserInfo = false;
                     if (res.status === 200) {
                         $scope.user = res.data.data;
-                        //console.log($scope.user);
                     }
                 }).catch(function (error) {
                     $scope.loadingCurrencies = false;
@@ -43,7 +42,8 @@
                 $http.post(environmentConfig.API + '/transactions/transfer/', {
                     amount: amount,
                     recipient: recipient,
-                    debit_note: debit_note
+                    debit_note: debit_note,
+                    currency: $scope.user.currency.code
                 }, {
                     headers: {
                         'Content-Type': 'application/json',

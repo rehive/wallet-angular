@@ -23,7 +23,7 @@
                     $scope.loadingUserInfo = false;
                     if (res.status === 200) {
                         $scope.user = res.data.data;
-                        console.log($scope.user);
+                        $scope.user.email=encodeURIComponent($scope.user.email);
                     }
                 }).catch(function (error) {
                     $scope.loadingCurrencies = false;
@@ -38,7 +38,7 @@
         vm.getUserInfo();
 
         $scope.addressCopied = function(){
-            toastr.success('Address copies','Message');
+            toastr.success('Address copies');
         }
     }
 

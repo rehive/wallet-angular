@@ -13,7 +13,7 @@
         <tr ng-repeat="transaction in transactionsList | orderBy: '-created'" data-toggle="modal"
             ng-click="openModal('app/pages/transactions/transactionModal/transactionModal.html', 'md',transaction)"
             class="editable-row center pointer">
-            <td><div title="{{transaction.user.email || transaction.user.mobile_number}}" class="transactions-list-element" ng-bind="transaction.user.email || transaction.user.mobile_number | limitTo: '100'"></div></td>
+            <td><div title="{{transaction.source_transaction.user.email || transaction.destination_transaction.user.email}}" class="transactions-list-element" ng-bind="transaction.source_transaction.user.email || transaction.destination_transaction.user.email | limitTo: '100'"></div></td>
             <td><div title="{{transaction.tx_type}}" class="transactions-list-element" ng-bind="transaction.tx_type | capitalizeWord"></div></td>
             <td><div title="{{transaction.subtype}}" class="transactions-list-element" ng-bind="transaction.subtype || 'None'"></div></td>
             <td><div title="{{transaction.currency.code}}" class="transactions-list-element" ng-bind="transaction.currency.code"></div></td>
